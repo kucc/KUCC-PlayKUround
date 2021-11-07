@@ -14,10 +14,12 @@ const RedisStore = require('connect-redis')(session);
 const logger = require('./logger');
 
 dotenv.config();
+
 const redisClient = redis.createClient({
   url: `redis://${process.env.REDIS_HOST}:${process.env.REDIS_PORT}`,
   password: process.env.REDIS_PASSWORD,
 });
+
 const userRouter = require('./routes/user');
 const { sequelize } = require('./models');
 const passportConfig = require('./passport');
