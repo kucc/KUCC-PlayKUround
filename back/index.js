@@ -76,7 +76,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.get('/', (req, res) => {
-  res.status(200).send('Hello Node!');
+  res.status(200).send('백엔드 서버 실행중');
 });
 app.use('/user', userRouter);
 
