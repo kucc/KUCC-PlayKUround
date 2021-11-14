@@ -1,8 +1,6 @@
 import React from 'react';
-import LoginPage from '../components/LoginPage';
+import Login from '@containers/Login';
 
-const Login = () => (
-    <LoginPage />
-);
+const LoginPage = () => <Login />;
 
-export default Login;
+export default LoginPage;

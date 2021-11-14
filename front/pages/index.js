@@ -1,8 +1,6 @@
 import React from 'react';
-import LandingPage from '../components/LandingPage';
+import Landing from '@containers/Landing';
 
-const Home = () => (
-        <LandingPage />
-    );
+const Home = () => <Landing />;
 
 export default Home;
