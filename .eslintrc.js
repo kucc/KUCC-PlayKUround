@@ -8,14 +8,14 @@ module.exports = {
     'plugin:react/recommended',
     'plugin:react-hooks/recommended',
     'plugin:prettier/recommended',
-    'plugin:@next/next/recommended',
   ],
-  parser: 'babel-eslint',
+  parser: '@babel/eslint-parser',
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
     },
-    ecmaVersion: 2021,
+    ecmaVersion: 8,
+    requireConfigFile: false,
     sourceType: 'module',
   },
   plugins: ['react', 'react-hooks', 'prettier', 'import'],
