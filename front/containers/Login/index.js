@@ -8,6 +8,7 @@ import { loginRequestAction } from '@reducers/user';
 import useInput from '@hooks/useInput';
 import NavBar from '@containers/Navbar';
 import Landing from '@containers/Landing';
+import { CenterDiv } from '@components';
 
 const ButtonWrapper = styled.div`
   margin-top: 10px;
@@ -40,14 +41,6 @@ const LoginForm = () => {
   const [email, onChangeEmail] = useInput('');
   const [password, onChangePassword] = useInput('');
   const [code, setCode] = useState('');
-
-  const style = useMemo(() => ({
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: '100vh',
-    width: '100%',
-  }));
 
   useEffect(() => {
     // eslint-disable-next-line no-undef
@@ -85,7 +78,7 @@ const LoginForm = () => {
       ) : (
         <>
           <NavBar />
-          <div style={style}>
+          <CenterDiv>
             <FormWrapper onFinish={onSubmitForm}>
               <Email>
                 <label htmlFor='user-email'>이메일</label>
@@ -120,7 +113,7 @@ const LoginForm = () => {
                 </Link>
               </ButtonWrapper>
             </FormWrapper>
-          </div>
+          </CenterDiv>
         </>
       )}
     </>
