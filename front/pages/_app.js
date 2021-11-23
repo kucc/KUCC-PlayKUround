@@ -10,7 +10,7 @@ import wrapper from '@store/configureStore';
 const App = ({ Component }) => (
   <>
     <Head>
-      <meta charset='utf-8' />
+      <meta charSet='utf-8' />
       <title>BoilerPlate</title>
     </Head>
     <Component />
