@@ -3,7 +3,7 @@ module.exports = function (api) {
   return {
     presets: ['next/babel'],
     plugins: [
-      ['import', { libraryName: 'antd', style: true }],
+      ['import', { libraryName: 'antd', style: true }, 'syntax-dynamic-import'],
       [
         'babel-plugin-styled-components',
         {
