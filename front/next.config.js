@@ -6,7 +6,7 @@ module.exports = withAntdLess({
   //   // '@primary-color': 'rgb(255, 0, 212)',
   // },
   // Or better still you can specify a path to a file
-  lessVarsFilePath: './styles/variables.less',
+  lessVarsFilePath: './src/styles/variables.less',
   // optional
   lessVarsFilePathAppendToEndOfContent: false,
   // optional https://github.com/webpack-contrib/css-loader#object
@@ -24,6 +24,10 @@ module.exports = withAntdLess({
           'css-loader',
           'less-loader',
         ],
+      },
+      {
+        test: /\.(woff|woff2|ttf|eot)$/,
+        loader: 'file-loader?name=fonts/[name].[ext]!static',
       },
     ],
   },
