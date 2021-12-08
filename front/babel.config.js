@@ -1,8 +1,9 @@
 module.exports = function (api) {
   api.cache(true);
   return {
-    presets: ['next/babel'],
+    presets: ['next/babel', '@babel/preset-env'],
     plugins: [
+      '@babel/plugin-transform-runtime',
       ['import', { libraryName: 'antd', style: true }, 'syntax-dynamic-import'],
       [
         'babel-plugin-styled-components',
@@ -16,18 +17,19 @@ module.exports = function (api) {
         {
           root: ['.'],
           alias: {
-            '@components': './components',
-            '@containers': './containers',
-            '@constants': './constants',
-            '@config': './config',
-            '@assets': './assets',
-            '@hooks': './hooks',
-            '@styles': './styles',
-            '@util': './util',
-            '@pages': './pages',
-            '@store': './store',
-            '@reducers': './reducers',
-            '@sagas': './sagas',
+            '@components': './src/components',
+            '@atoms': './src/components/atoms',
+            '@containers': './src/containers',
+            '@constants': './src/constants',
+            '@config': './src/config',
+            '@assets': './src/assets',
+            '@hooks': './src/hooks',
+            '@styles': './src/styles',
+            '@util': './src/util',
+            '@pages': './src/pages',
+            '@store': './src/store',
+            '@reducers': './src/reducers',
+            '@sagas': './src/sagas',
           },
         },
       ],
