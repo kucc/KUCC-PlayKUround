@@ -1,13 +1,12 @@
 import React from 'react';
-import { Typography } from 'antd';
 import PropTypes from 'prop-types';
+import { StyledText } from './styled';
 
-const { Text } = Typography;
-export const AntdText = ({ children, ...props }) => {
-  return <Text {...props}>{children}</Text>;
+export const Text = ({ children, ...props }) => {
+  return <StyledText {...props}>{children}</StyledText>;
 };
 
-AntdText.propTypes = {
+Text.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
