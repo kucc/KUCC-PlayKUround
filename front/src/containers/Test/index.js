@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Input } from 'antd';
-import { BaseButton, AntdText } from '@components';
+import { BaseButton, Text } from '@components';
 import { camelTypography } from '@styles';
 
 export const Test = () => {
@@ -30,7 +30,7 @@ export const Test = () => {
         htmlType={'submit'}>
         {'로그인'}
       </BaseButton>
-      <AntdText underline>안녕</AntdText>
+      <Text underline>안녕</Text>
     </>
   );
 };
