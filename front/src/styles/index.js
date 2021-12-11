@@ -2,4 +2,4 @@
 export * from './Color';
 export * from './GlobalStyle';
 export * from './lowerTypography';
-export * from './camelTypography';
+export * from './Typography';

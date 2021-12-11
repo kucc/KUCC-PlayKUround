@@ -1,6 +1,6 @@
 import fonts from './themes/fonts';
 
-export const camelTypography = {
+export const lowerTypography = {
   h1: {
     'font-size': 96,
     'font-family': fonts.light.fontFamily,
