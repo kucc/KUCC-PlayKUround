@@ -6,7 +6,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { loginRequestAction } from '@reducers/user';
 
 import useInput from '@hooks/useInput';
-import { NavBar, Landing } from '../index';
+import { NavBar } from '../Navbar';
+import { Landing } from '../Landing';
 import { Div } from '@components';
 
 const ButtonWrapper = styled.div`
