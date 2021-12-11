@@ -1,13 +1,83 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { StyledText } from './styled';
+import { Typography } from '@styles';
 
 export const Text = ({ children, ...props }) => {
-  return <StyledText {...props}>{children}</StyledText>;
+  const fontWeight = props.bold
+    ? { fontWeight: 700 }
+    : props.light
+    ? { fontWeight: 300 }
+    : props.thin
+    ? { fontWeight: 100 }
+    : { fontWeight: 400 };
+
+  const fontStyle = props.h1
+    ? { ...Typography.h1 }
+    : props.h2
+    ? { ...Typography.h2 }
+    : props.h3
+    ? { ...Typography.h3 }
+    : props.h4
+    ? { ...Typography.h4 }
+    : props.h5
+    ? { ...Typography.h5 }
+    : props.h6
+    ? { ...Typography.h6 }
+    : props.subtitle1
+    ? { ...Typography.subtitle1 }
+    : props.subtitle2
+    ? { ...Typography.subtitle2 }
+    : props.body1
+    ? { ...Typography.body1 }
+    : props.body2
+    ? { ...Typography.body2 }
+    : props.button
+    ? { ...Typography.button }
+    : props.label
+    ? { ...Typography.label }
+    : props.caption
+    ? { ...Typography.caption }
+    : props.overline
+    ? { ...Typography.overline }
+    : { ...Typography.body1 };
+
+  const locationStyle = props.center ? { textAlign: 'center' } : {};
+
+  return (
+    <Text
+      style={
+        props.style
+          ? Object.assign(props.style, fontWeight, fontStyle, locationStyle)
+          : Object.assign(fontWeight, fontStyle, locationStyle)
+      }
+      {...props}>
+      {children}
+    </Text>
+  );
 };
 
 Text.propTypes = {
   children: PropTypes.node.isRequired,
+  h1: PropTypes.bool,
+  h2: PropTypes.bool,
+  h3: PropTypes.bool,
+  h4: PropTypes.bool,
+  h5: PropTypes.bool,
+  h6: PropTypes.bool,
+  subtitle1: PropTypes.bool,
+  subtitle2: PropTypes.bool,
+  body1: PropTypes.bool,
+  body2: PropTypes.bool,
+  button: PropTypes.bool,
+  label: PropTypes.bool,
+  caption: PropTypes.bool,
+  overline: PropTypes.bool,
+  bold: PropTypes.bool,
+  regular: PropTypes.bool,
+  light: PropTypes.bool,
+  thin: PropTypes.bool,
+  center: PropTypes.bool,
+  style: PropTypes.object,
 };
 
 {
