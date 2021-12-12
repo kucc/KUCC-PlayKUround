@@ -6,6 +6,9 @@ codeTest.js
 #uploads
 uploads
 
+# Storybook
+storybook-static/
+
 ### Node ###
 # Logs
 logs
