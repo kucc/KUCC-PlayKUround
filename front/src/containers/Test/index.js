@@ -1,36 +1,35 @@
-import React, { useEffect, useState } from 'react';
-import { Input } from 'antd';
-import { BaseButton, Text } from '@components';
-import { camelTypography } from '@styles';
+import React from 'react';
+// import { Div } from '@components';
+import { Div, Text } from '@components';
 
 export const Test = () => {
-  const [isComplete, setIsComplete] = useState(false);
-  const [text, setText] = useState('');
-
-  const onChangeText = e => {
-    setText(e.target.value);
-    console.log('targetValue', e.target.value);
-    console.log('text', text);
-  };
-
-  useEffect(() => {
-    if (text) {
-      console.log('setIsComplete');
-      setIsComplete(true);
-      console.log('isComplete', isComplete);
-    }
-  }, [text]);
-
   return (
     <>
-      <Input value={text} onChange={onChangeText} />
-      <BaseButton
-        style={{ ...camelTypography.h1 }}
-        isComplete={isComplete}
-        htmlType={'submit'}>
-        {'로그인'}
-      </BaseButton>
-      <Text underline>안녕</Text>
+      <Div center col>
+        <Text>thin</Text>
+        <Text bold>body1 & h1</Text>
+        <Text h4 regular>
+          h4 & regular
+        </Text>
+        <Text h4 regular mark>
+          h4 & regular & mark
+        </Text>
+        <Text h4 medium blue_3>
+          h2 & medium & blue_3
+        </Text>
+        <Text h3 bold grey>
+          h3 & Bold & grey
+        </Text>
+        <Text h2 bold primary_1>
+          h2 & Bold & primary_1
+        </Text>
+        <Text h1 medium secondary_5>
+          h1 & medium & secondary_5
+        </Text>
+        <Text h1 bold red_7>
+          Bold & h1 & red_7
+        </Text>
+      </Div>
     </>
   );
 };

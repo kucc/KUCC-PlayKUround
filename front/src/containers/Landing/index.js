@@ -1,22 +1,16 @@
 import React, { useCallback, useMemo } from 'react';
-import { Button } from 'antd';
-import { NavBar } from '@containers';
+import { NavBar } from '../Navbar';
 import Router from 'next/router';
+import { Button } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { logoutRequestAction } from '@reducers/user';
+import { Div } from '@components';
 
 export const Landing = () => {
   const dispatch = useDispatch();
   const me = useSelector(state => state.user.me);
   const logOutLoading = useSelector(state => state.user.logOutLoading);
 
-  const style = useMemo(() => ({
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: '100%',
-    height: '100vh',
-  }));
   const ButtonStyle = useMemo(() => ({
     display: 'block',
     position: 'absolute',
@@ -26,6 +20,7 @@ export const Landing = () => {
   const moveLogin = useCallback(() => {
     Router.replace('/login');
   });
+
   const onLogOut = useCallback(() => {
     dispatch(logoutRequestAction());
   }, []);
@@ -33,7 +28,7 @@ export const Landing = () => {
   return (
     <>
       <NavBar />
-      <div style={style}>
+      <Div center>
         <h2>시작 페이지</h2>
         {me ? (
           <Button
@@ -48,7 +43,7 @@ export const Landing = () => {
             로그인하러 가기!
           </Button>
         )}
-      </div>
+      </Div>
     </>
   );
 };

@@ -6,8 +6,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { loginRequestAction } from '@reducers/user';
 
 import useInput from '@hooks/useInput';
-import { NavBar, Landing } from '../index';
-import { CenterDiv } from '@components';
+import { NavBar } from '../Navbar';
+import { Landing } from '../Landing';
+import { Div } from '@components';
 
 const ButtonWrapper = styled.div`
   margin-top: 10px;
@@ -77,7 +78,7 @@ export const Login = () => {
       ) : (
         <>
           <NavBar />
-          <CenterDiv>
+          <Div>
             <FormWrapper onFinish={onSubmitForm}>
               <Email>
                 <label htmlFor='user-email'>이메일</label>
@@ -112,7 +113,7 @@ export const Login = () => {
                 </Link>
               </ButtonWrapper>
             </FormWrapper>
-          </CenterDiv>
+          </Div>
         </>
       )}
     </>

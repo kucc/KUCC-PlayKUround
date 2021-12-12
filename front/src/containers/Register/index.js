@@ -11,7 +11,7 @@ import styled from 'styled-components';
 import useInput from '@hooks/useInput';
 import { LOAD_MY_INFO_REQUEST, SIGN_UP_REQUEST } from '@reducers/user';
 import wrapper from '@store/configureStore';
-import { NavBar } from '@containers';
+import { NavBar } from '../Navbar';
 
 const ErrorMessage = styled.div`
   color: red;
