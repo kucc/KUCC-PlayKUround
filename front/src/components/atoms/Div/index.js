@@ -21,10 +21,10 @@ export const Div = ({ children, ...props }) => {
     : {};
 
   const directionStyle = props.row
-    ? { flexDirection: 'row' }
+    ? { display: 'flex', flexDirection: 'row' }
     : props.col
-    ? { flexDirection: 'col' }
-    : { flexDirection: 'row' };
+    ? { display: 'flex', flexDirection: 'column' }
+    : { display: 'flex', flexDirection: 'row' };
   return (
     <div
       style={
