@@ -1,48 +1,33 @@
-import React, { useEffect, useState } from 'react';
-import { Input } from 'antd';
-import { BaseButton, Text } from '@components';
-import { Color } from '@styles';
-import { Div } from '@components';
+import React from 'react';
+// import { Div } from '@components';
+import { Div, Text } from '@components';
 
 export const Test = () => {
-  const [isComplete, setIsComplete] = useState(false);
-  const [text, setText] = useState('');
-
-  const onChangeText = e => {
-    setText(e.target.value);
-    console.log('targetValue', e.target.value);
-    console.log('text', text);
-  };
-
-  useEffect(() => {
-    if (text) {
-      console.log('setIsComplete');
-      setIsComplete(true);
-      console.log('isComplete', isComplete);
-    }
-  }, [text]);
-
   return (
     <>
-      {/* <Div centerV>
-        <Text thin>thin</Text>
-        <Text light>light</Text>
-        <Text regular>regular</Text>
-        <Text bold>bold</Text>
-      </Div> */}
-      <Div style={{ backgroundColor: 'red', width: 100, height: 100 }}>
+      <Div center col>
         <Text>thin</Text>
-      </Div>
-      <Div>
-        <Text h1 bold>
-          Bold & h1
-        </Text>
         <Text bold>body1 & h1</Text>
         <Text h4 regular>
           h4 & regular
         </Text>
         <Text h4 regular mark>
           h4 & regular & mark
+        </Text>
+        <Text h4 medium blue_3>
+          h2 & medium & blue_3
+        </Text>
+        <Text h3 bold grey>
+          h3 & Bold & grey
+        </Text>
+        <Text h2 bold primary_1>
+          h2 & Bold & primary_1
+        </Text>
+        <Text h1 medium secondary_5>
+          h1 & medium & secondary_5
+        </Text>
+        <Text h1 bold red_7>
+          Bold & h1 & red_7
         </Text>
       </Div>
     </>
