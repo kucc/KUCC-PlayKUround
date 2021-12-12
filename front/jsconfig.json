@@ -14,7 +14,7 @@
       "@assets/*": ["src/assets/*"],
       "@hooks/*": ["src/hooks/*"],
       "@styles/*": ["src/styles/*"],
-      "@utils/*": ["src/utils/*"],
+      "@util/*": ["src/util/*"],
       "@pages/*": ["src/pages/*"],
       "@store/*": ["src/store/*"],
       "@reducers/*": ["src/reducers/*"],
