@@ -29,8 +29,8 @@ export const Div = ({ children, ...props }) => {
     <div
       style={
         props.style
-          ? Object.assign(props.style, locationStyle, directionStyle)
-          : Object.assign(locationStyle, directionStyle)
+          ? { ...props.style, ...locationStyle, ...directionStyle }
+          : { ...locationStyle, ...directionStyle }
       }
       {...props}>
       {children}
