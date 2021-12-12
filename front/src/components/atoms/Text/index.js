@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Typography as Typo } from 'antd';
 import { Typography } from '@styles';
+
+const T = Typo.Text;
 
 export const Text = ({ children, ...props }) => {
   const fontWeight = props.bold
@@ -41,18 +44,18 @@ export const Text = ({ children, ...props }) => {
     ? { ...Typography.overline }
     : { ...Typography.body1 };
 
-  const locationStyle = props.center ? { textAlign: 'center' } : {};
+  const locationStyle = props.center && { textAlign: 'center' };
 
   return (
-    <Text
+    <T
       style={
         props.style
-          ? Object.assign(props.style, fontWeight, fontStyle, locationStyle)
-          : Object.assign(fontWeight, fontStyle, locationStyle)
+          ? { ...props.style, ...fontWeight, ...fontStyle, ...locationStyle }
+          : { ...fontWeight, ...fontStyle, ...locationStyle }
       }
       {...props}>
       {children}
-    </Text>
+    </T>
   );
 };
 
