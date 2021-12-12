@@ -1,23 +1,35 @@
 import { generate } from '@ant-design/colors';
 const primary = '#d41414';
-const colors = generate(primary);
+const grey = '#d5d5d5';
+const blue = '#0000FF';
+const red = '#ff0000';
+const secondary = '#3700B3';
+
+const colorsPrimary = generate(primary);
+const colorsGrey = generate(grey);
+const colorsBlue = generate(blue);
+const colorsRed = generate(red);
+const colorsSecondary = generate(secondary);
+
+const loadColor = (color, name) => {
+  const colorObject = {};
+  for (let i = 0; i < colorsPrimary.length; i++) {
+    colorObject[`${name}_${i}`] = `${color[i]}`;
+  }
+  return colorObject;
+};
 
 export const Color = {
   white: '#ffffff',
   black: '#111111',
-  grey_0: '#d5d5d5',
-  grey_1: '#a6a6a6',
-  red: '#e84118',
-  primary: colors.primary,
-  primary_0: colors[0],
-  primary_1: colors[1],
-  primary_2: colors[2],
-  primary_3: colors[3],
-  primary_4: colors[4],
-  primary_5: colors[5],
-  primary_6: colors[6],
-  primary_7: colors[7],
-  primary_8: colors[8],
-  primary_9: colors[9],
-  secondary: '#3679fe',
+  font: '#111111',
+  primary: '#d41414',
+  grey: '#d5d5d5',
+  blue: '#0000FF',
+  red: '#ff0000',
+  ...loadColor(colorsPrimary, 'primary'),
+  ...loadColor(colorsGrey, 'grey'),
+  ...loadColor(colorsBlue, 'blue'),
+  ...loadColor(colorsRed, 'red'),
+  ...loadColor(colorsSecondary, 'secondary'),
 };

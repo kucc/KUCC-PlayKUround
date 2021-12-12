@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Typography as Typo } from 'antd';
-import { Typography } from '@styles';
+import { colorStyle, fontStyle } from '@util';
 
 const T = Typo.Text;
 
@@ -14,44 +14,25 @@ export const Text = ({ children, ...props }) => {
     ? { fontWeight: 100 }
     : { fontWeight: 400 };
 
-  const fontStyle = props.h1
-    ? { ...Typography.h1 }
-    : props.h2
-    ? { ...Typography.h2 }
-    : props.h3
-    ? { ...Typography.h3 }
-    : props.h4
-    ? { ...Typography.h4 }
-    : props.h5
-    ? { ...Typography.h5 }
-    : props.h6
-    ? { ...Typography.h6 }
-    : props.subtitle1
-    ? { ...Typography.subtitle1 }
-    : props.subtitle2
-    ? { ...Typography.subtitle2 }
-    : props.body1
-    ? { ...Typography.body1 }
-    : props.body2
-    ? { ...Typography.body2 }
-    : props.button
-    ? { ...Typography.button }
-    : props.label
-    ? { ...Typography.label }
-    : props.caption
-    ? { ...Typography.caption }
-    : props.overline
-    ? { ...Typography.overline }
-    : { ...Typography.body1 };
-
   const locationStyle = props.center && { textAlign: 'center' };
 
   return (
     <T
       style={
         props.style
-          ? { ...props.style, ...fontWeight, ...fontStyle, ...locationStyle }
-          : { ...fontWeight, ...fontStyle, ...locationStyle }
+          ? {
+              ...props.style,
+              ...fontWeight,
+              ...fontStyle(props),
+              ...colorStyle(props),
+              ...locationStyle,
+            }
+          : {
+              ...fontWeight,
+              ...fontStyle(props),
+              ...colorStyle(props),
+              ...locationStyle,
+            }
       }
       {...props}>
       {children}
@@ -61,26 +42,13 @@ export const Text = ({ children, ...props }) => {
 
 Text.propTypes = {
   children: PropTypes.node.isRequired,
-  h1: PropTypes.bool,
-  h2: PropTypes.bool,
-  h3: PropTypes.bool,
-  h4: PropTypes.bool,
-  h5: PropTypes.bool,
-  h6: PropTypes.bool,
-  subtitle1: PropTypes.bool,
-  subtitle2: PropTypes.bool,
-  body1: PropTypes.bool,
-  body2: PropTypes.bool,
-  button: PropTypes.bool,
-  label: PropTypes.bool,
-  caption: PropTypes.bool,
-  overline: PropTypes.bool,
+  props: PropTypes.object,
   bold: PropTypes.bool,
   regular: PropTypes.bool,
   light: PropTypes.bool,
   thin: PropTypes.bool,
-  center: PropTypes.bool,
   style: PropTypes.object,
+  center: PropTypes.bool,
 };
 
 {
