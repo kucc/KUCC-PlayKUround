@@ -20,5 +20,6 @@
       "@reducers/*": ["src/reducers/*"],
       "@sagas/*": ["src/sagas/*"]
     }
-  }
+  },
+  "exclude": ["node_modules"]
 }
