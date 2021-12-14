@@ -1,5 +1,7 @@
 import React from 'react';
+
 import PropTypes from 'prop-types';
+
 import { ButtonComplete } from './styled';
 
 export const BaseButton = ({ isComplete, children, htmlType, ...props }) => {
@@ -9,7 +11,8 @@ export const BaseButton = ({ isComplete, children, htmlType, ...props }) => {
       htmlType={htmlType}
       isComplete={isComplete}
       type='primary'
-      {...props}>
+      {...props}
+    >
       {children}
     </ButtonComplete>
   );

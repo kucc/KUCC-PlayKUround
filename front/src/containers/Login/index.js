@@ -1,14 +1,18 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { Button, Input, Form, Alert } from 'antd';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { Alert, Button, Form, Input } from 'antd';
 import Link from 'next/link';
 import styled from 'styled-components';
-import { useDispatch, useSelector } from 'react-redux';
+
+import { Div } from '@components';
+
 import { loginRequestAction } from '@reducers/user';
 
 import useInput from '@hooks/useInput';
-import { NavBar } from '../Navbar';
+
 import { Landing } from '../Landing';
-import { Div } from '@components';
+import { NavBar } from '../Navbar';
 
 const ButtonWrapper = styled.div`
   margin-top: 10px;

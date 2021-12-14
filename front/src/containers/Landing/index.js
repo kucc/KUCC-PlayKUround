@@ -1,10 +1,14 @@
 import React, { useCallback, useMemo } from 'react';
-import { NavBar } from '../Navbar';
-import Router from 'next/router';
-import { Button } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
-import { logoutRequestAction } from '@reducers/user';
+
+import { Button } from 'antd';
+import Router from 'next/router';
+
 import { Div } from '@components';
+
+import { logoutRequestAction } from '@reducers/user';
+
+import { NavBar } from '../Navbar';
 
 export const Landing = () => {
   const dispatch = useDispatch();
@@ -35,7 +39,8 @@ export const Landing = () => {
             onClick={onLogOut}
             loading={logOutLoading}
             style={ButtonStyle}
-            type='primary'>
+            type='primary'
+          >
             로그아웃하기
           </Button>
         ) : (

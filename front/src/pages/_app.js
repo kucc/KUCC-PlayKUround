@@ -1,12 +1,14 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import Head from 'next/head';
-import { GlobalStyle } from '@styles';
+
 import 'antd/dist/antd.css';
-// TODO : import로 less파일 추적하능하게 바꾸기
-require('../styles/variables.less');
+import Head from 'next/head';
+import PropTypes from 'prop-types';
 
 import wrapper from '@store/configureStore';
+import { GlobalStyle } from '@styles';
+
+// TODO : import로 less파일 추적하능하게 바꾸기
+require('../styles/variables.less');
 
 const App = ({ Component }) => (
   <>

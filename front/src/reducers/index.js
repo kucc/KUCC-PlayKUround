@@ -1,5 +1,7 @@
-import { HYDRATE } from 'next-redux-wrapper';
 import { combineReducers } from 'redux';
+
+import { HYDRATE } from 'next-redux-wrapper';
+
 import user from '@reducers/user';
 
 // (이전상태, 액션) => 다음 상태를 만들어내는 함수
