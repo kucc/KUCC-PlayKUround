@@ -1,16 +1,19 @@
-import React, { useState, useCallback, useEffect, useMemo } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Router from 'next/router';
+import { END } from 'redux-saga';
+
+import { Alert, Button, Checkbox, Form, Input, Modal } from 'antd';
+import axios from 'axios';
 import Head from 'next/head';
 import Link from 'next/link';
-import { Input, Checkbox, Button, Modal, Form, Alert } from 'antd';
-import axios from 'axios';
-import { END } from 'redux-saga';
+import Router from 'next/router';
 import styled from 'styled-components';
 
-import useInput from '@hooks/useInput';
 import { LOAD_MY_INFO_REQUEST, SIGN_UP_REQUEST } from '@reducers/user';
+
+import useInput from '@hooks/useInput';
 import wrapper from '@store/configureStore';
+
 import { NavBar } from '../Navbar';
 
 const ErrorMessage = styled.div`
@@ -220,7 +223,8 @@ export const Register = () => {
                   title='약관 내용'
                   visible={isModalVisible}
                   onOk={handleOk}
-                  onCancel={handleCancel}>
+                  onCancel={handleCancel}
+                >
                   <p>강태웅과 사이좋게 지낸다!</p>
                   <p>강태웅과 자주 연락한다!</p>
                   <p>강태웅과 자주 놀아준다!</p>
@@ -235,7 +239,8 @@ export const Register = () => {
               <ButtonMargin
                 type='primary'
                 htmlType='submit'
-                loading={signUpLoading}>
+                loading={signUpLoading}
+              >
                 가입하기
               </ButtonMargin>
               <Link href='/'>

@@ -1,4 +1,5 @@
 import React from 'react';
+
 import PropTypes from 'prop-types';
 
 export const Div = ({ children, ...props }) => {
@@ -32,7 +33,8 @@ export const Div = ({ children, ...props }) => {
           ? { ...props.style, ...locationStyle, ...directionStyle }
           : { ...locationStyle, ...directionStyle }
       }
-      {...props}>
+      {...props}
+    >
       {children}
     </div>
   );

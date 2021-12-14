@@ -1,6 +1,8 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+
 import { Typography as Typo } from 'antd';
+import PropTypes from 'prop-types';
+
 import { colorStyle, fontStyle } from '@util';
 
 const T = Typo.Text;
@@ -34,7 +36,8 @@ export const Text = ({ children, ...props }) => {
               ...locationStyle,
             }
       }
-      {...props}>
+      {...props}
+    >
       {children}
     </T>
   );

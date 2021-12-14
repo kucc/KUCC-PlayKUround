@@ -1,5 +1,6 @@
 import { Button as AntdButton } from 'antd';
 import styled from 'styled-components';
+
 import { Color, lowerTypography } from '@styles';
 
 export const ButtonComplete = styled(AntdButton)`
