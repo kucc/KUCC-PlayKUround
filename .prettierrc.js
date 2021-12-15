@@ -1,7 +1,7 @@
 var jsOption = {
   arrowParens: 'avoid',
   jsxSingleQuote: true,
-  jsxBracketSameLine: true,
+  bracketSameLine: true,
   singleQuote: true,
   semi: true,
   bracketSpacing: true,

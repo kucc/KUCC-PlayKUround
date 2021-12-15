@@ -1,7 +1,7 @@
 module.exports = function (api) {
   api.cache(true);
   return {
-    presets: ['next/babel', '@babel/preset-env'],
+    presets: ['next/babel', '@babel/preset-env', '@babel/preset-react'],
     plugins: [
       '@babel/plugin-transform-runtime',
       ['import', { libraryName: 'antd', style: true }, 'syntax-dynamic-import'],
@@ -19,7 +19,8 @@ module.exports = function (api) {
           alias: {
             '@components': './src/components',
             '@atoms': './src/components/atoms',
-            '@containers': './src/containers',
+            '@molecules': './src/components/molecules',
+            '@templates': './src/templates',
             '@constants': './src/constants',
             '@config': './src/config',
             '@assets': './src/assets',
