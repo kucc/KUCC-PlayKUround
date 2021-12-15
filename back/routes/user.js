@@ -16,8 +16,8 @@ router.post('/register', async (req, res, next) => {
       },
     });
     if (exUser) {
-      // eslint-disable-next-line no-alert
       if (typeof window !== 'undefined') {
+        // eslint-disable-next-line no-undef
         alert('이미 사용중인 이메일입니다.');
       }
       return res.status(403).send('이미 사용중인 이메일입니다.');
