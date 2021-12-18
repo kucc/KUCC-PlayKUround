@@ -4,13 +4,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Button } from 'antd';
 import Router from 'next/router';
 
-import { Div } from '@components';
+import { Div, NavBar, Text } from '@components';
 
 import { logoutRequestAction } from '@reducers/user';
 
-import { NavBar } from '../Navbar';
-
-export const Landing = () => {
+export const Home = () => {
   const dispatch = useDispatch();
   const me = useSelector(state => state.user.me);
   const logOutLoading = useSelector(state => state.user.logOutLoading);
@@ -33,14 +31,13 @@ export const Landing = () => {
     <>
       <NavBar />
       <Div center>
-        <h2>시작 페이지</h2>
+        <Text h2>시작 페이지</Text>
         {me ? (
           <Button
             onClick={onLogOut}
             loading={logOutLoading}
             style={ButtonStyle}
-            type='primary'
-          >
+            type='primary'>
             로그아웃하기
           </Button>
         ) : (
