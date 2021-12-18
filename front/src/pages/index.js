@@ -1,7 +1,9 @@
 import React from 'react';
 
-import { Landing } from '@containers';
+import { Home } from '@templates';
 
-const Home = () => <Landing />;
+const HomePage = () => {
+  return <Home />;
+};
 
-export default Home;
+export default HomePage;
