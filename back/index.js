@@ -25,7 +25,7 @@ const { sequelize } = require('./models');
 const passportConfig = require('./passport');
 
 const app = express();
-const port = 5000;
+const port = 8000;
 sequelize
   .sync({ force: false })
   .then(() => {
