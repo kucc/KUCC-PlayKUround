@@ -1,5 +1,4 @@
-import React from 'react';
-import { useMemo, useRef, useState } from 'react';
+import React, { useMemo, useRef, useState } from 'react';
 
 import {
   AppstoreOutlined,
@@ -11,7 +10,7 @@ import { Menu } from 'antd';
 const { SubMenu } = Menu;
 
 export const NavBar = () => {
-  const style = useMemo(() => ({ margin: 'auto' }));
+  const style = useMemo(() => ({ margin: 'auto' }), []);
   const [state, setState] = useState('');
   const handleClick = e => {
     setState({ current: e.key });
@@ -30,8 +29,7 @@ export const NavBar = () => {
         <SubMenu
           key='SubMenu'
           icon={<SettingOutlined />}
-          title='세 번째 메뉴 - 서브 메뉴'
-        >
+          title='세 번째 메뉴 - 서브 메뉴'>
           <Menu.ItemGroup title='Item 1'>
             <Menu.Item key='setting:1'>옵션 1</Menu.Item>
             <Menu.Item key='setting:2'>옵션 2</Menu.Item>
@@ -45,8 +43,7 @@ export const NavBar = () => {
           <a
             href='https://ant.design'
             target='_blank'
-            rel='noopener noreferrer'
-          >
+            rel='noopener noreferrer'>
             네 번째 메뉴 - 링크
           </a>
         </Menu.Item>
