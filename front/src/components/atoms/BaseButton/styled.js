@@ -8,7 +8,6 @@ export const ButtonComplete = styled(AntdButton)`
   margin-top: 16px;
   width: ${props => props.width || '100%'};
   height: 40px;
-  color: ${Color.white};
+  color: ${props => (props.type === 'primary' ? Color.white : Color.font)};
   ${lowerTypography.button};
-  ${props => (props.isComplete ? Color.primary : Color.secondary)};
 `;
