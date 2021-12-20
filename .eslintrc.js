@@ -1,14 +1,8 @@
 module.exports = {
   env: {
-    es2021: true,
     node: true,
   },
-  extends: [
-    'eslint:recommended',
-    'plugin:react/recommended',
-    'plugin:react-hooks/recommended',
-    // 'plugin:prettier/recommended',
-  ],
+  extends: ['eslint:recommended', 'plugin:react/recommended'],
   parser: '@babel/eslint-parser',
   parserOptions: {
     babelOptions: {
@@ -17,17 +11,16 @@ module.exports = {
     ecmaFeatures: {
       jsx: true,
     },
-    ecmaVersion: 8,
+    ecmaVersion: 13,
     requireConfigFile: false,
     sourceType: 'module',
   },
-  plugins: [
-    'react',
-    'react-hooks',
-    // 'prettier',
-    'import',
-  ],
-  rules: {},
+  plugins: ['react', 'react-hooks', 'import'],
+  rules: {
+    'react-hooks/rules-of-hooks': 'error',
+    'react-hooks/exhaustive-deps': 'warn',
+    'no-undef': 'off',
+  },
   settings: {
     react: {
       version: 'detect',

@@ -22,22 +22,21 @@ export const Text = ({ children, ...props }) => {
     <T
       style={
         props.style
-          ? {
-              ...props.style,
-              ...fontWeight,
-              ...fontStyle(props),
-              ...colorStyle(props),
-              ...locationStyle,
-            }
-          : {
-              ...fontWeight,
-              ...fontStyle(props),
-              ...colorStyle(props),
-              ...locationStyle,
-            }
+          ? Object.assign(
+              props.style,
+              fontWeight,
+              fontStyle(props),
+              colorStyle(props),
+              locationStyle,
+            )
+          : Object.assign(
+              fontWeight,
+              fontStyle(props),
+              colorStyle(props),
+              locationStyle,
+            )
       }
-      {...props}
-    >
+      {...props}>
       {children}
     </T>
   );

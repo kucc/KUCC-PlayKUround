@@ -1,46 +1,18 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { END } from 'redux-saga';
 
-import { Alert, Button, Checkbox, Form, Input, Modal } from 'antd';
+import { Checkbox, Form, Modal } from 'antd';
 import axios from 'axios';
-import Head from 'next/head';
 import Link from 'next/link';
 import Router from 'next/router';
-import styled from 'styled-components';
 
-import { NavBar } from '@components';
+import { BaseButton, Div, NavBar, SignupInput, Text } from '@components';
 
 import { LOAD_MY_INFO_REQUEST, SIGN_UP_REQUEST } from '@reducers/user';
 
 import useInput from '@hooks/useInput';
 import wrapper from '@store/configureStore';
-
-const ErrorMessage = styled.div`
-  color: red;
-`;
-
-const FormWrapper = styled(Form)`
-  margin: 'auto';
-  padding: 10px;
-  width: 30%;
-`;
-
-const ButtonMargin = styled(Button)`
-  margin-top: 15px;
-`;
-
-const Font = styled.span`
-  color: red;
-  font-weight: bold;
-`;
-
-const BeforeMain = styled.div`
-  text-align: center;
-  margin-top: 30px;
-  font-size: 20px;
-  font-weight: bold;
-`;
 
 const RegisterPage = () => {
   const dispatch = useDispatch();
@@ -49,62 +21,44 @@ const RegisterPage = () => {
   const signUpError = useSelector(state => state.user.signUpError);
   const me = useSelector(state => state.user.me);
 
-  const inputMargin = useMemo(() => ({ marginBottom: '14px' }), []);
-  // const contentStyle = useMemo(() => ({ fontWeight: 'bold', color: 'red' }), []);
-  const marginTop15 = useMemo(() => ({ marginTop: '15px' }), []);
-  const marginTop10 = useMemo(() => ({ marginTop: '10px' }), []);
-  const style = useMemo(() => ({
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: '100vh',
-    width: '100%',
-  }));
-
   useEffect(() => {
-    if (signUpError) {
-      return (
-        <Alert
-          message='Error'
-          description='회원가입 오류가 발생했습니다. 잠시 후에 재시도해주세요'
-          type='error'
-          showIcon
-        />
-      );
+    if (passwordError) {
+      alert('비밀번호가 일치하지 않습니다. 다시 시도해주세요');
     }
-  }, [signUpError]);
+    if (signUpError) {
+      alert(signUpError);
+    }
+  }, [passwordError, signUpError]);
 
   useEffect(() => {
     if (signUpDone) {
-      <Alert
-        message='Success Tips'
-        description='회원가입이 완료됐습니다. 메인 페이지로 이동합니다.'
-        type='success'
-        showIcon
-      />;
+      alert('회원가입이 완료됐습니다. 메인 페이지로 이동합니다.');
       Router.replace('/');
     }
   }, [signUpDone]);
 
   useEffect(() => {
     if (me && me.id) {
-      <Alert
-        message='Success Tips'
-        description='로그인이 완료됐습니다. 메인 페이지로 이동합니다.'
-        type='success'
-        showIcon
-      />;
+      alert('로그인이 완료됐습니다. 메인 페이지로 이동합니다.');
       Router.replace('/');
     }
-  }, [me && me.id]);
+  }, [me]);
 
   const [email, onChangeEmail] = useInput('');
   const [password, onChangePassword] = useInput('');
   const [name, onChangeName] = useInput('');
-
-  // 비밀번호 체크는 조금 다른 부분이 있음
   const [passwordCheck, setPasswordCheck] = useState('');
   const [passwordError, setPasswordError] = useState(false);
+
+  const onChangePasswordCheck = useCallback(
+    e => {
+      setPasswordCheck(e.target.value);
+      setPasswordError(e.target.value !== password);
+    },
+    [password],
+  );
+
+  // 비밀번호 체크는 조금 다른 부분이 있음
   const [term, setTerm] = useState('');
   const [termError, setTermError] = useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -124,19 +78,7 @@ const RegisterPage = () => {
         name,
       },
     });
-  }, [email, password, passwordCheck, term]);
-
-  const onChangePasswordCheck = useCallback(
-    e => {
-      setPasswordCheck(e.target.value); // 여기까지였으면 커스텀 훅으로 줄일 수 있었다.
-      setPasswordError(e.target.value !== password);
-      // 비밀번호와 비밀번호 확인이 일치하는지 확인한다.
-      // 둘이 일치하지 않으면 passwordError가 true가 되고
-      // 둘이 일치하면 passwordError가 false가 된다.
-      // 따라서 passwordError가 true가 되면 에러를 표시해주면 된다.
-    },
-    [password],
-  );
+  }, [dispatch, email, name, password, passwordCheck, term]);
 
   const onChangeTerm = useCallback(e => {
     setTerm(e.target.checked);
@@ -157,98 +99,59 @@ const RegisterPage = () => {
   return (
     <>
       <NavBar />
-      <Head>
-        <title>회원가입 | BoilerPlate </title>
-      </Head>
       {me?.id ? (
-        <BeforeMain>
+        <Text h1 center>
           메인 페이지로 이동 중입니다. 잠시만 기다려주세요
-        </BeforeMain>
+        </Text>
       ) : (
-        <div style={style}>
-          <FormWrapper onFinish={onSubmit}>
-            <div>
-              <label htmlFor='user-email'>이메일</label>
-              <br />
-              <Input
-                name='user-email'
-                type='email'
-                value={email}
-                required
-                onChange={onChangeEmail}
-                style={inputMargin}
-              />
-            </div>
-            <div>
-              <label htmlFor='user-name'>이름</label>
-              <br />
-              <Input
-                name='user-name'
-                value={name}
-                required
-                onChange={onChangeName}
-                style={inputMargin}
-              />
-            </div>
-            <div>
-              <label htmlFor='user-password'>비밀번호</label>
-              <br />
-              <Input
-                name='user-password'
-                type='password'
-                value={password}
-                required
-                onChange={onChangePassword}
-                style={inputMargin}
-              />
-            </div>
-            <div>
-              <label htmlFor='user-password-check'>비밀번호 체크</label>
-              <br />
-              <Input
-                name='user-password-check'
-                type='password'
-                value={passwordCheck}
-                required
-                onChange={onChangePasswordCheck}
-              />
-              {passwordError && (
-                <ErrorMessage>비밀번호가 일치하지 않습니다.</ErrorMessage>
-              )}
-            </div>
-            <div style={marginTop15}>
+        <Div center>
+          <Form onFinish={onSubmit}>
+            <SignupInput
+              email={email}
+              onChangeEmail={onChangeEmail}
+              name={name}
+              onChangeName={onChangeName}
+              password={password}
+              onChangePassword={onChangePassword}
+              passwordCheck={passwordCheck}
+              onChangePasswordCheck={onChangePasswordCheck}
+              passwordError={passwordError}
+            />
+            <Div row style={{ marginTop: 8 }}>
               <Checkbox name='user-term' checked={term} onChange={onChangeTerm}>
-                <Font onClick={showModal}>약관을 확인하려면 눌러주세요</Font>
                 <Modal
                   title='약관 내용'
                   visible={isModalVisible}
                   onOk={handleOk}
                   onCancel={handleCancel}>
-                  <p>강태웅과 사이좋게 지낸다!</p>
-                  <p>강태웅과 자주 연락한다!</p>
-                  <p>강태웅과 자주 놀아준다!</p>
-                  <p>강태웅에게 밥을 자주 사준다!</p>
+                  <Text>content</Text>
                 </Modal>
               </Checkbox>
-              {termError && (
-                <ErrorMessage>약관에 동의하셔야합니다.</ErrorMessage>
-              )}
-            </div>
-            <div style={marginTop10}>
-              <ButtonMargin
-                type='primary'
-                htmlType='submit'
-                loading={signUpLoading}>
+              <a>
+                <Text body2 bold red_4 onClick={showModal}>
+                  약관을 확인하려면 눌러주세요
+                </Text>
+              </a>
+            </Div>
+            <Div row style={{ marginTop: 8 }}>
+              <BaseButton htmlType='submit' loading={signUpLoading}>
                 가입하기
-              </ButtonMargin>
+              </BaseButton>
               <Link href='/'>
-                <a>
-                  <ButtonMargin>메인페이지</ButtonMargin>
-                </a>
+                <BaseButton htmlType='button' type='none'>
+                  메인페이지
+                </BaseButton>
               </Link>
-            </div>
-          </FormWrapper>
-        </div>
+            </Div>
+            {termError && (
+              <Div style={{ marginTop: 16 }}>
+                <Text bold red_5>
+                  약관에 동의하셔야합니다.
+                </Text>
+              </Div>
+            )}
+          </Form>
+        </Div>
       )}
     </>
   );

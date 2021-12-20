@@ -1,10 +1,10 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Button } from 'antd';
+import Link from 'next/link';
 import Router from 'next/router';
 
-import { Div, NavBar, Text } from '@components';
+import { BaseButton, Div, NavBar, Text } from '@components';
 
 import { logoutRequestAction } from '@reducers/user';
 
@@ -13,19 +13,13 @@ export const Home = () => {
   const me = useSelector(state => state.user.me);
   const logOutLoading = useSelector(state => state.user.logOutLoading);
 
-  const ButtonStyle = useMemo(() => ({
-    display: 'block',
-    position: 'absolute',
-    marginTop: '100px',
-  }));
-
   const moveLogin = useCallback(() => {
     Router.replace('/login');
-  });
+  }, []);
 
   const onLogOut = useCallback(() => {
     dispatch(logoutRequestAction());
-  }, []);
+  }, [dispatch]);
 
   return (
     <>
@@ -33,17 +27,18 @@ export const Home = () => {
       <Div center>
         <Text h2>시작 페이지</Text>
         {me ? (
-          <Button
+          <BaseButton
             onClick={onLogOut}
             loading={logOutLoading}
-            style={ButtonStyle}
-            type='primary'>
+            style={{ width: 300 }}>
             로그아웃하기
-          </Button>
+          </BaseButton>
         ) : (
-          <Button onClick={moveLogin} style={ButtonStyle} type='primary'>
-            로그인하러 가기!
-          </Button>
+          <Link href='/'>
+            <BaseButton onClick={moveLogin} style={{ width: 300 }}>
+              로그인하러 가기!
+            </BaseButton>
+          </Link>
         )}
       </Div>
     </>
