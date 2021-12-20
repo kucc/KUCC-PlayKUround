@@ -25,16 +25,16 @@ export const Div = ({ children, ...props }) => {
     ? { display: 'flex', flexDirection: 'row' }
     : props.col
     ? { display: 'flex', flexDirection: 'column' }
-    : { display: 'flex', flexDirection: 'row' };
+    : { display: 'flex', flexDirection: 'column' };
+
   return (
     <div
       style={
         props.style
-          ? { ...props.style, ...locationStyle, ...directionStyle }
-          : { ...locationStyle, ...directionStyle }
+          ? Object.assign(props.style, locationStyle, directionStyle)
+          : Object.assign(locationStyle, directionStyle)
       }
-      {...props}
-    >
+      {...props}>
       {children}
     </div>
   );
@@ -42,7 +42,6 @@ export const Div = ({ children, ...props }) => {
 
 Div.propTypes = {
   children: PropTypes.node.isRequired,
-  props: PropTypes.object,
   center: PropTypes.bool,
   centerH: PropTypes.bool,
   centerV: PropTypes.bool,
