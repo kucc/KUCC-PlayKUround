@@ -1,42 +1,20 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Alert, Button, Form, Input } from 'antd';
+import { Form } from 'antd';
 import Link from 'next/link';
-import styled from 'styled-components';
 
-import { Div, NavBar } from '@components';
+import { BaseButton, Div, LabelInput, NavBar } from '@components';
 import { Home } from '@templates';
 
 import { loginRequestAction } from '@reducers/user';
 
 import useInput from '@hooks/useInput';
 
-const ButtonWrapper = styled.div`
-  margin-top: 10px;
-  margin-bottom: 20px;
-`;
-
-const FormWrapper = styled(Form)`
-  width: 400px;
-  overflow: hidden;
-  box-sizing: border-box;
-`;
-
-const Email = styled.div`
-  width: 400px;
-  margin-bottom: 15px;
-`;
-
-const Password = styled.div`
-  width: 400px;
-`;
-
 const LoginPage = () => {
   const dispatch = useDispatch();
   const me = useSelector(state => state.user.me);
   const logInLoading = useSelector(state => state.user.logInLoading);
-  // const logInDone = useSelector((state) => state.user.logInDone);
   const logInError = useSelector(state => state.user.logInError);
 
   // 커스텀훅으로 중복제거
@@ -51,27 +29,14 @@ const LoginPage = () => {
 
   useEffect(() => {
     if (logInError) {
-      return (
-        <Alert
-          message='Error'
-          description='로그인 에러가 발생했습니다. 잠시 후에 다시 시도해주세요.'
-          type='error'
-          showIcon
-        />
-      );
+      // TODO: alert를 다른 것으로 바꾸기
+      alert(logInError);
     }
   }, [logInError]);
 
-  // useEffect(() => {
-  //     if (logInDone) {
-  //         alert('로그인이 완료됐습니다.');
-  //         Router.replace('/');
-  //     }
-  // }, [logInDone]);
-
   const onSubmitForm = useCallback(() => {
     dispatch(loginRequestAction({ email, password }));
-  }, [email, password]);
+  }, [dispatch, email, password]);
 
   return (
     <>
@@ -80,41 +45,34 @@ const LoginPage = () => {
       ) : (
         <>
           <NavBar />
-          <Div>
-            <FormWrapper onFinish={onSubmitForm}>
-              <Email>
-                <label htmlFor='user-email'>이메일</label>
-                <br />
-                <Input
-                  name='user-email'
-                  type='email'
-                  value={email}
-                  onChange={onChangeEmail}
-                  required
-                />
-              </Email>
-              <Password>
-                <label htmlFor='user-password'>비밀번호</label>
-                <br />
-                <Input
-                  name='user-password'
-                  type='password'
-                  value={password}
-                  onChange={onChangePassword}
-                  required
-                />
-              </Password>
-              <ButtonWrapper>
-                <Button type='primary' htmlType='submit' loading={logInLoading}>
+          <Div center>
+            <Form style={{ width: 400 }} onFinish={onSubmitForm}>
+              <LabelInput
+                name='user-email'
+                label='이메일'
+                type='email'
+                value={email}
+                onChange={onChangeEmail}
+              />
+              <LabelInput
+                style={{ marginTop: 16 }}
+                name='user-password'
+                label='비밀번호'
+                type='password'
+                value={password}
+                onChange={onChangePassword}
+              />
+              <Div row>
+                <BaseButton htmlType='submit' loading={logInLoading}>
                   로그인
-                </Button>
+                </BaseButton>
                 <Link href='/register'>
-                  <a>
-                    <Button>회원가입</Button>
-                  </a>
+                  <BaseButton type='none' htmlType='button'>
+                    회원가입
+                  </BaseButton>
                 </Link>
-              </ButtonWrapper>
-            </FormWrapper>
+              </Div>
+            </Form>
           </Div>
         </>
       )}
