@@ -10,6 +10,7 @@
       "@components/*": ["src/components/*"],
       "@atoms/*": ["src/components/atoms/*"],
       "@molecules/*": ["src/components/molecules/*"],
+      "@organisms/*": ["src/components/organisms/*"],
       "@templates": ["src/templates"],
       "@templates/*": ["src/templates/*"],
       "@constants/*": ["src/constants/*"],
@@ -24,5 +25,5 @@
       "@sagas/*": ["src/sagas/*"]
     }
   },
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules/"]
 }

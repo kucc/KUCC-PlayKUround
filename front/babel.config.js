@@ -20,6 +20,7 @@ module.exports = function (api) {
             '@components': './src/components',
             '@atoms': './src/components/atoms',
             '@molecules': './src/components/molecules',
+            '@organisms': './src/components/organisms',
             '@templates': './src/templates',
             '@constants': './src/constants',
             '@config': './src/config',
