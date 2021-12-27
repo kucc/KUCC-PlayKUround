@@ -1,4 +1,4 @@
-var jsOption = {
+var tsOption = {
   arrowParens: 'avoid',
   jsxSingleQuote: true,
   bracketSameLine: true,
@@ -8,7 +8,7 @@ var jsOption = {
   useTabs: false,
   tabWidth: 2,
   trailingComma: 'all',
-  printWidth: 80,
+  printWidth: 100,
   endOfLine: 'auto',
   importOrder: [
     '^re(.*)$',
@@ -26,8 +26,17 @@ var jsOption = {
 module.exports = {
   overrides: [
     {
+      files: '*.{ts,tsx}',
+      options: {
+        ...tsOption,
+      },
+    },
+    {
       files: '*.{js,jsx}',
-      options: jsOption,
+      options: {
+        ...tsOption,
+        printWidth: 80,
+      },
     },
     {
       files: '*.{css,scss}',
