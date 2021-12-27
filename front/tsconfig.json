@@ -1,9 +1,11 @@
 {
   "compilerOptions": {
+    "esModuleInterop": true,
     "jsx": "react",
     "strict": true,
     "module": "commonjs",
     "target": "es6",
+    "typeRoots": ["node_modules/@types", "./types"],
     "baseUrl": ".",
     "paths": {
       "@components": ["src/components"],
@@ -19,12 +21,13 @@
       "@hooks/*": ["src/hooks/*"],
       "@styles": ["src/styles"],
       "@styles/*": ["src/styles/*"],
+      "@types/*": ["src/types/*"],
+      "@util": ["src/util"],
       "@util/*": ["src/util/*"],
       "@pages/*": ["src/pages/*"],
       "@store/*": ["src/store/*"],
       "@reducers/*": ["src/reducers/*"],
       "@sagas/*": ["src/sagas/*"]
     }
-  },
-  "exclude": ["node_modules/"]
+  }
 }
