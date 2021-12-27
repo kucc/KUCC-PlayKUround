@@ -27,10 +27,7 @@ export const Home = () => {
       <Div center>
         <Text h2>시작 페이지</Text>
         {me ? (
-          <BaseButton
-            onClick={onLogOut}
-            loading={logOutLoading}
-            style={{ width: 300 }}>
+          <BaseButton onClick={onLogOut} loading={logOutLoading} style={{ width: 300 }}>
             로그아웃하기
           </BaseButton>
         ) : (
