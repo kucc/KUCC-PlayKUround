@@ -1,0 +1,11 @@
+export interface SignupInputProps {
+  email: string;
+  onChangeEmail: React.ChangeEventHandler<HTMLInputElement> | undefined;
+  name: string;
+  onChangeName: React.ChangeEventHandler<HTMLInputElement> | undefined;
+  password: string;
+  onChangePassword: React.ChangeEventHandler<HTMLInputElement> | undefined;
+  passwordCheck: string;
+  onChangePasswordCheck: React.ChangeEventHandler<HTMLInputElement> | undefined;
+  passwordError: string;
+}

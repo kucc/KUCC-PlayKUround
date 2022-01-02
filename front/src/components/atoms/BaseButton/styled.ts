@@ -3,7 +3,9 @@ import styled from 'styled-components';
 
 import { Color, lowerTypography } from '@styles';
 
-export const ButtonComplete = styled(AntdButton)`
+import { BaseButtonProps, WithWidthType } from './type';
+
+export const ButtonComplete = styled(AntdButton)<WithWidthType<BaseButtonProps>>`
   display: block;
   margin-top: 16px;
   width: ${props => props.width || '100%'};

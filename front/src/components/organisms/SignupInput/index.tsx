@@ -1,9 +1,10 @@
 import React from 'react';
 
 import { Space } from 'antd';
-import PropsTypes from 'prop-types';
 
 import { LabelInput, Text } from '@components';
+
+import { SignupInputProps } from './type';
 
 export const SignupInput = ({
   email,
@@ -15,7 +16,7 @@ export const SignupInput = ({
   passwordCheck,
   onChangePasswordCheck,
   passwordError,
-}) => {
+}: SignupInputProps) => {
   return (
     <Space direction='vertical' style={{ width: 400 }}>
       <LabelInput
@@ -55,16 +56,4 @@ export const SignupInput = ({
       )}
     </Space>
   );
-};
-
-SignupInput.propTypes = {
-  email: PropsTypes.string.isRequired,
-  onChangeEmail: PropsTypes.func.isRequired,
-  name: PropsTypes.string.isRequired,
-  onChangeName: PropsTypes.func.isRequired,
-  password: PropsTypes.string.isRequired,
-  onChangePassword: PropsTypes.func.isRequired,
-  passwordCheck: PropsTypes.string.isRequired,
-  onChangePasswordCheck: PropsTypes.func.isRequired,
-  passwordError: PropsTypes.bool.isRequired,
 };

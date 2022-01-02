@@ -1,6 +1,7 @@
-import fonts from './themes/fonts';
+import fonts from './fonts';
+import { TypographyProps } from './type';
 
-export const lowerTypography = {
+export const lowerTypography: TypographyProps = {
   h1: {
     'font-size': 96,
     'font-family': fonts.light.fontFamily,

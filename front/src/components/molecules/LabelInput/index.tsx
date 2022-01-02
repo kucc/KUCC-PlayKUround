@@ -1,7 +1,8 @@
 import React from 'react';
 
 import { Input } from 'antd';
-import PropTypes from 'prop-types';
+
+import { LabelInputProps } from './type';
 
 export const LabelInput = ({
   style,
@@ -11,7 +12,7 @@ export const LabelInput = ({
   value,
   onChange,
   ...props
-}) => {
+}: LabelInputProps) => {
   return (
     <div style={style}>
       <label htmlFor={name}>{label}</label>
@@ -25,13 +26,4 @@ export const LabelInput = ({
       />
     </div>
   );
-};
-
-LabelInput.propTypes = {
-  style: PropTypes.object,
-  name: PropTypes.string.isRequired,
-  type: PropTypes.string,
-  label: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
 };

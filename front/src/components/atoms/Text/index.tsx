@@ -1,13 +1,15 @@
 import React from 'react';
 
 import { Typography as Typo } from 'antd';
-import PropTypes from 'prop-types';
 
+import { ColorPalette, ColorProps, Variants, fontProps } from '@styles/themes/default/type';
 import { colorStyle, fontStyle } from '@util';
+
+import { BaseTextProps } from './type';
 
 const T = Typo.Text;
 
-export const Text = ({ children, ...props }) => {
+export const Text = ({ children, style, ...props }: BaseTextProps & fontProps & ColorProps) => {
   const fontWeight = props.bold
     ? { fontWeight: 700 }
     : props.light
@@ -21,36 +23,14 @@ export const Text = ({ children, ...props }) => {
   return (
     <T
       style={
-        props.style
-          ? Object.assign(
-              props.style,
-              fontWeight,
-              fontStyle(props),
-              colorStyle(props),
-              locationStyle,
-            )
-          : Object.assign(
-              fontWeight,
-              fontStyle(props),
-              colorStyle(props),
-              locationStyle,
-            )
+        style
+          ? Object.assign(style, fontWeight, fontStyle(props), colorStyle(props), locationStyle)
+          : Object.assign(fontWeight, fontStyle(props), colorStyle(props), locationStyle)
       }
       {...props}>
       {children}
     </T>
   );
-};
-
-Text.propTypes = {
-  children: PropTypes.node.isRequired,
-  props: PropTypes.object,
-  bold: PropTypes.bool,
-  regular: PropTypes.bool,
-  light: PropTypes.bool,
-  thin: PropTypes.bool,
-  style: PropTypes.object,
-  center: PropTypes.bool,
 };
 
 {

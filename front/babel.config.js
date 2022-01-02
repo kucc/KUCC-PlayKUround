@@ -28,6 +28,7 @@ module.exports = function (api) {
             '@hooks': './src/hooks',
             '@styles': './src/styles',
             '@types': './src/types',
+            '@themes': './src/themes',
             '@util': './src/util',
             '@pages': './src/pages',
             '@store': './src/store',

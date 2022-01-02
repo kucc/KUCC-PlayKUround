@@ -4,10 +4,10 @@ import createSagaMiddleware from 'redux-saga';
 
 import { createWrapper } from 'next-redux-wrapper';
 
-import reducer from '@reducers';
-import rootSaga from '@sagas';
+import reducer from '@reducers/index';
+import rootSaga from '@sagas/index';
 
-const loggerMiddleware = () => next => action => {
+const loggerMiddleware = () => (next: (arg0: any) => any) => (action: any) => {
   console.log(action);
   return next(action);
 };
