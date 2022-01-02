@@ -1,5 +1,7 @@
 import { generate } from '@ant-design/colors';
 
+import { ColorPalette, Variants } from './type';
+
 const primary = '#d41414';
 const grey = '#d5d5d5';
 const blue = '#0000FF';
@@ -12,8 +14,8 @@ const colorsBlue = generate(blue);
 const colorsRed = generate(red);
 const colorsSecondary = generate(secondary);
 
-const loadColor = (color, name) => {
-  const colorObject = {};
+const loadColor = (color: string[], name: string) => {
+  const colorObject = {} as any;
   for (let i = 0; i < colorsPrimary.length; i++) {
     colorObject[`${name}_${i}`] = `${color[i]}`;
   }
