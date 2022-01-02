@@ -1,18 +1,12 @@
 import React from 'react';
 
-import PropTypes from 'prop-types';
-
 import { ButtonComplete } from './styled';
+import { BaseButtonProps } from './type';
 
-export const BaseButton = ({ children, htmlType, ...props }) => {
+export const BaseButton = ({ children, htmlType = 'button', style, ...props }: BaseButtonProps) => {
   return (
-    <ButtonComplete htmlType={htmlType} type='primary' {...props}>
+    <ButtonComplete htmlType={htmlType} type='primary' {...props} style={style}>
       {children}
     </ButtonComplete>
   );
-};
-
-BaseButton.propTypes = {
-  children: PropTypes.any.isRequired,
-  htmlType: 'button' | 'submit' | 'reset'.isRequired,
 };
