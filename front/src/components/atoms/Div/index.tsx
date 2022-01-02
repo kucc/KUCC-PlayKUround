@@ -1,24 +1,31 @@
 import React from 'react';
 
-import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
-export const Div = ({ children, ...props }) => {
+import { DivProps } from './type';
+
+const D = styled.div`
+  &:nth-child(1) {
+    height: 100vh;
+  }
+`;
+
+export const Div = ({ children, style, ...props }: DivProps) => {
   const locationStyle = props.center
     ? {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         width: '100%',
-        height: '100vh',
       }
     : props.centerH
-    ? props.style?.flexDirection === 'row'
-      ? { display: 'flex', alignItems: 'center', height: '100vh' }
-      : { display: 'flex', justifyContent: 'center', height: '100vh' }
+    ? style?.flexDirection === 'row'
+      ? { display: 'flex', alignItems: 'center' }
+      : { display: 'flex', justifyContent: 'center' }
     : props.centerV
-    ? props.style?.flexDirection === 'row'
-      ? { display: 'flex', justifyContent: 'center', height: '100vh' }
-      : { display: 'flex', alignItems: 'center', height: '100vh' }
+    ? style?.flexDirection === 'row'
+      ? { display: 'flex', justifyContent: 'center' }
+      : { display: 'flex', alignItems: 'center' }
     : {};
 
   const directionStyle = props.row
@@ -28,24 +35,15 @@ export const Div = ({ children, ...props }) => {
     : { display: 'flex', flexDirection: 'column' };
 
   return (
-    <div
+    <D
+      // TODO: 이 부분이 왜 에러를 갖는지 잘 모르겠다! 해결해줘! 흑
       style={
-        props.style
-          ? Object.assign(props.style, locationStyle, directionStyle)
+        style
+          ? Object.assign(style, locationStyle, directionStyle)
           : Object.assign(locationStyle, directionStyle)
       }
       {...props}>
       {children}
-    </div>
+    </D>
   );
-};
-
-Div.propTypes = {
-  children: PropTypes.node.isRequired,
-  center: PropTypes.bool,
-  centerH: PropTypes.bool,
-  centerV: PropTypes.bool,
-  row: PropTypes.bool,
-  col: PropTypes.bool,
-  style: PropTypes.object,
 };
