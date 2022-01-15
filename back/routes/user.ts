@@ -1,3 +1,6 @@
+import { Request, Response, NextFunction } from 'express';
+import { UserInterface } from '../models/user';
+
 const express = require('express');
 
 const bcrypt = require('bcrypt');
@@ -8,7 +11,7 @@ const { isLoggedIn } = require('./middlewares');
 const router = express.Router();
 
 // eslint-disable-next-line consistent-return
-router.post('/register', async (req, res, next) => {
+router.post('/register', async (req: Request, res: Response, next: NextFunction) => {
   try {
     const exUser = await User.findOne({
       where: {
@@ -38,8 +41,8 @@ router.post('/register', async (req, res, next) => {
   }
 });
 
-router.post('/login', (req, res, next) => {
-  passport.authenticate('local', (err, user, info) => {
+router.post('/login', (req: Request, res: Response, next: NextFunction) => {
+  passport.authenticate('local', (err: Error, user:UserInterface, info:any) => {
     if (err) {
       console.error(err);
       return next(err);
@@ -47,25 +50,25 @@ router.post('/login', (req, res, next) => {
     if (info) {
       return res.status(401).send(info.message);
     }
-    return req.login(user, async loginErr => {
+    return req.body.login(user, async (loginErr: Error) => {
       if (loginErr) {
         console.error(loginErr);
         return next(loginErr);
       }
       const fullUserWithoutPassword = await User.findOne({
-        where: { id: req.user.id },
+        where: { id: req.body.user.id },
         attributes: {
           exclude: ['password'],
         },
       });
       return res.status(200).json(fullUserWithoutPassword);
     });
-  })(req, res, next);
+  })(req,res,next);
 });
 
 // eslint-disable-next-line no-unused-vars
-router.post('/logout', isLoggedIn, (req, res, next) => {
-  req.logout();
+router.post('/logout', isLoggedIn, (req: Request, res: Response, next: NextFunction) => {
+  req.body.logout();
   req.session.destroy();
   res.send('ok');
 });
