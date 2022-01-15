@@ -1,6 +1,6 @@
 require('dotenv').config();
 
-module.exports = {
+const config = {
   development: {
     username: 'root',
     password: process.env.SEQUELIZE_PASSWORD,
@@ -24,3 +24,5 @@ module.exports = {
     logging: false,
   },
 };
+
+export default config;
