@@ -13,7 +13,7 @@ module.exports = () => {
         usernameField: 'email', // req.body.email
         passwordField: 'password', // req.body.password
       },
-      async (email, password, done) => {
+      async (email:string, password:string, done:any) => {
         try {
           // 이메일 가진 사람이 있는지 검사
           const user = await User.findOne({ where: { email } });
