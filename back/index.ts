@@ -1,3 +1,5 @@
+import { Request, Response, NextFunction, RequestHandler } from "express";
+
 const express = require('express');
 
 const cors = require('cors');
@@ -23,6 +25,13 @@ const redisClient = redis.createClient({
 const userRouter = require('./routes/user');
 const { sequelize } = require('./models');
 const passportConfig = require('./passport');
+
+class HttpRequestError extends Error {
+  constructor(public message: string, public status?: number) {
+    super(message);
+    this.status = status;
+  }
+}
 
 const app = express();
 const port = 8000;
@@ -75,14 +84,14 @@ app.use(session(sessionOption));
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.get('/', (req, res) => {
+app.get('/', (req: Request, res: Response) => {
   res.status(200).send('백엔드 서버 실행중');
 });
 app.use('/user', userRouter);
 
 // 404처리 미들웨어
-app.use((req, res, next) => {
-  const error = new Error(`${req.method} ${req.url} 라우터가 없습니다.`);
+app.use((req: Request, res: Response, next: NextFunction) => {
+  const error = new HttpRequestError(`${req.method} ${req.url} 라우터가 없습니다.`);
   error.status = 404;
   logger.info('hello');
   logger.error(error.message);
@@ -91,7 +100,7 @@ app.use((req, res, next) => {
 
 // 에러 처리 미들웨어
 // eslint-disable-next-line no-unused-vars
-app.use((err, req, res, next) => {
+app.use((err: HttpRequestError, req: Request, res: Response, next: NextFunction) => {
   res.locals.message = err.message;
   // 개발 모드일 때는 에러를 보여주게 하고, 배포일 때는 보여주지 않게 하는 코드
   res.locals.error = process.env.NODE_ENV !== 'production' ? err : {};

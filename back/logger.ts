@@ -1,6 +1,6 @@
 const { createLogger, format, transports } = require('winston');
 
-const logger = createLogger({
+let logger = createLogger({
   level: 'info',
   format: format.json(),
   transports: [
