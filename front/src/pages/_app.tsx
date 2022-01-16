@@ -10,7 +10,7 @@ import { GlobalStyle } from '@styles';
 // TODO : import로 less파일 추적하능하게 바꾸기
 require('../styles/variables.less');
 
-const App = ({ Component }) => (
+const App = ({ Component }: any) => (
   <>
     <Head>
       <meta charSet='utf-8' />

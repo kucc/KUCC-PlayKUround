@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const withAntdLess = require('next-plugin-antd-less');
 
 module.exports = withAntdLess({
