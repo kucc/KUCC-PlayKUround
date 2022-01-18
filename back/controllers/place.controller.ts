@@ -1,7 +1,32 @@
 import { Request, Response, NextFunction } from 'express';
 import { placeAttributes } from '../types/place';
-
+const sequelize = require("sequelize");
 const Place = require('../models/place')
+
+const Op = sequelize.Op;
+
+// 이름에 의한 검색
+const getByName = async (req: Request, res : Response, next : NextFunction) => {
+  const name : string = req.query.name as string;
+  if (!name) return res.status(400).end()
+  try {
+    const result = await Place.findAll({
+      where: {
+        // Op를 사용하여 유사 검색 구현: name을 포함하기만 하면 찾음 
+        place_Name : {
+          [Op.like] : "%" + name + "%"
+        }
+      }
+    })
+    console.log(result)
+    res.status(200).json({
+      success: true, result
+    });
+  } catch (error) {
+    res.json({ success: false, error });
+    next(error);
+  }
+}
 
 const createPlace = async (req: Request, res : Response, next: NextFunction) => {
   const {
@@ -63,5 +88,6 @@ const createPlace = async (req: Request, res : Response, next: NextFunction) => 
 }
 
 module.exports = {
+  getByName,
   createPlace
 }
