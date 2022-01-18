@@ -23,6 +23,7 @@ const redisClient = redis.createClient({
 });
 
 const userRouter = require('./routes/user');
+const placeRouter = require('./routes/place');
 const { sequelize } = require('./models');
 const passportConfig = require('./passport');
 
@@ -89,6 +90,7 @@ app.get('/', (req: Request, res: Response) => {
 });
 // 라우터
 app.use('/user', userRouter);
+app.use('/place', placeRouter);
 
 // 404처리 미들웨어
 app.use((req: Request, res: Response, next: NextFunction) => {
