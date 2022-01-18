@@ -1,10 +1,15 @@
-const Sequelize = require('sequelize');
+import { Sequelize } from "sequelize";
+import { UserInterface } from "./user";
 
 const env = process.env.NODE_ENV || 'development';
 const config = require('../config/config')[env];
 const User = require('./user');
 
-const db = {};
+interface dbInterface {
+  sequelize: Sequelize | null;
+  User: UserInterface | null;
+}
+const db: dbInterface = { sequelize: null, User: null };
 const sequelize = new Sequelize(
   config.database,
   config.username,
