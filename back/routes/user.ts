@@ -13,4 +13,5 @@ router.post('/login', controller.userLogin);
 // eslint-disable-next-line no-unused-vars
 router.post('/logout', isLoggedIn, controller.userLogout);
 
+export {};
 module.exports = router;

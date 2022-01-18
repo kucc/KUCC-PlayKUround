@@ -6,6 +6,7 @@ export interface detailConfigType {
   password : string | undefined,
   database : string,
   host : string,
+  // dialect는 Dialect 형.
   dialect : Dialect,
   logging? : boolean
 }
@@ -13,6 +14,7 @@ export interface detailConfigType {
 export interface configType{
   development : detailConfigType,
   test : detailConfigType,
-  production : detailConfigType, 
+  production : detailConfigType,
+  // config[env] 등 변수명으로 할당해야 하므로, string-key를 사용
   [key: string]: detailConfigType
 }

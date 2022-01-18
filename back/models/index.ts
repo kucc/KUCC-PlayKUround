@@ -2,6 +2,7 @@ import { Sequelize } from "sequelize";
 import { UserInterface } from "../types/user";
 import config from "../config/config";
 const User = require('./user');
+const Place = require('./place')
 
 interface dbInterface {
   sequelize?: Sequelize ;
@@ -22,6 +23,7 @@ db.User = User;
 
 console.log(User)
 User.init(sequelize);
+Place.init(sequelize)
 // User.associate(db);
 
 module.exports = db;
