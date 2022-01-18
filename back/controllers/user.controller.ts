@@ -50,7 +50,6 @@ const userLogin = (req: Request, res: Response, next: NextFunction) => {
       if (loginErr) {
         return next(loginErr);
       }
-      console.log(req.user.id)
       const fullUserWithoutPassword = await User.findOne({
         // id : req.body.user.id => id : req.user.id
         where: { id: req.user.id },
@@ -65,8 +64,6 @@ const userLogin = (req: Request, res: Response, next: NextFunction) => {
 
 // eslint-disable-next-line no-unused-vars
 const userLogout = (req: any, res: Response, next: NextFunction) => {
-  console.log(req.session)
-  console.log("HEELELKJSDBFKJSDHBF")
   req.logout();
   req.session.destroy;
   res.send('ok');
