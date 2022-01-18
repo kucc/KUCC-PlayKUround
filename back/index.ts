@@ -87,6 +87,7 @@ app.use(passport.session());
 app.get('/', (req: Request, res: Response) => {
   res.status(200).send('백엔드 서버 실행중');
 });
+// 라우터
 app.use('/user', userRouter);
 
 // 404처리 미들웨어

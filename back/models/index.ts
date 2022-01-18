@@ -1,15 +1,14 @@
 import { Sequelize } from "sequelize";
-import { UserInterface } from "./user";
-
-const env = process.env.NODE_ENV || 'development';
-const config = require('../config/config')[env];
+import { UserInterface } from "../types/user";
+import config from "../config/config";
 const User = require('./user');
 
 interface dbInterface {
-  sequelize: Sequelize | null;
-  User: UserInterface | null;
+  sequelize?: Sequelize ;
+  User?: UserInterface ;
 }
-const db: dbInterface = { sequelize: null, User: null };
+const db: dbInterface = {};
+
 const sequelize = new Sequelize(
   config.database,
   config.username,
@@ -17,9 +16,11 @@ const sequelize = new Sequelize(
   config,
 );
 
+
 db.sequelize = sequelize;
 db.User = User;
 
+console.log(User)
 User.init(sequelize);
 // User.associate(db);
 
