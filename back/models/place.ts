@@ -6,7 +6,7 @@ import { Sequelize as TypeSequelize } from "sequelize/types";
 // import 방식은 type에서 error가 나서 require 사용
 const {Sequelize, Model} = require('sequelize');
 
-// users 테이블 생성
+// Place 테이블 생성
 // define해서 모델 생성하는 방식은 sequelize 객체를 어떻게 받아오는 지 몰라서, 일단 Extending model
 module.exports = class Place extends Model {
   static init(sequelize : TypeSequelize) {
