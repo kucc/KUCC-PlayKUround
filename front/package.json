@@ -54,6 +54,7 @@
     "@zeit/next-sass": "^1.0.1",
     "babel-plugin-module-resolver": "^4.1.0",
     "babel-plugin-styled-components": "^1.13.3",
+    "babel-plugin-transform-remove-console": "^6.9.4",
     "file-loader": "^6.2.0",
     "less": "^4.1.2",
     "less-loader": "^10.2.0",
