@@ -4,19 +4,37 @@ import styled from 'styled-components';
 
 import { DivProps } from './type';
 
-const D = styled.div`
-  &:nth-child(1) {
-    height: 100vh;
-  }
-`;
+// const D = styled.div`
+//   &:nth-child(1) {
+//     height: 100vh;
+//   }
+// `;
 
-export const Div = ({ children, style, ...props }: DivProps) => {
+export const Div = ({
+  children,
+  style,
+  width,
+  height,
+  // TODO: 이후에 추가하기
+  // margin,
+  // marginL,
+  // marginR,
+  // marginT,
+  // marginB,
+  // marginH,
+  // marginV,
+  // padding,
+  // paddingL,
+  // paddingR,
+  // paddingT,
+  // paddingB,
+  ...props
+}: DivProps) => {
   const locationStyle = props.center
     ? {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        width: '100%',
       }
     : props.centerH
     ? style?.flexDirection === 'row'
@@ -32,18 +50,25 @@ export const Div = ({ children, style, ...props }: DivProps) => {
     ? { display: 'flex', flexDirection: 'row' }
     : props.col
     ? { display: 'flex', flexDirection: 'column' }
-    : { display: 'flex', flexDirection: 'column' };
+    : {};
+
+  // const marginStyle = props.margin ? { margin: margin } ? props.marginT : ;
 
   return (
-    <D
-      // TODO: 이 부분이 왜 에러를 갖는지 잘 모르겠다! 해결해줘! 흑
+    <div
       style={
         style
-          ? Object.assign(style, locationStyle, directionStyle)
-          : Object.assign(locationStyle, directionStyle)
+          ? (Object.assign({ ...style }, locationStyle, directionStyle, {
+              width: `${width}px`,
+              height: `${height}px`,
+            }) as React.CSSProperties)
+          : (Object.assign(locationStyle, directionStyle, {
+              width: `${width}px`,
+              height: `${height}px`,
+            }) as React.CSSProperties)
       }
       {...props}>
       {children}
-    </D>
+    </div>
   );
 };
