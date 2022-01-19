@@ -17,6 +17,7 @@ interface UserCreationAttributes extends Optional<UserAttributes, "role"> { }
 export interface UserInterface extends Model<UserAttributes, UserCreationAttributes>,
 UserAttributes {}
 
+// Passport에 필요한 Request의 속성을 직접 정의.
 declare global {
   namespace Express {
     interface Request {
