@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
-import { placeAttributes } from '../types/place';
+import { Place, User } from '../models';
+import { PlaceAttributes } from '../models/place/placeType';
 const sequelize = require("sequelize");
-const Place = require('../models/place')
 
 const Op = sequelize.Op;
 
@@ -18,7 +18,6 @@ const getByName = async (req: Request, res : Response, next : NextFunction) => {
         }
       }
     })
-    console.log(result)
     res.status(200).json({
       success: true, result
     });
@@ -46,8 +45,8 @@ const createPlace = async (req: Request, res : Response, next: NextFunction) => 
     place_price,
     scrab_count,
     date_concept,
-  } : placeAttributes = req.body
-
+    writer
+  } : PlaceAttributes = req.body
   if (!address_location||
     !address_exact||
     !address_category||
@@ -75,7 +74,8 @@ const createPlace = async (req: Request, res : Response, next: NextFunction) => 
       place_category_detail,
       place_price,
       scrab_count,
-      date_concept
+      date_concept,
+      writer
     });
     res.status(200).json({
       success: true
@@ -83,7 +83,7 @@ const createPlace = async (req: Request, res : Response, next: NextFunction) => 
   } catch (error) {
     res.json({ success: false, error });
     // next는 에러를 넘겨주는 역할.
-    next(error);
+    // next(error);
   }
 }
 

@@ -1,9 +1,12 @@
 import { Request, Response, NextFunction } from 'express';
-import { UserInterface } from '../types/user';
+import {User} from '../models';
+import { UserAttributes, UserInterface } from '../models/user/userType';
 
 const bcrypt = require('bcrypt');
 const passport = require('passport');
-const { User } = require('../models');
+// const db = require('../models');
+
+console.log()
 
 // eslint-disable-next-line consistent-return
 const userRegister =  async (req: Request, res: Response, next: NextFunction) => {
@@ -38,7 +41,7 @@ const userRegister =  async (req: Request, res: Response, next: NextFunction) =>
 };
 
 const userLogin = (req: Request, res: Response, next: NextFunction) => {
-  passport.authenticate('local', (err: Error, user:UserInterface, info:any) => {
+  passport.authenticate('local', (err: Error, user:UserAttributes, info:any) => {
     if (err) {
       return next(err);
     }
@@ -63,7 +66,7 @@ const userLogin = (req: Request, res: Response, next: NextFunction) => {
 };
 
 // eslint-disable-next-line no-unused-vars
-const userLogout = (req: any, res: Response, next: NextFunction) => {
+const userLogout = (req: Request, res: Response, next: NextFunction) => {
   req.logout();
   req.session.destroy;
   res.send('ok');

@@ -1,9 +1,10 @@
-import { UserAttributes } from "../types/user";
+import { User } from "../models";
+import { UserAttributes } from "../models/user/userType";
 
 
 const passport = require('passport');
 const local = require('./localStrategy');
-const User = require('../models/user');
+
 
 module.exports = () => {
   passport.serializeUser((user:UserAttributes, done:any) => {

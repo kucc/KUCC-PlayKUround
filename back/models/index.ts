@@ -1,14 +1,7 @@
 import { Sequelize } from "sequelize";
-import { UserInterface } from "../types/user";
 import config from "../config/config";
-const User = require('./user');
-const Place = require('./place')
-
-interface dbInterface {
-  sequelize?: Sequelize ;
-  User?: UserInterface ;
-}
-const db: dbInterface = {};
+import PlaceModel from "./place/placeModel";
+import UserModel from "./user/userModel";
 
 const sequelize = new Sequelize(
   config.database,
@@ -17,13 +10,24 @@ const sequelize = new Sequelize(
   config,
 );
 
+//
+// model init(define)
+//
+// Place의 타입?
+const Place = PlaceModel(sequelize)
+const User = UserModel(sequelize)
 
-db.sequelize = sequelize;
-db.User = User;
+//
+// model relation(관계)
+//
 
-console.log(User)
-User.init(sequelize);
-Place.init(sequelize)
-// User.associate(db);
+// Place의 writer라는 항목이 User의 id를 참조하고 있슴.
+Place.belongsTo(User, {foreignKey: 'writer', targetKey: 'id'})
+User.hasMany(Place, {foreignKey: 'writer', sourceKey: 'id'})
 
-module.exports = db;
+
+export {
+  sequelize,
+  Place,
+  User
+}
