@@ -1,4 +1,5 @@
 import { Request, Response, NextFunction, RequestHandler } from "express";
+import { sequelize } from "./models";
 
 const express = require('express');
 
@@ -24,7 +25,7 @@ const redisClient = redis.createClient({
 
 const userRouter = require('./routes/user');
 const placeRouter = require('./routes/place');
-const { sequelize } = require('./models');
+
 const passportConfig = require('./passport');
 
 class HttpRequestError extends Error {
@@ -89,8 +90,8 @@ app.get('/', (req: Request, res: Response) => {
   res.status(200).send('백엔드 서버 실행중');
 });
 // 라우터
-app.use('/user', userRouter);
-app.use('/place', placeRouter);
+app.use('/api/user', userRouter);
+app.use('/api/place', placeRouter);
 
 // 404처리 미들웨어
 app.use((req: Request, res: Response, next: NextFunction) => {

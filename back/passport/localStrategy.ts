@@ -1,10 +1,13 @@
 // 아이디 비밀번호로 로그인할 때
 
+import { User } from "../models";
+import { UserAttributes } from "../models/user/userType";
+
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcrypt');
 
-const User = require('../models/user');
+
 
 module.exports = () => {
   passport.use(

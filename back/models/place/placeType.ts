@@ -1,11 +1,13 @@
+import { Model, Optional } from "sequelize/types";
+
 interface menuType {
   menu_name : string;
   menu_price : number;
   menu_picture : string[]
-
 }
 
-export interface placeAttributes {
+export interface PlaceAttributes {
+  id : number;
   // 위도, 경도
   address_location : number[]
   // 정확한 좌표
@@ -26,6 +28,17 @@ export interface placeAttributes {
   // recommended_menu : menuType
   // all_menu : menuType[]
   scrab_count : number
-  date_concept : "동적" | "비동적" | "체험"
+  date_concept : "동적" | "비동적" | "체험",
+  writer: string
 }
 
+
+interface PlaceCreationAttributes extends Optional<PlaceAttributes, "id"| "picture_link" |
+"place_Time" |
+"place_phoneNum" |
+"naver_link" |
+"catch_table_link" |
+"place_hashtag" > {}
+
+export interface PlaceInterface extends Model<PlaceAttributes, PlaceCreationAttributes>,
+PlaceAttributes {}
