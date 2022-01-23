@@ -37,6 +37,11 @@ module.exports = withAntdLess({
   },
   // ONLY for Next.js 10, if you use Next.js 11, delete this block
   webpack(config) {
+    config.module.rules.push({
+      test: /\.svg$/,
+      use: ['@svgr/webpack'],
+    });
+
     return config;
   },
   plugins: [
