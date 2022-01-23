@@ -1,6 +1,6 @@
 import { enableES5, produce } from 'immer';
 
-export default (...args) => {
+export default (state: any, ...args: [any]) => {
   enableES5();
-  return produce(...args);
+  return produce(state, ...args);
 };

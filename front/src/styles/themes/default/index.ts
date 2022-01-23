@@ -3,4 +3,5 @@ export * from './color';
 export * from './fonts';
 export * from './GlobalStyle';
 export * from './lowerTypography';
+export * from './type';
 export * from './Typography';

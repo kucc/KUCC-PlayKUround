@@ -1,6 +1,7 @@
 import { Color } from '@styles';
+import { ColorProps } from '@styles/themes/default/type';
 
-export const colorStyle = props => {
+export const colorStyle = (props: ColorProps) => {
   return props.primary
     ? { color: Color.primary_5 }
     : props.primary_0

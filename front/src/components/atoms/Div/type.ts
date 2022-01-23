@@ -3,8 +3,8 @@ export interface DivProps extends React.HTMLAttributes<HTMLDivElement> {
   center?: boolean;
   centerH?: boolean;
   centerV?: boolean;
-  width?: number;
-  height?: number;
+  width?: number | string;
+  height?: number | string;
   row?: boolean;
   col?: boolean;
   // TODO: 이후에 추가하기

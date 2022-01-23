@@ -17,18 +17,18 @@ import {
   SIGN_UP_SUCCESS,
 } from '@reducers/user';
 
-function loadMyInfoAPI() {
+function loadMyInfoAPI(): any {
   return axios.get('/user');
 }
 
-function* loadMyInfo() {
+function* loadMyInfo(): any {
   try {
     const result = yield call(loadMyInfoAPI);
     yield put({
       type: LOAD_MY_INFO_SUCCESS,
       data: result.data,
     });
-  } catch (err) {
+  } catch (err: any) {
     console.error(err);
     yield put({
       type: LOAD_MY_INFO_FAILURE,
@@ -37,18 +37,18 @@ function* loadMyInfo() {
   }
 }
 
-function logInAPI(data) {
+function logInAPI(data: any): any {
   return axios.post('/user/login', data);
 }
 
-function* logIn(action) {
+function* logIn(action: any): any {
   try {
     const result = yield call(logInAPI, action.data);
     yield put({
       type: LOG_IN_SUCCESS,
       data: result.data,
     });
-  } catch (err) {
+  } catch (err: any) {
     console.error(err);
     yield put({
       type: LOG_IN_FAILURE,
@@ -57,17 +57,17 @@ function* logIn(action) {
   }
 }
 
-function logOutAPI() {
+function logOutAPI(): any {
   return axios.post('/user/logout');
 }
 
-function* logOut() {
+function* logOut(): any {
   try {
     yield call(logOutAPI);
     yield put({
       type: LOG_OUT_SUCCESS,
     });
-  } catch (err) {
+  } catch (err: any) {
     console.error(err);
     yield put({
       type: LOG_OUT_FAILURE,
@@ -76,18 +76,18 @@ function* logOut() {
   }
 }
 
-function signUpAPI(data) {
+function signUpAPI(data: any): any {
   return axios.post('/user/register', data);
 }
 
-function* signUp(action) {
+function* signUp(action: any): any {
   try {
     const result = yield call(signUpAPI, action.data);
     console.log(result);
     yield put({
       type: SIGN_UP_SUCCESS,
     });
-  } catch (err) {
+  } catch (err: any) {
     console.error(err);
     yield put({
       type: SIGN_UP_FAILURE,
@@ -113,10 +113,5 @@ function* watchSignUp() {
 }
 
 export default function* userSaga() {
-  yield all([
-    fork(watchLogIn),
-    fork(watchLogOut),
-    fork(watchSignUp),
-    fork(watchLoadMyInfo),
-  ]);
+  yield all([fork(watchLogIn), fork(watchLogOut), fork(watchSignUp), fork(watchLoadMyInfo)]);
 }

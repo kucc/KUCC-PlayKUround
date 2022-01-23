@@ -46,7 +46,7 @@ export const SignupInput = ({
         name='user-password-check'
         label='비밀번호 체크'
         type='password'
-        value={passwordCheck}
+        value={passwordCheck as string}
         onChange={onChangePasswordCheck}
       />
       {passwordError && (
