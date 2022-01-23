@@ -1,42 +1,48 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useCallback, useState } from 'react';
+import { useMutation, useQuery, useQueryClient } from 'react-query';
 
 import { Form } from 'antd';
+import { AxiosError } from 'axios';
 import Link from 'next/link';
 
 import { BaseButton, Div, LabelInput, NavBar } from '@components';
 import { Home } from '@templates';
 
-import { loginRequestAction } from '@reducers/user';
+import { loadMyInfoAPI, logInAPI } from 'apis/user';
+import User from 'interfaces/user';
 
 import useInput from '@hooks/useInput';
 
 const LoginPage = () => {
-  const dispatch = useDispatch();
-  const me = useSelector((state: any) => state.user.me);
-  const logInLoading = useSelector((state: any) => state.user.logInLoading);
-  const logInError = useSelector((state: any) => state.user.logInError);
-
-  // 커스텀훅으로 중복제거
+  const queryClient = useQueryClient();
+  const { data: me } = useQuery<User>('user', loadMyInfoAPI);
+  const [loading, setLoading] = useState(false);
   const [email, onChangeEmail] = useInput('');
   const [password, onChangePassword] = useInput('');
-  const [code, setCode] = useState<string | null>('');
+  const mutation = useMutation<User, AxiosError, { email: string; password: string }>(
+    'user',
+    logInAPI,
+    {
+      onMutate: () => {
+        setLoading(true);
+      },
+      onError: error => {
+        alert(error.response?.data);
+      },
+      onSuccess: user => {
+        queryClient.setQueryData('user', user);
+      },
+      onSettled: () => {
+        setLoading(false);
+      },
+    },
+  );
 
-  useEffect(() => {
-    // eslint-disable-next-line no-undef
-    setCode(new URL(window.location.href).searchParams.get('code'));
-  }, [code]);
-
-  useEffect(() => {
-    if (logInError) {
-      // TODO: alert를 다른 것으로 바꾸기
-      alert(logInError);
-    }
-  }, [logInError]);
+  // 커스텀훅으로 중복제거
 
   const onSubmitForm = useCallback(() => {
-    dispatch(loginRequestAction({ email, password } as any));
-  }, [dispatch, email, password]);
+    mutation.mutate({ email, password });
+  }, [email, password, mutation]);
 
   return (
     <>
@@ -63,7 +69,7 @@ const LoginPage = () => {
                 onChange={onChangePassword}
               />
               <Div row>
-                <BaseButton htmlType='submit' loading={logInLoading}>
+                <BaseButton htmlType='submit' loading={loading}>
                   로그인
                 </BaseButton>
                 <Link href='/register'>

@@ -1,47 +1,33 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { END } from 'redux-saga';
+import { useQuery } from 'react-query';
 
 import { Checkbox, Form, Modal } from 'antd';
 import axios from 'axios';
+import { GetServerSidePropsContext } from 'next';
 import Link from 'next/link';
 import Router from 'next/router';
 
 import { BaseButton, Div, NavBar, SignupInput, Text } from '@components';
 
-import { LOAD_MY_INFO_REQUEST, SIGN_UP_REQUEST } from '@reducers/user';
+import { loadMyInfoAPI, registerAPI } from 'apis/user';
+import User from 'interfaces/user';
 
 import useInput from '@hooks/useInput';
-import wrapper from '@store/configureStore';
 
 const RegisterPage = () => {
-  const dispatch = useDispatch();
-  const signUpDone = useSelector((state: any) => state.user.signUpDone);
-  const signUpLoading = useSelector((state: any) => state.user.signUpLoading);
-  const signUpError = useSelector((state: any) => state.user.signUpError);
-  const me = useSelector((state: any) => state.user.me);
+  const { data: me } = useQuery<User>('user', loadMyInfoAPI);
+  console.log('me', me);
+  useEffect(() => {
+    if (me) {
+      Router.replace('/');
+    }
+  }, [me]);
 
   const [email, onChangeEmail] = useInput('');
   const [password, onChangePassword] = useInput('');
   const [name, onChangeName] = useInput('');
   const [passwordCheck, setPasswordCheck] = useState('');
   const [passwordError, setPasswordError] = useState(false);
-
-  useEffect(() => {
-    if (passwordError) {
-      alert('비밀번호가 일치하지 않습니다. 다시 시도해주세요');
-    }
-    if (signUpError) {
-      alert(signUpError);
-    }
-  }, [passwordError, signUpError]);
-
-  useEffect(() => {
-    if (signUpDone) {
-      alert('회원가입이 완료됐습니다. 메인 페이지로 이동합니다.');
-      Router.replace('/');
-    }
-  }, [signUpDone]);
 
   useEffect(() => {
     if (me && me.id) {
@@ -58,8 +44,8 @@ const RegisterPage = () => {
     [password],
   );
 
-  // 비밀번호 체크는 조금 다른 부분이 있음
-  const [term, setTerm] = useState<boolean>(false);
+  const [loading, setLoading] = useState(false);
+  const [term, setTerm] = useState(false);
   const [termError, setTermError] = useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
 
@@ -70,15 +56,19 @@ const RegisterPage = () => {
     if (!term) {
       return setTermError(true);
     }
-    return dispatch({
-      type: SIGN_UP_REQUEST,
-      data: {
-        email,
-        password,
-        name,
-      },
-    });
-  }, [dispatch, email, name, password, passwordCheck, term]);
+    console.log(email, name, password);
+    setLoading(true);
+    registerAPI({ email, password, name })
+      .then(() => {
+        Router.replace('/');
+      })
+      .catch(error => {
+        alert(error.response.data);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, [email, name, password, passwordCheck, term]);
 
   const onChangeTerm = useCallback(e => {
     setTerm(e.target.checked);
@@ -134,7 +124,7 @@ const RegisterPage = () => {
               </a>
             </Div>
             <Div row style={{ marginTop: 8 }}>
-              <BaseButton htmlType='submit' loading={signUpLoading}>
+              <BaseButton htmlType='submit' loading={loading}>
                 가입하기
               </BaseButton>
               <Link href='/'>
@@ -155,17 +145,24 @@ const RegisterPage = () => {
   );
 };
 
-export const getServerSideProps = wrapper.getServerSideProps(async (context: any) => {
-  const cookie = context.req ? context.req.headers.cookie : null;
-  axios.defaults.headers.Cookie = null;
+export const getServerSideProps = async (context: GetServerSidePropsContext) => {
+  const cookie = context.req ? context.req.headers.cookie : '';
+  axios.defaults.headers.Cookie = '';
   if (context.req && cookie) {
     axios.defaults.headers.Cookie = cookie;
   }
-  context.store.dispatch({
-    type: LOAD_MY_INFO_REQUEST,
-  });
-  context.store.dispatch(END);
-  await context.store.sagaTask.toPromise();
-});
+  const response = await loadMyInfoAPI();
+  if (response.data) {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false,
+      },
+    };
+  }
+  return {
+    props: {},
+  };
+};
 
 export default RegisterPage;
