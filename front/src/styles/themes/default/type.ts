@@ -1,11 +1,11 @@
 export type CamelFontType = {
-  fontSize: number;
+  fontSize: string;
   fontFamily: string;
   letterSpacing?: number;
 };
 
 export type LowerFontType = {
-  'font-size': number;
+  'font-size': string;
   'font-family': string;
   'letter-spacing'?: number;
 };
