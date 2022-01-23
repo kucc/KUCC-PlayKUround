@@ -1,22 +1,22 @@
 import dayjs from 'dayjs';
 
-export const getDate = date => {
+export const getDate = (date: Date) => {
   return dayjs(date).format('YYYY년 MM월 DD일');
 };
 
-export const getTime = date => {
+export const getTime = (date: Date) => {
   return dayjs(date).format('HH시 mm분');
 };
 
-export const getPostDate = (date, suffix) => {
+export const getPostDate = (date: Date, suffix: any) => {
   return `${dayjs(date).format('YYYY년 MM월 DD일 HH시 mm분')}${suffix || ''}`;
 };
 
-export const getDifferentDate = date => {
+export const getDifferentDate = (date: Date) => {
   return dayjs(dayjs()).diff(date, 'minute');
 };
 
-export const getDifferentDateString = date => {
+export const getDifferentDateString = (date: Date) => {
   const diff = getDifferentDate(date);
 
   switch (true) {

@@ -1,11 +1,11 @@
 export type CamelFontType = {
-  fontSize: string;
+  fontSize: number | string;
   fontFamily: string;
   letterSpacing?: number;
 };
 
 export type LowerFontType = {
-  'font-size': string;
+  'font-size': number | string;
   'font-family': string;
   'letter-spacing'?: number;
 };
@@ -56,7 +56,7 @@ export type Variants<T extends string> =
   | `${T}_8`
   | `${T}_9`;
 
-export type ColorPalette = `primary` | `secondary` | `red` | `blue` | `grey`;
+export type ColorPalette = `primary` | `secondary` | `red` | `blue` | `grey` | `white` | `black`;
 
 export type CustomColorLiterals = ColorPalette | Variants<ColorPalette>;
 

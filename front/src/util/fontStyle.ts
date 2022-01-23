@@ -1,6 +1,7 @@
 import { Typography } from '@styles';
+import { TypographyProps } from '@styles/themes/default/type';
 
-export const fontStyle = props => {
+export const fontStyle = (props: TypographyProps) => {
   return props.h1
     ? { ...Typography.h1 }
     : props.h2

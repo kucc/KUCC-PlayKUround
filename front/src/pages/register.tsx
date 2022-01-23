@@ -16,10 +16,16 @@ import wrapper from '@store/configureStore';
 
 const RegisterPage = () => {
   const dispatch = useDispatch();
-  const signUpDone = useSelector(state => state.user.signUpDone);
-  const signUpLoading = useSelector(state => state.user.signUpLoading);
-  const signUpError = useSelector(state => state.user.signUpError);
-  const me = useSelector(state => state.user.me);
+  const signUpDone = useSelector((state: any) => state.user.signUpDone);
+  const signUpLoading = useSelector((state: any) => state.user.signUpLoading);
+  const signUpError = useSelector((state: any) => state.user.signUpError);
+  const me = useSelector((state: any) => state.user.me);
+
+  const [email, onChangeEmail] = useInput('');
+  const [password, onChangePassword] = useInput('');
+  const [name, onChangeName] = useInput('');
+  const [passwordCheck, setPasswordCheck] = useState('');
+  const [passwordError, setPasswordError] = useState(false);
 
   useEffect(() => {
     if (passwordError) {
@@ -44,12 +50,6 @@ const RegisterPage = () => {
     }
   }, [me]);
 
-  const [email, onChangeEmail] = useInput('');
-  const [password, onChangePassword] = useInput('');
-  const [name, onChangeName] = useInput('');
-  const [passwordCheck, setPasswordCheck] = useState('');
-  const [passwordError, setPasswordError] = useState(false);
-
   const onChangePasswordCheck = useCallback(
     e => {
       setPasswordCheck(e.target.value);
@@ -59,7 +59,7 @@ const RegisterPage = () => {
   );
 
   // 비밀번호 체크는 조금 다른 부분이 있음
-  const [term, setTerm] = useState('');
+  const [term, setTerm] = useState<boolean>(false);
   const [termError, setTermError] = useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
 
@@ -138,9 +138,7 @@ const RegisterPage = () => {
                 가입하기
               </BaseButton>
               <Link href='/'>
-                <BaseButton htmlType='button' type='none'>
-                  메인페이지
-                </BaseButton>
+                <BaseButton htmlType='button'>메인페이지</BaseButton>
               </Link>
             </Div>
             {termError && (
@@ -157,9 +155,9 @@ const RegisterPage = () => {
   );
 };
 
-export const getServerSideProps = wrapper.getServerSideProps(async context => {
-  const cookie = context.req ? context.req.headers.cookie : '';
-  axios.defaults.headers.Cookie = '';
+export const getServerSideProps = wrapper.getServerSideProps(async (context: any) => {
+  const cookie = context.req ? context.req.headers.cookie : null;
+  axios.defaults.headers.Cookie = null;
   if (context.req && cookie) {
     axios.defaults.headers.Cookie = cookie;
   }

@@ -13,14 +13,14 @@ import useInput from '@hooks/useInput';
 
 const LoginPage = () => {
   const dispatch = useDispatch();
-  const me = useSelector(state => state.user.me);
-  const logInLoading = useSelector(state => state.user.logInLoading);
-  const logInError = useSelector(state => state.user.logInError);
+  const me = useSelector((state: any) => state.user.me);
+  const logInLoading = useSelector((state: any) => state.user.logInLoading);
+  const logInError = useSelector((state: any) => state.user.logInError);
 
   // 커스텀훅으로 중복제거
   const [email, onChangeEmail] = useInput('');
   const [password, onChangePassword] = useInput('');
-  const [code, setCode] = useState('');
+  const [code, setCode] = useState<string | null>('');
 
   useEffect(() => {
     // eslint-disable-next-line no-undef
@@ -35,7 +35,7 @@ const LoginPage = () => {
   }, [logInError]);
 
   const onSubmitForm = useCallback(() => {
-    dispatch(loginRequestAction({ email, password }));
+    dispatch(loginRequestAction({ email, password } as any));
   }, [dispatch, email, password]);
 
   return (
@@ -67,9 +67,7 @@ const LoginPage = () => {
                   로그인
                 </BaseButton>
                 <Link href='/register'>
-                  <BaseButton type='none' htmlType='button'>
-                    회원가입
-                  </BaseButton>
+                  <BaseButton htmlType='button'>회원가입</BaseButton>
                 </Link>
               </Div>
             </Form>
