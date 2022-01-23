@@ -15,8 +15,8 @@ var tsOption = {
     '<THIRD_PARTY_MODULES>',
     // TODO: 이후에 containers -> template으로 변경하기
     '^@(?:components|atoms|molecules|organisms|templates|pages|containers)(.*)$',
-    '^@(?:reducers|sagas)(.*)$',
-    '^@(?:config|assets|hooks|styles|util|store)(.*)$',
+    '^(?:apis|interfaces|config)(.*)$',
+    '^@(?:assets|hooks|styles|util|store)(.*)$',
     '^[./]',
   ],
   importOrderSeparation: true,
