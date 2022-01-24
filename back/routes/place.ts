@@ -4,7 +4,6 @@ const { isLoggedIn } = require('../middlewares/Auth');
 
 const router = express.Router();
 
-console.log("HERE!!")
 
 // 이름으로 검색은 query string으로 name을 받아옴
 router.get('/getByName', controller.getByName)

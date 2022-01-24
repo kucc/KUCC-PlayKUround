@@ -22,7 +22,7 @@ const getByName = async (req: Request, res : Response, next : NextFunction) => {
       success: true, result
     });
   } catch (error) {
-    res.json({ success: false, error });
+    res.status(400).json({ success: false, error });
     next(error);
   }
 }
@@ -81,7 +81,7 @@ const createPlace = async (req: Request, res : Response, next: NextFunction) => 
       success: true
     });
   } catch (error) {
-    res.json({ success: false, error });
+    res.status(400).json({ success: false, error });
     // next는 에러를 넘겨주는 역할.
     // next(error);
   }

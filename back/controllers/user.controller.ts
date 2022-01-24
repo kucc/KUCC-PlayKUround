@@ -4,9 +4,6 @@ import { UserAttributes, UserInterface } from '../models/user/userType';
 
 const bcrypt = require('bcrypt');
 const passport = require('passport');
-// const db = require('../models');
-
-console.log()
 
 // eslint-disable-next-line consistent-return
 const userRegister =  async (req: Request, res: Response, next: NextFunction) => {
