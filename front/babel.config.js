@@ -32,7 +32,6 @@ module.exports = function (api) {
             '@themes': './src/themes',
             '@util': './src/util',
             '@pages': './src/pages',
-            '@store': './src/store',
             '@reducers': './src/reducers',
             '@sagas': './src/sagas',
           },
