@@ -5,6 +5,17 @@ import { UserAttributes, UserInterface } from '../models/user/userType';
 const bcrypt = require('bcrypt');
 const passport = require('passport');
 
+const userGet = async (req: Request, res: Response, next : NextFunction) => {
+  res.status(200).json({
+    success : true,
+    id : req.user.id,
+    name : req.user.name,
+    email : req.user.email,
+    role : req.user.role,
+    image : req.user.image,
+  });
+}
+
 // eslint-disable-next-line consistent-return
 const userRegister =  async (req: Request, res: Response, next: NextFunction) => {
   try {
@@ -72,5 +83,6 @@ const userLogout = (req: Request, res: Response, next: NextFunction) => {
 module.exports = {
   userRegister,
   userLogin,
-  userLogout
+  userLogout,
+  userGet
 }
