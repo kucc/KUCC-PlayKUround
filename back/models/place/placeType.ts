@@ -7,7 +7,7 @@ interface menuType {
 }
 
 export interface PlaceAttributes {
-  id : number;
+  id? : number;
   // 위도, 경도
   address_location : number[]
   // 정확한 좌표

@@ -7,11 +7,11 @@ const PlaceModel = (sequelize : Sequelize) => {
   const Place = sequelize.define<PlaceInterface>(
     "place", 
     {
-      id: {
-        type: DataTypes.INTEGER,
-        primaryKey: true,
-        autoIncrement: true,
-      },
+      // id: {
+      //   type: DataTypes.INTEGER,
+      //   primaryKey: true,
+      //   autoIncrement: true,
+      // },
       address_location: {
         type: DataTypes.JSON,
         allowNull: false,

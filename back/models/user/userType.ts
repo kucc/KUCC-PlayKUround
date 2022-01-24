@@ -3,6 +3,7 @@ import express from 'express';
 import session from "express-session";
 
 export interface UserAttributes {
+  id? : number;
   name: string;
   email: string;
   password: string;
@@ -10,10 +11,9 @@ export interface UserAttributes {
   image: string;
   token: string;
   tokenExp: number;
-  id? : number;
 }
 
-interface UserCreationAttributes extends Optional<UserAttributes, "role" | "token" |
+interface UserCreationAttributes extends Optional<UserAttributes, "id" | "role" | "token" |
 "tokenExp" | "image"> { }
 
 
