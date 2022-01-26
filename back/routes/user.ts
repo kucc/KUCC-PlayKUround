@@ -47,7 +47,7 @@ router.post('/register', controller.userRegister);
  *            type: object
  *            properties:
  *              email:
- *                type: integer
+ *                type: string
  *                description: "유저 이메일"
  *                example : jjs05hwang@gmail.com
  *              password:
