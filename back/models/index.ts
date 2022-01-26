@@ -25,7 +25,6 @@ const User = UserModel(sequelize)
 Place.belongsTo(User, {foreignKey: 'writer', targetKey: 'id'})
 User.hasMany(Place, {foreignKey: 'writer', sourceKey: 'id'})
 
-
 export {
   sequelize,
   Place,

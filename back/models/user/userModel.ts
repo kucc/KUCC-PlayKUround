@@ -1,6 +1,32 @@
 import { UserInterface } from "./userType";
 import { DataTypes, Model, Optional, Sequelize } from "sequelize";
 
+/**
+ * @swagger
+ * components:
+ *  schemas:
+ *    User:
+ *      type: object
+ *      required:
+ *        - name
+ *        - email
+ *        - password
+ *      properties:
+ *        name:
+ *          type: string
+ *        email:
+ *          type: string
+ *          format: email
+ *          description: Email for the user, needs to be unique
+ *        password:
+ *          type: string
+ *          format: password
+ *      example:
+ *        name: HJun
+ *        email: jjs01hwang@gmail.com
+ *        password: 1234
+ * 
+ */
 
 // users 테이블 생성
 const UserModel = (sequelize : Sequelize) => {

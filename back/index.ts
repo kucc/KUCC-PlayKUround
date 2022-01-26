@@ -15,6 +15,9 @@ const path = require('path');
 const redis = require('redis');
 const RedisStore = require('connect-redis')(session);
 const logger = require('./logger');
+const swaggerUi = require('swagger-ui-express');
+
+
 
 dotenv.config();
 
@@ -27,6 +30,8 @@ const userRouter = require('./routes/user');
 const placeRouter = require('./routes/place');
 
 const passportConfig = require('./passport');
+
+
 
 class HttpRequestError extends Error {
   constructor(public message: string, public status?: number) {
@@ -86,10 +91,13 @@ app.use(session(sessionOption));
 app.use(passport.initialize());
 app.use(passport.session());
 
+
 app.get('/', (req: Request, res: Response) => {
   res.status(200).send('백엔드 서버 실행중');
 });
 // 라우터
+// swagger의 route
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(require('./swagger')));
 app.use('/api/user', userRouter);
 app.use('/api/place', placeRouter);
 

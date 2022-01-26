@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from 'express';
+import { NextFunction, Request, Response } from 'express';
 
 exports.isLoggedIn = (req: any, res: Response, next: NextFunction) => {
   if (req.isAuthenticated()) {
