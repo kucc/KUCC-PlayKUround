@@ -6,6 +6,8 @@ const { isLoggedIn } = require('../middlewares/Auth');
 const router = express.Router();
 
 // eslint-disable-next-line consistent-return
+router.get('/', isLoggedIn, controller.userGet);
+
 router.post('/register', controller.userRegister);
 
 router.post('/login', controller.userLogin);

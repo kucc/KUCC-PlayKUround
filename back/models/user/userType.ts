@@ -11,6 +11,9 @@ export interface UserAttributes {
   image: string;
   token: string;
   tokenExp: number;
+  createdAt? : Date;
+  updatedAt? : Date;
+  deletedAt? : Date;
 }
 
 interface UserCreationAttributes extends Optional<UserAttributes, "id" | "role" | "token" |
