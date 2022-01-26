@@ -1,12 +1,9 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const express = require('express');
 const controller = require("../controllers/user.controller");
-
 const { isLoggedIn } = require('../middlewares/Auth');
-
 const router = express.Router();
-
-
-
 // eslint-disable-next-line consistent-return
 /**
  * @swagger
@@ -15,21 +12,17 @@ const router = express.Router();
  *    -user
  *  get:
  *    description : 유저 조회
- *    produces: 
+ *    produces:
  *      - application/json
  *    responses:
  *      401:
  *        description : 로그인이 필요합니다.
  *      200:
  *        description : 유저 조회 성공
- *    
+ *
  */
 router.get('/', isLoggedIn, controller.userGet);
-
 router.post('/register', controller.userRegister);
-
-
-
 /**
  * @swagger
  * /api/user/login:
@@ -59,12 +52,9 @@ router.post('/register', controller.userRegister);
  *        description : 인증 실패.
  *      200:
  *        description : 로그인 성공
- *    
+ *
  */
 router.post('/login', controller.userLogin);
-
 // eslint-disable-next-line no-unused-vars
 router.post('/logout', isLoggedIn, controller.userLogout);
-
-export {};
 module.exports = router;
