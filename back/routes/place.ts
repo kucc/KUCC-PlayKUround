@@ -3,6 +3,38 @@ const controller = require('../controllers/place.controller');
 const { isLoggedIn } = require('../middlewares/Auth');
 
 const router = express.Router();
+// 좌표로 검색은 query string으로 latitude, longitude를 받아옴
+/**
+ * @swagger
+ * /api/place/getByLocation:
+ *  get:
+ *    tags:
+ *      - place
+ *    summary : 좌표에 의한 장소 검색
+ *    description : Get 방식으로 좌표에 의한 장소를 가져옵니다. 현재 좌표를 query string으로 보내면, 가장 가까운 장소들을 sort해서 보내줍니다. ex) http://localhost:8000/api/place/getByLocation?latitude=121&longitude=108
+ *    parameters:
+ *      - in : query
+ *        name: latitude
+ *        schema:
+ *          type: string
+ *        required: true
+ *        description: 장소의 위도 정보입니다.
+ *      - in : query
+ *        name: longitude
+ *        schema:
+ *          type: string
+ *        required: true
+ *        description: 장소의 경도 정보입니다.
+ *    responses:
+ *      200:
+ *        description : 장소 가져오기 성공. 장소에 대한 모든 정보를 sort해서 보내줍니다. getByName과 마찬가지로 디자인이 완성되면 필요한 정보만 보내도록 할 예정입니다.
+ *      403:
+ *        description : 필수인 정보(latitude, longitude)가 입력되지 않았습니다.
+ *      400:
+ *        description : 장소 가져오기 실패.
+ *
+ */
+router.get('/getByLocation', controller.getByLocation);
 
 // 이름으로 검색은 query string으로 name을 받아옴
 /**
