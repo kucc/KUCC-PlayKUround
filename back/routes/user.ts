@@ -14,7 +14,7 @@ const router = express.Router();
  *    tags:
  *      - user
  *    summary : 유저 정보 가져오기
- *    description : Get 방식으로 유저의 정보를 가져옵니다.
+ *    description : Get 방식으로 현재 session(쿠키)의 유저의 정보를 가져옵니다. 로그인이 필요한 api입니다.
  *    responses:
  *      401:
  *        description : 로그인이 필요합니다.
