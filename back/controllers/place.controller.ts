@@ -1,11 +1,28 @@
 import { NextFunction, Request, Response } from 'express';
 
-import { Place, User } from '../models';
+import { Menu, Place, User } from '../models';
 import { PlaceAttributes } from '../models/place/placeType';
 
 const sequelize = require('sequelize');
 
 const Op = sequelize.Op;
+
+// 장소 상세 정보
+const getByOne = async (req: Request, res: Response, next: NextFunction) => {
+  const placeId: number = parseInt(req.query.id as string);
+  if (!placeId) return res.status(403).send('비정상적인 접근입니다.');
+  try {
+    const result = await Place.findOne({ where: { id: placeId }, include: { model: Menu } });
+    console.log(result);
+    res.status(200).json({
+      success: true,
+      result,
+    });
+  } catch (error) {
+    res.status(400).json({ success: false, error });
+    next(error);
+  }
+};
 
 // 좌표에 따른 검색
 const getByLocation = async (req: Request, res: Response, next: NextFunction) => {
@@ -87,6 +104,7 @@ const createPlace = async (req: Request, res: Response, next: NextFunction) => {
     date_concept,
     writer,
   }: PlaceAttributes = req.body;
+  const { menu } = req.body;
   if (
     !address_location ||
     !address_exact ||
@@ -100,7 +118,8 @@ const createPlace = async (req: Request, res: Response, next: NextFunction) => {
     return res.status(403).send('필수인 정보가 입력되지 않았습니다.');
   }
   try {
-    await Place.create({
+    // place table 생성
+    const placeResult = await Place.create({
       address_location,
       address_exact,
       address_category,
@@ -119,6 +138,18 @@ const createPlace = async (req: Request, res: Response, next: NextFunction) => {
       date_concept,
       writer,
     });
+    // menu가 존재한다면
+    if (menu) {
+      const { menu_name, menu_price, menu_picture, is_recommend } = menu;
+      // menu table 생성
+      await Menu.create({
+        place_id: placeResult.id,
+        menu_name,
+        menu_price,
+        menu_picture,
+        is_recommend,
+      });
+    }
     res.status(200).json({
       success: true,
     });
@@ -130,6 +161,7 @@ const createPlace = async (req: Request, res: Response, next: NextFunction) => {
 };
 
 module.exports = {
+  getByOne,
   getByLocation,
   getByName,
   createPlace,

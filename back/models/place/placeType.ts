@@ -1,11 +1,5 @@
 import { Model, Optional } from 'sequelize/types';
 
-interface menuType {
-  menu_name: string;
-  menu_price: number;
-  menu_picture: string[];
-}
-
 export interface PlaceAttributes {
   id?: number;
   // 위도, 경도

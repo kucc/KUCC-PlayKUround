@@ -1,11 +1,11 @@
+import { DataTypes, Model, Optional, Sequelize } from 'sequelize';
 
-import { PlaceInterface } from "./placeType";
-import { DataTypes, Model, Optional, Sequelize } from "sequelize";
+import { PlaceInterface } from './placeType';
 
 // place 테이블 생성
-const PlaceModel = (sequelize : Sequelize) => {
+const PlaceModel = (sequelize: Sequelize) => {
   const Place = sequelize.define<PlaceInterface>(
-    "place", 
+    'place',
     {
       // id: {
       //   type: DataTypes.INTEGER,
@@ -76,24 +76,23 @@ const PlaceModel = (sequelize : Sequelize) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      writer : {
-        type: DataTypes.STRING,
+      writer: {
+        type: DataTypes.INTEGER,
         allowNull: false,
-      }
+      },
     },
     {
-        timestamps: true,
-        underscored: false,
-        modelName: 'Place',
-        tableName: 'places',
-        paranoid: true,
-        charset: 'utf8',
-        collate: 'utf8_general_ci',
-    }
-  )
+      timestamps: true,
+      underscored: false,
+      modelName: 'Place',
+      tableName: 'places',
+      paranoid: true,
+      charset: 'utf8',
+      collate: 'utf8_general_ci',
+    },
+  );
 
-  return Place
-}
+  return Place;
+};
 
-export default PlaceModel
-
+export default PlaceModel;

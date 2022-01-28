@@ -3,6 +3,34 @@ const controller = require('../controllers/place.controller');
 const { isLoggedIn } = require('../middlewares/Auth');
 
 const router = express.Router();
+
+// 장소 상세 정보
+/**
+ * @swagger
+ * /api/place/getByOne:
+ *  get:
+ *    tags:
+ *      - place
+ *    summary : 장소 상세 정보
+ *    description : Get 방식으로 특정 장소에 대한 정보를 가져옵니다. menu가 존재한다면 가져오고, 없다면 menu 정보에 빈 배열을 return합니다. ex) http://localhost:8000/api/place/getByOne?id=5
+ *    parameters:
+ *      - in : query
+ *        name: id
+ *        schema:
+ *          type: string
+ *        required: true
+ *        description: 장소의 id 정보입니다.
+ *    responses:
+ *      200:
+ *        description : 장소 가져오기 성공.
+ *      400:
+ *        description : 장소 가져오기 실패.
+ *      403:
+ *        description : id에 대한 query 없음. 비정상적인 접근입니다.
+ *
+ */
+router.get('/getByOne', controller.getByOne);
+
 // 좌표로 검색은 query string으로 latitude, longitude를 받아옴
 /**
  * @swagger
@@ -28,10 +56,10 @@ const router = express.Router();
  *    responses:
  *      200:
  *        description : 장소 가져오기 성공. 장소에 대한 모든 정보를 sort해서 보내줍니다. getByName과 마찬가지로 디자인이 완성되면 필요한 정보만 보내도록 할 예정입니다.
- *      403:
- *        description : 필수인 정보(latitude, longitude)가 입력되지 않았습니다.
  *      400:
  *        description : 장소 가져오기 실패.
+ *      403:
+ *        description : 필수인 정보(latitude, longitude)가 입력되지 않았습니다.
  *
  */
 router.get('/getByLocation', controller.getByLocation);
@@ -68,7 +96,7 @@ router.get('/getByName', controller.getByName);
  *  post:
  *    tags:
  *      - place
- *    summary : 장소 생성입니다.
+ *    summary : 장소 및 메뉴 생성
  *    description : Post 방식으로 장소를 생성합니다. login이 필요한 작업입니다. writer는 유저의 id를 받을 생각입니다.
  *    requestBody:
  *      description: 장소 데이터입니다.
@@ -155,6 +183,28 @@ router.get('/getByName', controller.getByName);
  *                type: number
  *                description: 장소를 작성한 사람의 id입니다. 현재 유저의 id를 보내주세요.
  *                example : 412
+ *              menu:
+ *                type: object
+ *                description: menu에 대한 object입니다. 예시를 확인해주세요.
+ *                required:
+ *                  - menu_name
+ *                properties:
+ *                  menu_name:
+ *                    type: string
+ *                    description: 메뉴의 이름 정보입니다.
+ *                    example: 봉골레파스타
+ *                  menu_price:
+ *                    type: number
+ *                    description: 메뉴의 가격 정보입니다. 원화 가격을 숫자만 보내주세요.
+ *                    example: 12000
+ *                  menu_picture:
+ *                    type: string[]
+ *                    description: 메뉴의 사진 정보입니다. 여러 개일 수 있으니, string 배열을 담아주세요.
+ *                    example: ['vongole.png']
+ *                  is_recommend:
+ *                    type: boolean
+ *                    description: 추천 메뉴인지 여부입니다. 기본 값은 false입니다.
+ *                    example: true
  *    responses:
  *      200:
  *        description : 생성 완료
