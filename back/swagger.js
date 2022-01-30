@@ -1,5 +1,4 @@
 const swaggerJSDoc = require('swagger-jsdoc');
-const { backUrl } = require('./config/url');
 
 var swaggerDefinition = {
   openapi: '3.0.0',
@@ -9,8 +8,7 @@ var swaggerDefinition = {
     version: '1.0.0',
     description: 'PlayKUround-server API DOCs',
   },
-  host:
-    process.env.NODE_ENV === 'development' ? 'localhost:8000' : `${backUrl}`, // base-url
+  host: 'localhost:8000', // base-url
   basePath: '/', // base path
 };
 
