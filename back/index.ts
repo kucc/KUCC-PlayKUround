@@ -1,5 +1,6 @@
-import { Request, Response, NextFunction, RequestHandler } from "express";
-import { sequelize } from "./models";
+import { NextFunction, Request, RequestHandler, Response } from 'express';
+
+import { sequelize } from './models';
 
 const express = require('express');
 
@@ -17,8 +18,6 @@ const RedisStore = require('connect-redis')(session);
 const logger = require('./logger');
 const swaggerUi = require('swagger-ui-express');
 
-
-
 dotenv.config();
 
 const redisClient = redis.createClient({
@@ -31,8 +30,6 @@ const placeRouter = require('./routes/place');
 
 const passportConfig = require('./passport');
 
-
-
 class HttpRequestError extends Error {
   constructor(public message: string, public status?: number) {
     super(message);
@@ -41,7 +38,7 @@ class HttpRequestError extends Error {
 }
 
 const app = express();
-const port = 8000;
+const port = process.env.PORT || 8080;
 sequelize
   .sync({ force: false })
   .then(() => {
@@ -90,7 +87,6 @@ const sessionOption = {
 app.use(session(sessionOption));
 app.use(passport.initialize());
 app.use(passport.session());
-
 
 app.get('/', (req: Request, res: Response) => {
   res.status(200).send('백엔드 서버 실행중');
