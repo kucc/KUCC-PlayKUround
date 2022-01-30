@@ -54,7 +54,7 @@ if (process.env.NODE_ENV === 'production') {
   app.use(hpp());
   app.use(
     cors({
-      origin: '', // 배포시 프론트 주소 적어주기
+      origin: true, // TODO: 프론트 주소를 배포하면 이후에 프론트 주소를 적어주기
       credentials: true,
     }),
   );
