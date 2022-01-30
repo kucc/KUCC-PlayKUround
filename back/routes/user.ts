@@ -31,7 +31,7 @@ router.get('/', isLoggedIn, controller.userGet);
  *    tags:
  *      - user
  *    summary : 유저 회원가입
- *    description : Post 방식으로 유저를 로그인합니다.
+ *    description : Post 방식으로 유저를 회원가입합니다.
  *    requestBody:
  *      description: 유저 회원가입입니다.
  *      required: true

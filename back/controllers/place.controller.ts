@@ -13,7 +13,6 @@ const getByOne = async (req: Request, res: Response, next: NextFunction) => {
   if (!placeId) return res.status(403).send('비정상적인 접근입니다.');
   try {
     const result = await Place.findOne({ where: { id: placeId }, include: { model: Menu } });
-    console.log(result);
     res.status(200).json({
       success: true,
       result,
@@ -156,13 +155,16 @@ const createPlace = async (req: Request, res: Response, next: NextFunction) => {
   } catch (error) {
     res.status(400).json({ success: false, error });
     // next는 에러를 넘겨주는 역할.
-    // next(error);
+    next(error);
   }
 };
+
+const updatePlace = async (req: Request, res: Response, next: NextFunction) => {};
 
 module.exports = {
   getByOne,
   getByLocation,
   getByName,
   createPlace,
+  updatePlace,
 };

@@ -1,9 +1,10 @@
-import { Options } from "sequelize/types";
-import { configType } from "../types/config";
+import { Options } from 'sequelize/types';
+
+import { configType } from '../types/config';
 
 require('dotenv').config();
 
-const config : configType = {
+const config: configType = {
   development: {
     username: 'root',
     password: process.env.SEQUELIZE_PASSWORD,
@@ -28,6 +29,6 @@ const config : configType = {
   },
 };
 
-const env : string = process.env.NODE_ENV || 'development';
+const env: string = process.env.NODE_ENV || 'development';
 
 export default config[env];

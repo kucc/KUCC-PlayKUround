@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "tsc-watch --onSuccess \"ts-node index.ts\"",
+    "start": "tsc-watch --onSuccess \"ts-node dist/index.js\"",
     "product": "cross-env NODE_ENV=production pm2 start index.js",
     "dev": "NODE_ENV=development ts-node-dev index.ts"
   },
