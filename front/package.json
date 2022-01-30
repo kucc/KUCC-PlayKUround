@@ -6,9 +6,7 @@
   "scripts": {
     "dev": "cross-env NODE_OPTIONS=--max-old-space-size=8192 next dev",
     "build": "cross-env NODE_ENV=production ANALYZE=true next build",
-    "start": "cross-env NODE_ENV=production next start -p 3000",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "start": "cross-env NODE_ENV=production next start -p 3000"
   },
   "author": "taewoong",
   "license": "ISC",
@@ -40,12 +38,6 @@
     "@babel/plugin-syntax-dynamic-import": "^7.8.3",
     "@babel/plugin-transform-runtime": "^7.16.4",
     "@babel/runtime": "^7.16.3",
-    "@storybook/addon-actions": "^6.4.9",
-    "@storybook/addon-essentials": "^6.4.9",
-    "@storybook/addon-links": "^6.4.9",
-    "@storybook/node-logger": "^6.4.9",
-    "@storybook/preset-create-react-app": "^3.2.0",
-    "@storybook/react": "^6.4.9",
     "@svgr/webpack": "^6.2.0",
     "@types/node": "^17.0.5",
     "@types/react": "^17.0.38",
