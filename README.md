@@ -2,6 +2,8 @@
 
 안암, 성신여대, 혜화 일대를 중심으로 커플 & 친구끼리 즐겁게 놀 수 있는 코스를 추천해주는 서비스를 개발하고 있습니다.
 
+개발자 : 강태웅 김은기 김지은 김채린 이희준 정인아
+
 <br />
   <br />
 
@@ -23,6 +25,12 @@
   
 ### 1-3. Notion
 ![image](https://user-images.githubusercontent.com/77313674/151750935-4e69ffb7-4ddb-47a0-9e6a-a2273911a29d.png)
+<br />
+  <br />
+    <br />
+  
+### 1-4. Figma
+![image](https://user-images.githubusercontent.com/77313674/151769599-8a47fd50-b34b-4702-8064-94ab2e281843.png)
 <br />
   <br />
     <br />
