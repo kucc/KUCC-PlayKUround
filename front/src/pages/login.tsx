@@ -5,7 +5,8 @@ import { Form } from 'antd';
 import { AxiosError } from 'axios';
 import Link from 'next/link';
 
-import { BaseButton, Div, LabelInput, NavBar } from '@components';
+import { BaseButton, Div, NavBar } from '@components';
+import BaseInput from '@components/atoms/BaseInput';
 import { Home } from '@templates';
 
 import { loadMyInfoAPI, logInAPI } from 'apis/user';
@@ -53,27 +54,17 @@ const LoginPage = () => {
           <NavBar />
           <Div center>
             <Form style={{ width: 400 }} onFinish={onSubmitForm}>
-              <LabelInput
-                name='user-email'
-                label='이메일'
-                type='email'
-                value={email}
-                onChange={onChangeEmail}
-              />
-              <LabelInput
+              <BaseInput label='이메일' type='email' placeholder='이메일을 입력해주세요' />
+              <BaseInput
                 style={{ marginTop: 16 }}
-                name='user-password'
                 label='비밀번호'
                 type='password'
-                value={password}
-                onChange={onChangePassword}
+                placeholder='비밀번호를 입력해주세요'
               />
               <Div row>
-                <BaseButton htmlType='submit' loading={loading}>
-                  로그인
-                </BaseButton>
+                <BaseButton loading={loading}>로그인</BaseButton>
                 <Link href='/register'>
-                  <BaseButton htmlType='button'>회원가입</BaseButton>
+                  <BaseButton>회원가입</BaseButton>
                 </Link>
               </Div>
             </Form>
