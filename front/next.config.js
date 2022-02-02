@@ -30,6 +30,10 @@ module.exports = withAntdLess({
         test: /\.(woff|woff2|ttf|eot)$/,
         loader: 'file-loader?name=fonts/[name].[ext]!static',
       },
+      {
+        test: /\.svg$/,
+        use: ['@svgr/webpack'],
+      },
     ],
   },
   options: {
