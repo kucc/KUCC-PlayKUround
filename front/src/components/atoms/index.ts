@@ -2,3 +2,6 @@
 export * from './BaseButton';
 export * from './Div';
 export * from './Text';
+export * from '../MyMenuIcon';
+export * from './MyMenu';
+export * from './PlaceCard';
