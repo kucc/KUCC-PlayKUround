@@ -1,7 +1,5 @@
 import { generate } from '@ant-design/colors';
 
-import { ColorPalette, Variants } from './type';
-
 const primary = '#d41414';
 const grey = '#d5d5d5';
 const blue = '#0000FF';
@@ -22,7 +20,7 @@ const loadColor = (color: string[], name: string) => {
   return colorObject;
 };
 
-export const Color = {
+export const Colors = {
   white: '#ffffff',
   black: '#111111',
   font: '#111111',
@@ -36,3 +34,6 @@ export const Color = {
   ...loadColor(colorsRed, 'red'),
   ...loadColor(colorsSecondary, 'secondary'),
 };
+
+type color = keyof typeof Colors;
+export type ColorsType = { [k in color]: string };
