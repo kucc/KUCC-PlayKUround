@@ -96,17 +96,7 @@ const RegisterPage = () => {
       ) : (
         <Div center>
           <Form onFinish={onSubmit}>
-            <SignupInput
-              email={email}
-              onChangeEmail={onChangeEmail}
-              name={name}
-              onChangeName={onChangeName}
-              password={password}
-              onChangePassword={onChangePassword}
-              passwordCheck={passwordCheck}
-              onChangePasswordCheck={onChangePasswordCheck}
-              passwordError={passwordError}
-            />
+            <SignupInput passwordError={passwordError} />
             <Div row style={{ marginTop: 8 }}>
               <Checkbox name='user-term' checked={term} onChange={onChangeTerm}>
                 <Modal
