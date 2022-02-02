@@ -124,11 +124,9 @@ const RegisterPage = () => {
               </a>
             </Div>
             <Div row style={{ marginTop: 8 }}>
-              <BaseButton htmlType='submit' loading={loading}>
-                가입하기
-              </BaseButton>
+              <BaseButton loading={loading}>가입하기</BaseButton>
               <Link href='/'>
-                <BaseButton htmlType='button'>메인페이지</BaseButton>
+                <BaseButton>메인페이지</BaseButton>
               </Link>
             </Div>
             {termError && (
