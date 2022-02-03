@@ -50,8 +50,11 @@
 ### 2.3. 백엔드
   - Node Express
   - MySQL
+  - Redis
+  - Swagger
   - Docker
-  - Jenkins
+  - AWS codebuild, codepipe, Elastic Beanstalk, RDS
+
 
 ### 2.4. ML
   - scikit-learn
