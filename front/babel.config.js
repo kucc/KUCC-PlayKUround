@@ -12,7 +12,7 @@ module.exports = function (api) {
           displayName: true,
         },
       ],
-      ['transform-remove-console', { exclude: ['error', 'warn'] }],
+      // ['transform-remove-console', { exclude: ['error', 'warn'] }],
       [
         'module-resolver',
         {
