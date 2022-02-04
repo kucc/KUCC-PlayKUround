@@ -4,6 +4,7 @@ import { Colors } from '@styles';
 
 export const ChipWrapper = styled.div<{ shadow?: boolean }>`
   display: inline-flex;
+  align-items: center;
   background-color: ${Colors.white};
   border-radius: 24px;
   padding: 11px 16px;
