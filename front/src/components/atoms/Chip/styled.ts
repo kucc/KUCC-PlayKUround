@@ -8,6 +8,7 @@ export const ChipWrapper = styled.div<{ shadow?: boolean }>`
   background-color: ${Colors.white};
   border-radius: 24px;
   padding: 11px 16px;
+  cursor: pointer;
   ${({ shadow }) => {
     if (shadow) {
       return `

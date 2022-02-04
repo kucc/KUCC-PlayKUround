@@ -5,4 +5,5 @@ export type ChipProps = {
   label: string;
   style?: React.CSSProperties;
   shadow?: boolean;
+  onClick?: () => void;
 };
