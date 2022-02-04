@@ -22,6 +22,7 @@ export async function getByLocationAPI({ queryKey }) {
     }
   } catch (error) {
     alert(FAILED_DATA_FETCHING);
+    // 메인 페이지로 보내야 할 듯.
     return;
   }
 
