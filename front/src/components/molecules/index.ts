@@ -1,2 +1,2 @@
 // @index('./*', f => `export * from '${f.path}'`)
-export {};
+export * from './SearchChipBar';
