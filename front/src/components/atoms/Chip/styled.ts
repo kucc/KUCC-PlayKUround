@@ -5,7 +5,8 @@ import { Colors } from '@styles';
 export const ChipWrapper = styled.div<{ shadow?: boolean; border?: boolean }>`
   display: inline-flex;
   align-items: center;
-  padding: 11px 16px;
+  justify-content: center;
+  padding: 10px 13px;
   border-radius: 24px;
   background-color: ${Colors.white};
   cursor: pointer;
@@ -27,7 +28,7 @@ export const ChipWrapper = styled.div<{ shadow?: boolean; border?: boolean }>`
 
 export const Label = styled.div`
   align-items: center;
-  margin-top: 4px;
+  margin-top: 3px;
   margin-left: 5px;
   font-size: 14px;
   font-weight: bold;
