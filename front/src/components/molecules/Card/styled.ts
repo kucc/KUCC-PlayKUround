@@ -22,9 +22,7 @@ export const StyledScrapSvg = styled(Scrap)`
   cursor: pointer;
 `;
 
-export const ImageWrapper = styled.div``;
-
-export const StyledImg = styled(Image)`
+export const StyledImg = styled.img`
   border-radius: 12px;
 `;
 
@@ -35,10 +33,11 @@ export const ContentWrapper = styled.div`
 
 export const TextWrapper = styled.div`
   padding-left: 13px;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 `;
 
-export const Title = styled.h2`
+export const Title = styled.div`
+  margin-bottom: 3px;
   font-size: 16px;
   font-weight: bold;
   line-height: 20px;
