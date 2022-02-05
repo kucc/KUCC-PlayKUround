@@ -5,9 +5,9 @@ import { Colors } from '@styles';
 export const ChipWrapper = styled.div<{ shadow?: boolean; border?: boolean }>`
   display: inline-flex;
   align-items: center;
-  background-color: ${Colors.white};
-  border-radius: 24px;
   padding: 11px 16px;
+  border-radius: 24px;
+  background-color: ${Colors.white};
   cursor: pointer;
   ${({ shadow }) => {
     if (shadow) {
@@ -26,8 +26,10 @@ export const ChipWrapper = styled.div<{ shadow?: boolean; border?: boolean }>`
 `;
 
 export const Label = styled.div`
-  font-size: 14px;
-  line-height: 14px;
-  font-weight: 700px;
+  align-items: center;
+  margin-top: 4px;
   margin-left: 5px;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 14px;
 `;
