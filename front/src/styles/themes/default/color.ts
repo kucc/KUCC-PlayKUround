@@ -25,7 +25,7 @@ export const Colors = {
   black: '#111111',
   font: '#111111',
   primary: '#CF4040',
-  grey: '#d5d5d5',
+  grey: '#B2B2B2',
   blue: '#0000FF',
   red: '#ff0000',
   ...loadColor(colorsPrimary, 'primary'),
