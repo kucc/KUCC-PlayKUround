@@ -7,7 +7,6 @@ import {
   ChipWrapper,
   ContentWrapper,
   Description,
-  ImageWrapper,
   StyledImg,
   StyledScrapSvg,
   SvgWrapper,
@@ -22,7 +21,7 @@ export const Card = ({ title, description, ChipGroupList }: CardProps) => {
       <SvgWrapper>
         <StyledScrapSvg />
       </SvgWrapper>
-      <StyledImg src='/cartoon-cafe.png' width={82} height={82} layout='fixed' />
+      <StyledImg src='/cartoon-cafe.png' width={82} height={82} />
       <ContentWrapper>
         <TextWrapper>
           <Title>{title}</Title>
