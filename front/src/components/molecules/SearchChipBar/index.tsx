@@ -14,22 +14,22 @@ import { Container } from './styled';
 
 export const SearchChipBar = () => {
   const menuList = [
-    { leftIcon: <Smile />, label: '힐링' },
-    { leftIcon: <Movie />, label: '영화/연극' },
-    { leftIcon: <Coffee />, label: '카페' },
-    { leftIcon: <Good />, label: '맛집' },
-    { leftIcon: <Cartoon />, label: '만화카페' },
-    { leftIcon: <Dice />, label: '보드게임카페' },
+    { nonClickedIcon: <Smile />, label: '힐링' },
+    { nonClickedIcon: <Movie />, label: '영화/연극' },
+    { nonClickedIcon: <Coffee />, label: '카페' },
+    { nonClickedIcon: <Good />, label: '맛집' },
+    { nonClickedIcon: <Cartoon />, label: '만화카페' },
+    { nonClickedIcon: <Dice />, label: '보드게임카페' },
   ];
   return (
     <Container>
       <BoxIcon icon={<Search />} />
-      {menuList.map(({ leftIcon, label }, index) => {
+      {menuList.map(({ nonClickedIcon, label }, index) => {
         return (
           <Chip
             key={index}
             shadow={true}
-            leftIcon={leftIcon}
+            nonClickedIcon={nonClickedIcon}
             label={label}
             style={
               index === 0 ? { marginLeft: '12px', marginRight: '6px' } : { marginRight: '6px' }

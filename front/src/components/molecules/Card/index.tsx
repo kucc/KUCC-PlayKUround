@@ -28,12 +28,12 @@ export const Card = ({ title, description, ChipGroupList }: CardProps) => {
           <Description>{description}</Description>
         </TextWrapper>
         <ChipWrapper>
-          {ChipGroupList.map(({ label, leftIcon }, index) => {
+          {ChipGroupList.map(({ label, nonClickedIcon }, index) => {
             return (
               <Chip
                 key={index}
                 label={label}
-                leftIcon={leftIcon}
+                nonClickedIcon={nonClickedIcon}
                 border={true}
                 labelStyle={{ fontSize: '12px' }}
                 style={
