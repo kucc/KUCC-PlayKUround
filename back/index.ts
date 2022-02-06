@@ -1,4 +1,6 @@
 import { NextFunction, Request, RequestHandler, Response } from 'express';
+import swaggerUi from 'swagger-ui-express';
+import YAML from 'yamljs';
 
 import { sequelize } from './models';
 
@@ -16,7 +18,6 @@ const path = require('path');
 const redis = require('redis');
 const RedisStore = require('connect-redis')(session);
 const logger = require('./logger');
-const swaggerUi = require('swagger-ui-express');
 
 dotenv.config();
 
@@ -46,6 +47,9 @@ sequelize
   })
   .catch(console.error);
 passportConfig();
+
+// swaggerfile yaml 변환
+const swaggerSpec = YAML.load(path.join(__dirname, '../dist/swagger/swagger.yaml'));
 
 if (process.env.NODE_ENV === 'production') {
   app.set('trust proxy', 1);
@@ -93,7 +97,7 @@ app.get('/', (req: Request, res: Response) => {
 });
 // 라우터
 // swagger의 route
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(require('./swagger')));
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 app.use('/api/user', userRouter);
 app.use('/api/place', placeRouter);
 

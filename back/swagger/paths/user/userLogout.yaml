@@ -1,0 +1,8 @@
+post:
+  tags:
+    - user
+  summary : 유저 로그아웃
+  description : Post 방식으로 유저를 로그아웃합니다.
+  responses:
+    200:
+      description : 로그아웃 성공

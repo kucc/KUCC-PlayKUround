@@ -1,0 +1,31 @@
+type: object
+required:
+  - name
+  - email
+  - password
+description: 유저 정보입니다.
+properties:
+  id:
+    type: number
+    description: sql 자동생성 id
+  name:
+    type: string
+    description: 유저 이름
+  email:
+    type: string
+    description: 유저 이메일
+  password:
+    type: string
+    description: 유저 비밀번호
+  role:
+    type: number
+    description: 유저 역할
+  image:
+    type: string
+    description: 유저 사진
+  token:
+    type: string
+    description: 유저 토큰
+  tokenExp:
+    type: number
+    description: 유저 토큰 만기 기간

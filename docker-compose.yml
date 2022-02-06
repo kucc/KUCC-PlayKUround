@@ -1,0 +1,54 @@
+version: "3"
+services:
+  # swagger:
+  #   image: swaggerapi/swagger-ui
+  #   container_name: app_swagger
+  #   volumes:
+  #     - ./back/swagger:/usr/share/nginx/html/doc
+  #   environment:
+  #     API_URL: back/swagger/openapi.yaml
+  #   expose:
+  #     - "8080"
+  #   mem_limit: 128m
+
+  front:
+    image: hjun121345/docker-front
+    # build:
+    #   dockerfile: Dockerfile
+    #   context: ./front
+    container_name: app_front
+    volumes:
+      - /app/node_modules
+      # - ./front:/app
+    stdin_open: true
+    # mem_limit: 128m
+
+  nginx:
+    image: hjun121345/docker-nginx
+    # build:
+    #   dockerfile: Dockerfile
+    #   context: ./nginx
+    container_name: app_nginx
+    restart: always
+    ports:
+      - "80:80"
+    mem_limit: 128m
+    links:
+      - front
+      - back
+
+  back:
+    image: hjun121345/docker-back
+    # build:
+    #   dockerfile: Dockerfile
+    #   context: ./back
+    container_name: app_back
+    volumes:
+      - /app/node_modules
+      # - ./back:/app
+    environment:
+      MYSQL_USER: $MYSQL_USER
+      MYSQL_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
+      MYSQL_DATABASE: $MYSQL_DATABASE
+      MYSQL_HOST: $MYSQL_HOST
+  # MYSQL_PORT: $MYSQL_PORT

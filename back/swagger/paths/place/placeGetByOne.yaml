@@ -1,0 +1,19 @@
+get:
+  tags:
+    - place
+  summary : 장소 상세 정보
+  description : Get 방식으로 특정 장소에 대한 정보를 가져옵니다. menu가 존재한다면 가져오고, 없다면 menu 정보에 빈 배열을 return합니다. ex) http://localhost:8000/api/place/getByOne?id=5
+  parameters:
+    - in : query
+      name: id
+      schema:
+        type: string
+      required: true
+      description: 장소의 id 정보입니다.
+  responses:
+    200:
+      description : 장소 가져오기 성공.
+    400:
+      description : 장소 가져오기 실패.
+    403:
+      description : id에 대한 query 없음. 비정상적인 접근입니다. 
