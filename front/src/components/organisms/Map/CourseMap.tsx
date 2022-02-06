@@ -4,10 +4,15 @@ import { useQuery } from 'react-query';
 import { getByLocationAPI } from 'apis/place';
 import { PlaceType } from 'interfaces/place';
 
-const CourseMap = ({ setCourseMode }: { setCourseMode: () => void }) => {
+const CourseMap = ({
+  setCourseMode,
+  places,
+}: {
+  setCourseMode: () => void;
+  places: PlaceType[];
+}) => {
   const [latitude, setLatitude] = useState<number>(37.5908);
   const [longitude, setLongitude] = useState<number>(127.0278);
-  const { data: places } = useQuery(['user', latitude, longitude], getByLocationAPI);
 
   const getLocation = () => {
     navigator.geolocation.getCurrentPosition(pos => {
@@ -38,7 +43,7 @@ const CourseMap = ({ setCourseMode }: { setCourseMode: () => void }) => {
             //text left의 계산법 : - text의 width / 2 + img의 width / 2
             content: `
                       <img 
-                        src="/my-location.svg" 
+                        src="icons/my-location.svg" 
                         alt="my-location"
                         style="
                           position: absolute; 
@@ -57,11 +62,11 @@ const CourseMap = ({ setCourseMode }: { setCourseMode: () => void }) => {
 
         // course White 아이콘
 
-        const courseRedBtnHtml: any = `<img style="position: absolute; top: 71px; left: 16px; alt="course-red" src="course-red.svg">`;
+        const courseRedBtnHtml: any = `<img style="position: absolute; top: 71px; left: 16px; alt="course-red" src="icons/course-red.svg">`;
 
         // 현재 위치 아이콘 => svg 파일 수정해야 함!
         const locationBtnHtml: any =
-          '<img style="position: absolute; top: 23px; left: 16px" alt="get-location" src="/get-location.svg">';
+          '<img style="position: absolute; top: 23px; left: 16px" alt="get-location" src="icons/get-location.svg">';
 
         naver.maps.Event.once(map, 'init_stylemap', function () {
           //customControl 객체 이용하기
@@ -101,7 +106,7 @@ const CourseMap = ({ setCourseMode }: { setCourseMode: () => void }) => {
                 //text left의 계산법 : - text의 width / 2 + img의 width / 2
                 content: `
                           <img 
-                            src="/marker-book.svg" 
+                            src="icons/marker-book.svg" 
                             alt="marker-book"
                             style="
                               position: absolute; 
@@ -137,19 +142,19 @@ const CourseMap = ({ setCourseMode }: { setCourseMode: () => void }) => {
                   <div>
                     <div style="position: absolute; bottom: 10px; right: 12px; font-size: 10px; display: flex; align-items: center; color: white; z-index:10;">
                       <div style="margin-top: 3.2px;">자세히 보기&nbsp;&nbsp;</div>
-                      <img src="place-detail-white.svg"  />
+                      <img src="icons/place-detail-white.svg"  />
                     </div>
                     <div style="width:120px; height:120px; margin:5px; border-radius: 15px; background-color: black;">
-                      <img style="width:120px; height:120px; border-radius: 15px;object-fit: cover; opacity: 0.8;" src=${place.picture_link[0]} />
+                      <img style="width:120px; height:120px; border-radius: 15px;object-fit: cover; opacity: 0.8;" src="pictures/${place.picture_link[0]}" />
                     </div>
                   </div>`
                   : `
                   <div>
                     <div style="position: absolute; bottom: 10px; right: 12px; font-size: 10px; display: flex; align-items: center;">
                       <div style="margin-top: 3.2px;">자세히 보기&nbsp;&nbsp;</div>
-                      <img src="place-detail-black.svg" />
+                      <img src="icons/place-detail-black.svg" />
                     </div>
-                    <img src="no-image.svg" style="width:120px; padding:5px; border-radius: 15px;" />
+                    <img src="icons/no-image.svg" style="width:120px; padding:5px; border-radius: 15px;" />
                   </div>
                   `,
               // img 태그에 a 태그를 넣어 이동하게 하자.
@@ -168,7 +173,7 @@ const CourseMap = ({ setCourseMode }: { setCourseMode: () => void }) => {
                 //text left의 계산법 : - text의 width / 2 + img의 width / 2
                 content: `
                           <img 
-                            src="/marker-book.svg" 
+                            src="icons/marker-book.svg" 
                             alt="marker-book"
                             style="
                               position: absolute; 
@@ -203,7 +208,7 @@ const CourseMap = ({ setCourseMode }: { setCourseMode: () => void }) => {
                 //text left의 계산법 : - text의 width / 2 + img의 width / 2
                 content: `
                           <img 
-                            src="/marker-book.svg" 
+                            src="icons/marker-book.svg" 
                             alt="marker-book"
                             style="
                               position: absolute; 
@@ -244,7 +249,6 @@ const CourseMap = ({ setCourseMode }: { setCourseMode: () => void }) => {
 
   return (
     <React.Fragment>
-      <h1>지도</h1>
       <div id='map' style={mapStyle}></div>
     </React.Fragment>
   );

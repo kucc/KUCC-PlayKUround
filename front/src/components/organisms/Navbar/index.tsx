@@ -1,43 +1,27 @@
 import React, { useMemo, useRef, useState } from 'react';
 
-import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons';
 import { Menu } from 'antd';
+import SubMenu from 'antd/lib/menu/SubMenu';
 
-const { SubMenu } = Menu;
+import { BoxIcon } from '@components/atoms';
+
+import { default as BellIcon } from '@assets/icons/bell.svg';
+import { default as MenuIcon } from '@assets/icons/menu.svg';
+import { default as ScrapIcon } from '@assets/icons/scrap.svg';
+
+import { StyledNavbarContainer, StyledNavbarRight, StyledProfileImg } from './styled';
 
 export const NavBar = () => {
-  const style = useMemo(() => ({ margin: 'auto' }), []);
-  const [state, setState] = useState('');
-  const handleClick = (e: any) => {
-    setState({ current: e.key } as any);
-  };
-
-  const { current } = useRef(state);
   return (
-    <div style={style}>
-      <Menu onClick={handleClick} selectedKeys={[current]} mode='horizontal'>
-        <Menu.Item key='mail' icon={<MailOutlined />}>
-          첫 번째 메뉴
-        </Menu.Item>
-        <Menu.Item key='app' icon={<AppstoreOutlined />}>
-          두 번째 메뉴
-        </Menu.Item>
-        <SubMenu key='SubMenu' icon={<SettingOutlined />} title='세 번째 메뉴 - 서브 메뉴'>
-          <Menu.ItemGroup title='Item 1'>
-            <Menu.Item key='setting:1'>옵션 1</Menu.Item>
-            <Menu.Item key='setting:2'>옵션 2</Menu.Item>
-          </Menu.ItemGroup>
-          <Menu.ItemGroup title='Item 2'>
-            <Menu.Item key='setting:3'>옵션 3</Menu.Item>
-            <Menu.Item key='setting:4'>옵션 4</Menu.Item>
-          </Menu.ItemGroup>
-        </SubMenu>
-        <Menu.Item key='alipay'>
-          <a href='https://ant.design' target='_blank' rel='noopener noreferrer'>
-            네 번째 메뉴 - 링크
-          </a>
-        </Menu.Item>
-      </Menu>
-    </div>
+    <StyledNavbarContainer>
+      <div>
+        <MenuIcon />
+      </div>
+      <StyledNavbarRight>
+        <ScrapIcon width={16} height={20} />
+        <BellIcon />
+        <StyledProfileImg src='pictures/profile-tiger.png' />
+      </StyledNavbarRight>
+    </StyledNavbarContainer>
   );
 };

@@ -2,6 +2,8 @@ import React from 'react';
 
 import { Chip } from '@components';
 
+import { Colors } from '@styles';
+
 import {
   CardContainer,
   ChipWrapper,
@@ -19,9 +21,9 @@ export const Card = ({ title, description, ChipGroupList }: CardProps) => {
   return (
     <CardContainer>
       <SvgWrapper>
-        <StyledScrapSvg />
+        <StyledScrapSvg width={18} height={22} fill={Colors.primary} />
       </SvgWrapper>
-      <StyledImg src='/cartoon-cafe.png' width={82} height={82} />
+      <StyledImg src='pictures/cartoon-cafe.png' width={82} height={82} />
       <ContentWrapper>
         <TextWrapper>
           <Title>{title}</Title>

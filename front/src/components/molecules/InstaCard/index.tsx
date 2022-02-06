@@ -45,7 +45,7 @@ export const InstaCard = ({
           />
         </ChipContainer>
       </CardHeadContainer>
-      <StyledImg src='/insta-card.png' width={'100%'} height={270} />
+      <StyledImg src='pictures/insta-card.png' width={'100%'} height={270} />
       <Description>{descriptionText}</Description>
     </Container>
   );
