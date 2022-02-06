@@ -4,6 +4,7 @@
 codeTest.js
 codeTest.ts
 .husky
+.DS_Store
 
 #uploads
 uploads
