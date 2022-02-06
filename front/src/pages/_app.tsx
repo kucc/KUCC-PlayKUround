@@ -7,6 +7,7 @@ import { AppProps, NextWebVitalsMetric } from 'next/app';
 import Head from 'next/head';
 import PropTypes from 'prop-types';
 
+// 패키지 불러오기
 import { GlobalStyle } from '@styles';
 
 // TODO : import로 less파일 추적하능하게 바꾸기
@@ -23,6 +24,9 @@ const App = ({ Component, pageProps }: AppProps) => {
         <Head>
           <meta charSet='utf-8' />
           <title>BoilerPlate</title>
+          <script
+            type='text/javascript'
+            src={`http://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=rses05b7bh`}></script>
         </Head>
         <GlobalStyle />
         <Component {...pageProps} />
@@ -37,7 +41,7 @@ App.propTypes = {
 };
 
 export function reportWebVitals(metric: NextWebVitalsMetric) {
-  console.log(metric);
+  // console.log(metric);
 }
 
 export default App;

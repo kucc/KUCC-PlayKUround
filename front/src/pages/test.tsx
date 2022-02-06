@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { useQuery } from 'react-query';
 import { Card, InstaCard, SearchChipBar } from '@components';
 
 import { default as Heart } from '@assets/icons/heart-small.svg';
