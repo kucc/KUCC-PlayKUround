@@ -8,6 +8,7 @@ declare global {
       MYSQL_ROOT_PASSWORD: string;
       MYSQL_DATABASE: string;
       MYSQL_HOST: string;
+      MYSQL_PORT: string | undefined;
     }
   }
 }

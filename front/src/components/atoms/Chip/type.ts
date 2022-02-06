@@ -3,7 +3,7 @@ import React from 'react';
 export type ChipProps = {
   nonClickedIcon: React.ReactNode;
   clickedIcon?: React.ReactNode;
-  label: string;
+  label: string | number;
   style?: React.CSSProperties;
   labelStyle?: React.CSSProperties;
   shadow?: boolean;

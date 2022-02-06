@@ -15,10 +15,6 @@ const TestPage = () => {
 
   const ChipGroupList = [
     {
-      nonClickedIcon: <Scrap />,
-      label: '123',
-    },
-    {
       nonClickedIcon: <Star />,
       label: '4.9',
     },

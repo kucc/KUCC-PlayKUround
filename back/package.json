@@ -6,16 +6,16 @@
   "scripts": {
     "start": "NODE_ENV=production node ./dist/index.js",
     "dev": "tsc-watch --onSuccess \"ts-node ./dist/index.js\"",
-    "predev": "npm run api-docs",
+    "predev": "yarn run api-docs",
     "build": "tsc --build",
-    "prebuild": "npm run api-docs",
+    "prebuild": "yarn run api-docs",
     "api-docs": "mkdir -p dist/swagger && swagger-cli bundle swagger/openapi.yaml --outfile dist/swagger/swagger.yaml --type yaml"
   },
   "author": "taewoong",
   "license": "ISC",
   "dependencies": {
     "@types/passport": "^1.0.7",
-    "bcrypt": "^5.0.1",
+    "bcryptjs": "^2.4.3",
     "connect-redis": "^6.0.0",
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
