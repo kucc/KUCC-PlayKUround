@@ -1,4 +1,4 @@
-import { NextFunction, Request, Response } from 'express';
+import { NextFunction, Request, RequestHandler, Response } from 'express';
 
 import { Menu, Place, User } from '../models';
 import { PlaceAttributes } from '../models/place/placeType';
@@ -8,7 +8,7 @@ const sequelize = require('sequelize');
 const Op = sequelize.Op;
 
 // 장소 상세 정보
-const getByOne = async (req: Request, res: Response, next: NextFunction) => {
+const getByOne: RequestHandler = async (req, res, next) => {
   const placeId: number = parseInt(req.query.id as string);
   if (!placeId) return res.status(403).send('비정상적인 접근입니다.');
   try {
@@ -24,7 +24,7 @@ const getByOne = async (req: Request, res: Response, next: NextFunction) => {
 };
 
 // 좌표에 따른 검색
-const getByLocation = async (req: Request, res: Response, next: NextFunction) => {
+const getByLocation: RequestHandler = async (req, res, next) => {
   const latitude: number = parseInt(req.query.latitude as string);
   const longitude: number = parseInt(req.query.longitude as string);
   if (!latitude || !longitude) {
@@ -61,7 +61,7 @@ const getByLocation = async (req: Request, res: Response, next: NextFunction) =>
 };
 
 // 이름에 의한 검색
-const getByName = async (req: Request, res: Response, next: NextFunction) => {
+const getByName: RequestHandler = async (req, res, next) => {
   const name: string = req.query.name as string;
   if (!name) return res.status(400).end();
   try {
@@ -83,7 +83,7 @@ const getByName = async (req: Request, res: Response, next: NextFunction) => {
   }
 };
 
-const createPlace = async (req: Request, res: Response, next: NextFunction) => {
+const createPlace: RequestHandler = async (req, res, next) => {
   const {
     address_location,
     address_exact,
@@ -159,7 +159,7 @@ const createPlace = async (req: Request, res: Response, next: NextFunction) => {
   }
 };
 
-const updatePlace = async (req: Request, res: Response, next: NextFunction) => {};
+const updatePlace: RequestHandler = async (req, res, next) => {};
 
 module.exports = {
   getByOne,

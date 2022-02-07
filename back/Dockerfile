@@ -1,6 +1,8 @@
-FROM node:14-alpine
+FROM node:16-alpine
 
 WORKDIR /app
+
+RUN apk add --update python3 make g++ && rm -rf /var/cache/apk/*
 
 COPY package.json ./
 COPY yarn.lock ./
@@ -12,6 +14,6 @@ COPY ./ ./
 
 RUN yarn run build
 
-EXPOSE 5000
+EXPOSE 8000
 
-CMD ["yarn", "run", "startJS"]
+CMD ["yarn", "run", "start"]
