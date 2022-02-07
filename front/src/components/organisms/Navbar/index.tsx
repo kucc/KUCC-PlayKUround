@@ -1,27 +1,36 @@
-import React, { useMemo, useRef, useState } from 'react';
+import React from 'react';
 
-import { Menu } from 'antd';
-import SubMenu from 'antd/lib/menu/SubMenu';
+import { Text } from '@components/atoms';
 
-import { BoxIcon } from '@components/atoms';
+import {
+  StyledNavbarContainer,
+  StyledNavbarItems,
+  StyledNavbarItemsContainer,
+  StyledNavbarTextContainer,
+} from './styled';
 
-import { default as BellIcon } from '@assets/icons/bell.svg';
-import { default as MenuIcon } from '@assets/icons/menu.svg';
-import { default as ScrapIcon } from '@assets/icons/scrap.svg';
+interface NavbarProps {
+  leftItems?: JSX.Element[];
+  rightItems?: JSX.Element[];
+  text?: string;
+}
 
-import { StyledNavbarContainer, StyledNavbarRight, StyledProfileImg } from './styled';
-
-export const NavBar = () => {
+export const Navbar: React.FC<NavbarProps> = ({ leftItems, rightItems, text }) => {
   return (
     <StyledNavbarContainer>
-      <div>
-        <MenuIcon />
-      </div>
-      <StyledNavbarRight>
-        <ScrapIcon width={16} height={20} />
-        <BellIcon />
-        <StyledProfileImg src='pictures/profile-tiger.png' />
-      </StyledNavbarRight>
+      {text && (
+        <StyledNavbarTextContainer>
+          <Text style={{ position: 'absolute', marginTop: '22px' }}>{text}</Text>
+        </StyledNavbarTextContainer>
+      )}
+      <StyledNavbarItemsContainer>
+        <StyledNavbarItems>
+          {leftItems && leftItems.map((item, key) => <div key={key}>{item}</div>)}
+        </StyledNavbarItems>
+        <StyledNavbarItems>
+          {rightItems && rightItems.map((item, key) => <div key={key}>{item}</div>)}
+        </StyledNavbarItems>
+      </StyledNavbarItemsContainer>
     </StyledNavbarContainer>
   );
 };
