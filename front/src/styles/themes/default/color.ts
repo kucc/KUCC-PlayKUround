@@ -1,7 +1,7 @@
 import { generate } from '@ant-design/colors';
 
 const primary = '#d41414';
-const grey = '#d5d5d5';
+const grey = '#F2F2F2';
 const blue = '#0000FF';
 const red = '#ff0000';
 const secondary = '#3700B3';
@@ -20,12 +20,13 @@ const loadColor = (color: string[], name: string) => {
   return colorObject;
 };
 
+// Color에 대한 type 추가하기!
 export const Colors = {
   white: '#ffffff',
   black: '#111111',
   font: '#111111',
   primary: '#CF4040',
-  grey: '#B2B2B2',
+  grey: '#F2F2F2',
   blue: '#0000FF',
   red: '#ff0000',
   ...loadColor(colorsPrimary, 'primary'),

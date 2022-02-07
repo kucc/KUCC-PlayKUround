@@ -5,12 +5,8 @@ export const GlobalStyle = createGlobalStyle`
     font-family: Appple SD GothicNeo;
   }
 
-  .course-icon-bgColor {
-    transition: all 0.3s;
+  .side-padding {
+    padding-left: 4.36%;
+    padding-right: 4.36%;
   }
-
-  .course-icon-textColor {
-    transition: all 0.3s;
-  }
-
 `;

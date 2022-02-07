@@ -1,11 +1,11 @@
 import React from 'react';
 import { useQuery } from 'react-query';
+
 import { Card, InstaCard, SearchChipBar } from '@components';
 
 import { default as Heart } from '@assets/icons/heart-small.svg';
 import { default as HeartWhite } from '@assets/icons/heart-white.svg';
 import { default as Review } from '@assets/icons/review-small.svg';
-import { default as Scrap } from '@assets/icons/scrap-small.svg';
 import { default as Star } from '@assets/icons/star-small.svg';
 
 const TestPage = () => {

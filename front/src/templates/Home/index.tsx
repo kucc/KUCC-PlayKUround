@@ -6,6 +6,7 @@ import Link from 'next/link';
 import Router from 'next/router';
 
 import { BaseButton, Div, NavBar, Text } from '@components';
+import MainTable from '@components/organisms/MainTable';
 
 import { loadMyInfoAPI, logOutAPI } from 'apis/user';
 import User from 'interfaces/user';
@@ -56,6 +57,7 @@ export const Home = () => {
           </Link>
         )}
       </Div>
+      <MainTable />
     </>
   );
 };
