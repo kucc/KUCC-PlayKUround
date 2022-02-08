@@ -20,9 +20,9 @@ const Menu = MenuModel(sequelize);
 //
 // Place의 writer라는 항목이 User의 id를 참조하고 있슴.
 Place.belongsTo(User, { foreignKey: 'writer', targetKey: 'id' });
-Place.hasMany(Menu, { foreignKey: 'place_id', sourceKey: 'id' });
+Place.hasMany(Menu, { foreignKey: 'placeId', sourceKey: 'id' });
 
-Menu.belongsTo(Place, { foreignKey: 'place_id', targetKey: 'id' });
+Menu.belongsTo(Place, { foreignKey: 'placeId', targetKey: 'id' });
 
 User.hasMany(Place, { foreignKey: 'writer', sourceKey: 'id' });
 
