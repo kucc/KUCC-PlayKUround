@@ -5,7 +5,7 @@ const { isLoggedIn } = require('../middlewares/Auth');
 
 const router = express.Router();
 
-router.get('/', isLoggedIn, controller.userGet);
+router.get('/', controller.userGet);
 
 router.post('/register', controller.userRegister);
 

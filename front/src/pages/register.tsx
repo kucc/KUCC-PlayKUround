@@ -140,7 +140,7 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
     axios.defaults.headers.Cookie = cookie;
   }
   const response = await loadMyInfoAPI();
-  if (response.data) {
+  if (response?.data) {
     return {
       redirect: {
         destination: '/',
