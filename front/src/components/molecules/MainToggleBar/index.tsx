@@ -8,13 +8,9 @@ import TableIcon from '@assets/icons/table.svg';
 import { Colors } from '@styles';
 
 import { StyledMainToggleBar } from './styled';
+import { MainToggleBarProps } from './type';
 
-interface MainToggleBarProps {
-  setCurrentMode: (arg0: string) => void;
-  currentMode: string;
-}
-
-const MainToggleBar: React.FC<MainToggleBarProps> = ({ setCurrentMode, currentMode }) => {
+export const MainToggleBar: React.FC<MainToggleBarProps> = ({ setCurrentMode, currentMode }) => {
   return (
     <StyledMainToggleBar>
       <DownIcon />
@@ -34,5 +30,3 @@ const MainToggleBar: React.FC<MainToggleBarProps> = ({ setCurrentMode, currentMo
     </StyledMainToggleBar>
   );
 };
-
-export default MainToggleBar;

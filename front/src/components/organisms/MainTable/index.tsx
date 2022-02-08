@@ -3,8 +3,7 @@ import { useQuery } from 'react-query';
 
 import { Skeleton } from 'antd';
 
-import { Card } from '@components';
-import MainToggleBar from '@components/molecules/MainToggleBar';
+import { Card, MainToggleBar } from '@components';
 
 import { getByLocationAPI } from 'apis/place';
 import { PlaceType } from 'interfaces/place';
@@ -13,10 +12,10 @@ import Review from '@assets/icons/review.svg';
 import Scrab from '@assets/icons/scrap.svg';
 import Star from '@assets/icons/star.svg';
 
-import Map from '../Map';
+import { Map } from '../Map';
 import { StyledCardContainer } from './styled';
 
-const MainTable = () => {
+export const MainTable = () => {
   // 기본 값은 고려대
   const [latitude, setLatitude] = useState<number>(37.5908);
   const [longitude, setLongitude] = useState<number>(127.0278);
@@ -44,7 +43,7 @@ const MainTable = () => {
         <Skeleton active />
       ) : (
         <StyledCardContainer>
-          {places.map((place: PlaceType, key: number) => {
+          {places?.map((place: PlaceType, key: number) => {
             const { place_Name, scrab_count } = place;
             const ChipGroupList = [
               {
@@ -83,5 +82,3 @@ const MainTable = () => {
     </div>
   );
 };
-
-export default MainTable;
