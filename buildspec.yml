@@ -4,11 +4,6 @@ env:
   variables:
     AWS_DEFAULT_REGION: "ap-northeast-2"
 
-eb_codebuild_settings:
-  CodeBuildServiceRole: playKUround
-  ComputeType: BUILD_GENERAL1_LARGE
-  Image: hjun121345
-  Timeout: 20
 phases:
   pre_build:
     commands:
