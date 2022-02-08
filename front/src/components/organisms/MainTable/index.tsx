@@ -9,7 +9,7 @@ import { getByLocationAPI } from 'apis/place';
 import { PlaceType } from 'interfaces/place';
 
 import Review from '@assets/icons/review.svg';
-import Scrab from '@assets/icons/scrap.svg';
+import Scrap from '@assets/icons/scrap.svg';
 import Star from '@assets/icons/star.svg';
 
 import { Map } from '../Map';
@@ -44,11 +44,11 @@ export const MainTable = () => {
       ) : (
         <StyledCardContainer>
           {places?.map((place: PlaceType, key: number) => {
-            const { place_Name, scrab_count } = place;
+            const { placeName, scrapCount } = place;
             const ChipGroupList = [
               {
-                nonClickedIcon: <Scrab width='9.74' height='11.53' />,
-                label: scrab_count,
+                nonClickedIcon: <Scrap width='9.74' height='11.53' />,
+                label: scrapCount,
               },
               {
                 nonClickedIcon: <Star />,
@@ -62,7 +62,7 @@ export const MainTable = () => {
             return (
               <Card
                 key={`card_${key}`}
-                title={place_Name}
+                title={placeName}
                 description={description}
                 ChipGroupList={ChipGroupList}
               />

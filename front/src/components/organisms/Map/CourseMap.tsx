@@ -100,8 +100,8 @@ const CourseMap = ({
           markers.push(
             new naver.maps.Marker({
               map: map,
-              title: place.place_Name,
-              position: new naver.maps.LatLng(place.address_location[0], place.address_location[1]),
+              title: place.placeName,
+              position: new naver.maps.LatLng(place.addressLocation[0], place.addressLocation[1]),
               icon: {
                 //text left의 계산법 : - text의 width / 2 + img의 width / 2
                 content: `
@@ -125,7 +125,7 @@ const CourseMap = ({
                               top: 40px;
                             "
                           >
-                            ${place.place_Name}
+                            ${place.placeName}
                           <div/>`,
                 size: new naver.maps.Size(22, 35),
                 anchor: new naver.maps.Point(11, 35),
@@ -137,7 +137,7 @@ const CourseMap = ({
           infoWindows.push(
             new naver.maps.InfoWindow({
               content:
-                place.picture_link.length > 0
+                place.pictureLink.length > 0
                   ? `
                   <div>
                     <div style="position: absolute; bottom: 10px; right: 12px; font-size: 10px; display: flex; align-items: center; color: white; z-index:10;">
@@ -145,7 +145,7 @@ const CourseMap = ({
                       <img src="icons/place-detail-white.svg"  />
                     </div>
                     <div style="width:120px; height:120px; margin:5px; border-radius: 15px; background-color: black;">
-                      <img style="width:120px; height:120px; border-radius: 15px;object-fit: cover; opacity: 0.8;" src="pictures/${place.picture_link[0]}" />
+                      <img style="width:120px; height:120px; border-radius: 15px;object-fit: cover; opacity: 0.8;" src="pictures/${place.pictureLink[0]}" />
                     </div>
                   </div>`
                   : `

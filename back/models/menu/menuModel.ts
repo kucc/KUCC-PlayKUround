@@ -7,23 +7,23 @@ const MenuModel = (sequelize: Sequelize) => {
   const Menu = sequelize.define<MenuInterface>(
     'menu',
     {
-      place_id: {
+      placeId: {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
-      menu_name: {
+      menuName: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      menu_price: {
+      menuPrice: {
         type: DataTypes.INTEGER,
         allowNull: true,
       },
-      menu_picture: {
+      menuPicture: {
         type: DataTypes.JSON,
         allowNull: true,
       },
-      is_recommend: {
+      isRecommend: {
         type: DataTypes.BOOLEAN,
         defaultValue: false,
         allowNull: true,
