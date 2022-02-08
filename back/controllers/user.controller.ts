@@ -7,14 +7,23 @@ const bcrypt = require('bcryptjs');
 const passport = require('passport');
 
 const userGet: RequestHandler = async (req, res, next) => {
-  res.status(200).json({
-    success: true,
-    id: req.user.id,
-    name: req.user.name,
-    email: req.user.email,
-    role: req.user.role,
-    image: req.user.image,
-  });
+  try {
+    if (req.user) {
+      res.status(200).json({
+        success: true,
+        id: req.user.id,
+        name: req.user.name,
+        email: req.user.email,
+        role: req.user.role,
+        image: req.user.image,
+      });
+    } else {
+      res.status(200).json(null);
+    }
+  } catch (error) {
+    console.error(error);
+    next(error);
+  }
 };
 
 // eslint-disable-next-line consistent-return
