@@ -7,12 +7,15 @@ RUN apk add --update python3 make g++ && rm -rf /var/cache/apk/*
 COPY package.json ./
 COPY yarn.lock ./
 
-# production으로 수정
-RUN yarn install --frozen-lockfile
+RUN yarn install --frozen-lockfile --production
 
 COPY ./ ./
 
-RUN yarn run build
+RUN yarn add typescript
+
+RUN yarn run tsc --build
+
+RUN yarn run api-docs
 
 EXPOSE 8000
 

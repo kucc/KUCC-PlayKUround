@@ -58,7 +58,7 @@ if (process.env.NODE_ENV === 'production') {
   app.use(hpp());
   app.use(
     cors({
-      origin: '', // 배포시 프론트 주소 적어주기
+      origin: 'http://localhost:3000/', // 배포시 프론트 주소 적어주기
       credentials: true,
     }),
   );
@@ -84,7 +84,7 @@ const sessionOption = {
     httpOnly: true,
     secure: false,
     // secure: true,
-    domain: process.env.NODE_ENV === 'production' && '.', // 배포 시에 프론트 주소 적어주기
+    domain: process.env.NODE_ENV === 'production' && 'http://localhost:3000', // 배포 시에 프론트 주소 적어주기
   },
   store: new RedisStore({ client: redisClient }),
 };
