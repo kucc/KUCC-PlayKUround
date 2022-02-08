@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Text } from '@components/atoms';
+import { Text } from '@components';
 
 import {
   StyledNavbarContainer,
@@ -8,12 +8,7 @@ import {
   StyledNavbarItemsContainer,
   StyledNavbarTextContainer,
 } from './styled';
-
-interface NavbarProps {
-  leftItems?: JSX.Element[];
-  rightItems?: JSX.Element[];
-  text?: string;
-}
+import { NavbarProps } from './type';
 
 export const Navbar: React.FC<NavbarProps> = ({ leftItems, rightItems, text }) => {
   return (

@@ -5,9 +5,7 @@ import { AxiosError } from 'axios';
 import Link from 'next/link';
 import Router from 'next/router';
 
-import { BaseButton, Div, Navbar, Text } from '@components';
-import MainTable from '@components/organisms/MainTable';
-import { StyledProfileImg } from '@components/organisms/Navbar/styled';
+import { BaseButton, Div, MainTable, Navbar, Text } from '@components';
 
 import { loadMyInfoAPI, logOutAPI } from 'apis/user';
 import User from 'interfaces/user';
@@ -15,6 +13,8 @@ import User from 'interfaces/user';
 import BellIcon from '@assets/icons/bell.svg';
 import MenuIcon from '@assets/icons/menu.svg';
 import ScrapIcon from '@assets/icons/scrap.svg';
+
+import { StyledProfileImg } from './styled';
 
 export const Home = () => {
   const queryClient = useQueryClient();

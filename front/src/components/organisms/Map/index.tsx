@@ -5,7 +5,7 @@ import { PlaceType } from 'interfaces/place';
 import CourseMap from './CourseMap';
 import NormalMap from './NormalMap';
 
-const Map = ({ places }: { places: PlaceType[] }) => {
+export const Map = ({ places }: { places: PlaceType[] }) => {
   const [isCourseMode, setIsCourseMode] = useState(false);
 
   // Todo
@@ -22,5 +22,3 @@ const Map = ({ places }: { places: PlaceType[] }) => {
     </>
   );
 };
-
-export default Map;
