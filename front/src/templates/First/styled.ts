@@ -52,4 +52,6 @@ export const StyledButton = styled.button`
   &:active {
     background-color: ${Colors.primary_6};
   }
+  cursor: pointer;
+  transition: 0.5s;
 `;
