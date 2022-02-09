@@ -7,7 +7,7 @@ post:
     description: 장소 데이터입니다.
     required: true
     content:
-      application/x-www-form-urlencoded:
+      application/json:
         schema:
           type: object
           required:
