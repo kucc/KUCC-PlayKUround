@@ -24,10 +24,10 @@ services:
     # mem_limit: 128m
 
   nginx:
-    # image: hjun121345/docker-nginx
-    build:
-      dockerfile: Dockerfile
-      context: ./nginx
+    image: hjun121345/docker-nginx
+    # build:
+    #   dockerfile: Dockerfile
+    #   context: ./nginx
     container_name: app_nginx
     restart: always
     ports:
@@ -38,10 +38,10 @@ services:
       - back
 
   back:
-    # image: hjun121345/docker-back
-    build:
-      dockerfile: Dockerfile
-      context: ./back
+    image: hjun121345/docker-back
+    # build:
+    #   dockerfile: Dockerfile
+    #   context: ./back
     container_name: app_back
     volumes:
       - /app/node_modules
