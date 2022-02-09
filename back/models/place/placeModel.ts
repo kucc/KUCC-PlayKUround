@@ -65,7 +65,7 @@ const PlaceModel = (sequelize: Sequelize) => {
         allowNull: false,
       },
       placePrice: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         allowNull: false,
       },
       scrapCount: {

@@ -7,6 +7,7 @@ info:
     name: MIT
 # 배포시 주소 바꿔주기
 servers:
+  - url: "http://localhost:8000"
   - url: "http://localhost:80"
 paths:
   ########### user path ###########
