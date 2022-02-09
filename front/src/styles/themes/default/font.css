@@ -15,3 +15,21 @@
 	font-weight: 700;
 	src: url("../../../assets/fonts/AppleSDGothicNeo-Bold.ttf") format("ttf");
 }
+
+@font-face {
+	font-family: "Gmarket Sans";
+	font-weight: 100;
+	src: url("../../../assets/fonts/GmarketSans-Light.ttf") format("ttf");
+}
+
+@font-face {
+	font-family: "Gmarket Sans";
+	font-weight: 400;
+	src: url("../../../assets/fonts/GmarketSans-Medium.ttf") format("ttf");
+}
+
+@font-face {
+	font-family: "Gmarket Sans";
+	font-weight: 700;
+	src: url("../../../assets/fonts/GmarketSans-Bold.ttf") format("ttf");
+}
