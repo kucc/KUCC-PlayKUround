@@ -1,14 +1,18 @@
+import { animated } from '@react-spring/web';
 import styled from 'styled-components';
 
 import { Colors } from '@styles';
 
-export const ChipWrapper = styled.div<{ shadow?: boolean; border?: boolean; clicked?: boolean }>`
+export const ChipWrapper = styled(animated.div)<{
+  shadow?: boolean;
+  border?: boolean;
+  clicked?: boolean;
+}>`
   display: inline-flex;
   align-items: center;
   justify-content: center;
   padding: 10px 13px;
   border-radius: 24px;
-  background-color: ${Colors.white};
   cursor: pointer;
   ${({ shadow }) => {
     if (shadow) {
@@ -24,11 +28,10 @@ export const ChipWrapper = styled.div<{ shadow?: boolean; border?: boolean; clic
       `;
     }
   }}
-  ${({ clicked }) => {
+   ${({ clicked }) => {
     if (clicked) {
       return `
-        background: ${Colors.primary};
-        box-shadow: 0px 0px 8px rgba(207, 64, 64, 0.5);
+        box-shadow: 0px 0px 4px #ED6355;;
       `;
     }
   }}

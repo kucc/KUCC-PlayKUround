@@ -22,7 +22,7 @@ const loadColor = (color: string[], name: string) => {
 
 // Color에 대한 type 추가하기!
 export const Colors = {
-  white: '#ffffff',
+  white: '#FDFDFD',
   black: '#111111',
   font: '#111111',
   primary: '#CF4040',
