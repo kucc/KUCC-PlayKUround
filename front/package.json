@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "@ant-design/icons": "^4.6.2",
+    "@react-spring/web": "^9.4.2",
     "antd": "^4.16.7",
     "axios": "^0.21.1",
     "babel-plugin-import": "^1.13.3",

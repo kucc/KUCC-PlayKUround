@@ -5,14 +5,14 @@ import { AxiosError } from 'axios';
 import Link from 'next/link';
 import Router from 'next/router';
 
-import { BaseButton, Div, MainTable, Navbar, Text } from '@components';
+import { BaseButton, Div, MainTable, Navbar, SearchChipBar, Text } from '@components';
 
 import { loadMyInfoAPI, logOutAPI } from 'apis/user';
 import User from 'interfaces/user';
 
 import BellIcon from '@assets/icons/bell.svg';
 import MenuIcon from '@assets/icons/menu.svg';
-import ScrapIcon from '@assets/icons/scrap.svg';
+import SearchIcon from '@assets/icons/search.svg';
 
 import { StyledProfileImg } from './styled';
 
@@ -46,16 +46,13 @@ export const Home = () => {
   }, [mutation]);
 
   const leftItems = [<MenuIcon />];
-  const rightItems = [
-    <ScrapIcon width={16} height={20} />,
-    <BellIcon />,
-    <StyledProfileImg src='pictures/profile-tiger.png' />,
-  ];
+  const rightItems = [<SearchIcon width={20} height={20} />, <BellIcon />];
 
   return (
     <>
-      <Navbar leftItems={leftItems} rightItems={rightItems} />
-      <Div center>
+      <Navbar text='내 위치 주변' leftItems={leftItems} rightItems={rightItems} />
+      <SearchChipBar />
+      {/* <Div center>
         <Text h2>시작 페이지</Text>
         {me ? (
           <BaseButton htmlType='button' onClick={onLogOut} loading={loading} style={{ width: 300 }}>
@@ -68,7 +65,7 @@ export const Home = () => {
             </BaseButton>
           </Link>
         )}
-      </Div>
+      </Div>  */}
       <MainTable />
     </>
   );

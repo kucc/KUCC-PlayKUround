@@ -4,6 +4,7 @@ import { useQuery } from 'react-query';
 import { Skeleton } from 'antd';
 
 import { Card, MainToggleBar } from '@components';
+import MainSelect from '@components/molecules/MainSelect';
 
 import { getByLocationAPI } from 'apis/place';
 import { PlaceType } from 'interfaces/place';
@@ -13,7 +14,7 @@ import Scrap from '@assets/icons/scrap.svg';
 import Star from '@assets/icons/star.svg';
 
 import { Map } from '../Map';
-import { StyledCardContainer } from './styled';
+import { StlyedMainTableTop, StyledCardContainer, StyledMainTable } from './styled';
 
 export const MainTable = () => {
   // 기본 값은 고려대
@@ -23,11 +24,12 @@ export const MainTable = () => {
   const { data: places, isLoading } = useQuery(['user', latitude, longitude], getByLocationAPI);
 
   // 공통 함수에 집어넣기
-  const getLocation = () => {
-    navigator.geolocation.getCurrentPosition(pos => {
-      setLatitude(pos.coords.latitude);
-      setLongitude(pos.coords.longitude);
+  const getLocation = async () => {
+    const pos: any = await new Promise((resovle, reject) => {
+      navigator.geolocation.getCurrentPosition(resovle, reject);
     });
+    setLatitude(pos.coords.latitude);
+    setLongitude(pos.coords.longitude);
   };
 
   useEffect(() => {
@@ -76,9 +78,12 @@ export const MainTable = () => {
   };
 
   return (
-    <div className='side-padding'>
-      <MainToggleBar currentMode={currentMode} setCurrentMode={setCurrentMode} />
-      {renderMainItem()}
-    </div>
+    <StyledMainTable className='side-padding'>
+      <StlyedMainTableTop>
+        <MainToggleBar currentMode={currentMode} setCurrentMode={setCurrentMode} />
+        <MainSelect />
+      </StlyedMainTableTop>
+      <div style={{ marginTop: '8px' }}>{renderMainItem()}</div>
+    </StyledMainTable>
   );
 };
