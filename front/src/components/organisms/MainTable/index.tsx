@@ -5,6 +5,7 @@ import { Skeleton } from 'antd';
 
 import { Card, MainToggleBar } from '@components';
 import MainSelect from '@components/molecules/MainSelect';
+import ToggleDark from '@components/molecules/ToggleDark';
 
 import { getByLocationAPI } from 'apis/place';
 import { PlaceType } from 'interfaces/place';
@@ -14,7 +15,12 @@ import Scrap from '@assets/icons/scrap.svg';
 import Star from '@assets/icons/star.svg';
 
 import { Map } from '../Map';
-import { StlyedMainTableTop, StyledCardContainer, StyledMainTable } from './styled';
+import {
+  StlyedMainTableTop,
+  StyledBackground,
+  StyledCardContainer,
+  StyledMainTable,
+} from './styled';
 
 export const MainTable = () => {
   // 기본 값은 고려대
@@ -78,12 +84,15 @@ export const MainTable = () => {
   };
 
   return (
-    <StyledMainTable className='side-padding'>
-      <StlyedMainTableTop>
-        <MainToggleBar currentMode={currentMode} setCurrentMode={setCurrentMode} />
-        <MainSelect />
-      </StlyedMainTableTop>
-      <div style={{ marginTop: '8px' }}>{renderMainItem()}</div>
-    </StyledMainTable>
+    <StyledBackground>
+      <StyledMainTable className='side-padding'>
+        <StlyedMainTableTop>
+          <MainToggleBar currentMode={currentMode} setCurrentMode={setCurrentMode} />
+          <MainSelect />
+          <ToggleDark />
+        </StlyedMainTableTop>
+        <div style={{ marginTop: '8px' }}>{renderMainItem()}</div>
+      </StyledMainTable>
+    </StyledBackground>
   );
 };

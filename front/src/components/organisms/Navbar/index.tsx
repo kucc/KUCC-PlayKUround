@@ -15,7 +15,11 @@ export const Navbar: React.FC<NavbarProps> = ({ leftItems, rightItems, text, fon
     <StyledNavbarContainer>
       {text && (
         <StyledNavbarTextContainer>
-          <Text body2 bold style={{ position: 'absolute', marginTop: '22px', ...fontStyle }}>
+          <Text
+            primary
+            body2
+            bold
+            style={{ position: 'absolute', marginTop: '22px', ...fontStyle }}>
             {text}
           </Text>
         </StyledNavbarTextContainer>
