@@ -49,6 +49,7 @@ module.exports = withAntdLess({
     return config;
   },
   plugins: [
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
     require('@babel/plugin-proposal-decorators').default,
     {
       legacy: true,
