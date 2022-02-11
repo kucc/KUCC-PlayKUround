@@ -15,68 +15,17 @@ import {
 } from './styled';
 import { BaseMenuProps } from './type';
 
-export const BaseMenu = ({clicked}:BaseMenuProps)=> {
-  const [isClicked, setIsClicked] = useState<boolean>(clicked || false)
+export const BaseMenu = ({ clicked, width, height, label, icon, onClick }: BaseMenuProps) => {
+  const [isClicked, setIsClicked] = useState<boolean>(clicked || false);
   const handleClick = () => {
-    setIsClicked(!isClicked)
-  }
-  const menuList = [
-    {label:"홈",
-      icon:<MyHome />,
-      clicked:false,
-      height:22,
-      width:20,
-      onClick:handleClick(),
-      },
-      {label:"실시간 핫플레이스",
-      icon:<Global />,
-      clicked:true,
-      height:22,
-      width:22,
-      onClick:handleClick()},
-      {label:"게시물 작성",
-      icon:<Post />,
-      clicked:false,
-      height=22,
-      width=22,
-      onClick=handleClick()
-      },
-      {label:"코스 추천",
-      icon:<Recommend />,
-      clicked:false,
-      height:20,
-      width:20,
-      onClick: handleClick()},
-      {label:"내 정보",
-      icon:<MyInfo />,
-      clicked:false,
-      height:22,
-      width:20,
-      onClick:handleClick()},
-      {
-      label:"환경 설정",
-      icon:<Configuration />,
-      clicked:false,
-      height:24,
-      width:24,
-      onClick:handleClick()
-      }
-  ]
+    setIsClicked(!isClicked);
+  };
   return (
-
     <StartMenuElementWrapper onClick={handleClick} clicked={clicked}>
-
-    {menuList.map(({label, icon, height, width,clicked}) => {
-    return(
-      <>
       <StartMenuIconWrapper width={width} height={height} clicked={clicked}>
         {icon}
       </StartMenuIconWrapper>
-      <StartMenuLabelWrapper >{label}</StartMenuLabelWrapper>
-      </>
-    )})}
-   </StartMenuElementWrapper>
-
-  )
-}
-
+      <StartMenuLabelWrapper>{label}</StartMenuLabelWrapper>
+    </StartMenuElementWrapper>
+  );
+};
