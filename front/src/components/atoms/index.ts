@@ -5,3 +5,4 @@ export * from './BoxIcon';
 export * from './Chip';
 export * from './Div';
 export * from './Text';
+export * from './BaseMenu';
