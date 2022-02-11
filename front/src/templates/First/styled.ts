@@ -38,7 +38,7 @@ export const StyledButton = styled.button`
   width: 100%;
   height: 54px;
   margin-top: 24px;
-  box-shadow: 0px 0px 4px #ed6355;
+  box-shadow: 0px 0px 4px ${Colors.primary};
   border: none;
   border-radius: 27px;
   background-color: ${Colors.primary};
