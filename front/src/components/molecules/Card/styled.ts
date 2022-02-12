@@ -11,8 +11,8 @@ export const CardContainer = styled.div`
   padding: 21px 19px 21px 15px;
   height: 124px;
   border-radius: 12px;
-  background-color: ${Colors.white};
-  box-shadow: 0px 0px 10px #e4e4e4;
+  background-color: ${({ theme }) => theme.bg.primary};
+  box-shadow: 0px 0px 10px ${({ theme }) => theme.shadow.none};
 `;
 
 export const SvgWrapper = styled.div`
@@ -38,13 +38,15 @@ export const TextWrapper = styled.div`
 `;
 
 export const Title = styled.div`
+  color: ${({ theme }) => theme.text.primary};
   margin-bottom: 3px;
   font-size: 16px;
-  font-weight: bold;
+  font-weight: 600;
   line-height: 20px;
 `;
 
 export const Description = styled.div`
+  color: ${({ theme }) => theme.text.darkGrey};
   font-size: 10px;
   line-height: 12px;
 `;

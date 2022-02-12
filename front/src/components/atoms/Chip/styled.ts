@@ -14,21 +14,14 @@ export const ChipWrapper = styled(animated.div)<{
   padding: 10px 13px;
   border-radius: 24px;
   cursor: pointer;
-  ${({ shadow }) => {
+  ${({ shadow, theme }) => {
     if (shadow) {
       return `
-        box-shadow: 0px 0px 10px #E4E4E4;
+        box-shadow: 0px 0px 10px ${theme.shadow.primary};
       `;
     }
   }}
-  ${({ border }) => {
-    if (border) {
-      return `
-        border: 1px solid #F2F2F2;
-      `;
-    }
-  }}
-   ${({ clicked }) => {
+  ${({ clicked }) => {
     if (clicked) {
       return `
         box-shadow: 0px 0px 4px ${Colors.primary};
@@ -44,11 +37,15 @@ export const Label = styled.div<{ clicked?: boolean }>`
   font-size: 14px;
   font-weight: bold;
   line-height: 14px;
-  ${({ clicked }) => {
+  ${({ clicked, theme }) => {
     if (clicked) {
       return `
-        color: ${Colors.white};
+        color: ${theme.text.white};
       `;
+    } else {
+      return `
+      color: ${theme.text.primary};
+    `;
     }
   }}
 `;

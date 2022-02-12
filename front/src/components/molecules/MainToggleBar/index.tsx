@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { animated, useSpring } from '@react-spring/web';
+import useDarkMode from 'use-dark-mode';
 
 import { Text } from '@components/atoms';
 
@@ -13,6 +14,7 @@ import { StyledMainToggleBar, StyledToggleItem } from './styled';
 import { MainToggleBarProps } from './type';
 
 export const MainToggleBar: React.FC<MainToggleBarProps> = ({ setCurrentMode, currentMode }) => {
+  const darkMode = useDarkMode(false);
   const onClickHandler = () => {
     if (currentMode === 'map') {
       setCurrentMode('table');
@@ -54,7 +56,7 @@ export const MainToggleBar: React.FC<MainToggleBarProps> = ({ setCurrentMode, cu
             height: 13,
             ...TableOpacityProp,
           }}>
-          <TableIcon width='13' height='13' fill={Colors.black} />
+          <TableIcon width='13' height='13' fill={darkMode.value ? Colors.white : Colors.black} />
         </animated.div>
         <animated.div
           style={{
@@ -63,7 +65,7 @@ export const MainToggleBar: React.FC<MainToggleBarProps> = ({ setCurrentMode, cu
             height: 13,
             ...MapOpacityProp,
           }}>
-          <MapIcon width='13' height='13' fill={Colors.black} />
+          <MapIcon width='13' height='13' fill={darkMode.value ? Colors.white : Colors.black} />
         </animated.div>
         {currentMode === 'table' ? '지도' : '카드'}형으로 보기
       </StyledToggleItem>

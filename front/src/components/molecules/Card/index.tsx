@@ -36,7 +36,6 @@ export const Card = ({ title, description, ChipGroupList }: CardProps) => {
                 key={index}
                 label={label}
                 nonClickedIcon={nonClickedIcon}
-                border={true}
                 labelStyle={{ fontSize: '12px' }}
                 style={
                   index === 0

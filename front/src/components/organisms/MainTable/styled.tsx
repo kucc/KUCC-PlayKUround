@@ -1,13 +1,17 @@
+import React from 'react';
+
 import styled from 'styled-components';
 
-import { Colors } from '@styles';
+export const StyledBackground = styled.div`
+  /* background: ${({ theme }) => theme.bg.primary}; */
+`;
 
 export const StyledMainTable = styled.div`
-  background-color: ${Colors.grey};
-  box-shadow: 0px 0px 8px #cfcfcf;
+  box-shadow: 0px 0px 10px ${({ theme }) => theme.shadow.primary};
   border-top-right-radius: 8px;
   border-top-left-radius: 8px;
   padding-top: 33px;
+  background: ${({ theme }) => theme.bg.grey};
 `;
 
 export const StlyedMainTableTop = styled.div`
@@ -17,5 +21,5 @@ export const StlyedMainTableTop = styled.div`
 
 export const StyledCardContainer = styled.div`
   display: grid;
-  gap: 5px;
+  gap: 6px;
 `;

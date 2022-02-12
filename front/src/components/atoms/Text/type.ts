@@ -9,4 +9,6 @@ export interface BaseTextProps extends TextProps {
   light?: boolean;
   thin?: boolean;
   style?: React.CSSProperties;
+  primary?: boolean;
+  sub?: boolean;
 }

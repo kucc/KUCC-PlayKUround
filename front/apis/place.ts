@@ -22,8 +22,8 @@ export async function getByLocationAPI({ queryKey }: { queryKey: any[] }) {
       return data.result;
     }
   } catch (error) {
-    Router.push('/');
-    alert(FAILED_DATA_FETCHING);
+    // Router.push('/');
+    // alert(FAILED_DATA_FETCHING);
     return;
     // 메인 페이지로 보내야 할 듯.
   }
