@@ -14,6 +14,7 @@ const light = {
   },
   icon: {
     primary: Colors.primary,
+    black: Colors.black,
     yellow: Colors.yellow,
   },
   shadow: {
@@ -38,6 +39,7 @@ const dark = {
   },
   icon: {
     primary: Colors.primary,
+    black: Colors.white,
     yellow: Colors.yellow,
   },
   shadow: {
