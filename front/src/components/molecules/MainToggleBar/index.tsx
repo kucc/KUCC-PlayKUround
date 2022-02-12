@@ -63,7 +63,7 @@ export const MainToggleBar: React.FC<MainToggleBarProps> = ({ setCurrentMode, cu
           }}>
           <Map width='13' height='13' fill={darkMode.value ? Colors.white : Colors.black} />
         </animated.div>
-        {currentMode === 'table' ? '지도' : '카드'}형으로 보기
+        {currentMode === 'table' ? '카드' : '지도'}형으로 보기
       </StyledToggleItem>
       <animated.div
         style={{

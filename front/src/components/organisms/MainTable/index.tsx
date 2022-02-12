@@ -16,6 +16,9 @@ import {
   StyledBackground,
   StyledCardContainer,
   StyledMainTable,
+  StyledReview,
+  StyledScrap,
+  StyledStar,
 } from './styled';
 
 export const MainTable = () => {
@@ -51,15 +54,15 @@ export const MainTable = () => {
             const { placeName, scrapCount } = place;
             const ChipGroupList = [
               {
-                nonClickedIcon: <Scrap width='9.74' height='11.53' />,
+                nonClickedIcon: <StyledScrap />,
                 label: scrapCount,
               },
               {
-                nonClickedIcon: <Star />,
+                nonClickedIcon: <StyledStar />,
                 label: '4.9',
               },
               {
-                nonClickedIcon: <Review />,
+                nonClickedIcon: <StyledReview />,
                 label: '20',
               },
             ];

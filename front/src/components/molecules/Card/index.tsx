@@ -9,9 +9,11 @@ import {
   ChipWrapper,
   ContentWrapper,
   Description,
+  StyledChip,
   StyledImg,
   StyledScrapSvg,
   SvgWrapper,
+  TextTopWrapper,
   TextWrapper,
   Title,
 } from './styled';
@@ -20,28 +22,27 @@ import { CardProps } from './type';
 export const Card = ({ title, description, ChipGroupList }: CardProps) => {
   return (
     <CardContainer>
-      <SvgWrapper>
-        <StyledScrapSvg width={18} height={22} fill={Colors.primary} />
-      </SvgWrapper>
-      <StyledImg src='pictures/cartoon-cafe.png' width={82} height={82} />
+      <StyledImg src='pictures/cartoon-cafe.png' width={88} height={88} />
       <ContentWrapper>
         <TextWrapper>
-          <Title>{title}</Title>
+          <TextTopWrapper>
+            <Title>{title}</Title>
+            <SvgWrapper>
+              <StyledScrapSvg />
+            </SvgWrapper>
+          </TextTopWrapper>
           <Description>{description}</Description>
         </TextWrapper>
         <ChipWrapper>
           {ChipGroupList.map(({ label, nonClickedIcon }, index) => {
             return (
-              <Chip
+              <StyledChip
                 key={index}
+                index={index}
                 label={label}
                 nonClickedIcon={nonClickedIcon}
                 labelStyle={{ fontSize: '12px' }}
-                style={
-                  index === 0
-                    ? { height: '28px', marginLeft: '12px', marginRight: '6px' }
-                    : { height: '28px', marginRight: '6px' }
-                }
+                style={{ paddingTop: '6px', paddingRight: '16px' }}
               />
             );
           })}

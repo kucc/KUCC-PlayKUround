@@ -27,7 +27,6 @@ import More from './icons/more.svg';
 import Movie from './icons/movie.svg';
 import Post from './icons/post.svg';
 import Recommend from './icons/recommend.svg';
-import ReviewSmall from './icons/review-small.svg';
 import Review from './icons/review.svg';
 import Scrap from './icons/scrap.svg';
 import Search from './icons/search.svg';
@@ -69,7 +68,6 @@ export {
   Movie,
   Post,
   Recommend,
-  ReviewSmall,
   Review,
   Scrap,
   Search,

@@ -3,14 +3,19 @@ import { Colors } from '@styles';
 const light = {
   bg: {
     primary: Colors.white,
-    grey: '#F4F4F4',
+    grey: Colors.lightGrey,
     black: '#1A1A18',
   },
   text: {
     primary: Colors.black,
+    yellow: Colors.yellow,
     darkGrey: '#6B6B6B',
-    lightGrey: '#F4F4F4',
+    lightGrey: Colors.lightGrey,
     white: Colors.white,
+  },
+  icon: {
+    primary: Colors.primary,
+    yellow: Colors.yellow,
   },
   shadow: {
     primary: '#CFCFCF',
@@ -31,6 +36,10 @@ const dark = {
     darkGrey: '#6B6B6B',
     lightGrey: '#2D2D2D',
     white: Colors.white,
+  },
+  icon: {
+    primary: Colors.primary,
+    yellow: Colors.yellow,
   },
   shadow: {
     primary: '#121212',
