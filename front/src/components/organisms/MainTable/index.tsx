@@ -3,9 +3,7 @@ import { useQuery } from 'react-query';
 
 import { Skeleton } from 'antd';
 
-import { Card, MainToggleBar } from '@components';
-import MainSelect from '@components/molecules/MainSelect';
-import ToggleDark from '@components/molecules/ToggleDark';
+import { Card, MainSelect, MainToggleBar, ToggleDark } from '@components';
 
 import { getByLocationAPI } from 'apis/place';
 import { PlaceType } from 'interfaces/place';

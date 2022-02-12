@@ -5,8 +5,7 @@ import { Form } from 'antd';
 import { AxiosError } from 'axios';
 import Link from 'next/link';
 
-import { BaseButton, Div, Navbar } from '@components';
-import BaseInput from '@components/atoms/BaseInput';
+import { BaseButton, BaseInput, Div, Navbar } from '@components';
 import { Home } from '@templates';
 
 import { loadMyInfoAPI, logInAPI } from 'apis/user';
