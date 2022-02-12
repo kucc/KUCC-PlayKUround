@@ -7,7 +7,7 @@ import { Moon, Sun } from '@assets';
 
 import { StyledDarkCircle, StyledDarkContainer, StyledDarkLine } from './styled';
 
-const ToggleDark = () => {
+export const ToggleDark = () => {
   const darkMode = useDarkMode(false);
 
   const heightProp = useSpring({
@@ -27,5 +27,3 @@ const ToggleDark = () => {
     </StyledDarkContainer>
   );
 };
-
-export default ToggleDark;

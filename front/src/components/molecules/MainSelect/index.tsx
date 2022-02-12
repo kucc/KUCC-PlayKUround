@@ -10,7 +10,7 @@ import { StyledSelect } from './styled';
 
 const { Option } = Select;
 
-const MainSelect = () => {
+export const MainSelect = () => {
   const darkMode = useDarkMode(false);
   const handleChange = (value: string) => {
     console.log(`selected ${value}`);
@@ -30,5 +30,3 @@ const MainSelect = () => {
     </StyledSelect>
   );
 };
-
-export default MainSelect;
