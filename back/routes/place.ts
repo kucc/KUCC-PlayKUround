@@ -4,6 +4,8 @@ const { isLoggedIn } = require('../middlewares/Auth');
 
 const router = express.Router();
 
+router.get('/getByMap', controller.getByMap);
+
 router.get('/getByOne', controller.getByOne);
 
 router.get('/getByLocation', controller.getByLocation);

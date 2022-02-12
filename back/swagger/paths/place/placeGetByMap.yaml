@@ -1,0 +1,10 @@
+get:
+  tags:
+    - place
+  summary: 지도에서 사용할 모든 장소 불러오기
+  description: Get 방식으로 모든 장소들을 가져옵니다. 지도에 쓰일 예정이므로, 지도에 필요한 장소 정보만 보냅니다.
+  responses:
+    200:
+      description: 장소 가져오기 성공.
+    400:
+      description: 장소 가져오기 실패.

@@ -15,12 +15,7 @@ import Scrap from '@assets/icons/scrap.svg';
 import Star from '@assets/icons/star.svg';
 
 import { Map } from '../Map';
-import {
-  StlyedMainTableTop,
-  StyledBackground,
-  StyledCardContainer,
-  StyledMainTable,
-} from './styled';
+import { StlyedMainTableTop, StyledCardContainer, StyledMainTable } from './styled';
 
 export const MainTable = () => {
   // 기본 값은 고려대
@@ -84,15 +79,13 @@ export const MainTable = () => {
   };
 
   return (
-    <StyledBackground>
-      <StyledMainTable className='side-padding'>
-        <StlyedMainTableTop>
-          <MainToggleBar currentMode={currentMode} setCurrentMode={setCurrentMode} />
-          <MainSelect />
-          <ToggleDark />
-        </StlyedMainTableTop>
-        <div style={{ marginTop: '8px' }}>{renderMainItem()}</div>
-      </StyledMainTable>
-    </StyledBackground>
+    <StyledMainTable className='side-padding'>
+      <StlyedMainTableTop>
+        <MainToggleBar currentMode={currentMode} setCurrentMode={setCurrentMode} />
+        <MainSelect />
+        <ToggleDark />
+      </StlyedMainTableTop>
+      <div style={{ marginTop: '8px' }}>{renderMainItem()}</div>
+    </StyledMainTable>
   );
 };

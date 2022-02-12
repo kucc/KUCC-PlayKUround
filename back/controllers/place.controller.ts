@@ -1,4 +1,5 @@
 import { NextFunction, Request, RequestHandler, Response } from 'express';
+import haversine from 'haversine-distance';
 
 import { Menu, Place, User } from '../models';
 import { PlaceAttributes } from '../models/place/placeType';
@@ -6,6 +7,38 @@ import { PlaceAttributes } from '../models/place/placeType';
 const sequelize = require('sequelize');
 
 const Op = sequelize.Op;
+
+// 위도, 경도가 주어지면 거리 구하기 함수 (자주 쓰이므로 분리)
+// haversine 라이브러리를 사용해도 되지만 아마 이게 더 효율적일듯??
+const getDistance = (
+  currentLatitude: number,
+  currentLongitude: number,
+  targetLatitude: number,
+  targetLongitude: number,
+) => Math.sqrt((currentLatitude - targetLatitude) ** 2 + (currentLongitude - targetLongitude) ** 2);
+
+// 지도에서 사용할 모든 정보 불러오기. 지도 render에 필요한 정보만 보냄.
+const getByMap: RequestHandler = async (req, res, next) => {
+  try {
+    const result = await Place.findAll({
+      attributes: [
+        'id',
+        'addressLocation',
+        'placeName',
+        'pictureLink',
+        'placeCategory',
+        'placeCategoryDetail',
+      ],
+    });
+    res.status(200).json({
+      success: true,
+      result,
+    });
+  } catch (error) {
+    res.status(400).json({ success: false, error });
+    next(error);
+  }
+};
 
 // 장소 상세 정보
 const getByOne: RequestHandler = async (req, res, next) => {
@@ -25,8 +58,8 @@ const getByOne: RequestHandler = async (req, res, next) => {
 
 // 좌표에 따른 검색
 const getByLocation: RequestHandler = async (req, res, next) => {
-  const latitude: number = parseInt(req.query.latitude as string);
-  const longitude: number = parseInt(req.query.longitude as string);
+  const latitude: number = parseFloat(req.query.latitude as string);
+  const longitude: number = parseFloat(req.query.longitude as string);
   if (!latitude || !longitude) {
     return res.status(403).send('필수인 정보가 입력되지 않았습니다.');
   }
@@ -35,11 +68,17 @@ const getByLocation: RequestHandler = async (req, res, next) => {
     // sequelize의 order 함수로 sort하면 더 효율적일 것 같은데, order에 custom 함수가 안들어가는듯..
     // 부득이하게 js로 sort 진행
     result.sort(function (a: PlaceAttributes, b: PlaceAttributes) {
-      const a_distance = Math.sqrt(
-        (a.addressLocation[0] - latitude) ** 2 + (a.addressLocation[1] - longitude) ** 2,
+      const a_distance = getDistance(
+        a.addressLocation[0],
+        a.addressLocation[1],
+        latitude,
+        longitude,
       );
-      const b_distance = Math.sqrt(
-        (b.addressLocation[0] - latitude) ** 2 + (b.addressLocation[1] - longitude) ** 2,
+      const b_distance = getDistance(
+        b.addressLocation[0],
+        b.addressLocation[1],
+        latitude,
+        longitude,
       );
       if (a_distance > b_distance) {
         return 1;
@@ -162,6 +201,7 @@ const createPlace: RequestHandler = async (req, res, next) => {
 const updatePlace: RequestHandler = async (req, res, next) => {};
 
 module.exports = {
+  getByMap,
   getByOne,
   getByLocation,
   getByName,

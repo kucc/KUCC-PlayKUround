@@ -29,6 +29,9 @@ paths:
     $ref: "./paths/place/placeGetByLocation.yaml"
   /api/place/getByOne:
     $ref: "./paths/place/placeGetByOne.yaml"
+  /api/place/getByMap:
+    $ref: "./paths/place/placeGetByMap.yaml"
+
 components:
   parameters: null
   schemas:

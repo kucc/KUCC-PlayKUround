@@ -2,10 +2,6 @@ import React from 'react';
 
 import styled from 'styled-components';
 
-export const StyledBackground = styled.div`
-  /* background: ${({ theme }) => theme.bg.primary}; */
-`;
-
 export const StyledMainTable = styled.div`
   box-shadow: 0px 0px 10px ${({ theme }) => theme.shadow.primary};
   border-top-right-radius: 8px;
