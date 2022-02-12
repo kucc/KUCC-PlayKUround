@@ -8,8 +8,6 @@ import { Card, MainSelect, MainToggleBar, ToggleDark } from '@components';
 import { getByLocationAPI } from 'apis/place';
 import { PlaceType } from 'interfaces/place';
 
-import { Review, Scrap, Star } from '@assets';
-
 import { Map } from '../Map';
 import {
   StlyedMainTableTop,
