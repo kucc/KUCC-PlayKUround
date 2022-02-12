@@ -15,6 +15,7 @@ export const FirstPageLayout = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
+  background-color: ${({ theme }) => theme.bg.primary};
 `;
 
 export const StyledImg = styled.img`
@@ -33,6 +34,7 @@ export const Title = styled.div`
   font-weight: 800;
   font-size: 30px;
   line-height: 34px;
+  color: ${({ theme }) => theme.text.primary};
 `;
 
 export const Description = styled.div`
@@ -41,7 +43,7 @@ export const Description = styled.div`
   font-weight: 500;
   text-align: center;
   line-height: 20px;
-  color: ${Colors.grey_8};
+  color: ${({ theme }) => theme.text.darkGrey};
 `;
 
 export const ButtonWrapper = styled.div`
