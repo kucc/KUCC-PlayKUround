@@ -30,7 +30,7 @@
     <br />
   
 ### 1-4. Figma
-![image](https://user-images.githubusercontent.com/77313674/151769599-8a47fd50-b34b-4702-8064-94ab2e281843.png)
+![image](https://user-images.githubusercontent.com/77313674/153696240-9068fa30-8e21-4cd7-8feb-49522417d7df.png)
 <br />
   <br />
     <br />
