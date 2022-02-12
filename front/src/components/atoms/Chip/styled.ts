@@ -11,7 +11,6 @@ export const ChipWrapper = styled(animated.div)<{
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 10px 13px;
   border-radius: 24px;
   cursor: pointer;
   ${({ shadow, theme }) => {
