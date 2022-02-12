@@ -8,12 +8,13 @@ import { BaseButton, Div, MainTable, Navbar, SearchChipBar, Text } from '@compon
 
 // import { loadMyInfoAPI, logOutAPI } from 'apis/user';
 // import User from 'interfaces/user';
-import { Bell, Menu, Search } from '@assets';
-
 import {
+  BellIcon,
   ButtonWrapper,
   Description,
   FirstPageLayout,
+  MenuIcon,
+  SearchIcon,
   StyledButton,
   StyledImg,
   StyledLogo,
@@ -32,8 +33,8 @@ export const Home = () => {
   };
   const isLocalStorgeSave = localStorage.getItem('isUserPass');
 
-  const leftItems = [<Menu />];
-  const rightItems = [<Search width={20} height={20} />, <Bell />];
+  const leftItems = [<MenuIcon />];
+  const rightItems = [<SearchIcon />, <BellIcon />];
 
   // const { data: me } = useQuery<User>('user', loadMyInfoAPI);
 

@@ -1,6 +1,7 @@
 import { animated } from '@react-spring/web';
 import styled from 'styled-components';
 
+import { Map, Table } from '@assets';
 import { Colors } from '@styles';
 
 export const StyledMainToggleBar = styled.div`
@@ -12,6 +13,22 @@ export const StyledMainToggleBar = styled.div`
   height: 32px;
   box-shadow: inset 0px 4px 8px ${({ theme }) => theme.shadow.primary};
   border-radius: 24px;
+`;
+
+export const TableIcon = styled(Table)<{ darkMode: boolean }>`
+  width: 12px;
+  height: 12px;
+  path {
+    fill: ${({ darkMode, theme }) => (darkMode ? theme.icon.black : Colors.lightGrey_7)};
+  }
+`;
+
+export const MapIcon = styled(Map)<{ darkMode: boolean }>`
+  width: 12px;
+  height: 11px;
+  path {
+    fill: ${({ darkMode, theme }) => (darkMode ? theme.icon.black : Colors.lightGrey_7)};
+  }
 `;
 
 export const StyledToggleItem = styled(animated.div)`

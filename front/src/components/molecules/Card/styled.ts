@@ -22,8 +22,10 @@ export const SvgWrapper = styled.div`
 export const StyledScrapSvg = styled(Scrap)`
   width: 18px;
   height: 22px;
-  fill: ${({ theme }) => theme.icon.primary};
   cursor: pointer;
+  path {
+    fill: ${({ theme }) => theme.icon.primary};
+  }
 `;
 
 export const StyledImg = styled.img`
