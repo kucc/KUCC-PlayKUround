@@ -15,7 +15,6 @@ import GradientDice from './icons/gradient-dice.svg';
 import GradientGood from './icons/gradient-good.svg';
 import GradientMovie from './icons/gradient-movie.svg';
 import GradientSmile from './icons/gradient-smile.svg';
-import Hamburger from './icons/hamburger.svg';
 import HeartSmall from './icons/heart-small.svg';
 import HeartWhite from './icons/heart-white.svg';
 import Home from './icons/home.svg';
@@ -56,7 +55,6 @@ export {
   GradientGood,
   GradientMovie,
   GradientSmile,
-  Hamburger,
   HeartSmall,
   HeartWhite,
   Home,
