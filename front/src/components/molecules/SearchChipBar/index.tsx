@@ -74,7 +74,8 @@ export const SearchChipBar = () => {
             onClick={() => onClickHandler(index)}
             clicked={selectedIndex === index}
             style={{
-              marginLeft: index === 0 ? '12px' : '0px',
+              padding: '10px 13px',
+              marginLeft: index === 0 ? '16px' : '0px',
               marginRight: '6px',
               width: '100%',
             }}
