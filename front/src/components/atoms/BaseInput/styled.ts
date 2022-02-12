@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
-import { default as Cross } from '@assets/icons/cross.svg';
-import { default as Search } from '@assets/icons/search.svg';
+import { Cross, Search } from '@assets';
 import { Colors, lowerTypography } from '@styles';
 
 import { BaseInputProps } from './type';

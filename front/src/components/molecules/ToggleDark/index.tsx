@@ -3,8 +3,7 @@ import React, { useState } from 'react';
 import { useSpring } from '@react-spring/web';
 import useDarkMode from 'use-dark-mode';
 
-import MoonIcon from '@assets/icons/moon.svg';
-import SunIcon from '@assets/icons/sun.svg';
+import { Moon, Sun } from '@assets';
 
 import { StyledDarkCircle, StyledDarkContainer, StyledDarkLine } from './styled';
 
@@ -24,7 +23,7 @@ const ToggleDark = () => {
   return (
     <StyledDarkContainer onClick={darkMode.toggle}>
       <StyledDarkLine style={heightProp} />
-      <StyledDarkCircle>{darkMode.value ? <SunIcon /> : <MoonIcon />}</StyledDarkCircle>
+      <StyledDarkCircle>{darkMode.value ? <Sun /> : <Moon />}</StyledDarkCircle>
     </StyledDarkContainer>
   );
 };

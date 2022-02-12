@@ -10,9 +10,7 @@ import ToggleDark from '@components/molecules/ToggleDark';
 import { getByLocationAPI } from 'apis/place';
 import { PlaceType } from 'interfaces/place';
 
-import Review from '@assets/icons/review.svg';
-import Scrap from '@assets/icons/scrap.svg';
-import Star from '@assets/icons/star.svg';
+import { Review, Scrap, Star } from '@assets';
 
 import { Map } from '../Map';
 import {

@@ -3,11 +3,7 @@ import React from 'react';
 import { animated, useSpring } from '@react-spring/web';
 import useDarkMode from 'use-dark-mode';
 
-import { Text } from '@components/atoms';
-
-import DownIcon from '@assets/icons/down.svg';
-import MapIcon from '@assets/icons/map.svg';
-import TableIcon from '@assets/icons/table.svg';
+import { Map, Table } from '@assets';
 import { Colors } from '@styles';
 
 import { StyledMainToggleBar, StyledToggleItem } from './styled';
@@ -46,7 +42,7 @@ export const MainToggleBar: React.FC<MainToggleBarProps> = ({ setCurrentMode, cu
           top: 8,
           ...MapOpacityProp,
         }}>
-        <TableIcon width='13' height='13' fill={Colors.grey_8} />
+        <Table width='13' height='13' fill={Colors.grey_8} />
       </animated.div>
       <StyledToggleItem style={marginLeftProp}>
         <animated.div
@@ -56,7 +52,7 @@ export const MainToggleBar: React.FC<MainToggleBarProps> = ({ setCurrentMode, cu
             height: 13,
             ...TableOpacityProp,
           }}>
-          <TableIcon width='13' height='13' fill={darkMode.value ? Colors.white : Colors.black} />
+          <Table width='13' height='13' fill={darkMode.value ? Colors.white : Colors.black} />
         </animated.div>
         <animated.div
           style={{
@@ -65,7 +61,7 @@ export const MainToggleBar: React.FC<MainToggleBarProps> = ({ setCurrentMode, cu
             height: 13,
             ...MapOpacityProp,
           }}>
-          <MapIcon width='13' height='13' fill={darkMode.value ? Colors.white : Colors.black} />
+          <Map width='13' height='13' fill={darkMode.value ? Colors.white : Colors.black} />
         </animated.div>
         {currentMode === 'table' ? '지도' : '카드'}형으로 보기
       </StyledToggleItem>
@@ -76,7 +72,7 @@ export const MainToggleBar: React.FC<MainToggleBarProps> = ({ setCurrentMode, cu
           top: 7.5,
           ...TableOpacityProp,
         }}>
-        <MapIcon width='13' height='13' fill={Colors.grey_8} />
+        <Map width='13' height='13' fill={Colors.grey_8} />
       </animated.div>
     </StyledMainToggleBar>
   );

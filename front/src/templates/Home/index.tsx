@@ -10,9 +10,7 @@ import { BaseButton, Div, MainTable, Navbar, SearchChipBar, Text } from '@compon
 import { loadMyInfoAPI, logOutAPI } from 'apis/user';
 import User from 'interfaces/user';
 
-import BellIcon from '@assets/icons/bell.svg';
-import MenuIcon from '@assets/icons/menu.svg';
-import SearchIcon from '@assets/icons/search.svg';
+import { Bell, Menu, Search } from '@assets';
 
 import { StyledProfileImg } from './styled';
 
@@ -45,8 +43,8 @@ export const Home = () => {
     mutation.mutate();
   }, [mutation]);
 
-  const leftItems = [<MenuIcon />];
-  const rightItems = [<SearchIcon width={20} height={20} />, <BellIcon />];
+  const leftItems = [<Menu />];
+  const rightItems = [<Search width={20} height={20} />, <Bell />];
 
   return (
     <>

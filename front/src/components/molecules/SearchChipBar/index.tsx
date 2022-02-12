@@ -1,19 +1,21 @@
 import React, { useState } from 'react';
 
-import { BoxIcon, Chip } from '@components';
+import { Chip } from '@components';
 
-import Cartoon from '@assets/icons/cartoon.svg';
-import Coffee from '@assets/icons/coffee.svg';
-import Dice from '@assets/icons/dice.svg';
-import Good from '@assets/icons/good.svg';
-import GradientCartoon from '@assets/icons/gradient-cartoon.svg';
-import GradientCoffee from '@assets/icons/gradient-coffee.svg';
-import GradientDice from '@assets/icons/gradient-dice.svg';
-import GradientGood from '@assets/icons/gradient-good.svg';
-import GradientMovie from '@assets/icons/gradient-movie.svg';
-import GradientSmile from '@assets/icons/gradient-smile.svg';
-import Movie from '@assets/icons/movie.svg';
-import Smile from '@assets/icons/smile.svg';
+import {
+  Cartoon,
+  Coffee,
+  Dice,
+  Good,
+  GradientCartoon,
+  GradientCoffee,
+  GradientDice,
+  GradientGood,
+  GradientMovie,
+  GradientSmile,
+  Movie,
+  Smile,
+} from '@assets';
 import { Colors } from '@styles';
 
 import { Container } from './styled';
