@@ -30,7 +30,7 @@ const App = ({ Component, pageProps }: AppProps) => {
       <Hydrate state={pageProps.dehydratedState}>
         <Head>
           <meta charSet='utf-8' />
-          <title>BoilerPlate</title>
+          <title>PlayKUround</title>
           <script
             type='text/javascript'
             src={`http://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=rses05b7bh`}></script>
