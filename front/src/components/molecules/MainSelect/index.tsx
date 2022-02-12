@@ -3,7 +3,7 @@ import React from 'react';
 import { Select } from 'antd';
 import useDarkMode from 'use-dark-mode';
 
-import Setting from '@assets/icons/setting.svg';
+import { Setting } from '@assets';
 import { Colors } from '@styles';
 
 import { StyledSelect } from './styled';

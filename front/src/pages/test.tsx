@@ -3,10 +3,7 @@ import { useQuery } from 'react-query';
 
 import { Card, InstaCard, SearchChipBar } from '@components';
 
-import { default as Heart } from '@assets/icons/heart-small.svg';
-import { default as HeartWhite } from '@assets/icons/heart-white.svg';
-import { default as Review } from '@assets/icons/review-small.svg';
-import { default as Star } from '@assets/icons/star-small.svg';
+import { HeartSmall, HeartWhite, ReviewSmall, StarSmall } from '@assets';
 
 const TestPage = () => {
   const title = '인아최고 만화카페';
@@ -15,11 +12,11 @@ const TestPage = () => {
 
   const ChipGroupList = [
     {
-      nonClickedIcon: <Star />,
+      nonClickedIcon: <StarSmall />,
       label: '4.9',
     },
     {
-      nonClickedIcon: <Review />,
+      nonClickedIcon: <ReviewSmall />,
       label: '20',
     },
   ];
@@ -36,7 +33,7 @@ const TestPage = () => {
         titleText='인아최고 만화카페'
         placeText='서울특별시 동대문구 악령시로 9길 9'
         label='123'
-        icon={<Heart />}
+        icon={<HeartSmall />}
         clickedIcon={<HeartWhite />}
         descriptionText={descriptionText}
       />

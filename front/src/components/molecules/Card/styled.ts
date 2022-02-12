@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import styled from 'styled-components';
 
-import { default as Scrap } from '@assets/icons/scrap.svg';
+import { Scrap } from '@assets';
 import { Colors } from '@styles';
 
 export const CardContainer = styled.div`
