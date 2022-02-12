@@ -13,10 +13,10 @@ import GradientCartoon from './icons/gradient-cartoon.svg';
 import GradientCoffee from './icons/gradient-coffee.svg';
 import GradientDice from './icons/gradient-dice.svg';
 import GradientGood from './icons/gradient-good.svg';
+import GradientHeart from './icons/gradient-heart.svg';
 import GradientMovie from './icons/gradient-movie.svg';
 import GradientSmile from './icons/gradient-smile.svg';
-import HeartSmall from './icons/heart-small.svg';
-import HeartWhite from './icons/heart-white.svg';
+import Heart from './icons/heart.svg';
 import Home from './icons/home.svg';
 import Location from './icons/location.svg';
 import Map from './icons/map.svg';
@@ -32,7 +32,6 @@ import Search from './icons/search.svg';
 import Setting from './icons/setting.svg';
 import Share from './icons/share.svg';
 import Smile from './icons/smile.svg';
-import StarSmall from './icons/star-small.svg';
 import Star from './icons/star.svg';
 import Sun from './icons/sun.svg';
 import Table from './icons/table.svg';
@@ -53,10 +52,10 @@ export {
   GradientCoffee,
   GradientDice,
   GradientGood,
+  GradientHeart,
   GradientMovie,
   GradientSmile,
-  HeartSmall,
-  HeartWhite,
+  Heart,
   Home,
   Location,
   Map,
@@ -72,7 +71,6 @@ export {
   Setting,
   Share,
   Smile,
-  StarSmall,
   Star,
   Sun,
   Table,
