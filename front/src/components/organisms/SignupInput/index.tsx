@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Space } from 'antd';
 
-import BaseInput from '@components/atoms/BaseInput';
+import { BaseInput } from '@components';
 
 export const SignupInput = ({ passwordError }: { passwordError: boolean }) => {
   return (

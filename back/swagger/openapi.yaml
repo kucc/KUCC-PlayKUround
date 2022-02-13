@@ -12,13 +12,15 @@ servers:
 paths:
   ########### user path ###########
   /api/user/:
-    $ref: "./paths/user/user.yaml"
+    $ref: "./paths/user/userGet.yaml"
   /api/user/register:
     $ref: "./paths/user/userRegister.yaml"
   /api/user/login:
     $ref: "./paths/user/userLogin.yaml"
   /api/user/logout:
     $ref: "./paths/user/userLogout.yaml"
+  /api/user/update:
+    $ref: "./paths/user/userUpdate.yaml"
 
   ########### place path ###########
   /api/place/create:

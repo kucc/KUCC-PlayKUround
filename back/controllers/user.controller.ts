@@ -1,6 +1,8 @@
 import { NextFunction, Request, RequestHandler, Response } from 'express';
+import fs from 'fs';
 
-import { User } from '../models';
+import { Image, User } from '../models';
+import { MulterFile } from '../models/image/imageType';
 import { UserAttributes, UserInterface } from '../models/user/userType';
 
 const bcrypt = require('bcryptjs');
@@ -90,9 +92,31 @@ const userLogout: RequestHandler = (req, res, next) => {
   res.send('ok');
 };
 
+const userUpdate = async (
+  req: Request & { files: MulterFile[] },
+  res: Response,
+  next: NextFunction,
+) => {
+  res.send('dsfhj');
+  const { userId } = req.body;
+  if (!userId) return res.status(403).send('유저 아이디가 필요합니다.');
+  try {
+    console.log(req.files);
+    const imgData = fs.readFileSync(`app${req.files.path.split('app')[1]}`).toString('base64');
+
+    await Image.create({ path: imgData, source: userId });
+
+    res.json({ path: imgData });
+  } catch (error) {
+    res.status(400).json({ success: false, error });
+    next(error);
+  }
+};
+
 module.exports = {
   userRegister,
   userLogin,
   userLogout,
   userGet,
+  userUpdate,
 };

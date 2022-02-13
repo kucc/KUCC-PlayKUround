@@ -1,72 +1,101 @@
 import React, { useCallback, useState } from 'react';
-import { useMutation, useQuery, useQueryClient } from 'react-query';
 
-import { AxiosError } from 'axios';
-import Link from 'next/link';
-import Router from 'next/router';
-
+// import { useMutation, useQuery, useQueryClient } from 'react-query';
+// import { AxiosError } from 'axios';
+// import Link from 'next/link';
+// import Router from 'next/router';
 import { BaseButton, Div, MainTable, Navbar, SearchChipBar, Text } from '@components';
 
-import { loadMyInfoAPI, logOutAPI } from 'apis/user';
-import User from 'interfaces/user';
-
-import BellIcon from '@assets/icons/bell.svg';
-import MenuIcon from '@assets/icons/menu.svg';
-import SearchIcon from '@assets/icons/search.svg';
-
-import { StyledProfileImg } from './styled';
+// import { loadMyInfoAPI, logOutAPI } from 'apis/user';
+// import User from 'interfaces/user';
+import {
+  BellIcon,
+  ButtonWrapper,
+  Description,
+  FirstPageLayout,
+  MenuIcon,
+  SearchIcon,
+  StyledButton,
+  StyledImg,
+  StyledLogo,
+  Title,
+} from './styled';
 
 export const Home = () => {
-  const queryClient = useQueryClient();
+  // const queryClient = useQueryClient();
 
-  const [loading, setLoading] = useState(false);
-  const { data: me } = useQuery<User>('user', loadMyInfoAPI);
+  // const [loading, setLoading] = useState<boolean>(false);
+  const [join, setJoin] = useState<boolean>(false);
 
-  const moveLogin = useCallback(() => {
-    Router.replace('/login');
-  }, []);
-
-  const mutation = useMutation<void, AxiosError>(logOutAPI, {
-    onMutate: () => {
-      setLoading(true);
-    },
-    onError: error => {
-      alert(error.response?.data);
-    },
-    onSuccess: () => {
-      queryClient.setQueryData('user', null);
-    },
-    onSettled: () => {
-      setLoading(false);
-    },
-  });
-
-  const onLogOut = useCallback(() => {
-    mutation.mutate();
-  }, [mutation]);
+  const onClickJoinMainPage = () => {
+    setJoin(true);
+    window.localStorage.setItem('isUserPass', 'pass');
+  };
+  const isLocalStorgeSave = localStorage.getItem('isUserPass');
 
   const leftItems = [<MenuIcon />];
-  const rightItems = [<SearchIcon width={20} height={20} />, <BellIcon />];
+  const rightItems = [<SearchIcon />, <BellIcon />];
+
+  // const { data: me } = useQuery<User>('user', loadMyInfoAPI);
+
+  // const moveLogin = useCallback(() => {
+  //   Router.replace('/login');
+  // }, []);
+
+  // const onLogOut = useCallback(() => {
+  //   mutation.mutate();
+  // }, [mutation]);
+
+  // const mutation = useMutation<void, AxiosError>(logOutAPI, {
+  //   onMutate: () => {
+  //     setLoading(true);
+  //   },
+  //   onError: error => {
+  //     alert(error.response?.data);
+  //   },
+  //   onSuccess: () => {
+  //     queryClient.setQueryData('user', null);
+  //   },
+  //   onSettled: () => {
+  //     setLoading(false);
+  //   },
+  // });
 
   return (
     <>
-      <Navbar text='내 위치 주변' leftItems={leftItems} rightItems={rightItems} />
-      <SearchChipBar />
-      {/* <Div center>
-        <Text h2>시작 페이지</Text>
-        {me ? (
-          <BaseButton htmlType='button' onClick={onLogOut} loading={loading} style={{ width: 300 }}>
-            로그아웃하기
-          </BaseButton>
-        ) : (
-          <Link href='/'>
-            <BaseButton htmlType='button' onClick={moveLogin} style={{ width: 300 }}>
-              로그인하러 가기!
+      {isLocalStorgeSave === 'pass' || join ? (
+        <>
+          <Navbar text='내 위치 주변' leftItems={leftItems} rightItems={rightItems} />
+          <SearchChipBar />
+          {/* <Div center>
+          <Text h2>시작 페이지</Text>
+          {me ? (
+            <BaseButton htmlType='button' onClick={onLogOut} loading={loading} style={{ width: 300 }}>
+              로그아웃하기
             </BaseButton>
-          </Link>
-        )}
-      </Div>  */}
-      <MainTable />
+          ) : (
+            <Link href='/'>
+              <BaseButton htmlType='button' onClick={moveLogin} style={{ width: 300 }}>
+                로그인하러 가기!
+              </BaseButton>
+            </Link>
+          )}
+        </Div>  */}
+          <MainTable />
+        </>
+      ) : (
+        <FirstPageLayout>
+          <StyledImg src='pictures/first-page.png' />
+          <StyledLogo src='pictures/first-page-location.png' />
+          <Title style={{ paddingTop: '6px' }}>Play</Title>
+          <Title>KUround</Title>
+          <Description style={{ marginTop: '24px' }}>안암, 성신여대, 혜화, 경희대 주변</Description>
+          <Description>놀거리 장소 및 데이트 코스 추천 서비스</Description>
+          <ButtonWrapper>
+            <StyledButton onClick={onClickJoinMainPage}>Join !</StyledButton>
+          </ButtonWrapper>
+        </FirstPageLayout>
+      )}
     </>
   );
 };

@@ -1,0 +1,8 @@
+get:
+  tags:
+    - user
+  summary: 유저 정보 업데이트
+  description: Patch 방식으로 현재 유저의 정보를 업데이트합니다. 사진의 형식은 다음을 참고하면 좋을 거 같습니다. https://kyounghwan01.github.io/blog/React/image-upload/#formdata-%E1%84%92%E1%85%A2%E1%86%AB%E1%84%83%E1%85%B3%E1%86%AF%E1%84%85%E1%85%B5%E1%86%BC
+  responses:
+    200:
+      description: 유저 업데이트 성공.

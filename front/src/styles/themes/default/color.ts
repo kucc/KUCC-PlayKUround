@@ -1,16 +1,16 @@
 import { generate } from '@ant-design/colors';
 
 const primary = '#ED6355';
-const grey = '#F2F2F2';
-const blue = '#0000FF';
-const red = '#ff0000';
-const secondary = '#3700B3';
+const lightGrey = '#F4F4F4';
+const boldGrey = '#989898';
+const yellow = '#F8E08B';
+const green = '#26C1AA';
 
 const colorsPrimary = generate(primary);
-const colorsGrey = generate(grey);
-const colorsBlue = generate(blue);
-const colorsRed = generate(red);
-const colorsSecondary = generate(secondary);
+const colorsLightGrey = generate(lightGrey);
+const colorsBoldGrey = generate(boldGrey);
+const colorsYellow = generate(yellow);
+const colorsGreen = generate(green);
 
 const loadColor = (color: string[], name: string) => {
   const colorObject = {} as any;
@@ -23,18 +23,22 @@ const loadColor = (color: string[], name: string) => {
 // Color에 대한 type 추가하기!
 export const Colors = {
   white: '#FDFDFD',
-  black: '#111111',
-  font: '#111111',
-  primary: '#CF4040',
-  grey: '#F2F2F2',
-  blue: '#0000FF',
-  red: '#ff0000',
+  black: '#232323',
+  font: '#232323',
+  primary: '#ED6355',
+  lightGrey: '#F4F4F4',
+  boldGrey: '#989898',
+  yellow: '#F8E08B',
+  green: '#26C1AA',
+  background: '#F4F4F4',
   ...loadColor(colorsPrimary, 'primary'),
-  ...loadColor(colorsGrey, 'grey'),
-  ...loadColor(colorsBlue, 'blue'),
-  ...loadColor(colorsRed, 'red'),
-  ...loadColor(colorsSecondary, 'secondary'),
+  ...loadColor(colorsLightGrey, 'lightGrey'),
+  ...loadColor(colorsBoldGrey, 'boldGrey'),
+  ...loadColor(colorsYellow, 'yellow'),
+  ...loadColor(colorsGreen, 'green'),
 };
+
+// console.log(Colors);
 
 type color = keyof typeof Colors;
 export type ColorsType = { [k in color]: string };

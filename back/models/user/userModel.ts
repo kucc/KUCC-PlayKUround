@@ -7,7 +7,6 @@ const UserModel = (sequelize: Sequelize) => {
   const User = sequelize.define<UserInterface>(
     'user',
     {
-      // allowNull과 optional의 차이??
       name: {
         type: DataTypes.STRING(50),
         allowNull: false,

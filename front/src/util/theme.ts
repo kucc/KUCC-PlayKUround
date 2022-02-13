@@ -3,14 +3,19 @@ import { Colors } from '@styles';
 const light = {
   bg: {
     primary: Colors.white,
-    grey: '#F4F4F4',
+    grey: Colors.lightGrey,
     black: '#1A1A18',
   },
   text: {
     primary: Colors.black,
     darkGrey: '#6B6B6B',
-    lightGrey: '#F4F4F4',
+    lightGrey: Colors.lightGrey,
     white: Colors.white,
+  },
+  icon: {
+    primary: Colors.primary,
+    black: Colors.black,
+    yellow: Colors.yellow,
   },
   shadow: {
     primary: '#CFCFCF',
@@ -22,15 +27,20 @@ const light = {
 const dark = {
   bg: {
     // Colors에서 수정.
-    primary: '#232323',
+    primary: Colors.black,
     grey: '#2D2D2D',
     black: '#FDFDFD',
   },
   text: {
     primary: Colors.white,
-    darkGrey: '#6B6B6B',
+    darkGrey: '#989898',
     lightGrey: '#2D2D2D',
     white: Colors.white,
+  },
+  icon: {
+    primary: Colors.primary,
+    black: Colors.white,
+    yellow: Colors.yellow,
   },
   shadow: {
     primary: '#121212',

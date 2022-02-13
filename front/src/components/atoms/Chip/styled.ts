@@ -11,7 +11,6 @@ export const ChipWrapper = styled(animated.div)<{
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 10px 13px;
   border-radius: 24px;
   cursor: pointer;
   ${({ shadow, theme }) => {
@@ -24,7 +23,7 @@ export const ChipWrapper = styled(animated.div)<{
   ${({ clicked }) => {
     if (clicked) {
       return `
-        box-shadow: 0px 0px 4px #ED6355;;
+        box-shadow: 0px 0px 4px ${Colors.primary};
       `;
     }
   }}

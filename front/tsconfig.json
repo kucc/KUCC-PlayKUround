@@ -17,6 +17,7 @@
       "@templates/*": ["src/templates/*"],
       "@constants/*": ["src/constants/*"],
       "@config/*": ["src/config/*"],
+      "@assets": ["src/assets"],
       "@assets/*": ["src/assets/*"],
       "@hooks/*": ["src/hooks/*"],
       "@styles": ["src/styles"],

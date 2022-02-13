@@ -3,19 +3,21 @@ import { useQuery } from 'react-query';
 
 import { Skeleton } from 'antd';
 
-import { Card, MainToggleBar } from '@components';
-import MainSelect from '@components/molecules/MainSelect';
-import ToggleDark from '@components/molecules/ToggleDark';
+import { Card, MainSelect, MainToggleBar, ToggleDark } from '@components';
 
 import { getByLocationAPI } from 'apis/place';
 import { PlaceType } from 'interfaces/place';
 
-import Review from '@assets/icons/review.svg';
-import Scrap from '@assets/icons/scrap.svg';
-import Star from '@assets/icons/star.svg';
-
 import { Map } from '../Map';
-import { StlyedMainTableTop, StyledCardContainer, StyledMainTable } from './styled';
+import {
+  StlyedMainTableTop,
+  StyledBackground,
+  StyledCardContainer,
+  StyledMainTable,
+  StyledReview,
+  StyledScrap,
+  StyledStar,
+} from './styled';
 
 export const MainTable = () => {
   // 기본 값은 고려대
@@ -50,15 +52,15 @@ export const MainTable = () => {
             const { placeName, scrapCount } = place;
             const ChipGroupList = [
               {
-                nonClickedIcon: <Scrap width='9.74' height='11.53' />,
+                nonClickedIcon: <StyledScrap />,
                 label: scrapCount,
               },
               {
-                nonClickedIcon: <Star />,
+                nonClickedIcon: <StyledStar />,
                 label: '4.9',
               },
               {
-                nonClickedIcon: <Review />,
+                nonClickedIcon: <StyledReview />,
                 label: '20',
               },
             ];
