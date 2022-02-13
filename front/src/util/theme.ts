@@ -21,6 +21,9 @@ const light = {
     dark: Colors.shadow,
     none: Colors.shadow,
   },
+  border: {
+    primary: Colors.lightGrey,
+  },
 };
 
 const dark = {
@@ -44,6 +47,9 @@ const dark = {
     primary: Colors.darkShadow,
     dark: '#090909',
     none: '#232323',
+  },
+  border: {
+    primary: Colors.boldGrey_8,
   },
 };
 
