@@ -6,3 +6,4 @@ export * from './Chip';
 export * from './Div';
 export * from './Text';
 export * from './BaseMenu';
+export * from './Bar';

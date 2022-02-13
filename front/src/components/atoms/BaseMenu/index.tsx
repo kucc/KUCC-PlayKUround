@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { StartMenuElementWrapper, StartMenuIconWrapper, StartMenuLabelWrapper } from './styled';
 import { BaseMenuProps } from './type';
 
-export const BaseMenu = ({ clicked, width, height, label, icon, onClick }: BaseMenuProps) => {
+export const BaseMenu = ({ clicked, width, height, label, icon }: BaseMenuProps) => {
   const [isClicked, setIsClicked] = useState<boolean>(clicked || false);
   const handleClick = () => {
     setIsClicked(!isClicked);

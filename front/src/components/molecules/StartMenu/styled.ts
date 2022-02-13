@@ -5,5 +5,5 @@ import { Colors } from '@styles';
 export const StartMenuWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  margin-left: 20px;
+  margin-left: 13px;
 `;
