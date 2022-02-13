@@ -86,7 +86,7 @@ export const Home = () => {
       ) : (
         <FirstPageLayout>
           <StyledImg src='pictures/first-page.png' />
-          <StyledLogo src='pictures/first-page-location.png' />
+          <StyledLogo src='pictures/location.png' />
           <Title style={{ paddingTop: '6px' }}>Play</Title>
           <Title>KUround</Title>
           <Description style={{ marginTop: '24px' }}>안암, 성신여대, 혜화, 경희대 주변</Description>
