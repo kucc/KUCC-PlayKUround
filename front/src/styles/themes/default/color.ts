@@ -25,6 +25,8 @@ export const Colors = {
   white: '#FDFDFD',
   black: '#232323',
   font: '#232323',
+  shadow: '#CFCFCF',
+  darkShadow: '#121212',
   primary: '#ED6355',
   lightGrey: '#F4F4F4',
   boldGrey: '#989898',
