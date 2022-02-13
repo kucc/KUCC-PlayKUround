@@ -52,15 +52,15 @@ export const MainTable = () => {
             const { placeName, scrapCount } = place;
             const ChipGroupList = [
               {
-                nonClickedIcon: <StyledScrap />,
+                icon: <StyledScrap />,
                 label: scrapCount,
               },
               {
-                nonClickedIcon: <StyledStar />,
+                icon: <StyledStar />,
                 label: '4.9',
               },
               {
-                nonClickedIcon: <StyledReview />,
+                icon: <StyledReview />,
                 label: '20',
               },
             ];

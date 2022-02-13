@@ -5,7 +5,7 @@ import { Colors } from '@styles';
 export const Container = styled.div`
   background-color: ${Colors.white};
   height: 438px;
-  box-shadow: 0px 0px 10px #e4e4e4;
+  box-shadow: 0px 0px 10px ${Colors.shadow};
   border-radius: 12px;
 `;
 
