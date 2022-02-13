@@ -28,7 +28,7 @@ export const Text = ({ children, style, ...props }: BaseTextProps & fontProps & 
   };
 
   const subColorStyle = props.sub && {
-    color: darkMode.value ? '#6B6B6B' : '#989898',
+    color: darkMode.value ? Colors.boldGrey_6 : Colors.lightGrey_7,
   };
 
   return (

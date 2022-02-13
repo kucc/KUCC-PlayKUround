@@ -10,26 +10,24 @@ import { ChipWrapper, Label } from './styled';
 import { ChipProps } from './type';
 
 export const Chip = ({
-  nonClickedIcon,
+  icon,
   label,
   style,
   shadow,
   onClick,
   labelStyle,
   clicked,
-  clickedIcon,
+  clickable,
 }: ChipProps) => {
   const darkMode = useDarkMode(false);
 
   const darkBackgroundProp = useSpring({
-    background: clicked ? '#ED6355' : '#232323',
+    background: clicked ? Colors.primary : Colors.black,
     config: { duration: 200 },
   });
 
   const lightBackgroundProp = useSpring({
-    background: clicked
-      ? 'linear-gradient(54.4deg, #ED6355 11.46%, #F5C68C 99.99%, #F9F8A8 100%)'
-      : `linear-gradient(54.4deg, ${Colors.white} 11.46%, ${Colors.white} 99.99%, ${Colors.white} 100%)`,
+    background: clicked ? Colors.primary : Colors.white,
     config: { duration: 200 },
   });
 
@@ -45,8 +43,9 @@ export const Chip = ({
               ...style,
             }
       }
-      clicked={clicked}>
-      {clicked ? clickedIcon : nonClickedIcon}
+      clicked={clicked}
+      clickable={clickable}>
+      {icon}
       <Label style={labelStyle} clicked={clicked}>
         {label}
       </Label>

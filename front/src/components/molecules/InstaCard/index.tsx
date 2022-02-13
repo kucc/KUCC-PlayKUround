@@ -18,7 +18,6 @@ export const InstaCard = ({
   titleText,
   placeText,
   icon,
-  clickedIcon,
   label,
   descriptionText,
 }: InstaCardProps) => {
@@ -36,11 +35,11 @@ export const InstaCard = ({
         </TextContainer>
         <ChipContainer>
           <Chip
-            nonClickedIcon={icon}
-            clickedIcon={clickedIcon}
+            icon={icon}
             label={label}
             shadow={true}
             onClick={onClick}
+            clickable={true}
             clicked={clicked}
           />
         </ChipContainer>

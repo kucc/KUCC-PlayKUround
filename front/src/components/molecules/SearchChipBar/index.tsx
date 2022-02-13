@@ -2,50 +2,32 @@ import React, { useState } from 'react';
 
 import { Chip } from '@components';
 
-import {
-  Cartoon,
-  Coffee,
-  Dice,
-  Good,
-  GradientCartoon,
-  GradientCoffee,
-  GradientDice,
-  GradientGood,
-  GradientMovie,
-  GradientSmile,
-  Movie,
-  Smile,
-} from '@assets';
+import { Cartoon, Coffee, Dice, Good, Movie, Smile } from '@assets';
 import { Colors } from '@styles';
 
 import { Container } from './styled';
 
 export const SearchChipBar = () => {
   const menuList = [
-    { nonClickedIcon: <GradientGood />, clickedIcon: <Good fill={Colors.white} />, label: '맛집' },
+    { icon: <Good />, label: '맛집' },
     {
-      nonClickedIcon: <GradientMovie />,
-      clickedIcon: <Movie fill={Colors.white} />,
+      icon: <Movie />,
       label: '영화/연극',
     },
     {
-      nonClickedIcon: <GradientSmile />,
-      clickedIcon: <Smile fill={Colors.white} />,
+      icon: <Smile />,
       label: '힐링',
     },
     {
-      nonClickedIcon: <GradientCoffee />,
-      clickedIcon: <Coffee fill={Colors.white} />,
+      icon: <Coffee />,
       label: '카페',
     },
     {
-      nonClickedIcon: <GradientCartoon />,
-      clickedIcon: <Cartoon fill={Colors.white} />,
+      icon: <Cartoon />,
       label: '만화카페',
     },
     {
-      nonClickedIcon: <GradientDice />,
-      clickedIcon: <Dice fill={Colors.white} />,
+      icon: <Dice />,
       label: '보드게임카페',
     },
   ];
@@ -62,16 +44,16 @@ export const SearchChipBar = () => {
 
   return (
     <Container>
-      {menuList.map(({ nonClickedIcon, clickedIcon, label }, index) => {
+      {menuList.map(({ icon, label }, index) => {
         return (
           <Chip
             key={index}
             shadow={true}
-            nonClickedIcon={nonClickedIcon}
-            clickedIcon={clickedIcon}
+            icon={icon}
             label={label}
             labelStyle={{ width: 'max-content' }}
             onClick={() => onClickHandler(index)}
+            clickable={true}
             clicked={selectedIndex === index}
             style={{
               padding: '10px 13px',

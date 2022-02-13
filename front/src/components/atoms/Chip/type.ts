@@ -1,8 +1,7 @@
 import React from 'react';
 
 export type ChipProps = {
-  nonClickedIcon: React.ReactNode;
-  clickedIcon?: React.ReactNode;
+  icon: React.ReactNode;
   label: string | number;
   style?: React.CSSProperties;
   labelStyle?: React.CSSProperties;
@@ -10,4 +9,5 @@ export type ChipProps = {
   border?: boolean;
   onClick?: () => void;
   clicked?: boolean;
+  clickable: boolean;
 };
