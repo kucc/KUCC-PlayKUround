@@ -47,6 +47,8 @@ export const ProfileWrapper = styled.div`
 `;
 export const ToggleWrapper = styled.div`
   position: absolute;
+  top: 0;
+  right: 48%;
 `;
 export const MyInfoContainer = styled.div`
   height: 147px;
