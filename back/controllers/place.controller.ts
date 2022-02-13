@@ -1,4 +1,4 @@
-import { NextFunction, Request, Response } from 'express';
+import { NextFunction, Request, RequestHandler, Response } from 'express';
 
 import { Menu, Place, User } from '../models';
 import { PlaceAttributes } from '../models/place/placeType';
@@ -8,7 +8,7 @@ const sequelize = require('sequelize');
 const Op = sequelize.Op;
 
 // 장소 상세 정보
-const getByOne = async (req: Request, res: Response, next: NextFunction) => {
+const getByOne: RequestHandler = async (req, res, next) => {
   const placeId: number = parseInt(req.query.id as string);
   if (!placeId) return res.status(403).send('비정상적인 접근입니다.');
   try {
@@ -24,7 +24,7 @@ const getByOne = async (req: Request, res: Response, next: NextFunction) => {
 };
 
 // 좌표에 따른 검색
-const getByLocation = async (req: Request, res: Response, next: NextFunction) => {
+const getByLocation: RequestHandler = async (req, res, next) => {
   const latitude: number = parseInt(req.query.latitude as string);
   const longitude: number = parseInt(req.query.longitude as string);
   if (!latitude || !longitude) {
@@ -36,10 +36,10 @@ const getByLocation = async (req: Request, res: Response, next: NextFunction) =>
     // 부득이하게 js로 sort 진행
     result.sort(function (a: PlaceAttributes, b: PlaceAttributes) {
       const a_distance = Math.sqrt(
-        (a.address_location[0] - latitude) ** 2 + (a.address_location[1] - longitude) ** 2,
+        (a.addressLocation[0] - latitude) ** 2 + (a.addressLocation[1] - longitude) ** 2,
       );
       const b_distance = Math.sqrt(
-        (b.address_location[0] - latitude) ** 2 + (b.address_location[1] - longitude) ** 2,
+        (b.addressLocation[0] - latitude) ** 2 + (b.addressLocation[1] - longitude) ** 2,
       );
       if (a_distance > b_distance) {
         return 1;
@@ -61,14 +61,14 @@ const getByLocation = async (req: Request, res: Response, next: NextFunction) =>
 };
 
 // 이름에 의한 검색
-const getByName = async (req: Request, res: Response, next: NextFunction) => {
+const getByName: RequestHandler = async (req, res, next) => {
   const name: string = req.query.name as string;
   if (!name) return res.status(400).end();
   try {
     const result = await Place.findAll({
       where: {
         // Op를 사용하여 유사 검색 구현: name을 포함하기만 하면 찾음
-        place_Name: {
+        placeName: {
           [Op.like]: '%' + name + '%',
         },
       },
@@ -83,70 +83,70 @@ const getByName = async (req: Request, res: Response, next: NextFunction) => {
   }
 };
 
-const createPlace = async (req: Request, res: Response, next: NextFunction) => {
+const createPlace: RequestHandler = async (req, res, next) => {
   const {
-    address_location,
-    address_exact,
-    address_category,
-    picture_link,
-    place_Name,
-    place_Time,
-    place_phoneNum,
-    naver_link,
-    catch_table_link,
-    insta_link,
-    place_hashtag,
-    place_category,
-    place_category_detail,
-    place_price,
-    scrab_count,
-    date_concept,
+    addressLocation,
+    addressExact,
+    addressCategory,
+    pictureLink,
+    placeName,
+    placeTime,
+    placePhoneNum,
+    naverLink,
+    catchTableLink,
+    instaLink,
+    placeHashtag,
+    placeCategory,
+    placeCategoryDetail,
+    placePrice,
+    scrapCount,
+    dateConcept,
     writer,
   }: PlaceAttributes = req.body;
   const { menu } = req.body;
   if (
-    !address_location ||
-    !address_exact ||
-    !address_category ||
-    !place_Name ||
-    !place_category ||
-    !place_category_detail ||
-    !place_price ||
-    !date_concept
+    !addressLocation ||
+    !addressExact ||
+    !addressCategory ||
+    !placeName ||
+    !placeCategory ||
+    !placeCategoryDetail ||
+    !placePrice ||
+    !dateConcept
   ) {
     return res.status(403).send('필수인 정보가 입력되지 않았습니다.');
   }
   try {
     // place table 생성
     const placeResult = await Place.create({
-      address_location,
-      address_exact,
-      address_category,
-      picture_link,
-      place_Name,
-      place_Time,
-      place_phoneNum,
-      naver_link,
-      catch_table_link,
-      insta_link,
-      place_hashtag,
-      place_category,
-      place_category_detail,
-      place_price,
-      scrab_count,
-      date_concept,
+      addressLocation,
+      addressExact,
+      addressCategory,
+      pictureLink,
+      placeName,
+      placeTime,
+      placePhoneNum,
+      naverLink,
+      catchTableLink,
+      instaLink,
+      placeHashtag,
+      placeCategory,
+      placeCategoryDetail,
+      placePrice,
+      scrapCount,
+      dateConcept,
       writer,
     });
     // menu가 존재한다면
     if (menu) {
-      const { menu_name, menu_price, menu_picture, is_recommend } = menu;
+      const { menuName, menuPrice, menuPicture, isRecommend } = menu;
       // menu table 생성
       await Menu.create({
-        place_id: placeResult.id,
-        menu_name,
-        menu_price,
-        menu_picture,
-        is_recommend,
+        placeId: placeResult.id,
+        menuName,
+        menuPrice,
+        menuPicture,
+        isRecommend,
       });
     }
     res.status(200).json({
@@ -159,7 +159,7 @@ const createPlace = async (req: Request, res: Response, next: NextFunction) => {
   }
 };
 
-const updatePlace = async (req: Request, res: Response, next: NextFunction) => {};
+const updatePlace: RequestHandler = async (req, res, next) => {};
 
 module.exports = {
   getByOne,

@@ -14,16 +14,16 @@ export const Typography: TypographyProps = {
   },
   h3: {
     fontSize: '48px',
-    fontFamily: fonts.regular.fontFamily,
+    fontFamily: fonts.medium.fontFamily,
   },
   h4: {
     fontSize: '34px',
-    fontFamily: fonts.regular.fontFamily,
+    fontFamily: fonts.medium.fontFamily,
     letterSpacing: 0.25,
   },
   h5: {
     fontSize: '24px',
-    fontFamily: fonts.regular.fontFamily,
+    fontFamily: fonts.medium.fontFamily,
   },
   h6: {
     fontSize: '20px',
@@ -32,7 +32,7 @@ export const Typography: TypographyProps = {
   },
   subtitle1: {
     fontSize: '16px',
-    fontFamily: fonts.regular.fontFamily,
+    fontFamily: fonts.medium.fontFamily,
     letterSpacing: 0.15,
   },
   subtitle2: {
@@ -42,12 +42,12 @@ export const Typography: TypographyProps = {
   },
   body1: {
     fontSize: '16px',
-    fontFamily: fonts.regular.fontFamily,
+    fontFamily: fonts.medium.fontFamily,
     letterSpacing: 0.5,
   },
   body2: {
     fontSize: '14px',
-    fontFamily: fonts.regular.fontFamily,
+    fontFamily: fonts.medium.fontFamily,
     letterSpacing: 0.25,
   },
   button: {
@@ -62,12 +62,12 @@ export const Typography: TypographyProps = {
   },
   caption: {
     fontSize: '12px',
-    fontFamily: fonts.regular.fontFamily,
+    fontFamily: fonts.medium.fontFamily,
     letterSpacing: 0.4,
   },
   overline: {
     fontSize: '10px',
-    fontFamily: fonts.regular.fontFamily,
+    fontFamily: fonts.medium.fontFamily,
     letterSpacing: 1.5,
   },
 };

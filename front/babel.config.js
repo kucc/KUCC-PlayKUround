@@ -10,9 +10,10 @@ module.exports = function (api) {
         {
           ssr: true,
           displayName: true,
+          preprocess: false,
         },
       ],
-      ['transform-remove-console', { exclude: ['error', 'warn'] }],
+      // ['transform-remove-console', { exclude: ['error', 'warn'] }],
       [
         'module-resolver',
         {

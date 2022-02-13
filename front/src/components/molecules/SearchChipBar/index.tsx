@@ -1,39 +1,84 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-import { BoxIcon, Chip } from '@components';
+import { Chip } from '@components';
 
-import { default as Cartoon } from '@assets/icons/cartoon.svg';
-import { default as Coffee } from '@assets/icons/coffee.svg';
-import { default as Dice } from '@assets/icons/dice.svg';
-import { default as Good } from '@assets/icons/good.svg';
-import { default as Movie } from '@assets/icons/movie.svg';
-import { default as Search } from '@assets/icons/search.svg';
-import { default as Smile } from '@assets/icons/smile.svg';
+import {
+  Cartoon,
+  Coffee,
+  Dice,
+  Good,
+  GradientCartoon,
+  GradientCoffee,
+  GradientDice,
+  GradientGood,
+  GradientMovie,
+  GradientSmile,
+  Movie,
+  Smile,
+} from '@assets';
+import { Colors } from '@styles';
 
 import { Container } from './styled';
 
 export const SearchChipBar = () => {
   const menuList = [
-    { leftIcon: <Smile />, label: '힐링' },
-    { leftIcon: <Movie />, label: '영화/연극' },
-    { leftIcon: <Coffee />, label: '카페' },
-    { leftIcon: <Good />, label: '맛집' },
-    { leftIcon: <Cartoon />, label: '만화카페' },
-    { leftIcon: <Dice />, label: '보드게임카페' },
+    { nonClickedIcon: <GradientGood />, clickedIcon: <Good fill={Colors.white} />, label: '맛집' },
+    {
+      nonClickedIcon: <GradientMovie />,
+      clickedIcon: <Movie fill={Colors.white} />,
+      label: '영화/연극',
+    },
+    {
+      nonClickedIcon: <GradientSmile />,
+      clickedIcon: <Smile fill={Colors.white} />,
+      label: '힐링',
+    },
+    {
+      nonClickedIcon: <GradientCoffee />,
+      clickedIcon: <Coffee fill={Colors.white} />,
+      label: '카페',
+    },
+    {
+      nonClickedIcon: <GradientCartoon />,
+      clickedIcon: <Cartoon fill={Colors.white} />,
+      label: '만화카페',
+    },
+    {
+      nonClickedIcon: <GradientDice />,
+      clickedIcon: <Dice fill={Colors.white} />,
+      label: '보드게임카페',
+    },
   ];
+
+  const [selectedIndex, setSelectedIndex] = useState<number>(-1);
+
+  const onClickHandler = (index: number) => {
+    if (index === selectedIndex) {
+      setSelectedIndex(-1);
+    } else {
+      setSelectedIndex(index);
+    }
+  };
+
   return (
     <Container>
-      <BoxIcon icon={<Search />} />
-      {menuList.map(({ leftIcon, label }, index) => {
+      {menuList.map(({ nonClickedIcon, clickedIcon, label }, index) => {
         return (
           <Chip
             key={index}
             shadow={true}
-            leftIcon={leftIcon}
+            nonClickedIcon={nonClickedIcon}
+            clickedIcon={clickedIcon}
             label={label}
-            style={
-              index === 0 ? { marginLeft: '12px', marginRight: '6px' } : { marginRight: '6px' }
-            }
+            labelStyle={{ width: 'max-content' }}
+            onClick={() => onClickHandler(index)}
+            clicked={selectedIndex === index}
+            style={{
+              padding: '10px 13px',
+              marginLeft: index === 0 ? '16px' : '0px',
+              marginRight: '6px',
+              width: '100%',
+            }}
           />
         );
       })}

@@ -12,67 +12,67 @@ const PlaceModel = (sequelize: Sequelize) => {
       //   primaryKey: true,
       //   autoIncrement: true,
       // },
-      address_location: {
+      addressLocation: {
         type: DataTypes.JSON,
         allowNull: false,
       },
-      address_exact: {
+      addressExact: {
         type: DataTypes.STRING(30),
         allowNull: false,
       },
-      address_category: {
+      addressCategory: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      picture_link: {
+      pictureLink: {
         type: DataTypes.JSON,
         allowNull: true,
       },
-      place_Name: {
+      placeName: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      place_Time: {
+      placeTime: {
         type: DataTypes.JSON,
         allowNull: true,
       },
-      place_phoneNum: {
+      placePhoneNum: {
         type: DataTypes.STRING,
         allowNull: true,
       },
-      naver_link: {
+      naverLink: {
         type: DataTypes.STRING,
         allowNull: true,
       },
-      catch_table_link: {
+      catchTableLink: {
         type: DataTypes.STRING,
         allowNull: true,
       },
-      insta_link: {
+      instaLink: {
         type: DataTypes.STRING,
         allowNull: true,
       },
-      place_hashtag: {
+      placeHashtag: {
         type: DataTypes.JSON,
         allowNull: true,
       },
-      place_category: {
+      placeCategory: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      place_category_detail: {
+      placeCategoryDetail: {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
-      place_price: {
-        type: DataTypes.INTEGER,
+      placePrice: {
+        type: DataTypes.STRING,
         allowNull: false,
       },
-      scrab_count: {
+      scrapCount: {
         type: DataTypes.INTEGER,
         defaultValue: 0,
       },
-      date_concept: {
+      dateConcept: {
         type: DataTypes.STRING,
         allowNull: false,
       },

@@ -43,12 +43,18 @@ module.exports = withAntdLess({
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/,
-      use: ['@svgr/webpack'],
+      use: [
+        {
+          loader: '@svgr/webpack',
+          options: { svgo: false },
+        },
+      ],
     });
 
     return config;
   },
   plugins: [
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
     require('@babel/plugin-proposal-decorators').default,
     {
       legacy: true,

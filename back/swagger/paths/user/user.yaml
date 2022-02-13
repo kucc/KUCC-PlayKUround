@@ -1,0 +1,8 @@
+get:
+  tags:
+    - user
+  summary : 유저 정보 가져오기
+  description : Get 방식으로 현재 session(쿠키)의 유저의 정보를 가져옵니다.
+  responses:
+    200:
+      description : 유저 조회 성공. 로그인이 되어있지 않으면 빈 array 값을 보냅니다.

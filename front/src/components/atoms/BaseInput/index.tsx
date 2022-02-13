@@ -11,7 +11,7 @@ import {
 } from './styled';
 import { BaseInputProps } from './type';
 
-function BaseInput({
+export const BaseInput = ({
   placeholder,
   disabled,
   type,
@@ -23,7 +23,7 @@ function BaseInput({
   isError,
   label,
   labelStyle,
-}: BaseInputProps) {
+}: BaseInputProps) => {
   const [text, setText] = React.useState('');
 
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -78,6 +78,4 @@ function BaseInput({
       {errorMessage && isError ? <ErrorMessage search={search}>{errorMessage}</ErrorMessage> : null}
     </Container>
   );
-}
-
-export default BaseInput;
+};

@@ -1,18 +1,12 @@
 const fonts = {
-  thin: {
-    fontFamily: 'Spoqa Han Sans Thin',
-  },
   light: {
-    fontFamily: 'Spoqa Han Sans Light',
-  },
-  regular: {
-    fontFamily: 'Spoqa Han Sans Regular',
+    fontFamily: 'Appple SD GothicNeo Light',
   },
   medium: {
-    fontFamily: 'Spoqa Han Sans Medium',
+    fontFamily: 'Appple SD GothicNeo Medium',
   },
   bold: {
-    fontFamily: 'Spoqa Han Sans Bold',
+    fontFamily: 'Appple SD GothicNeo Bold',
   },
 };
 export default fonts;

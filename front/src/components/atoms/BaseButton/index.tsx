@@ -12,7 +12,7 @@ export const BaseButton = ({
   style,
   children,
   onClick,
-  loading,
+  loading
 }: AdditionalButtonType<ButtonProps>) => {
   if (type === 'bordered') {
     return (

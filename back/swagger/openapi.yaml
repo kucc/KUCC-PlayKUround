@@ -1,0 +1,45 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: PlayKUround API docs
+  description: PlayKUround의 API 문서입니다
+  license:
+    name: MIT
+# 배포시 주소 바꿔주기
+servers:
+  - url: "http://localhost:8000"
+  - url: "http://localhost:80"
+paths:
+  ########### user path ###########
+  /api/user/:
+    $ref: "./paths/user/user.yaml"
+  /api/user/register:
+    $ref: "./paths/user/userRegister.yaml"
+  /api/user/login:
+    $ref: "./paths/user/userLogin.yaml"
+  /api/user/logout:
+    $ref: "./paths/user/userLogout.yaml"
+
+  ########### place path ###########
+  /api/place/create:
+    $ref: "./paths/place/placeCreate.yaml"
+  /api/place/getByName:
+    $ref: "./paths/place/placeGetByName.yaml"
+  /api/place/getByLocation:
+    $ref: "./paths/place/placeGetByLocation.yaml"
+  /api/place/getByOne:
+    $ref: "./paths/place/placeGetByOne.yaml"
+components:
+  parameters: null
+  schemas:
+    User:
+      $ref: "./schemas/user.yaml"
+    Place:
+      $ref: "./schemas/place.yaml"
+    Menu:
+      $ref: "./schemas/menu.yaml"
+  # responses:
+  #   BadRequest:
+  #     $ref: "./responses/badRequest.yaml"
+  #   InternalServerError:
+  #     $ref: "./responses/internalServerError.yaml"

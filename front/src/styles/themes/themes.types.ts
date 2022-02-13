@@ -14,6 +14,6 @@ export type CustomTypographies =
   | 'caption'
   | 'overline';
 
-export type CustomFontWeight = 'bold' | 'medium' | 'regular' | 'light' | 'thin';
+export type CustomFontWeight = 'bold' | 'medium' | 'light';
 
 export type ColorPalette = `primary` | `secondary` | `font`;

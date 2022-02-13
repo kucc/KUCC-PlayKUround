@@ -1,0 +1,31 @@
+version: 0.2 # build spec version
+
+env:
+  variables:
+    AWS_DEFAULT_REGION: "ap-northeast-2"
+
+phases:
+  pre_build:
+    commands:
+      - echo Logging in to Docker Hub...
+      - echo "$DOCKER_HUB_PASSWORD" | docker login -u "$DOCKER_HUB_ID" --password-stdin
+      # - echo Pulling Docker Images for cache...
+      - docker pull hjun121345/docker-front
+      - docker pull hjun121345/docker-back
+      - docker pull hjun121345/docker-nginx
+  build:
+    commands:
+      - echo Build started on `date`
+      - echo Building the Docker image...
+      - docker build -t hjun121345/docker-front ./front
+      - docker build -t hjun121345/docker-back ./back
+      - docker build -t hjun121345/docker-nginx ./nginx
+  post_build:
+    commands:
+      - docker push hjun121345/docker-front
+      - docker push hjun121345/docker-back
+      - docker push hjun121345/docker-nginx
+
+artifacts:
+  files:
+    - "./**/*"

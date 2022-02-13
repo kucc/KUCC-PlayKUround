@@ -5,8 +5,7 @@ import { Form } from 'antd';
 import { AxiosError } from 'axios';
 import Link from 'next/link';
 
-import { BaseButton, Div, NavBar } from '@components';
-import BaseInput from '@components/atoms/BaseInput';
+import { BaseButton, BaseInput, Div, Navbar } from '@components';
 import { Home } from '@templates';
 
 import { loadMyInfoAPI, logInAPI } from 'apis/user';
@@ -51,7 +50,7 @@ const LoginPage = () => {
         <Home />
       ) : (
         <>
-          <NavBar />
+          <Navbar />
           <Div center>
             <Form style={{ width: 400 }} onFinish={onSubmitForm}>
               <BaseInput label='이메일' type='email' placeholder='이메일을 입력해주세요' />

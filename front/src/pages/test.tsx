@@ -1,9 +1,6 @@
 import React from 'react';
+import { useQuery } from 'react-query';
 
-import { SearchChipBar } from '@components';
-
-const TestPage = () => {
-  return <SearchChipBar />;
-};
+const TestPage = () => {};
 
 export default TestPage;

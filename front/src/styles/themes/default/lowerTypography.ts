@@ -14,16 +14,16 @@ export const lowerTypography: TypographyProps = {
   },
   h3: {
     'font-size': '48px',
-    'font-family': fonts.regular.fontFamily,
+    'font-family': fonts.medium.fontFamily,
   },
   h4: {
     'font-size': '34px',
-    'font-family': fonts.regular.fontFamily,
+    'font-family': fonts.medium.fontFamily,
     'letter-spacing': 0.25,
   },
   h5: {
     'font-size': '24px',
-    'font-family': fonts.regular.fontFamily,
+    'font-family': fonts.medium.fontFamily,
   },
   h6: {
     'font-size': '20px',
@@ -32,7 +32,7 @@ export const lowerTypography: TypographyProps = {
   },
   subtitle1: {
     'font-size': '16px',
-    'font-family': fonts.regular.fontFamily,
+    'font-family': fonts.medium.fontFamily,
     'letter-spacing': 0.15,
   },
   subtitle2: {
@@ -42,12 +42,12 @@ export const lowerTypography: TypographyProps = {
   },
   body1: {
     'font-size': '16px',
-    'font-family': fonts.regular.fontFamily,
+    'font-family': fonts.medium.fontFamily,
     'letter-spacing': 0.5,
   },
   body2: {
     'font-size': '14px',
-    'font-family': fonts.regular.fontFamily,
+    'font-family': fonts.medium.fontFamily,
     'letter-spacing': 0.25,
   },
   button: {
@@ -62,12 +62,12 @@ export const lowerTypography: TypographyProps = {
   },
   caption: {
     'font-size': '12px',
-    'font-family': fonts.regular.fontFamily,
+    'font-family': fonts.medium.fontFamily,
     'letter-spacing': 0.4,
   },
   overline: {
     'font-size': '10px',
-    'font-family': fonts.regular.fontFamily,
+    'font-family': fonts.medium.fontFamily,
     'letter-spacing': 1.5,
   },
 };

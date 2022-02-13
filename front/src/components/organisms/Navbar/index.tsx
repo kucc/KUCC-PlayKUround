@@ -1,43 +1,37 @@
-import React, { useMemo, useRef, useState } from 'react';
+import React from 'react';
 
-import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons';
-import { Menu } from 'antd';
+import { Text } from '@components';
 
-const { SubMenu } = Menu;
+import {
+  StyledNavbarContainer,
+  StyledNavbarItems,
+  StyledNavbarItemsContainer,
+  StyledNavbarTextContainer,
+} from './styled';
+import { NavbarProps } from './type';
 
-export const NavBar = () => {
-  const style = useMemo(() => ({ margin: 'auto' }), []);
-  const [state, setState] = useState('');
-  const handleClick = (e: any) => {
-    setState({ current: e.key } as any);
-  };
-
-  const { current } = useRef(state);
+export const Navbar: React.FC<NavbarProps> = ({ leftItems, rightItems, text, fontStyle }) => {
   return (
-    <div style={style}>
-      <Menu onClick={handleClick} selectedKeys={[current]} mode='horizontal'>
-        <Menu.Item key='mail' icon={<MailOutlined />}>
-          첫 번째 메뉴
-        </Menu.Item>
-        <Menu.Item key='app' icon={<AppstoreOutlined />}>
-          두 번째 메뉴
-        </Menu.Item>
-        <SubMenu key='SubMenu' icon={<SettingOutlined />} title='세 번째 메뉴 - 서브 메뉴'>
-          <Menu.ItemGroup title='Item 1'>
-            <Menu.Item key='setting:1'>옵션 1</Menu.Item>
-            <Menu.Item key='setting:2'>옵션 2</Menu.Item>
-          </Menu.ItemGroup>
-          <Menu.ItemGroup title='Item 2'>
-            <Menu.Item key='setting:3'>옵션 3</Menu.Item>
-            <Menu.Item key='setting:4'>옵션 4</Menu.Item>
-          </Menu.ItemGroup>
-        </SubMenu>
-        <Menu.Item key='alipay'>
-          <a href='https://ant.design' target='_blank' rel='noopener noreferrer'>
-            네 번째 메뉴 - 링크
-          </a>
-        </Menu.Item>
-      </Menu>
-    </div>
+    <StyledNavbarContainer>
+      {text && (
+        <StyledNavbarTextContainer>
+          <Text
+            primary
+            body2
+            bold
+            style={{ position: 'absolute', marginTop: '22px', ...fontStyle }}>
+            {text}
+          </Text>
+        </StyledNavbarTextContainer>
+      )}
+      <StyledNavbarItemsContainer>
+        <StyledNavbarItems>
+          {leftItems && leftItems.map((item, key) => <div key={key}>{item}</div>)}
+        </StyledNavbarItems>
+        <StyledNavbarItems>
+          {rightItems && rightItems.map((item, key) => <div key={key}>{item}</div>)}
+        </StyledNavbarItems>
+      </StyledNavbarItemsContainer>
+    </StyledNavbarContainer>
   );
 };

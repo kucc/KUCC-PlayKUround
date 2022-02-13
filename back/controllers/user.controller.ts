@@ -1,23 +1,33 @@
-import { Request, Response, NextFunction } from 'express';
-import {User} from '../models';
+import { NextFunction, Request, RequestHandler, Response } from 'express';
+
+import { User } from '../models';
 import { UserAttributes, UserInterface } from '../models/user/userType';
 
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const passport = require('passport');
 
-const userGet = async (req: Request, res: Response, next : NextFunction) => {
-  res.status(200).json({
-    success : true,
-    id : req.user.id,
-    name : req.user.name,
-    email : req.user.email,
-    role : req.user.role,
-    image : req.user.image,
-  });
-}
+const userGet: RequestHandler = async (req, res, next) => {
+  try {
+    if (req.user) {
+      res.status(200).json({
+        success: true,
+        id: req.user.id,
+        name: req.user.name,
+        email: req.user.email,
+        role: req.user.role,
+        image: req.user.image,
+      });
+    } else {
+      res.status(200).json(null);
+    }
+  } catch (error) {
+    console.error(error);
+    next(error);
+  }
+};
 
 // eslint-disable-next-line consistent-return
-const userRegister =  async (req: Request, res: Response, next: NextFunction) => {
+const userRegister: RequestHandler = async (req, res, next) => {
   try {
     const exUser = await User.findOne({
       where: {
@@ -48,8 +58,8 @@ const userRegister =  async (req: Request, res: Response, next: NextFunction) =>
   }
 };
 
-const userLogin = (req: Request, res: Response, next: NextFunction) => {
-  passport.authenticate('local', (err: Error, user:UserAttributes, info:any) => {
+const userLogin: RequestHandler = (req, res, next) => {
+  passport.authenticate('local', (err: Error, user: UserAttributes, info: any) => {
     if (err) {
       return next(err);
     }
@@ -70,11 +80,11 @@ const userLogin = (req: Request, res: Response, next: NextFunction) => {
       });
       return res.status(200).json(fullUserWithoutPassword);
     });
-  })(req,res,next);
+  })(req, res, next);
 };
 
 // eslint-disable-next-line no-unused-vars
-const userLogout = (req: Request, res: Response, next: NextFunction) => {
+const userLogout: RequestHandler = (req, res, next) => {
   req.logout();
   req.session.destroy;
   res.send('ok');
@@ -84,5 +94,5 @@ module.exports = {
   userRegister,
   userLogin,
   userLogout,
-  userGet
-}
+  userGet,
+};

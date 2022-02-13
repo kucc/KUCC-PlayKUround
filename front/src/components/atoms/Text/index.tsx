@@ -1,7 +1,9 @@
 import React from 'react';
 
 import { Typography as Typo } from 'antd';
+import useDarkMode from 'use-dark-mode';
 
+import { Colors } from '@styles';
 import { ColorPalette, ColorProps, Variants, fontProps } from '@styles/themes/default/type';
 import { colorStyle, fontStyle } from '@util';
 
@@ -10,6 +12,7 @@ import { BaseTextProps } from './type';
 const T = Typo.Text;
 
 export const Text = ({ children, style, ...props }: BaseTextProps & fontProps & ColorProps) => {
+  const darkMode = useDarkMode(false);
   const fontWeight = props.bold
     ? { fontWeight: 700 }
     : props.light
@@ -20,12 +23,35 @@ export const Text = ({ children, style, ...props }: BaseTextProps & fontProps & 
 
   const locationStyle = props.center && { textAlign: 'center' };
 
+  const primaryColorStyle = props.primary && {
+    color: darkMode.value ? Colors.white : Colors.black,
+  };
+
+  const subColorStyle = props.sub && {
+    color: darkMode.value ? '#6B6B6B' : '#989898',
+  };
+
   return (
     <T
       style={
         style
-          ? Object.assign(style, fontWeight, fontStyle(props), colorStyle(props), locationStyle)
-          : Object.assign(fontWeight, fontStyle(props), colorStyle(props), locationStyle)
+          ? Object.assign(
+              style,
+              fontWeight,
+              fontStyle(props),
+              colorStyle(props),
+              locationStyle,
+              primaryColorStyle,
+              subColorStyle,
+            )
+          : Object.assign(
+              fontWeight,
+              fontStyle(props),
+              colorStyle(props),
+              locationStyle,
+              primaryColorStyle,
+              subColorStyle,
+            )
       }
       {...props}>
       {children}

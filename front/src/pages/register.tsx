@@ -7,7 +7,7 @@ import { GetServerSidePropsContext } from 'next';
 import Link from 'next/link';
 import Router from 'next/router';
 
-import { BaseButton, Div, NavBar, SignupInput, Text } from '@components';
+import { BaseButton, Div, Navbar, SignupInput, Text } from '@components';
 
 import { loadMyInfoAPI, registerAPI } from 'apis/user';
 import User from 'interfaces/user';
@@ -88,7 +88,7 @@ const RegisterPage = () => {
 
   return (
     <>
-      <NavBar />
+      <Navbar />
       {me?.id ? (
         <Text h1 center>
           메인 페이지로 이동 중입니다. 잠시만 기다려주세요
@@ -140,7 +140,7 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
     axios.defaults.headers.Cookie = cookie;
   }
   const response = await loadMyInfoAPI();
-  if (response.data) {
+  if (response?.data) {
     return {
       redirect: {
         destination: '/',

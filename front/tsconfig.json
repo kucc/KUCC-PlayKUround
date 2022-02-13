@@ -17,6 +17,7 @@
       "@templates/*": ["src/templates/*"],
       "@constants/*": ["src/constants/*"],
       "@config/*": ["src/config/*"],
+      "@assets": ["src/assets"],
       "@assets/*": ["src/assets/*"],
       "@hooks/*": ["src/hooks/*"],
       "@styles": ["src/styles"],
@@ -39,6 +40,14 @@
     "resolveJsonModule": true,
     "isolatedModules": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "src/components/organisms/Map/index.jsx",
+    "src/components/organisms/Map/index.jsx",
+    "src/components/organisms/Map/index.js",
+    "src/components/organisms/Map/index.js"
+  ],
   "exclude": ["node_modules"]
 }
