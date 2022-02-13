@@ -6,6 +6,7 @@ import { Colors } from '@styles';
 export const ChipWrapper = styled(animated.div)<{
   shadow?: boolean;
   border?: boolean;
+  clickable: boolean;
   clicked?: boolean;
 }>`
   display: inline-flex;
@@ -27,6 +28,9 @@ export const ChipWrapper = styled(animated.div)<{
       `;
     }
   }}
+  svg > path {
+    fill: ${({ clickable, clicked }) => clickable && (clicked ? Colors.white : Colors.primary)};
+  }
 `;
 
 export const Label = styled.div<{ clicked?: boolean }>`
@@ -39,7 +43,7 @@ export const Label = styled.div<{ clicked?: boolean }>`
   ${({ clicked, theme }) => {
     if (clicked) {
       return `
-        color: ${theme.text.white};
+        color: ${Colors.white};
       `;
     } else {
       return `

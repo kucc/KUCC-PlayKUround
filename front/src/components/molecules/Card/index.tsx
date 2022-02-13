@@ -34,15 +34,16 @@ export const Card = ({ title, description, ChipGroupList }: CardProps) => {
           <Description>{description}</Description>
         </TextWrapper>
         <ChipWrapper>
-          {ChipGroupList.map(({ label, nonClickedIcon }, index) => {
+          {ChipGroupList.map(({ label, icon }, index) => {
             return (
               <StyledChip
                 key={index}
                 index={index}
                 label={label}
-                nonClickedIcon={nonClickedIcon}
+                icon={icon}
                 labelStyle={{ fontSize: '12px' }}
                 style={{ paddingTop: '6px', paddingRight: '16px' }}
+                clickable={false}
               />
             );
           })}
