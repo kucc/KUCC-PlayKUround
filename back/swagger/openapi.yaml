@@ -34,6 +34,10 @@ paths:
   /api/place/getByMap:
     $ref: "./paths/place/placeGetByMap.yaml"
 
+  ########### comment path ###########
+  /api/comment/create:
+    $ref: "./paths/comment/commentCreate.yaml"
+
 components:
   parameters: null
   schemas:
@@ -43,6 +47,12 @@ components:
       $ref: "./schemas/place.yaml"
     Menu:
       $ref: "./schemas/menu.yaml"
+    Image:
+      $ref: "./schemas/image.yaml"
+    Hashtag:
+      $ref: "./schemas/hashtag.yaml"
+    Comment:
+      $ref: "./schemas/comment.yaml"
   # responses:
   #   BadRequest:
   #     $ref: "./responses/badRequest.yaml"

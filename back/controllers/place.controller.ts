@@ -1,6 +1,6 @@
 import { NextFunction, Request, RequestHandler, Response } from 'express';
 
-import { Hashtag, HashtagItem, Menu, Place, User } from '../models';
+import { Comment, Hashtag, HashtagItem, Menu, Place, User } from '../models';
 import { PlaceAttributes } from '../models/place/placeType';
 
 const sequelize = require('sequelize');
@@ -44,7 +44,10 @@ const getByOne: RequestHandler = async (req, res, next) => {
   const placeId: number = parseInt(req.query.id as string);
   if (!placeId) return res.status(403).send('비정상적인 접근입니다.');
   try {
-    const result = await Place.findOne({ where: { id: placeId }, include: { model: Menu } });
+    const result = await Place.findOne({
+      where: { id: placeId },
+      include: [{ model: Menu }, { model: Comment }],
+    });
     res.status(200).json({
       success: true,
       result,

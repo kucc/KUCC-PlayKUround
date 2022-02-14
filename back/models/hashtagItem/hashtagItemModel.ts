@@ -16,11 +16,13 @@ const HashtagItemModel = (sequelize: Sequelize) => {
       // place, post 등과 연결
       source: {
         type: DataTypes.STRING,
+        allowNull: false,
         primaryKey: true,
       },
       //hashtag와 연결
       hashtag_id: {
         type: DataTypes.INTEGER,
+        allowNull: false,
         primaryKey: true,
       },
     },

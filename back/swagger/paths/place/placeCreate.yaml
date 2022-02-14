@@ -118,5 +118,7 @@ post:
   responses:
     200:
       description: 생성 완료
+    400:
+      description: sequelize 생성 에러.
     403:
       description: 필수인 정보가 입력되지 않았습니다.

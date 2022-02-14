@@ -28,6 +28,7 @@ const redisClient = redis.createClient({
 
 const userRouter = require('./routes/user');
 const placeRouter = require('./routes/place');
+const commentRouter = require('./routes/comment');
 
 const passportConfig = require('./passport');
 
@@ -101,6 +102,7 @@ app.get('/', (req: Request, res: Response) => {
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 app.use('/api/user', userRouter);
 app.use('/api/place', placeRouter);
+app.use('/api/comment', commentRouter);
 
 // 404처리 미들웨어
 app.use((req: Request, res: Response, next: NextFunction) => {
