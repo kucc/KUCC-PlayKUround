@@ -175,18 +175,24 @@ const createPlace: RequestHandler = async (req, res, next) => {
       scrapCount,
       dateConcept,
       writer,
+      // primary 값이기 때문에 temp 값을 넣어줌.
+      sourceId: 'temp',
     });
+    await Place.update({ sourceId: `place_${placeResult.id}` }, { where: { id: placeResult.id } });
     // menu가 존재한다면
     if (menu) {
       const { menuName, menuPrice, menuPicture, isRecommend } = menu;
       // menu table 생성
-      await Menu.create({
+      const menuResult = await Menu.create({
         placeId: placeResult.id,
         menuName,
         menuPrice,
         menuPicture,
         isRecommend,
+        sourceId: 'temp',
       });
+
+      Menu.update({ sourceId: `menu_${menuResult.id}` }, { where: { id: menuResult.id } });
     }
     res.status(200).json({
       success: true,

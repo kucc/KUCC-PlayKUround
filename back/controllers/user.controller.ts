@@ -44,11 +44,15 @@ const userRegister: RequestHandler = async (req, res, next) => {
       return res.status(403).send('이미 사용중인 이메일입니다.');
     }
     const hashedPassword = await bcrypt.hash(req.body.password, 12);
-    await User.create({
+    const userResult = await User.create({
       email: req.body.email,
       name: req.body.name,
       password: hashedPassword,
+      sourceId: 'temp',
     });
+    // user 생성 후 sourceId 값 채워주기
+    await User.update({ sourceId: `user_${userResult.id}` }, { where: { id: userResult.id } });
+
     res.status(200).json({
       success: true,
       exUser,
@@ -93,20 +97,18 @@ const userLogout: RequestHandler = (req, res, next) => {
 };
 
 const userUpdate = async (
-  req: Request & { files: MulterFile[] },
+  req: Request & { file: MulterFile },
   res: Response,
   next: NextFunction,
 ) => {
-  res.send('dsfhj');
   const { userId } = req.body;
   if (!userId) return res.status(403).send('유저 아이디가 필요합니다.');
   try {
-    console.log(req.files);
-    const imgData = fs.readFileSync(`app${req.files.path.split('app')[1]}`).toString('base64');
-
-    await Image.create({ path: imgData, source: userId });
-
-    res.json({ path: imgData });
+    // 일단은 한 장만 지정 가능.
+    const imgData = fs.readFileSync(`assets${req.file.path.split('assets')[1]}`).toString('base64');
+    // path는 BLOB 형식으로 저장. 프론트에서 사용시 Buffer 이용.
+    await Image.create({ path: imgData, source: `user_${userId}` });
+    res.json({ success: true, path: imgData });
   } catch (error) {
     res.status(400).json({ success: false, error });
     next(error);

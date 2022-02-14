@@ -13,7 +13,6 @@ const ImageModel = (sequelize: Sequelize) => {
       },
       source: {
         type: DataTypes.STRING,
-        allowNull: false,
       },
     },
     {

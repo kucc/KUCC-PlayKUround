@@ -31,8 +31,8 @@ Menu.hasMany(Image, { foreignKey: 'source', sourceKey: 'id' });
 User.hasMany(Place, { foreignKey: 'writer', sourceKey: 'id' });
 User.hasMany(Image, { foreignKey: 'source', sourceKey: 'id' });
 
-Image.belongsTo(Place, { foreignKey: 'placeId', targetKey: 'id' });
-Image.belongsTo(User, { foreignKey: 'source', targetKey: 'id' });
+Image.belongsTo(Place, { foreignKey: 'source', targetKey: 'id' });
+Image.belongsTo(User, { foreignKey: 'source', targetKey: 'sourceId' });
 Image.belongsTo(Menu, { foreignKey: 'source', targetKey: 'id' });
 
 export { sequelize, Place, User, Menu, Image };

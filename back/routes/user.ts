@@ -14,7 +14,7 @@ router.post('/login', controller.userLogin);
 
 router.post('/logout', isLoggedIn, controller.userLogout);
 
-router.patch('/update', upload, controller.userUpdate);
+router.patch('/update', isLoggedIn, upload, controller.userUpdate);
 
 export {};
 module.exports = router;

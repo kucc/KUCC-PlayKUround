@@ -7,11 +7,11 @@ const PlaceModel = (sequelize: Sequelize) => {
   const Place = sequelize.define<PlaceInterface>(
     'place',
     {
-      // id: {
-      //   type: DataTypes.INTEGER,
-      //   primaryKey: true,
-      //   autoIncrement: true,
-      // },
+      id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+      },
       addressLocation: {
         type: DataTypes.JSON,
         allowNull: false,
@@ -79,6 +79,10 @@ const PlaceModel = (sequelize: Sequelize) => {
       writer: {
         type: DataTypes.INTEGER,
         allowNull: false,
+      },
+      sourceId: {
+        type: DataTypes.STRING,
+        primaryKey: true,
       },
     },
     {

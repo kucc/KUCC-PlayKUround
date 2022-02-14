@@ -14,10 +14,11 @@ export interface UserAttributes {
   createdAt?: Date;
   updatedAt?: Date;
   deletedAt?: Date;
+  sourceId?: string;
 }
 
 interface UserCreationAttributes
-  extends Optional<UserAttributes, 'id' | 'role' | 'token' | 'tokenExp' | 'image'> {}
+  extends Optional<UserAttributes, 'id' | 'role' | 'token' | 'tokenExp' | 'image' | 'sourceId'> {}
 
 export interface UserInterface
   extends Model<UserAttributes, UserCreationAttributes>,
