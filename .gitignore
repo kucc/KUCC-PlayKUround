@@ -147,3 +147,5 @@ config.json
 back/pythonFile/seoulMarket.csv
 back/.DS_Store
 .DS_Store
+
+back/assets
