@@ -1,9 +1,8 @@
 type: object
 required:
+  - path
   - source
-  - content
-  - writer
-description: 댓글 정보입니다.
+description: 이미지 정보입니다.
 properties:
   path:
     type: BLOB
