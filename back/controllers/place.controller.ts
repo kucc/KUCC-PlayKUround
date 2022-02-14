@@ -1,7 +1,6 @@
 import { NextFunction, Request, RequestHandler, Response } from 'express';
-import haversine from 'haversine-distance';
 
-import { Menu, Place, User } from '../models';
+import { Hashtag, HashtagItem, Menu, Place, User } from '../models';
 import { PlaceAttributes } from '../models/place/placeType';
 
 const sequelize = require('sequelize');
@@ -143,6 +142,7 @@ const createPlace: RequestHandler = async (req, res, next) => {
     writer,
   }: PlaceAttributes = req.body;
   const { menu } = req.body;
+  const { hashtag } = req.body;
   if (
     !addressLocation ||
     !addressExact ||
@@ -178,21 +178,38 @@ const createPlace: RequestHandler = async (req, res, next) => {
       // primary 값이기 때문에 temp 값을 넣어줌.
       sourceId: 'temp',
     });
-    await Place.update({ sourceId: `place_${placeResult.id}` }, { where: { id: placeResult.id } });
+    // 자주 사용할 placeId이기 때문에 변수화
+    const placeId = placeResult.id;
+    // Place 생성 후 동일한 sourceId 값을 넣어줌.
+    await Place.update({ sourceId: `place_${placeId}` }, { where: { id: placeId } });
     // menu가 존재한다면
     if (menu) {
       const { menuName, menuPrice, menuPicture, isRecommend } = menu;
       // menu table 생성
       const menuResult = await Menu.create({
-        placeId: placeResult.id,
+        placeId: placeId,
         menuName,
         menuPrice,
         menuPicture,
         isRecommend,
         sourceId: 'temp',
       });
-
       Menu.update({ sourceId: `menu_${menuResult.id}` }, { where: { id: menuResult.id } });
+    }
+
+    // hashtag가 존재한다면
+    if (hashtag) {
+      await Promise.all(
+        hashtag.map(async (item: string) => {
+          const hashtagResult = await Hashtag.create({
+            content: item,
+          });
+          await HashtagItem.create({
+            source: `place_${placeId}`,
+            hashtag_id: hashtagResult.id,
+          });
+        }),
+      );
     }
     res.status(200).json({
       success: true,
