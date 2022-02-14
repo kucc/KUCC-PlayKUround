@@ -87,7 +87,7 @@ post:
             writer:
               type: number
               description: 장소를 작성한 사람의 id입니다. 현재 유저의 id를 보내주세요.
-              example: 412
+              example: 1
             menu:
               type: object
               description: menu에 대한 object입니다. 예시를 확인해주세요.

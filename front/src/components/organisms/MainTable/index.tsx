@@ -81,15 +81,13 @@ export const MainTable = () => {
   };
 
   return (
-    <StyledBackground>
-      <StyledMainTable className='side-padding'>
-        <StlyedMainTableTop>
-          <MainToggleBar currentMode={currentMode} setCurrentMode={setCurrentMode} />
-          <MainSelect />
-          <ToggleDark />
-        </StlyedMainTableTop>
-        <div style={{ marginTop: '8px' }}>{renderMainItem()}</div>
-      </StyledMainTable>
-    </StyledBackground>
+    <StyledMainTable className='side-padding'>
+      <StlyedMainTableTop>
+        <MainToggleBar currentMode={currentMode} setCurrentMode={setCurrentMode} />
+        <MainSelect />
+        <ToggleDark />
+      </StlyedMainTableTop>
+      <div style={{ marginTop: '8px' }}>{renderMainItem()}</div>
+    </StyledMainTable>
   );
 };

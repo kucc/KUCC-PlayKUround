@@ -24,6 +24,7 @@ export interface PlaceAttributes {
   scrapCount: number;
   dateConcept: '동적' | '비동적' | '체험';
   writer: number;
+  sourceId?: string;
 }
 
 interface PlaceCreationAttributes
@@ -36,6 +37,7 @@ interface PlaceCreationAttributes
     | 'naverLink'
     | 'catchTableLink'
     | 'placeHashtag'
+    | 'sourceId'
   > {}
 
 export interface PlaceInterface

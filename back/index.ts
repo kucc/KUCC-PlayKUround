@@ -95,6 +95,7 @@ app.use(passport.session());
 app.get('/', (req: Request, res: Response) => {
   res.status(200).send('백엔드 서버 실행중');
 });
+
 // 라우터
 // swagger의 route
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
