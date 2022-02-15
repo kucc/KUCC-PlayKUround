@@ -21,13 +21,22 @@ export const AvatarLabelWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 30px;
+  padding-top: 30px;
   margin-bottom: 18px;
 `;
 
-export const Label = styled.span`
-  margin-top: 16px;
+export const NameWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 24px;
   font-size: 18px;
   line-height: 20px;
+  span:nth-child(2) {
+    margin-left: 8px;
+  }
+`;
+
+export const Label = styled.span`
   font-weight: 700;
 `;

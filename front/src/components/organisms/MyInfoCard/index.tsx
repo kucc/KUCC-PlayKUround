@@ -2,7 +2,14 @@ import React from 'react';
 
 import { Avatar, MenuBar } from '@components';
 
-import { AvatarLabelWrapper, Label, MyInfoCardWrapper, StyledPost, SvgWrapper } from './styled';
+import {
+  AvatarLabelWrapper,
+  Label,
+  MyInfoCardWrapper,
+  NameWrapper,
+  StyledPost,
+  SvgWrapper,
+} from './styled';
 import { MyInfoCardProps } from './type';
 
 const DefaultIconLabel = [
@@ -68,13 +75,16 @@ const DefaultIconLabel = [
     ),
   },
 ];
-export const MyInfoCard = ({ iconLabel, imageSource, name }: MyInfoCardProps) => {
+export const MyInfoCard = ({ iconLabel, imageSource, name, style }: MyInfoCardProps) => {
   return (
-    <MyInfoCardWrapper>
+    <MyInfoCardWrapper style={style}>
       <AvatarLabelWrapper>
         <Avatar size={100} imageSource={imageSource || '/pictures/profile.png'} />
-        <Label>{name}</Label>
       </AvatarLabelWrapper>
+      <NameWrapper>
+        <Label>{name}</Label>
+        <span>님</span>
+      </NameWrapper>
       <MenuBar iconLabel={iconLabel || DefaultIconLabel} style={{ paddingBottom: '10px' }} />
     </MyInfoCardWrapper>
   );
