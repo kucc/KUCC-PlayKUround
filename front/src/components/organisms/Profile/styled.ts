@@ -41,6 +41,7 @@ export const IconWrapper = styled.div`
   align-items: center;
 `;
 export const ProfileWrapper = styled.div`
+  width: 243px;
   display: flex;
   flex-direction: column;
   margin-left: 13px;
@@ -48,8 +49,17 @@ export const ProfileWrapper = styled.div`
 export const ToggleWrapper = styled.div`
   position: absolute;
   top: 0;
-  right: 24%;
+  right: -29px;
 `;
 export const MyInfoContainer = styled.div`
+  position: relative;
+  display: flex;
   height: 147px;
+`;
+export const AvatarWrapper = styled.div`
+  margin-top: 67.9px;
+`;
+export const NameFullContainer = styled.div`
+  display: flex;
+  flex-direction: column;
 `;
