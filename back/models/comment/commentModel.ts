@@ -2,7 +2,7 @@ import { DataTypes, Sequelize } from 'sequelize';
 
 import { CommentInterface } from './commentType';
 
-// place 테이블 생성
+// comment 테이블 생성
 const CommentModel = (sequelize: Sequelize) => {
   const CommentItem = sequelize.define<CommentInterface>(
     'comment',
@@ -13,12 +13,10 @@ const CommentModel = (sequelize: Sequelize) => {
         allowNull: false,
         primaryKey: true,
       },
-      // place, post 등과 연결
       content: {
         type: DataTypes.STRING(200),
         allowNull: false,
       },
-      //hashtag와 연결
       writer: {
         type: DataTypes.INTEGER,
         allowNull: false,

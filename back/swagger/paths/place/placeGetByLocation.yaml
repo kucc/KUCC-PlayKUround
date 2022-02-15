@@ -2,7 +2,7 @@ get:
   tags:
     - place
   summary: 좌표에 의한 장소 검색
-  description: Get 방식으로 좌표에 의한 장소를 가져옵니다. 현재 좌표를 query string으로 보내면, 가장 가까운 장소들을 sort해서 보내줍니다. ex) http://localhost:8000/api/place/getByLocation?latitude=37.5908&longitude=127.0278
+  description: Get 방식으로 좌표에 의한 장소를 가져옵니다. 현재 좌표를 query string으로 보내면, 가장 가까운 장소들을 sort해서 보내줍니다. Main 페이지에서 쓰일 예정으로 card를 rendering하는데 필요한 정보들만 가져옵니다. ex) http://localhost:8000/api/place/getByLocation?latitude=37.5908&longitude=127.0278
   parameters:
     - in: query
       name: latitude

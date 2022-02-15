@@ -1,0 +1,20 @@
+get:
+  tags:
+    - place
+  summary: 지역("혜화", "안암", "성신여대")으로 불러오기
+  description: Get 방식으로 지역별 장소들을 가져옵니다. Main 페이지에서 쓰일 예정으로 card를 rendering하는데 필요한 정보들만 가져옵니다. Mainpage의 navbar 부분에서 쓰면 될 것 같습니다.
+  parameters:
+    - in: query
+      name: area
+      schema:
+        type: string
+      required: true
+      description: 장소의 지역 정보입니다. "혜화", "안암", "성신여대" 3개 중에 값을 보내주세요.
+      example: 혜화
+  responses:
+    200:
+      description: 장소 가져오기 성공.
+    400:
+      description: 장소 가져오기 실패.
+    403:
+      description: 유효한 값 ("혜화", "안암", "성신여대")이 아닙니다.

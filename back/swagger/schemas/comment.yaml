@@ -1,7 +1,9 @@
 type: object
 required:
-  - menuName
-description: 메뉴 정보입니다.
+  - source
+  - content
+  - writer
+description: 댓글 정보입니다.
 properties:
   source:
     type: string

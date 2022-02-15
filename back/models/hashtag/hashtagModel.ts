@@ -2,14 +2,25 @@ import { DataTypes, Sequelize } from 'sequelize';
 
 import { HashtagInterface } from './hashtagType';
 
-// place 테이블 생성
+// hashtag 테이블 생성
 const HashtagModel = (sequelize: Sequelize) => {
   const Hashtag = sequelize.define<HashtagInterface>(
     'hashtag',
     {
+      id: {
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        allowNull: false,
+        primaryKey: true,
+      },
       content: {
         type: DataTypes.STRING,
         allowNull: false,
+      },
+      source: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        primaryKey: true,
       },
     },
     {
