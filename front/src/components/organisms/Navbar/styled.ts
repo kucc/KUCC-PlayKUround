@@ -3,11 +3,13 @@ import styled from 'styled-components';
 export const WhiteBox = styled.div`
   width: 100%;
   height: 30px;
+  background-color: ${({ theme }) => theme.bg.primary};
 `;
 
 export const StyledNavbarContainer = styled.div`
   position: relative;
   border-bottom: 1px solid ${({ theme }) => theme.border.primary};
+  background-color: ${({ theme }) => theme.bg.primary};
 `;
 
 export const StyledNavbarTextContainer = styled.div`
