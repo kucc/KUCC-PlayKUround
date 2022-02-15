@@ -1,7 +1,5 @@
 import styled from 'styled-components';
 
-import { Colors } from '@styles';
-
 export const MenuBarWrapper = styled.div`
   display: flex;
   justify-content: center;
@@ -13,7 +11,7 @@ export const LabelWrapper = styled.div`
   font-weight: 600;
   font-size: 8px;
   line-height: 9px;
-  color: ${Colors.black};
+  color: ${({ theme }) => theme.text.primary};
 `;
 
 export const IconLabelWrapper = styled.div`
@@ -23,4 +21,7 @@ export const IconLabelWrapper = styled.div`
   justify-content: flex-start;
   width: 64px;
   height: 64px;
+  svg > path {
+    fill: ${({ theme }) => theme.icon.black};
+  }
 `;
