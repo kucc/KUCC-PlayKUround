@@ -11,7 +11,6 @@ import { PlaceType } from 'interfaces/place';
 import { Map } from '../Map';
 import {
   StlyedMainTableTop,
-  StyledBackground,
   StyledCardContainer,
   StyledMainTable,
   StyledReview,
