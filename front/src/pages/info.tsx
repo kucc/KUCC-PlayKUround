@@ -1,17 +1,12 @@
 import React from 'react';
 
-import { MyInfoCard, Navbar } from '@components';
-
-import { Menu } from '@assets';
+import { Info } from '@templates';
+import { MenuIcon } from '@templates/Home/styled';
 
 const InfoPage = () => {
-  const leftItems = [<Menu wdith={20} height={14} />];
-  return (
-    <>
-      <Navbar text='내 정보' leftItems={leftItems} />
-      <MyInfoCard name={'강태웅'} />
-    </>
-  );
+  const leftItems = [<MenuIcon />];
+
+  return <Info title='최근에 본 장소/코스' NavBarTitle='내 정보' leftItems={leftItems} />;
 };
 
 export default InfoPage;
