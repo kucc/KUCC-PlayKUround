@@ -37,7 +37,7 @@ export const Info = ({ title, leftItems, NavBarTitle }: InfoProps) => {
       <Container screenHeight={screenHeight}>
         <Navbar text={NavBarTitle} leftItems={leftItems} />
         <MyInfoCard name={me?.name as string} style={{ marginBottom: '31px' }} />
-        <StyledText subtitle2 bold>
+        <StyledText subtitle2 bold primary>
           {title}
         </StyledText>
         <div style={{ marginTop: '12px' }}>

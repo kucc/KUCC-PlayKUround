@@ -9,4 +9,5 @@ export const Container = styled.div<{ screenHeight: number }>`
 
 export const StyledText = styled(Text)`
   padding-left: 31px;
+  color: ${({ theme }) => theme.text.primary};
 `;
