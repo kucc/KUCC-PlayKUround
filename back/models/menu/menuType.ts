@@ -7,6 +7,7 @@ export interface MenuAttributes {
   menuPrice: number;
   menuPicture: string[];
   isRecommend: boolean;
+  sourceId?: string;
 }
 
 interface MenuCreationAttributes

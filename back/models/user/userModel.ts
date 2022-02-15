@@ -7,7 +7,11 @@ const UserModel = (sequelize: Sequelize) => {
   const User = sequelize.define<UserInterface>(
     'user',
     {
-      // allowNull과 optional의 차이??
+      id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+      },
       name: {
         type: DataTypes.STRING(50),
         allowNull: false,
@@ -42,6 +46,10 @@ const UserModel = (sequelize: Sequelize) => {
       },
       tokenExp: {
         type: DataTypes.INTEGER,
+      },
+      sourceId: {
+        type: DataTypes.STRING,
+        primaryKey: true,
       },
     },
     {

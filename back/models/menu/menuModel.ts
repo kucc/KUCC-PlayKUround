@@ -7,6 +7,11 @@ const MenuModel = (sequelize: Sequelize) => {
   const Menu = sequelize.define<MenuInterface>(
     'menu',
     {
+      id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+      },
       placeId: {
         type: DataTypes.INTEGER,
         allowNull: false,
@@ -27,6 +32,10 @@ const MenuModel = (sequelize: Sequelize) => {
         type: DataTypes.BOOLEAN,
         defaultValue: false,
         allowNull: true,
+      },
+      sourceId: {
+        type: DataTypes.STRING,
+        primaryKey: true,
       },
     },
     {

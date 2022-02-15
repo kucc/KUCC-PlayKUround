@@ -26,6 +26,7 @@ export const StyledScrapSvg = styled(Scrap)`
   path {
     fill: ${({ theme }) => theme.icon.primary};
   }
+  cursor: pointer;
 `;
 
 export const StyledImg = styled.img`

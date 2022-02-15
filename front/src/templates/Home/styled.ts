@@ -3,21 +3,13 @@ import styled from 'styled-components';
 import { Bell, Menu, Search } from '@assets';
 import { Colors } from '@styles';
 
-// export const StyledProfileImg = styled.img`
-//   border-radius: 50%;
-//   width: 37px;
-//   height: 37px;
-//   margin-top: -10px;
-//   margin-left: -5px;
-//   object-fit: cover;
-// `;
-
 export const MenuIcon = styled(Menu)`
   width: 20px;
   height: 14px;
   path {
     fill: ${({ theme }) => theme.icon.black};
   }
+  cursor: pointer;
 `;
 
 export const SearchIcon = styled(Search)`
@@ -26,6 +18,7 @@ export const SearchIcon = styled(Search)`
   path {
     fill: ${({ theme }) => theme.icon.black};
   }
+  cursor: pointer;
 `;
 
 export const BellIcon = styled(Bell)`
@@ -34,6 +27,7 @@ export const BellIcon = styled(Bell)`
   path {
     fill: ${({ theme }) => theme.icon.black};
   }
+  cursor: pointer;
 `;
 
 export const FirstPageLayout = styled.div`
