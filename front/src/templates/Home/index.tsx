@@ -1,27 +1,25 @@
-import React, { useCallback, useState } from 'react';
+import React, { useState } from 'react';
 
 // import { useMutation, useQuery, useQueryClient } from 'react-query';
 // import { AxiosError } from 'axios';
 // import Link from 'next/link';
 // import Router from 'next/router';
-import { BaseButton, Div, MainTable, Navbar, SearchChipBar, Text } from '@components';
+import { MainTable, Navbar, SearchChipBar, Text } from '@components';
 
 // import { loadMyInfoAPI, logOutAPI } from 'apis/user';
 // import User from 'interfaces/user';
 import {
-  BellIcon,
   ButtonWrapper,
   Description,
   FirstPageLayout,
-  MenuIcon,
-  SearchIcon,
   StyledButton,
   StyledImg,
   StyledLogo,
   Title,
 } from './styled';
+import { HomeProps } from './type';
 
-export const Home = () => {
+export const Home = ({ leftItems, rightItems, NavBarTitle }: HomeProps) => {
   // const queryClient = useQueryClient();
 
   // const [loading, setLoading] = useState<boolean>(false);
@@ -32,9 +30,6 @@ export const Home = () => {
     window.localStorage.setItem('isUserPass', 'pass');
   };
   const isLocalStorgeSave = localStorage.getItem('isUserPass');
-
-  const leftItems = [<MenuIcon />];
-  const rightItems = [<SearchIcon />, <BellIcon />];
 
   // const { data: me } = useQuery<User>('user', loadMyInfoAPI);
 
@@ -65,22 +60,8 @@ export const Home = () => {
     <>
       {isLocalStorgeSave === 'pass' || join ? (
         <>
-          <Navbar text='내 위치 주변' leftItems={leftItems} rightItems={rightItems} />
+          <Navbar text={NavBarTitle} leftItems={leftItems} rightItems={rightItems} />
           <SearchChipBar />
-          {/* <Div center>
-          <Text h2>시작 페이지</Text>
-          {me ? (
-            <BaseButton htmlType='button' onClick={onLogOut} loading={loading} style={{ width: 300 }}>
-              로그아웃하기
-            </BaseButton>
-          ) : (
-            <Link href='/'>
-              <BaseButton htmlType='button' onClick={moveLogin} style={{ width: 300 }}>
-                로그인하러 가기!
-              </BaseButton>
-            </Link>
-          )}
-        </Div>  */}
           <MainTable />
         </>
       ) : (

@@ -3,33 +3,6 @@ import styled from 'styled-components';
 import { Bell, Menu, Search } from '@assets';
 import { Colors } from '@styles';
 
-export const MenuIcon = styled(Menu)`
-  width: 20px;
-  height: 14px;
-  path {
-    fill: ${({ theme }) => theme.icon.black};
-  }
-  cursor: pointer;
-`;
-
-export const SearchIcon = styled(Search)`
-  width: 20px;
-  height: 20px;
-  path {
-    fill: ${({ theme }) => theme.icon.black};
-  }
-  cursor: pointer;
-`;
-
-export const BellIcon = styled(Bell)`
-  width: 20px;
-  height: 22px;
-  path {
-    fill: ${({ theme }) => theme.icon.black};
-  }
-  cursor: pointer;
-`;
-
 export const FirstPageLayout = styled.div`
   display: flex;
   align-items: center;
