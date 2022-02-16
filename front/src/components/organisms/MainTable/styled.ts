@@ -3,13 +3,13 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { Review, Scrap, Star } from '@assets';
-import { Colors } from '@styles';
+import { Colors, SidePadding } from '@styles';
 
 export const StyledBackground = styled.div`
   background-color: ${({ theme }) => theme.bg.primary};
 `;
 
-export const StyledMainTable = styled.div`
+export const StyledMainTable = styled(SidePadding)`
   width: 100%;
   box-shadow: 0px 0px 10px ${({ theme }) => theme.shadow.primary};
   border-radius: 8px;
