@@ -1,0 +1,19 @@
+type: object
+required:
+  - source
+  - content
+  - writer
+description: 댓글 정보입니다.
+properties:
+  source:
+    type: string
+    description: 어느 게시판에서 comment가 작성됐는지에 대한 정보입니다. 장소에서 작성되었다면 `place_${id}` 형식을, 게시글에서 작성되었다면 `post_${id}` 형식으로 작성해주세요.
+    example: place_1
+  content:
+    type: string
+    description: 댓글의 작성 내용입니다. 200자 미만으로 검사해서 보내주세요.
+    example: 댓글입니다.
+  writer:
+    type: number
+    description: 댓글을 작성한 유저의 id 입니다.
+    example: 1

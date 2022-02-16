@@ -33,6 +33,20 @@ paths:
     $ref: "./paths/place/placeGetByOne.yaml"
   /api/place/getByMap:
     $ref: "./paths/place/placeGetByMap.yaml"
+  /api/place/getByRate:
+    $ref: "./paths/place/placeGetByRate.yaml"
+  /api/place/getByArea:
+    $ref: "./paths/place/placeGetByArea.yaml"
+
+  ########### comment path ###########
+  /api/comment/create:
+    $ref: "./paths/comment/commentCreate.yaml"
+
+  ########### hashtag path ###########
+  /api/hashtag/create:
+    $ref: "./paths/hashtag/hashtagCreate.yaml"
+  /api/hashtag/get:
+    $ref: "./paths/hashtag/hashtagGet.yaml"
 
 components:
   parameters: null
@@ -43,6 +57,12 @@ components:
       $ref: "./schemas/place.yaml"
     Menu:
       $ref: "./schemas/menu.yaml"
+    Image:
+      $ref: "./schemas/image.yaml"
+    Hashtag:
+      $ref: "./schemas/hashtag.yaml"
+    Comment:
+      $ref: "./schemas/comment.yaml"
   # responses:
   #   BadRequest:
   #     $ref: "./responses/badRequest.yaml"

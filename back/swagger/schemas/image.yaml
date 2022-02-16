@@ -1,0 +1,14 @@
+type: object
+required:
+  - path
+  - source
+description: 이미지 정보입니다.
+properties:
+  path:
+    type: BLOB
+    description: 이미지를 BLOB 타입으로 변환해서 보내줘야 합니다. 프론트에서 이미지 보내는 방법은 https://kyounghwan01.github.io/blog/React/image-upload/ 참고하면 좋을 거 같습니다.
+    example: "..."
+  source:
+    type: string
+    description: 어느 곳에서 image가 업로드=됐는지에 대한 정보입니다. 장소에서 업로드되었다면 `place_${id}` 형식을, 게시글에서 업로드되었다면 `post_${id}` 형식으로 작성해주세요.
+    example: place_1
