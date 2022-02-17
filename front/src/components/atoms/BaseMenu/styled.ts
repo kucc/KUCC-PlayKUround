@@ -12,6 +12,7 @@ export const StartMenuElementWrapper = styled.div<{ clicked?: boolean }>`
   width: 234px;
   height: 44px;
   border-radius: 24px;
+  margin-bottom: 2px;
   background-image: ${({ clicked }) => {
     if (clicked) {
       return ` linear-gradient(54.4deg, #ED6355 11.46%, #F5C68C 99.99%, #F9F8A8 100%);`;
@@ -43,14 +44,16 @@ export const StartMenuIconWrapper = styled.div<{
   & > svg {
     width: ${({ width }) => `${width}px`};
     height: ${({ height }) => `${height}px`};
-   > path {
-    fill : ${({ clicked }) => {
-      if (clicked) {
-        return `${Colors['white']}`;
-      } else {
-        return `${Colors['black']}`;
-      }
-    }}
+    > path {
+      fill: ${({ clicked }) => {
+        if (clicked) {
+          return `${Colors['white']}`;
+        } else {
+          return `${Colors['black']}`;
+        }
+      }};
+    }
+  }
 `;
 export const StartMenuLabelWrapper = styled.div`
   display: flex;

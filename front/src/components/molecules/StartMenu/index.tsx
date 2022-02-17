@@ -15,7 +15,7 @@ import { StartMenuWrapper } from './styled';
 export const StartMenu = () => {
   const menuList = [
     { label: '홈', icon: <MyHome />, clicked: false, height: 22, width: 20 },
-    { label: '실시간 핫플레이스', icon: <Global />, clicked: true, height: 22, width: 22 },
+    { label: '실시간 핫플레이스', icon: <Global />, clicked: false, height: 22, width: 22 },
     {
       label: '게시물 작성',
       icon: <Post />,

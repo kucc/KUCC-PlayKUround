@@ -29,6 +29,7 @@ export const ItemWrapper = styled.div`
   font-weight: 400;
   text-align: center;
   margin-bottom: 30px;
+  cursor: pointer;
 `;
 export const ItemsWrapper = styled.div`
   display: flex;
@@ -39,6 +40,7 @@ export const IconWrapper = styled.div`
   height: inherit;
   display: flex;
   align-items: center;
+  cursor: pointer;
 `;
 export const ProfileWrapper = styled.div`
   width: 294px;
