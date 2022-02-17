@@ -9,8 +9,8 @@ export const StartMenuWrapper = styled.div`
 `;
 export const StartMenuElementWrapper = styled.div<{ clicked?: boolean }>`
   display: inline-flex;
-  width: 266px;
-  height: 48px;
+  width: 234px;
+  height: 44px;
   border-radius: 24px;
   background-image: ${({ clicked }) => {
     if (clicked) {
