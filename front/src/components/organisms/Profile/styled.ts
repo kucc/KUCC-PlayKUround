@@ -6,13 +6,13 @@ export const NameContainer = styled.div`
   padding-top: 76px;
 `;
 export const NameWrapper = styled.div`
-  width: 63px;
   height: 20px;
   line-height: 28px;
   font-size: 16px;
   font-weight: 700;
   margin-bottom: 9px;
   text-align: center;
+  padding-left: 7px;
 `;
 export const NimWrapper = styled.div`
   height: 20px;
