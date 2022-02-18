@@ -1,0 +1,37 @@
+post:
+  tags:
+    - comment
+  summary: 댓글 생성
+  description: Post 방식으로 댓글을 생성합니다. login이 필요한 작업입니다.
+  requestBody:
+    description: 댓글 데이터입니다.
+    required: true
+    content:
+      application/x-www-form-urlencoded:
+        schema:
+          type: object
+          required:
+            - source
+            - content
+            - writer
+          properties:
+            source:
+              type: string
+              description: 어느 게시판에서 comment가 작성됐는지에 대한 정보입니다. 장소에서 작성되었다면 `place_${id}` 형식을, 게시글에서 작성되었다면 `post_${id}` 형식으로 작성해주세요.
+              example: place_1
+            content:
+              type: string
+              description: 댓글의 작성 내용입니다. 200자 미만으로 검사해서 보내주세요.
+              example: 댓글입니다.
+            writer:
+              type: number
+              description: 댓글을 작성한 유저의 id 입니다.
+              example: 1
+
+  responses:
+    200:
+      description: 생성 완료
+    400:
+      description: sequelize 생성 에러
+    403:
+      description: 필수인 정보가 입력되지 않았습니다.

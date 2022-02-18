@@ -10,6 +10,7 @@ const PlaceModel = (sequelize: Sequelize) => {
       id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
+        allowNull: false,
         autoIncrement: true,
       },
       addressLocation: {
@@ -29,6 +30,10 @@ const PlaceModel = (sequelize: Sequelize) => {
         allowNull: true,
       },
       placeName: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      placeDescription: {
         type: DataTypes.STRING,
         allowNull: false,
       },
@@ -52,10 +57,6 @@ const PlaceModel = (sequelize: Sequelize) => {
         type: DataTypes.STRING,
         allowNull: true,
       },
-      placeHashtag: {
-        type: DataTypes.JSON,
-        allowNull: true,
-      },
       placeCategory: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -72,6 +73,14 @@ const PlaceModel = (sequelize: Sequelize) => {
         type: DataTypes.INTEGER,
         defaultValue: 0,
       },
+      ratingCount: {
+        type: DataTypes.INTEGER,
+        defaultValue: 0,
+      },
+      ratingNumber: {
+        type: DataTypes.FLOAT,
+        defaultValue: 0,
+      },
       dateConcept: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -83,6 +92,7 @@ const PlaceModel = (sequelize: Sequelize) => {
       sourceId: {
         type: DataTypes.STRING,
         primaryKey: true,
+        allowNull: false,
       },
     },
     {

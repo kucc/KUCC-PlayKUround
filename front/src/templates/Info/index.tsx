@@ -9,6 +9,8 @@ import { getByLocationAPI } from 'apis/place';
 import { loadMyInfoAPI } from 'apis/user';
 import User from 'interfaces/user';
 
+import { SidePadding } from '@styles';
+
 import { Container, StyledText } from './styled';
 import { InfoProps } from './type';
 
@@ -40,13 +42,9 @@ export const Info = ({ title, leftItems, NavBarTitle }: InfoProps) => {
         <StyledText subtitle2 bold primary>
           {title}
         </StyledText>
-        <div style={{ marginTop: '12px' }}>
-          {isLoading ? (
-            <Skeleton active />
-          ) : (
-            <CardArray places={places} style={{ margin: '0 16px' }} />
-          )}
-        </div>
+        <SidePadding style={{ marginTop: '12px' }}>
+          {isLoading ? <Skeleton active /> : <CardArray places={places} />}
+        </SidePadding>
       </Container>
     </>
   );

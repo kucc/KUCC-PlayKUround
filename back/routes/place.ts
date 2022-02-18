@@ -4,6 +4,12 @@ const { isLoggedIn } = require('../middlewares/Auth');
 
 const router = express.Router();
 
+router.get('/getByComment', controller.getByComment);
+
+router.get('/getByArea', controller.getByArea);
+
+router.get('/getByRate', controller.getByRate);
+
 router.get('/getByMap', controller.getByMap);
 
 router.get('/getByOne', controller.getByOne);

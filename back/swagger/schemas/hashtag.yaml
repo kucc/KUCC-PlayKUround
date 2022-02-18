@@ -1,0 +1,14 @@
+type: object
+required:
+  - content
+  - source
+description: 해시태그 정보입니다.
+properties:
+  content:
+    type: string
+    description: 해시태그 내용입니다. "#"은 빼고 내용만 넣어주세요.
+    example: 최고맛집
+  source:
+    type: string
+    description: 어느 게시판에서 hashtag가 작성됐는지에 대한 정보입니다. 장소에서 작성되었다면 `place_${id}` 형식을, 게시글에서 작성되었다면 `post_${id}` 형식으로 작성해주세요.
+    example: place_1

@@ -39,7 +39,7 @@ export const MainTable = () => {
   };
 
   return (
-    <StyledMainTable className='side-padding'>
+    <StyledMainTable>
       <StlyedMainTableTop>
         <MainToggleBar currentMode={currentMode} setCurrentMode={setCurrentMode} />
         <MainSelect />

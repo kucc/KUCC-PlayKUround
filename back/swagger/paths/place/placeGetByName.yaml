@@ -1,10 +1,10 @@
 get:
   tags:
     - place
-  summary : 이름에 의한 장소 검색
-  description : Get 방식으로 이름에 의한 장소를 가져옵니다. 이름 중에 일부만 포함되도 검색이 되도록 했습니다. 이름을 포함하고 있는 모든 장소의 모든 정보를 배열에 담아 보냅니다. 모든 정보가 아니라 목록에서 render시 필요한 정보만 보내면 더 효율적일 것 같긴 한데, 디자인이 끝나면 작업해보겠습니다. 검색어 자동완성 구현을 원하면 다음을 https://velog.io/@shitaikoto/Node.js-Sequelize-Op 참고해서 구현해도 좋을 것 같습니다.
+  summary: 이름에 의한 장소 검색
+  description: Get 방식으로 이름에 의한 장소를 가져옵니다. 이름 중에 일부만 포함되도 검색이 되도록 했습니다. 이름을 포함하고 있는 모든 장소의 모든 정보를 배열에 담아 보냅니다. 검색 페이지에서 쓰일 예정으로 card를 rendering하는데 필요한 정보들만 가져옵니다. 검색어 자동완성 구현을 원하면 다음을 https://velog.io/@shitaikoto/Node.js-Sequelize-Op 참고해서 구현해도 좋을 것 같습니다.
   parameters:
-    - in : query
+    - in: query
       name: name
       schema:
         type: string
@@ -12,8 +12,6 @@ get:
       description: 장소의 이름에 대한 정보입니다.
   responses:
     200:
-      description : 장소 가져오기 성공. 없는 장소(빈 array)라도 200을 보냅니다.
+      description: 장소 가져오기 성공. 없는 장소(빈 array)라도 200을 보냅니다.
     400:
-      description : 장소 가져오기 실패.
-
- 
+      description: 장소 가져오기 실패.

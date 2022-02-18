@@ -1,0 +1,25 @@
+get:
+  tags:
+    - hashtag
+  summary: 특정 해시태그로 모든 대상 (장소, 게시글) 불러오기
+  description: Get 방식으로 해시태그를 포함하고 있는 모든 대상을 가져옵니다. type에 따라 다른 대상들을 rendering할 수 있도록 설계했습니다. 검색 페이지에서 쓰일 예정으로 card를 rendering하는데 필요한 정보들만 가져옵니다. 검색 페이지에서 사용하면 될 것 같습니다.
+  parameters:
+    - in: query
+      name: hashtag
+      schema:
+        type: string
+      required: true
+      description: 해시태그 정보입니다.
+      example: 핫플
+    - in: query
+      name: type
+      schema:
+        type: string
+      required: true
+      description: 요청 타입입니다. all, post, place 중 하나의 값을 넣어주세요
+      example: place
+  responses:
+    200:
+      description: 장소 가져오기 성공.
+    400:
+      description: 장소 가져오기 실패.
