@@ -19,5 +19,6 @@ export const mainAttributes = [
   'placeCategoryDetail',
   'scrapCount',
   'ratingCount',
+  'commentCount',
   'ratingNumber',
 ];
