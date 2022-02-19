@@ -20,7 +20,7 @@ export const RecommendTable = () => {
     ]
     return (
         <>
-        <Navbar leftItems={leftItems} text='코스 추천' />
+        <Navbar leftItems={leftItems} text='코스 추천' fontStyle ={{fontFamily: 'Apple SD Gothic Neo'}} />
         <ToggleDark />
         <FullBar/>
         <TextWrapper>추천코스</TextWrapper>

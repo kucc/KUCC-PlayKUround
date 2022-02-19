@@ -4,5 +4,5 @@ export const FullBarWrapper = styled.div`
 height: 2px;
 width: 100%;
 border-radius: 0px;
-background-color: ${Colors.gray};
+background-color: ${Colors.lightGrey};
 `
