@@ -9,7 +9,8 @@ export const StartMenuWrapper = styled.div`
 `;
 export const StartMenuElementWrapper = styled.div<{ clicked?: boolean }>`
   display: inline-flex;
-  width: 234px;
+  align-items:center;
+  width: 100%;
   height: 44px;
   border-radius: 24px;
   margin-bottom: 2px;
@@ -36,11 +37,7 @@ export const StartMenuIconWrapper = styled.div<{
   width?: number;
   clicked?: boolean;
 }>`
-  display: flex;
-  align-items: center;
-  justify-content: center;
   margin-left: 16px;
-  height: 48px;
   & > svg {
     width: ${({ width }) => `${width}px`};
     height: ${({ height }) => `${height}px`};
@@ -56,9 +53,6 @@ export const StartMenuIconWrapper = styled.div<{
   }
 `;
 export const StartMenuLabelWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
   font-size: 14px;
   font-family: 'Apple SD Gothic Neo';
   margin-left: 17px;

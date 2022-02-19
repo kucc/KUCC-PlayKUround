@@ -43,20 +43,17 @@ export const IconWrapper = styled.div`
   cursor: pointer;
 `;
 export const ProfileWrapper = styled.div`
-  width: 294px;
   display: flex;
   flex-direction: column;
   margin-left: 13px;
 `;
-export const ToggleWrapper = styled.div`
-  position: absolute;
-  top: 0;
-  right: 5px;
-`;
+
 export const MyInfoContainer = styled.div`
   position: relative;
   display: flex;
   height: 147px;
+  margin-left: 10%;
+  margin-right:10%;
 `;
 export const AvatarWrapper = styled.div`
   margin-top: 67.9px;

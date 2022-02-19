@@ -41,9 +41,9 @@ export const Profile: FC<ProfileProps> = ({ label, imageSource }) => {
             </IconWrapper>
           </ItemsWrapper>
         </NameFullContainer>
-        <ToggleWrapper>
+       
           <ToggleDark />
-        </ToggleWrapper>
+        
       </MyInfoContainer>
       <Bar />
       <StartMenu />

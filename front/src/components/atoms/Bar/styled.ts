@@ -4,7 +4,7 @@ import { Colors } from '@styles';
 
 export const StyledBar = styled.div`
   height: 2px;
-  width: 234px;
-  margin-left: 17px;
+  margin-left: 10%;
+  margin-right:10%;
   background-color: ${Colors.lightGrey};
 `;
