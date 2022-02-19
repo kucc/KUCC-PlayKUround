@@ -6,12 +6,13 @@ import { AxiosError } from 'axios';
 import Link from 'next/link';
 
 import { BaseButton, BaseInput, Div, Navbar } from '@components';
-import { Home } from '@templates';
 
 import { loadMyInfoAPI, logInAPI } from 'apis/user';
 import User from 'interfaces/user';
 
 import useInput from '@hooks/useInput';
+
+import HomePage from '.';
 
 const LoginPage = () => {
   const queryClient = useQueryClient();
@@ -47,7 +48,7 @@ const LoginPage = () => {
   return (
     <>
       {me ? (
-        <Home />
+        <HomePage />
       ) : (
         <>
           <Navbar />

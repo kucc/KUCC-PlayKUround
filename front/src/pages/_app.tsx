@@ -5,6 +5,7 @@ import { ReactQueryDevtools } from 'react-query/devtools';
 import 'antd/dist/antd.css';
 import { AppProps, NextWebVitalsMetric } from 'next/app';
 import Head from 'next/head';
+import Script from 'next/script';
 import PropTypes from 'prop-types';
 
 // 패키지 불러오기

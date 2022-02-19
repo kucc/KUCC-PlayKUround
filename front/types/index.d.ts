@@ -9,20 +9,30 @@ interface backgroundProp {
 interface textProp {
   primary: string;
   darkGrey: string;
-  lightGrey: string;
   white: string;
+}
+interface iconProp {
+  primary: string;
+  black: string;
+  yellow: string;
 }
 
 interface shadowProp {
   primary: string;
-  none: string;
   dark: string;
+  none: string;
+}
+
+interface borderProp {
+  primary: string;
 }
 
 declare module 'styled-components' {
   export interface DefaultTheme {
     bg: backgroundProp;
     text: textProp;
+    icon: iconProp;
     shadow: shadowProp;
+    border: borderProp;
   }
 }

@@ -3,39 +3,6 @@ import styled from 'styled-components';
 import { Bell, Menu, Search } from '@assets';
 import { Colors } from '@styles';
 
-// export const StyledProfileImg = styled.img`
-//   border-radius: 50%;
-//   width: 37px;
-//   height: 37px;
-//   margin-top: -10px;
-//   margin-left: -5px;
-//   object-fit: cover;
-// `;
-
-export const MenuIcon = styled(Menu)`
-  width: 20px;
-  height: 14px;
-  path {
-    fill: ${({ theme }) => theme.icon.black};
-  }
-`;
-
-export const SearchIcon = styled(Search)`
-  width: 20px;
-  height: 20px;
-  path {
-    fill: ${({ theme }) => theme.icon.black};
-  }
-`;
-
-export const BellIcon = styled(Bell)`
-  width: 20px;
-  height: 22px;
-  path {
-    fill: ${({ theme }) => theme.icon.black};
-  }
-`;
-
 export const FirstPageLayout = styled.div`
   display: flex;
   align-items: center;
