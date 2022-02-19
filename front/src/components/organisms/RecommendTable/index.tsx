@@ -7,9 +7,9 @@ import { TextWrapper } from "./styled";
 export const RecommendTable = () => {
     const leftItems = [<MenuIcon />];
     const TextGroupList = [
-        {description: '떡볶이'},
-        {description: '마라탕'},
-        {description: '치킨'},
+        {description: '오늘 나는,고기가 먹고 싶다'},
+        {description: '분위기를 내고 싶을때, 양식데이트'},
+        {description: '오붓한 둘만의 데이트'},
         {description: '피자'},
         {description: '커피'},
         {description: '아이스크림'},
