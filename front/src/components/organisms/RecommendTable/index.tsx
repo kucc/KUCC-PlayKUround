@@ -1,9 +1,9 @@
 import React from "react";
 import { Navbar } from "..";
-import { RecommendCardList } from "@components";
+import { FullBar, RecommendCardList } from "@components";
 import { MenuIcon } from "@styles";
 import { ToggleDark } from "@components";
-import { TextWrapper } from "@components/molecules/Card/styled";
+import { TextWrapper } from "./styled";
 export const RecommendTable = () => {
     const leftItems = [<MenuIcon />];
     const TextGroupList = [
@@ -22,7 +22,10 @@ export const RecommendTable = () => {
         <>
         <Navbar leftItems={leftItems} text='코스 추천' />
         <ToggleDark />
+        <FullBar/>
         <TextWrapper>추천코스</TextWrapper>
+        <RecommendCardList TextGroupList={TextGroupList}/>
+        <TextWrapper>PlayKUround 인기코스</TextWrapper>
         <RecommendCardList TextGroupList={TextGroupList}/>
         </>
     );

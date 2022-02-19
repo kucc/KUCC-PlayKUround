@@ -7,3 +7,4 @@ export * from './Chip';
 export * from './Div';
 export * from './Text';
 export * from './RecommendCard';
+export * from './FullBar';
