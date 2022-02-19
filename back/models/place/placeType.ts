@@ -21,6 +21,7 @@ export interface PlaceAttributes {
   // 메뉴는 따로 모델 만들어서 연결시켜 줘야 할듯
   scrapCount: number;
   ratingCount: number;
+  commentCount: number;
   ratingNumber: number;
   dateConcept: '동적' | '비동적' | '체험';
   writer: number;
@@ -38,6 +39,7 @@ interface PlaceCreationAttributes
     | 'catchTableLink'
     | 'scrapCount'
     | 'ratingCount'
+    | 'commentCount'
     | 'ratingNumber'
     | 'sourceId'
   > {}

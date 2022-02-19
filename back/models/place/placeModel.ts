@@ -77,6 +77,10 @@ const PlaceModel = (sequelize: Sequelize) => {
         type: DataTypes.INTEGER,
         defaultValue: 0,
       },
+      commentCount: {
+        type: DataTypes.INTEGER,
+        defaultValue: 0,
+      },
       ratingNumber: {
         type: DataTypes.FLOAT,
         defaultValue: 0,
