@@ -6,4 +6,4 @@ export * from './MainToggleBar';
 export * from './MenuBar';
 export * from './SearchChipBar';
 export * from './ToggleDark';
-export * from './RecommendCard';
+export * from './RecommendCardList'

@@ -7,6 +7,7 @@ width: 114px;
 height:114px;
 border-radius: 12px;
 display: flex;
+cursor: pointer;
 `;
 export const CardImg = styled.img`
 position: absolute;
