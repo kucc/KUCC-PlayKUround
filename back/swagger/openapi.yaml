@@ -35,6 +35,8 @@ paths:
     $ref: "./paths/place/placeGetByMap.yaml"
   /api/place/getByRate:
     $ref: "./paths/place/placeGetByRate.yaml"
+  /api/place/getByComment:
+    $ref: "./paths/place/placeGetByComment.yaml"
   /api/place/getByArea:
     $ref: "./paths/place/placeGetByArea.yaml"
 

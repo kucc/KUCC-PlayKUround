@@ -11,13 +11,9 @@ const Op = sequelize.Op;
 // 댓글 개수에 따라 불러오기
 const getByComment: RequestHandler = async (req, res, next) => {
   try {
-    const result = Place.findAndCountAll({
+    const result = await Place.findAll({
+      order: [['commentCount', 'DESC']],
       attributes: mainAttributes,
-      include: {
-        model: Comment,
-        required: true,
-        // attributes: [[sequelize.fn('COUNT', 'id'), 'followingCount']],
-      },
     });
     res.status(200).json({
       success: true,
