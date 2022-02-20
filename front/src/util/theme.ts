@@ -24,6 +24,9 @@ const light = {
   border: {
     primary: Colors.lightGrey,
   },
+  overlay: {
+    primary: 'rgba(0, 0, 0, 0.24)',
+  },
 };
 
 const dark = {
@@ -50,6 +53,9 @@ const dark = {
   },
   border: {
     primary: Colors.boldGrey_8,
+  },
+  overlay: {
+    primary: 'rgba(255, 255, 255, 0.2)',
   },
 };
 
