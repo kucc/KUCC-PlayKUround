@@ -1,11 +1,9 @@
+import { animated } from '@react-spring/web';
 import styled from 'styled-components';
 
 import { Colors } from '@styles';
 
-export const HamburgerOverlay = styled.div<{ visible: boolean }>`
-  ${({ visible, theme }) =>
-    visible &&
-    `
+export const HamburgerOverlay = styled(animated.div)<{ visible: boolean }>`
   display: block;
   position: fixed;
   top: 0;
@@ -13,24 +11,10 @@ export const HamburgerOverlay = styled.div<{ visible: boolean }>`
   left: 0;
   right: 0;
   z-index: 999;
-  background-color: ${theme.overlay.primary};
-  `}
 `;
 
-export const HamburgerWrapper = styled.div<{ visible: boolean }>`
+export const HamburgerWrapper = styled(animated.div)<{ visible: boolean }>`
   z-index: 1000;
-  @keyframes fadeInLeft {
-    0% {
-      opacity: 0;
-      transform: translate3d(-100%, 0, 0);
-    }
-    to {
-      opacity: 1;
-      transform: translateZ(0);
-    }
-  }
-
-  ${({ visible }) => (visible ? 'animation: fadeInLeft 0.7s;' : 'display: none;')}
   position: absolute;
 `;
 

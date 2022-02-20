@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { ArrowRight, Cross } from '@assets';
+import { ArrowRight } from '@assets';
 import { Colors, HorizontalArrangement } from '@styles';
 
 export const HamburgerMenuWithAvatarWrapper = styled.div<{ width: number; height: number }>`
@@ -15,15 +15,9 @@ export const HamburgerMenuWithAvatarWrapper = styled.div<{ width: number; height
 export const InfoWrapper = styled.div`
   display: flex;
   align-items: center;
-  font-size: 16px;
   padding-top: 66px;
   padding-bottom: 22px;
-  span:nth-child(2) {
-    margin-left: 13px;
-  }
-  span:nth-child(3) {
-    margin-left: 8px;
-  }
+  font-size: 16px;
   line-height: 28px;
 `;
 
