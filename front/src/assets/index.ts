@@ -3,6 +3,7 @@ import Back from './icons/back.svg';
 import Bell from './icons/bell.svg';
 import Cartoon from './icons/cartoon.svg';
 import Coffee from './icons/coffee.svg';
+import Configuation from './icons/configuration.svg';
 import Cross from './icons/cross.svg';
 import Dice from './icons/dice.svg';
 import Down from './icons/down.svg';
@@ -11,6 +12,7 @@ import Global from './icons/global.svg';
 import Good from './icons/good.svg';
 import Heart from './icons/heart.svg';
 import Home from './icons/home.svg';
+import Info from './icons/info.svg';
 import Location from './icons/location.svg';
 import Map from './icons/map.svg';
 import Menu from './icons/menu.svg';
@@ -35,6 +37,7 @@ export {
   Bell,
   Cartoon,
   Coffee,
+  Configuation,
   Cross,
   Dice,
   Down,
@@ -43,6 +46,7 @@ export {
   Good,
   Heart,
   Home,
+  Info,
   Location,
   Map,
   Menu,
