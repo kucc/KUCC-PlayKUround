@@ -15,6 +15,8 @@ interface iconProp {
   primary: string;
   black: string;
   yellow: string;
+  white: string;
+  bothWhite: string;
 }
 
 interface shadowProp {
@@ -26,6 +28,9 @@ interface shadowProp {
 interface borderProp {
   primary: string;
 }
+interface overlayProp {
+  primary: string;
+}
 
 declare module 'styled-components' {
   export interface DefaultTheme {
@@ -34,5 +39,6 @@ declare module 'styled-components' {
     icon: iconProp;
     shadow: shadowProp;
     border: borderProp;
+    overlay: overlayProp;
   }
 }

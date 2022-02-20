@@ -15,6 +15,8 @@ const light = {
     primary: Colors.primary,
     black: Colors.black,
     yellow: Colors.yellow,
+    white: Colors.white,
+    bothWhite: Colors.white,
   },
   shadow: {
     primary: Colors.shadow,
@@ -23,6 +25,9 @@ const light = {
   },
   border: {
     primary: Colors.lightGrey,
+  },
+  overlay: {
+    primary: 'rgba(0, 0, 0, 0.24)',
   },
 };
 
@@ -42,6 +47,8 @@ const dark = {
     primary: Colors.primary,
     black: Colors.white,
     yellow: Colors.yellow,
+    white: Colors.black,
+    bothWhite: Colors.white,
   },
   shadow: {
     primary: Colors.darkShadow,
@@ -50,6 +57,9 @@ const dark = {
   },
   border: {
     primary: Colors.boldGrey_8,
+  },
+  overlay: {
+    primary: 'rgba(255, 255, 255, 0.2)',
   },
 };
 
