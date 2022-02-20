@@ -3,7 +3,8 @@ import { Navbar } from "..";
 import { FullBar, RecommendCardList } from "@components";
 import { MenuIcon } from "@styles";
 import { ToggleDark } from "@components";
-import { TextWrapper } from "./styled";
+import { TextWrapper,RecommendTableWrapper } from "./styled";
+
 export const RecommendTable = () => {
     const leftItems = [<MenuIcon />];
     const TextGroupList = [
@@ -19,7 +20,8 @@ export const RecommendTable = () => {
 
     ]
     return (
-        <>
+        // <RecommendTableWrapper>
+        <>        
         <Navbar leftItems={leftItems} text='코스 추천' fontStyle ={{fontFamily: 'Apple SD Gothic Neo'}} />
         <ToggleDark />
         <FullBar/>
@@ -28,5 +30,8 @@ export const RecommendTable = () => {
         <TextWrapper>PlayKUround 인기코스</TextWrapper>
         <RecommendCardList TextGroupList={TextGroupList}/>
         </>
+
+        //</RecommendTableWrapper>
+        
     );
 }

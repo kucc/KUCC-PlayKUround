@@ -1,10 +1,12 @@
 import styled from "styled-components";
 import { Colors } from "@styles";
-export const CardWrapper = styled.div`
+export const CardWrapper = styled.div<{width:number; height: number}>`
 position: relative;
 overflow:hidden;
-width: 114px;
-height:114px;
+  width: ${({ width }) => width}px;
+  height: ${({ height }) => height}px;
+/%width: 114px;
+height:114px;%/
 border-radius: 12px;
 display: flex;
 cursor: pointer;
