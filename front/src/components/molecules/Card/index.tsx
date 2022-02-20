@@ -1,9 +1,5 @@
 import React from 'react';
 
-import { Chip } from '@components';
-
-import { Colors } from '@styles';
-
 import {
   CardContainer,
   ChipWrapper,
@@ -19,10 +15,10 @@ import {
 } from './styled';
 import { CardProps } from './type';
 
-export const Card = ({ title, description, ChipGroupList }: CardProps) => {
+export const Card = ({ title, description, imageSource, ChipGroupList }: CardProps) => {
   return (
     <CardContainer>
-      <StyledImg src='pictures/cartoon-cafe.png' width={88} height={88} />
+      <StyledImg src={imageSource} width={88} height={88} />
       <ContentWrapper>
         <TextWrapper>
           <TextTopWrapper>
