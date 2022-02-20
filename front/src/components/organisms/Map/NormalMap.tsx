@@ -1,10 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import { useQuery } from 'react-query';
 
-import { getByLocationAPI } from 'apis/place';
+import {
+  courseWhiteBtnIcon,
+  locationBtnIcon,
+  myLocationIcon,
+  placeBigIcon,
+  placeIcon,
+  placeNoPicture,
+  placePicture,
+} from '@components/atoms/MapIcons';
+
 import { PlaceType } from 'interfaces/place';
 
-const NormalMap = ({
+import { updateMarkers } from './commonElement';
+
+const CourseMap = ({
   setCourseMode,
   places,
 }: {
@@ -40,19 +50,7 @@ const NormalMap = ({
           title: 'current_Location',
           position: new naver.maps.LatLng(latitude, longitude),
           icon: {
-            //text left의 계산법 : - text의 width / 2 + img의 width / 2
-            content: `
-                      <img 
-                        src="icons/my-location.svg" 
-                        alt="my-location"
-                        style="
-                          position: absolute; 
-                          left: 0px; 
-                          top: 0px;
-                          width: 30px;
-                          height: 30px;
-                      ">
-                      `,
+            content: myLocationIcon,
             size: new naver.maps.Size(30, 30),
             scaledSize: new naver.maps.Size(30, 30),
             origin: new naver.maps.Point(0, 0),
@@ -60,23 +58,15 @@ const NormalMap = ({
           },
         });
 
-        // course White 아이콘
-        const courseWhiteBtnHtml: any =
-          '<img style="position: absolute; top: 71px; left: 16px" alt="course-white" src="icons/course-white.svg">';
-
-        // 현재 위치 아이콘 => svg 파일 수정해야 함!
-        const locationBtnHtml: any =
-          '<img style="position: absolute; top: 23px; left: 16px" alt="get-location" src="icons/get-location.svg">';
-
         naver.maps.Event.once(map, 'init_stylemap', function () {
           //customControl 객체 이용하기
-          const courseButton = new naver.maps.CustomControl(courseWhiteBtnHtml, {
-            position: naver.maps.Position.TOP_LEFT,
+          const courseButton = new naver.maps.CustomControl(courseWhiteBtnIcon, {
+            position: naver.maps.Position.TOP_RIGHT,
           });
 
           //customControl 객체 이용하기
-          var locationButton = new naver.maps.CustomControl(locationBtnHtml, {
-            position: naver.maps.Position.TOP_LEFT,
+          var locationButton = new naver.maps.CustomControl(locationBtnIcon, {
+            position: naver.maps.Position.TOP_RIGHT,
           });
 
           courseButton.setMap(map);
@@ -100,33 +90,12 @@ const NormalMap = ({
           markers.push(
             new naver.maps.Marker({
               map: map,
-              title: place.placeName,
+              title: place.placeName + '_' + 'marker-book',
               position: new naver.maps.LatLng(place.addressLocation[0], place.addressLocation[1]),
               icon: {
                 //text left의 계산법 : - text의 width / 2 + img의 width / 2
-                content: `
-                          <img 
-                            src="icons/marker-book.svg" 
-                            alt="marker-book"
-                            style="
-                              position: absolute; 
-                              width: 22px; 
-                              height: 35px; 
-                              left: 0px; 
-                              top: 0px;
-                          ">
-                          <div 
-                            style="
-                              position: absolute; 
-                              width: 60px; 
-                              left: -19px;
-                              text-align : center;
-                              line-height: 100%;
-                              top: 40px;
-                            "
-                          >
-                            ${place.placeName}
-                          <div/>`,
+                // marker-book에다 장소 넣어주기
+                content: placeIcon(place.placeName, 'marker-book'),
                 size: new naver.maps.Size(22, 35),
                 anchor: new naver.maps.Point(11, 35),
               },
@@ -137,26 +106,7 @@ const NormalMap = ({
           infoWindows.push(
             new naver.maps.InfoWindow({
               content:
-                place.pictureLink.length > 0
-                  ? `
-                  <div>
-                    <div style="position: absolute; bottom: 10px; right: 12px; font-size: 10px; display: flex; align-items: center; color: white; z-index:10;">
-                      <div style="margin-top: 3.2px;">자세히 보기&nbsp;&nbsp;</div>
-                      <img src="icons/place-detail-white.svg"  />
-                    </div>
-                    <div style="width:120px; height:120px; margin:5px; border-radius: 15px; background-color: black;">
-                      <img style="width:120px; height:120px; border-radius: 15px;object-fit: cover; opacity: 0.8;" src="pictures/${place.pictureLink[0]}" />
-                    </div>
-                  </div>`
-                  : `
-                  <div>
-                    <div style="position: absolute; bottom: 10px; right: 12px; font-size: 10px; display: flex; align-items: center;">
-                      <div style="margin-top: 3.2px;">자세히 보기&nbsp;&nbsp;</div>
-                      <img src="icons/place-detail-black.svg" />
-                    </div>
-                    <img src="icons/no-image.svg" style="width:120px; padding:5px; border-radius: 15px;" />
-                  </div>
-                  `,
+                place.pictureLink.length > 0 ? placePicture(place.pictureLink[0]) : placeNoPicture,
               // img 태그에 a 태그를 넣어 이동하게 하자.
               borderWidth: 1,
               borderColor: '#E4E4E4',
@@ -169,33 +119,13 @@ const NormalMap = ({
             // 모든 marker의 크기를 원래 상태로
             markers.map(marker => {
               const title = marker.getTitle();
+              const [placeName, placeCategory] = title.split('_');
               marker.setIcon({
                 //text left의 계산법 : - text의 width / 2 + img의 width / 2
-                content: `
-                          <img 
-                            src="icons/marker-book.svg" 
-                            alt="marker-book"
-                            style="
-                              position: absolute; 
-                              width: 22px; 
-                              height: 35px; 
-                              left: 0px; 
-                              top: 0px;
-                          ">
-                          <div 
-                            style="
-                              position: absolute; 
-                              width: 60px; 
-                              left: -19px;
-                              text-align : center;
-                              line-height: 100%;
-                              top: 40px;
-                            "
-                          >
-                            ${title}
-                          <div/>`,
-                size: new naver.maps.Size(22, 35),
-                anchor: new naver.maps.Point(11, 35),
+                content: placeIcon(placeName, placeCategory),
+                size: new naver.maps.Size(26, 32),
+                origin: new naver.maps.Point(0, 0),
+                anchor: new naver.maps.Point(13, 32),
               });
             });
 
@@ -203,38 +133,21 @@ const NormalMap = ({
             if (infoWindow.getMap()) {
               infoWindow.close();
             } else {
+              // 애니메이션이 너무 별로다..
+              // markers[key].setAnimation(2);
               const title = markers[key].getTitle();
+              const [placeName, placeCategory] = title.split('_');
               markers[key].setIcon({
                 //text left의 계산법 : - text의 width / 2 + img의 width / 2
-                content: `
-                          <img 
-                            src="icons/marker-book.svg" 
-                            alt="marker-book"
-                            style="
-                              position: absolute; 
-                              width: 33px; 
-                              height: 52.5px; 
-                              left: 0px; 
-                              top: 0px;
-                          ">
-                          <div 
-                            style="
-                              position: absolute; 
-                              width: 60px; 
-                              left: -13.5px;
-                              text-align : center;
-                              line-height: 100%;
-                              top: 58px;
-                            "
-                          >
-                            ${title}
-                          <div/>`,
-                size: new naver.maps.Size(33, 52.5),
-                anchor: new naver.maps.Point(16.5, 52.5),
+                content: placeBigIcon(placeName, placeCategory),
               });
               infoWindow.open(map, markers[key]);
             }
           });
+        });
+        //보이는 지도 영역의 마커만 표시하기
+        naver.maps.Event.addListener(map, 'idle', function () {
+          updateMarkers(map, markers);
         });
       };
       initMap();
@@ -254,4 +167,4 @@ const NormalMap = ({
   );
 };
 
-export default NormalMap;
+export default CourseMap;
