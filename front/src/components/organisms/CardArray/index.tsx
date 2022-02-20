@@ -2,19 +2,17 @@ import React from 'react';
 
 import { Card } from '@components';
 
-import { PlaceType } from 'interfaces/place';
+import { SimplePlaceType } from 'interfaces/place';
 
 import { StyledCardContainer, StyledReview, StyledScrap, StyledStar } from './styled';
 import { CardArrayProps } from './type';
 
-const description =
-  'No.1 만화카페에 관한 설명입니다.No.1 만화카페에 관한 설명입니다.No.1 만화카페에 관한';
-
 export const CardArray = ({ places, style }: CardArrayProps) => {
   return (
     <StyledCardContainer style={style}>
-      {places?.map((place: PlaceType, key: number) => {
-        const { placeName, scrapCount } = place;
+      {places?.map((place: SimplePlaceType, key: number) => {
+        const { placeName, scrapCount, ratingCount, commentCount, placeDescription, pictureLink } =
+          place;
         const ChipGroupList = [
           {
             icon: <StyledScrap />,
@@ -22,18 +20,19 @@ export const CardArray = ({ places, style }: CardArrayProps) => {
           },
           {
             icon: <StyledStar />,
-            label: '4.9',
+            label: ratingCount,
           },
           {
             icon: <StyledReview />,
-            label: '20',
+            label: commentCount,
           },
         ];
         return (
           <Card
+            imageSource={pictureLink[0]}
             key={`card_${key}`}
             title={placeName}
-            description={description}
+            description={placeDescription}
             ChipGroupList={ChipGroupList}
           />
         );
