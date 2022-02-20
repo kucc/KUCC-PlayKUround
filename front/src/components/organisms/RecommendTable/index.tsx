@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Navbar } from "..";
 import { FullBar, RecommendCardList } from "@components";
 import { MenuIcon } from "@styles";
@@ -6,7 +6,11 @@ import { ToggleDark } from "@components";
 import { TextWrapper,RecommendTableWrapper } from "./styled";
 
 export const RecommendTable = () => {
-    const leftItems = [<MenuIcon />];
+    const [visible, setVisible] = useState<boolean>(false);
+    const onClickMenuIcon = () => {
+            return setVisible(!visible);
+        };
+    const leftItems = [{icon: <MenuIcon />,onClickLeftItems: onClickMenuIcon} ];
     const TextGroupList = [
         {description: '오늘 나는,고기가 먹고 싶다'},
         {description: '분위기를 내고 싶을때, 양식데이트'},
