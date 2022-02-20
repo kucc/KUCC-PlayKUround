@@ -6,7 +6,7 @@ import { AvatarProps } from './type';
 export const Avatar = ({ imageSource, style, size, background }: AvatarProps) => {
   return (
     <AvatarImgDiv size={size} background={background} style={style}>
-      <AvatarImg src={imageSource || '/pictures/profiles.png'} />
+      <AvatarImg src={imageSource || '/pictures/profile.png'} />
     </AvatarImgDiv>
   );
 };

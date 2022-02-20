@@ -29,10 +29,20 @@ export const Navbar: React.FC<NavbarProps> = ({ leftItems, rightItems, text, fon
         )}
         <StyledNavbarItemsContainer>
           <StyledNavbarItems>
-            {leftItems && leftItems.map((item, key) => <div key={key}>{item}</div>)}
+            {leftItems &&
+              leftItems.map(({ icon, onClickLeftItems }, key) => (
+                <div key={key} onClick={onClickLeftItems}>
+                  {icon}
+                </div>
+              ))}
           </StyledNavbarItems>
           <StyledNavbarItems>
-            {rightItems && rightItems.map((item, key) => <div key={key}>{item}</div>)}
+            {rightItems &&
+              rightItems.map(({ icon, onClickRightItems }, key) => (
+                <div key={key} onClick={onClickRightItems}>
+                  {icon}
+                </div>
+              ))}
           </StyledNavbarItems>
         </StyledNavbarItemsContainer>
       </StyledNavbarContainer>

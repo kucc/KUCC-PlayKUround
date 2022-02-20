@@ -43,7 +43,6 @@ export const MainTable = () => {
       <StlyedMainTableTop>
         <MainToggleBar currentMode={currentMode} setCurrentMode={setCurrentMode} />
         <MainSelect />
-        <ToggleDark />
       </StlyedMainTableTop>
       <div style={{ marginTop: '8px' }}>{renderMainItem()}</div>
     </StyledMainTable>

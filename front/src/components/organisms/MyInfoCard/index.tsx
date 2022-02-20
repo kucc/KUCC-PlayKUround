@@ -82,8 +82,14 @@ export const MyInfoCard = ({ iconLabel, imageSource, name, style }: MyInfoCardPr
         <Avatar size={100} imageSource={imageSource || '/pictures/profile.png'} />
       </AvatarLabelWrapper>
       <NameWrapper>
-        <Label>{name}</Label>
-        <span>님</span>
+        {name ? (
+          <>
+            <Label>{name}</Label>
+            <span>님</span>
+          </>
+        ) : (
+          <Label>로그인이 필요합니다.</Label>
+        )}
       </NameWrapper>
       <MenuBar iconLabel={iconLabel || DefaultIconLabel} style={{ paddingBottom: '10px' }} />
     </MyInfoCardWrapper>

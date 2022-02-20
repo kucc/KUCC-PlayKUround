@@ -1,10 +1,15 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+
+import { useSpring } from '@react-spring/core';
+import useDarkMode from 'use-dark-mode';
 
 // import { useMutation, useQuery, useQueryClient } from 'react-query';
 // import { AxiosError } from 'axios';
 // import Link from 'next/link';
 // import Router from 'next/router';
-import { MainTable, Navbar, SearchChipBar, Text } from '@components';
+import { HamburgerMenuWithAvatar, MainTable, Navbar, SearchChipBar, Text } from '@components';
+
+import useWindowDimensions from '@hooks/useWindowDimensions';
 
 // import { loadMyInfoAPI, logOutAPI } from 'apis/user';
 // import User from 'interfaces/user';
@@ -12,6 +17,8 @@ import {
   ButtonWrapper,
   Description,
   FirstPageLayout,
+  HamburgerOverlay,
+  HamburgerWrapper,
   StyledButton,
   StyledImg,
   StyledLogo,
@@ -19,11 +26,14 @@ import {
 } from './styled';
 import { HomeProps } from './type';
 
-export const Home = ({ leftItems, rightItems, NavBarTitle }: HomeProps) => {
+export const Home = ({ leftItems, rightItems, NavBarTitle, visible, setVisible }: HomeProps) => {
   // const queryClient = useQueryClient();
 
   // const [loading, setLoading] = useState<boolean>(false);
   const [join, setJoin] = useState<boolean>(false);
+  const { width } = useWindowDimensions();
+
+  const darkMode = useDarkMode();
 
   const onClickJoinMainPage = () => {
     setJoin(true);
@@ -56,10 +66,49 @@ export const Home = ({ leftItems, rightItems, NavBarTitle }: HomeProps) => {
   //   },
   // });
 
+  const onClickSetVisible = () => {
+    setVisible(!visible);
+  };
+
+  const fadeAnimation = useSpring({
+    left: visible ? 0 : -width * 0.75,
+    config: {
+      duration: 400,
+    },
+  });
+
+  const lightOpacityProp = useSpring({
+    background: 'rgba(0, 0, 0, 0.24)',
+    opacity: visible ? 1 : 0,
+  });
+
+  const darkOpacityProp = useSpring({
+    background: 'rgba(255, 255, 255, 0.1)',
+    opacity: visible ? 1 : 0,
+  });
+
   return (
     <>
       {isLocalStorgeSave === 'pass' || join ? (
         <>
+          <HamburgerOverlay
+            visible={visible}
+            onClick={onClickSetVisible}
+            style={
+              darkMode.value
+                ? {
+                    ...darkOpacityProp,
+                    display: darkOpacityProp.opacity.to(o => (o === 0 ? 'none' : 'block')),
+                  }
+                : {
+                    ...lightOpacityProp,
+                    display: lightOpacityProp.opacity.to(o => (o === 0 ? 'none' : 'block')),
+                  }
+            }
+          />
+          <HamburgerWrapper visible={visible} style={fadeAnimation}>
+            <HamburgerMenuWithAvatar />
+          </HamburgerWrapper>
           <Navbar text={NavBarTitle} leftItems={leftItems} rightItems={rightItems} />
           <SearchChipBar />
           <MainTable />
