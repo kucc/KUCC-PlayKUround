@@ -15,6 +15,8 @@ const light = {
     primary: Colors.primary,
     black: Colors.black,
     yellow: Colors.yellow,
+    white: Colors.white,
+    bothWhite: Colors.white,
   },
   shadow: {
     primary: Colors.shadow,
@@ -45,6 +47,8 @@ const dark = {
     primary: Colors.primary,
     black: Colors.white,
     yellow: Colors.yellow,
+    white: Colors.black,
+    bothWhite: Colors.white,
   },
   shadow: {
     primary: Colors.darkShadow,
