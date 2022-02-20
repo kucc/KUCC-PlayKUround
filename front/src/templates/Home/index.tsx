@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 // import { useMutation, useQuery, useQueryClient } from 'react-query';
 // import { AxiosError } from 'axios';
 // import Link from 'next/link';
 // import Router from 'next/router';
-import { MainTable, Navbar, SearchChipBar, Text } from '@components';
+import { HamburgerMenuWithAvatar, MainTable, Navbar, SearchChipBar, Text } from '@components';
 
 // import { loadMyInfoAPI, logOutAPI } from 'apis/user';
 // import User from 'interfaces/user';
@@ -12,6 +12,8 @@ import {
   ButtonWrapper,
   Description,
   FirstPageLayout,
+  HamburgerOverlay,
+  HamburgerWrapper,
   StyledButton,
   StyledImg,
   StyledLogo,
@@ -19,7 +21,7 @@ import {
 } from './styled';
 import { HomeProps } from './type';
 
-export const Home = ({ leftItems, rightItems, NavBarTitle }: HomeProps) => {
+export const Home = ({ leftItems, rightItems, NavBarTitle, visible, setVisible }: HomeProps) => {
   // const queryClient = useQueryClient();
 
   // const [loading, setLoading] = useState<boolean>(false);
@@ -56,10 +58,31 @@ export const Home = ({ leftItems, rightItems, NavBarTitle }: HomeProps) => {
   //   },
   // });
 
+  // const el = useRef() as any;
+  // const handleClickOutside = ({ target }: any) => {
+  //   console.log('target', target);
+  //   console.log('el', el.current);
+  //   console.log('el.current', el.current.contains(target));
+  //   if (visible && !el.current.contains(target)) {
+  //     setVisible(false);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   window.addEventListener('click', handleClickOutside);
+  //   return () => {
+  //     window.removeEventListener('click', handleClickOutside);
+  //   };
+  // }, []);
+
   return (
     <>
       {isLocalStorgeSave === 'pass' || join ? (
         <>
+          <HamburgerOverlay visible={visible} />
+          <HamburgerWrapper visible={visible}>
+            <HamburgerMenuWithAvatar />
+          </HamburgerWrapper>
           <Navbar text={NavBarTitle} leftItems={leftItems} rightItems={rightItems} />
           <SearchChipBar />
           <MainTable />

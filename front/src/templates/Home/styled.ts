@@ -1,7 +1,38 @@
 import styled from 'styled-components';
 
-import { Bell, Menu, Search } from '@assets';
 import { Colors } from '@styles';
+
+export const HamburgerOverlay = styled.div<{ visible: boolean }>`
+  ${({ visible, theme }) =>
+    visible &&
+    `
+  display: block;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  background-color: ${theme.overlay.primary};
+  `}
+`;
+
+export const HamburgerWrapper = styled.div<{ visible: boolean }>`
+  z-index: 1000;
+  @keyframes fadeInLeft {
+    0% {
+      opacity: 0;
+      transform: translate3d(-100%, 0, 0);
+    }
+    to {
+      opacity: 1;
+      transform: translateZ(0);
+    }
+  }
+
+  ${({ visible }) => (visible ? 'animation: fadeInLeft 0.7s;' : 'display: none;')}
+  position: absolute;
+`;
 
 export const FirstPageLayout = styled.div`
   display: flex;
