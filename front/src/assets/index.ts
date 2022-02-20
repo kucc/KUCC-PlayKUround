@@ -1,3 +1,4 @@
+import ArrowRight from './icons/arrow-right.svg';
 import ArrowUp from './icons/arrow-up.svg';
 import Back from './icons/back.svg';
 import Bell from './icons/bell.svg';
@@ -32,6 +33,7 @@ import Sun from './icons/sun.svg';
 import Table from './icons/table.svg';
 
 export {
+  ArrowRight,
   ArrowUp,
   Back,
   Bell,
