@@ -1,3 +1,4 @@
+import { animated } from '@react-spring/web';
 import styled from 'styled-components';
 
 import { Colors } from '@styles';
@@ -6,39 +7,23 @@ export const HamburgerMenuWrapper = styled.div`
   display: flex;
   flex-direction: column;
 `;
-export const HamburgerMenuElementWrapper = styled.div<{
-  width?: number;
-  height?: number;
+export const HamburgerMenuElementWrapper = styled(animated.div)<{
+  width: number;
+  height: number;
+  isSelected?: boolean;
 }>`
   display: flex;
   align-items: center;
   height: 44px;
   margin-bottom: 8px;
   border-radius: 24px;
-  background-color: ${({ theme }) => theme.bg.primary};
   color: ${({ theme }) => theme.text.primary};
-  &.active {
-    background-image: linear-gradient(
-      54.4deg,
-      ${Colors.primary} 11.46%,
-      #f5c68c 99.99%,
-      #f9f8a8 100%
-    );
-    color: ${Colors.white};
-    svg {
-      > path {
-        fill: ${Colors.white};
-      }
-      width: ${({ width }) => width}px;
-      height: ${({ height }) => height}px;
-    }
-  }
   svg {
+    ${({ width }) => `width: ${width}px;`}
+    ${({ height }) => `height: ${height}px;`}
     > path {
-      fill: ${({ theme }) => theme.icon.black};
+      fill: ${({ isSelected, theme }) => (isSelected ? theme.icon.bothWhite : theme.icon.black)};
     }
-    width: ${({ width }) => width}px;
-    height: ${({ height }) => height}px;
   }
   cursor: pointer;
 `;
