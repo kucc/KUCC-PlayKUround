@@ -10,12 +10,13 @@ export const HamburgerMenuElementWrapper = styled.div<{
   width?: number;
   height?: number;
 }>`
-  display: inline-flex;
-  width: 266px;
-  height: 48px;
+  display: flex;
+  align-items: center;
+  height: 44px;
+  margin-bottom: 8px;
   border-radius: 24px;
-  background-color: ${Colors.white};
-  color: ${Colors.black};
+  background-color: ${({ theme }) => theme.bg.primary};
+  color: ${({ theme }) => theme.text.primary};
   &.active {
     background-image: linear-gradient(
       54.4deg,
@@ -34,7 +35,7 @@ export const HamburgerMenuElementWrapper = styled.div<{
   }
   svg {
     > path {
-      fill: ${Colors.black};
+      fill: ${({ theme }) => theme.icon.black};
     }
     width: ${({ width }) => width}px;
     height: ${({ height }) => height}px;

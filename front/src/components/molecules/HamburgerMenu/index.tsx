@@ -12,7 +12,6 @@ import { HamburgerMenuProps } from './type';
 export const HamburgerMenu = ({ style, menuArray }: HamburgerMenuProps) => {
   const [active, setActive] = useState<number | null>(null);
 
-  console.log('menuArray', menuArray);
   return (
     <>
       {menuArray.map(({ width, height, icon, label, onClick }, index) => {
