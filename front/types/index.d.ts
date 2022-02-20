@@ -15,6 +15,8 @@ interface iconProp {
   primary: string;
   black: string;
   yellow: string;
+  white: string;
+  bothWhite: string;
 }
 
 interface shadowProp {
