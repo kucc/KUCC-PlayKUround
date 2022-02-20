@@ -27,10 +27,10 @@ export interface PlaceType {
   naverLink: string;
   catchTableLink: string;
   instaLink: string;
-  placeHashtag: string[];
   placeCategory: string;
   placeCategoryDetail: number;
   placePrice: 'free' | 'low' | 'mid';
+  // 메뉴는 따로 모델 만들어서 연결시켜 줘야 할듯
   scrapCount: number;
   ratingCount: number;
   commentCount: number;
@@ -43,4 +43,5 @@ export interface PlaceType {
     menuPicture: Array<string>;
     isRecommended: boolean;
   };
+  sourceId?: string;
 }
