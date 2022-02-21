@@ -1,0 +1,10 @@
+get:
+  tags:
+    - post
+  summary: 최신순으로 불러오기
+  description: Get 방식으로 최신순으로 게시물들을 가져옵니다.
+  responses:
+    200:
+      description: 게시물 가져오기 성공.
+    400:
+      description: 게시물 가져오기 실패.

@@ -1,0 +1,32 @@
+post:
+  tags:
+    - post
+  summary: 게시물 생성
+  description: Post 방식으로 게시물을 생성합니다. login이 필요한 작업입니다.
+  requestBody:
+    description: 게시물 데이터입니다.
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - source
+            - hashtags
+          properties:
+            placeId:
+              type: number
+              description: place id 값. 어느 place에서 작성됐는지 정보입니다.
+              example: 1
+            description:
+              type: string
+              description: post 설명입니다.
+              example: 이 사진에 대한 자세한 설명 이 사진에 대한 자세한 설명 이 사진에 대한 자세한 설명 이 사진에 대한 자세한 설명 이 사진에 대한 자세한 설명 이 사진에 대한 자세한 설명 이 사진에 대한 자세한 설명 이 사진에 대한 자세한 설명 이 사진에 대한 자세한 설명
+
+  responses:
+    200:
+      description: 생성 완료
+    400:
+      description: sequelize 생성 에러
+    403:
+      description: 필수인 정보가 입력되지 않았습니다.

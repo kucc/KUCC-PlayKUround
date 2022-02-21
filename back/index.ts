@@ -28,6 +28,7 @@ const redisClient = redis.createClient({
 
 const userRouter = require('./routes/user');
 const placeRouter = require('./routes/place');
+const postRouter = require('./routes/post');
 const commentRouter = require('./routes/comment');
 const hashtagRouter = require('./routes/hashtag');
 
@@ -103,6 +104,7 @@ app.get('/', (req: Request, res: Response) => {
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 app.use('/api/user', userRouter);
 app.use('/api/place', placeRouter);
+app.use('/api/post', postRouter);
 app.use('/api/comment', commentRouter);
 app.use('/api/hashtag', hashtagRouter);
 

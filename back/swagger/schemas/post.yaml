@@ -1,0 +1,21 @@
+type: object
+required:
+  - placeId
+  - description
+description: 게시물 정보입니다.
+properties:
+  id:
+    type: number
+    description: sql 자동생성 id
+  placeId:
+    type: number
+    description: place id 값. 어느 place에서 작성됐는지 정보입니다.
+  description:
+    type: string
+    description: post 설명.
+  likeNum:
+    type: number
+    description: post 좋아요 숫자.
+  sourceId:
+    type: string
+    description: source를 위한 primary key. front에서는 사용할 필요 없을 듯 합니다.

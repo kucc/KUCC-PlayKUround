@@ -37,10 +37,6 @@ const UserModel = (sequelize: Sequelize) => {
         type: DataTypes.INTEGER,
         defaultValue: 0,
       },
-      image: {
-        type: DataTypes.STRING,
-        allowNull: true,
-      },
       token: {
         type: DataTypes.STRING,
       },
@@ -53,22 +49,27 @@ const UserModel = (sequelize: Sequelize) => {
       },
       postList: {
         type: DataTypes.JSON,
-        defaultValue: [],
+        defaultValue: {},
         allowNull: true,
       },
       courseList: {
         type: DataTypes.JSON,
-        defaultValue: [],
+        defaultValue: {},
         allowNull: true,
       },
       scrabList: {
         type: DataTypes.JSON,
-        defaultValue: [],
+        defaultValue: {},
         allowNull: true,
       },
       likeList: {
         type: DataTypes.JSON,
-        defaultValue: [],
+        defaultValue: {},
+        allowNull: true,
+      },
+      rateList: {
+        type: DataTypes.JSON,
+        defaultValue: {},
         allowNull: true,
       },
     },
