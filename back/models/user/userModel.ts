@@ -51,6 +51,26 @@ const UserModel = (sequelize: Sequelize) => {
         type: DataTypes.STRING,
         primaryKey: true,
       },
+      postList: {
+        type: DataTypes.JSON,
+        defaultValue: [],
+        allowNull: true,
+      },
+      courseList: {
+        type: DataTypes.JSON,
+        defaultValue: [],
+        allowNull: true,
+      },
+      scrabList: {
+        type: DataTypes.JSON,
+        defaultValue: [],
+        allowNull: true,
+      },
+      likeList: {
+        type: DataTypes.JSON,
+        defaultValue: [],
+        allowNull: true,
+      },
     },
     {
       timestamps: true,

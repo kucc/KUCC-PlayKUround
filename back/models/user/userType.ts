@@ -15,10 +15,26 @@ export interface UserAttributes {
   updatedAt?: Date;
   deletedAt?: Date;
   sourceId?: string;
+  postList?: string[];
+  courseList?: string[];
+  scrabList?: string[];
+  likeList?: string[];
 }
 
 interface UserCreationAttributes
-  extends Optional<UserAttributes, 'id' | 'role' | 'token' | 'tokenExp' | 'image' | 'sourceId'> {}
+  extends Optional<
+    UserAttributes,
+    | 'id'
+    | 'role'
+    | 'token'
+    | 'tokenExp'
+    | 'image'
+    | 'sourceId'
+    | 'postList'
+    | 'courseList'
+    | 'scrabList'
+    | 'likeList'
+  > {}
 
 export interface UserInterface
   extends Model<UserAttributes, UserCreationAttributes>,
