@@ -1,6 +1,6 @@
 import { RequestHandler } from 'express';
 
-import { Comment, Hashtag, Place, Post } from '../models';
+import { Comment, Hashtag, Place, Post, User } from '../models';
 import { mainAttributes } from './utils';
 
 const sequelize = require('sequelize');
@@ -12,6 +12,22 @@ const getByLatest: RequestHandler = async (req, res, next) => {
       order: [['createdAt', 'DESC']],
     });
     res.status(200).send({ success: true, result });
+  } catch (error) {
+    res.status(400).json({ success: false, error });
+    next(error);
+  }
+};
+
+const likePost: RequestHandler = async (req, res, next) => {
+  const { userId, postId } = req.body;
+  const userResult: any = await User.findOne({ where: { id: userId } });
+  const postResult: any = await Post.findOne({ where: { id: postId } });
+  if (userResult?.likeList?.includes(postId)) res.status(403).send('이미 추천한 게시물입니다.');
+  try {
+    await postResult?.increment('likeNum', { by: 1 });
+    const updateUserLikeList = userResult.likeList.push(postId);
+    await User.update({ likeList: updateUserLikeList }, { where: { id: userId } });
+    res.status(200).send({ success: true });
   } catch (error) {
     res.status(400).json({ success: false, error });
     next(error);
@@ -41,5 +57,6 @@ const createPost: RequestHandler = async (req, res, next) => {
 
 module.exports = {
   getByLatest,
+  likePost,
   createPost,
 };

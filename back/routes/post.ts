@@ -6,6 +6,8 @@ const router = express.Router();
 
 router.get('/getByLatest', controller.getByLatest);
 
+router.post('/like', isLoggedIn, controller.likePost);
+
 router.post('/create', isLoggedIn, controller.createPost);
 
 export {};
