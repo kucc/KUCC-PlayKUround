@@ -8,6 +8,26 @@ const sequelize = require('sequelize');
 
 const Op = sequelize.Op;
 
+const getByCategory: RequestHandler = async (req, res, next) => {
+  const { category, categoryDetail } = req.query;
+  try {
+    const result = await Place.findAll({
+      where: {
+        placeCategory: category,
+        placeCategoryDetail: categoryDetail,
+      },
+      attributes: mainAttributes,
+    });
+    res.status(200).json({
+      success: true,
+      result,
+    });
+  } catch (error) {
+    res.status(400).json({ success: false, error });
+    next(error);
+  }
+};
+
 // 댓글 개수에 따라 불러오기
 const getByComment: RequestHandler = async (req, res, next) => {
   try {
@@ -257,10 +277,44 @@ const createPlace: RequestHandler = async (req, res, next) => {
   }
 };
 
+const ratePlace: RequestHandler = async (req, res, next) => {
+  const { userId, placeId, userRateNum } = req.body;
+  const userResult = await User.findOne({ where: { id: userId } });
+  const placeResult = await Place.findOne({ where: { id: placeId } });
+  const { rateList } = userResult as any;
+  const rateListArray = Object.values(rateList);
+  const updateUserRateList = rateList;
+
+  // 예외 처리
+  if (!userResult) return res.status(404).send('존재하지 않는 유저입니다.');
+  if (!placeResult) return res.status(404).send('존재하지 않는 장소입니다.');
+  try {
+    if (rateList && rateListArray.includes(placeId)) {
+      // 일단 return 시키는데 rate를 취소하거나 수정하고 싶을 경우에 대응해야 함. (다른 api 생성?)
+      return res.status(400).send('이미 별점을 준 장소입니다.');
+    }
+    // place 처리, ratingNumber : 별점, ratingCount : 사람수
+    const { ratingNumber, ratingCount } = placeResult;
+    await Place.update(
+      { ratingNumber: (ratingNumber * ratingCount + userRateNum) / (ratingCount + 1) },
+      { where: { id: placeId } },
+    );
+    await placeResult?.increment('ratingCount', { by: 1 });
+    // user 처리
+    updateUserRateList[rateListArray.length] = placeId;
+    await User.update({ rateList: updateUserRateList }, { where: { id: userId } });
+    return res.status(200).send({ success: true });
+  } catch (error) {
+    res.status(400).json({ success: false, error });
+    next(error);
+  }
+};
+
 // default 값은 프론트에서 받아와야 함.
 const updatePlace: RequestHandler = async (req, res, next) => {};
 
 module.exports = {
+  getByCategory,
   getByComment,
   getByArea,
   getByRate,
@@ -270,4 +324,5 @@ module.exports = {
   getByName,
   createPlace,
   updatePlace,
+  ratePlace,
 };

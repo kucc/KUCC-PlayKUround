@@ -53,11 +53,6 @@ const userRegister: RequestHandler = async (req, res, next) => {
       name: req.body.name,
       password: hashedPassword,
       sourceId: 'temp',
-      postList: [],
-      courseList: [],
-      scrabList: [],
-      likeList: [],
-      rateList: [],
     });
     // user 생성 후 sourceId 값 채워주기
     await User.update({ sourceId: `user_${userResult.id}` }, { where: { id: userResult.id } });
