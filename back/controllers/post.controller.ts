@@ -32,8 +32,8 @@ const getByLatest: RequestHandler = async (req, res, next) => {
 
 const likePost: RequestHandler = async (req, res, next) => {
   const { userId, postId } = req.body;
-  const userResult: any = await User.findOne({ where: { id: userId }, plain: true });
-  const postResult: any = await Post.findOne({ where: { id: postId }, plain: true });
+  const userResult: any = await User.findOne({ where: { id: userId } });
+  const postResult: any = await Post.findOne({ where: { id: postId } });
   const { likeList } = userResult;
   const likeListArray = Object.values(likeList);
   const updateUserLikeList = likeList;
