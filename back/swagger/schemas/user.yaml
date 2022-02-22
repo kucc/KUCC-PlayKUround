@@ -29,3 +29,6 @@ properties:
   tokenExp:
     type: number
     description: 유저 토큰 만기 기간
+  sourceId:
+    type: string
+    description: source를 위한 primary key. front에서는 사용할 필요 없을 듯 합니다.

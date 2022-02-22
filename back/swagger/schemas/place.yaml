@@ -68,7 +68,19 @@ properties:
     example: mid
   scrapCount:
     type: number
-    description: 장소의 스크랩 (좋아요) 개수입니다. 유저 정보에다 scrab한 장소의 id를 저장할 예정이라 number 정보만 저장해도 될 것 같습니다.
+    description: 장소의 스크랩 개수입니다. 유저 정보에다 scrab한 장소의 id를 저장할 예정이라 number 정보만 저장해도 될 것 같습니다.
+    example: 37
+  ratingCount:
+    type: number
+    description: 장소의 별점을 매긴 사람 수입니다. 유저 정보에다 별점을 매긴한 장소의 id를 저장할 예정이라 number 정보만 저장해도 될 것 같습니다.
+    example: 37
+  ratingNumber:
+    type: number ( float )
+    description: 장소의 별점입니다. ratingCount와 연계하여 평균 점수를 낼 생각입니다.
+    example: 37
+  commentCount:
+    type: number
+    description: 장소의 댓글 개수입니다.
     example: 37
   dateConcept:
     type: string
@@ -77,4 +89,7 @@ properties:
   writer:
     type: number
     description: 장소를 작성한 사람의 id입니다. 현재 유저의 id를 보내주세요.
-    example: 412
+    example: 1
+  sourceId:
+    type: string
+    description: source를 위한 primary key. front에서는 사용할 필요 없을 듯 합니다.

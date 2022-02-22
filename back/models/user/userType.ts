@@ -8,17 +8,33 @@ export interface UserAttributes {
   email: string;
   password: string;
   role: number;
-  image: string;
   token: string;
   tokenExp: number;
   createdAt?: Date;
   updatedAt?: Date;
   deletedAt?: Date;
   sourceId?: string;
+  postList?: string[];
+  courseList?: string[];
+  scrabList?: string[];
+  likeList?: string[];
+  rateList?: string[];
 }
 
 interface UserCreationAttributes
-  extends Optional<UserAttributes, 'id' | 'role' | 'token' | 'tokenExp' | 'image' | 'sourceId'> {}
+  extends Optional<
+    UserAttributes,
+    | 'id'
+    | 'role'
+    | 'token'
+    | 'tokenExp'
+    | 'sourceId'
+    | 'postList'
+    | 'courseList'
+    | 'scrabList'
+    | 'likeList'
+    | 'rateList'
+  > {}
 
 export interface UserInterface
   extends Model<UserAttributes, UserCreationAttributes>,

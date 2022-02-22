@@ -3,7 +3,7 @@ import fs from 'fs';
 
 import { Image, User } from '../models';
 import { MulterFile } from '../models/image/imageType';
-import { UserAttributes, UserInterface } from '../models/user/userType';
+import { UserAttributes } from '../models/user/userType';
 
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
@@ -11,13 +11,17 @@ const passport = require('passport');
 const userGet: RequestHandler = async (req, res, next) => {
   try {
     if (req.user) {
+      // Image는 테이블을 분리했기 때문에 찾아줘야 함.
+      // Blob type 그대로 보내는게 맞나??
+      const imageResult = await Image.findOne({ where: { source: `user_${req.user.id}` } });
+      // user의 session에 담긴 정보를 보냄
       res.status(200).json({
         success: true,
         id: req.user.id,
         name: req.user.name,
         email: req.user.email,
         role: req.user.role,
-        image: req.user.image,
+        image: imageResult?.path,
       });
     } else {
       res.status(200).json(null);
@@ -49,6 +53,11 @@ const userRegister: RequestHandler = async (req, res, next) => {
       name: req.body.name,
       password: hashedPassword,
       sourceId: 'temp',
+      postList: [],
+      courseList: [],
+      scrabList: [],
+      likeList: [],
+      rateList: [],
     });
     // user 생성 후 sourceId 값 채워주기
     await User.update({ sourceId: `user_${userResult.id}` }, { where: { id: userResult.id } });
