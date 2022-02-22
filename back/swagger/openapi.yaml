@@ -43,6 +43,8 @@ paths:
   ########### post path ###########
   /api/post/getByLatest:
     $ref: "./paths/post/postGetByLatest.yaml"
+  /api/post/getByPlace:
+    $ref: "./paths/post/postGetByPlace.yaml"
   /api/post/like:
     $ref: "./paths/post/postLike.yaml"
   /api/post/create:

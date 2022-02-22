@@ -4,6 +4,8 @@ const { isLoggedIn } = require('../middlewares/Auth');
 
 const router = express.Router();
 
+router.get('/getByPlace', controller.getByPlace);
+
 router.get('/getByLatest', controller.getByLatest);
 
 router.post('/like', isLoggedIn, controller.likePost);

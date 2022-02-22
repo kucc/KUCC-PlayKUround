@@ -5,6 +5,19 @@ import { mainAttributes } from './utils';
 
 const sequelize = require('sequelize');
 
+const getByPlace: RequestHandler = async (req, res, next) => {
+  const { placeId } = req.query;
+  try {
+    const result = await Post.findAll({
+      where: { placeId },
+    });
+    res.status(200).send({ success: true, result });
+  } catch (error) {
+    res.status(400).json({ success: false, error });
+    next(error);
+  }
+};
+
 const getByLatest: RequestHandler = async (req, res, next) => {
   try {
     const result = await Post.findAll({
@@ -78,6 +91,7 @@ const createPost: RequestHandler = async (req, res, next) => {
 // Todo : delete, update
 
 module.exports = {
+  getByPlace,
   getByLatest,
   likePost,
   createPost,
