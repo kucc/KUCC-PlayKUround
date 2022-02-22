@@ -22,28 +22,34 @@ const likePost: RequestHandler = async (req, res, next) => {
   const userResult: any = await User.findOne({ where: { id: userId }, plain: true });
   const postResult: any = await Post.findOne({ where: { id: postId }, plain: true });
   const { likeList } = userResult;
-  console.log(typeof likeList);
-  console.log(likeList);
-  console.log(likeList.values());
-  console.log(typeof Array.from(likeList));
+  const likeListArray = Object.values(likeList);
+  const updateUserLikeList = likeList;
 
   // 예외 처리
-  if (!userResult) res.status(404).send('존재하지 않는 유저입니다.');
-  if (!postResult) res.status(404).send('존재하지 않는 게시물입니다.');
-  if (userResult.likeList && userResult.likeList.includes(postId))
-    res.status(403).send('이미 추천한 게시물입니다.');
-  // like logic
+  if (!userResult) return res.status(404).send('존재하지 않는 유저입니다.');
+  if (!postResult) return res.status(404).send('존재하지 않는 게시물입니다.');
   try {
-    await postResult?.increment('likeNum', { by: 1 });
-    var updateUserLikeList;
-    if (!likeList) {
-      updateUserLikeList = [postId];
-    } else {
-      updateUserLikeList = likeList.push(String(postId));
+    // 이미 추천한 게시물이라면 like 취소
+    if (likeList && likeListArray.includes(postId)) {
+      // post의 likeNum 감소
+      await postResult?.decrement('likeNum', { by: 1 });
+      const findIndex = likeListArray.indexOf(postId);
+      // 해당 index를 제거함
+      delete updateUserLikeList[findIndex];
+      // delete로 생긴 null 또한 제거함.
+      let o: any = Object.fromEntries(
+        Object.entries(updateUserLikeList).filter(([_, v]) => v != null),
+      );
+      await User.update({ likeList: Object.values(o) }, { where: { id: userId } });
+      return res.status(200).send({ success: true, comment: 'like 취소' });
     }
-    console.log(updateUserLikeList);
+    // like 구현
+    // post의 likeNum 증가
+    await postResult?.increment('likeNum', { by: 1 });
+    // user의 likeList에 추가. JSON 타입이므로 key와 value로 추가함.
+    updateUserLikeList[likeListArray.length] = postId;
     await User.update({ likeList: updateUserLikeList }, { where: { id: userId } });
-    res.status(200).send({ success: true });
+    res.status(200).send({ success: true, comment: 'like 작성' });
   } catch (error) {
     res.status(400).json({ success: false, error });
     next(error);
