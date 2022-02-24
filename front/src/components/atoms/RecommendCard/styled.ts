@@ -5,8 +5,6 @@ position: relative;
 overflow:hidden;
   width: ${({ width }) => width}px;
   height: ${({ height }) => height}px;
-/%width: 114px;
-height:114px;%/
 border-radius: 12px;
 display: flex;
 cursor: pointer;
