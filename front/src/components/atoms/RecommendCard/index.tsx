@@ -7,7 +7,11 @@ export const RecommendCard= ({description, imageSource, topText, bottomText, top
     return (
         <CardWrapper width = {width * 0.3} height = {width*0.3} background={background} style = {style}>
     <CardImg src = {imageSource ||'pictures/insta-card.png'} />
-    <CardDescription>{description}</CardDescription>
+    <CardDescription>
+    {topCommaText}
+    {topText}
+    {bottomText}
+    </CardDescription>
      </CardWrapper>);
  
     };

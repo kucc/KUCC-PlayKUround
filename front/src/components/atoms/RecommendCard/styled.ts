@@ -10,7 +10,7 @@ export const CardWrapper = styled.div<{width:number; height: number, background?
   cursor: pointer;
   &:hover {
     background-color:${({background})=> background || Colors.black};
-    opacity: 70%;
+    opacity: 0.7;
   }
   `;
 export const CardImg = styled.img`
@@ -21,14 +21,11 @@ export const CardImg = styled.img`
   border-radius: 12px;
   &:hover {
       background: black;
-      opacity: 70%;
-    }
+      opacity: 50%;
+  }
     `;
 export const CardDescription = styled.div`
 position: absolute;
-font-family: Apple SD Gothic Neo;
-font-size: 1em;
-font-weight: 700;
 line-height: 20px;
 text-align: center;
 color: ${Colors.white};
@@ -36,3 +33,30 @@ left: 2%;
 right: 2%;
 bottom:16%;
 `;
+export const topCommaText = styled.span`
+font-family: Apple SD Gothic Neo;
+font-size: 10px;
+font-style: normal;
+font-weight: 300;
+line-height: 14px;
+letter-spacing: 0em;
+text-align: center;
+`
+export const topText = styled.span`
+font-family: Apple SD Gothic Neo;
+font-size: 12px;
+font-style: normal;
+font-weight: 700;
+line-height: 14px;
+letter-spacing: 0em;
+text-align: center;
+`
+export const bottomText = styled.span`
+font-family: Apple SD Gothic Neo;
+font-size: 12px;
+font-style: normal;
+font-weight: 700;
+line-height: 14px;
+letter-spacing: 0em;
+text-align: center;
+`

@@ -6,9 +6,9 @@ import { RecommendProps } from './type';
 export const RecommendCardList=({TextGroupList}:RecommendProps)=>{
     return(
     <CardsWrapper>
-    {TextGroupList.map(({imageSource,description})=> {
+    {TextGroupList.map(({imageSource,topCommaText,topText,bottomText})=> {
     return (
-    <RecommendCard imageSource = {imageSource} description={description}  />
+    <RecommendCard imageSource = {imageSource} topCommaText={topCommaText} topText={topText} bottomText={bottomText}/>
     );})}
     </CardsWrapper>
     );};

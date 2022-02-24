@@ -12,15 +12,15 @@ export const RecommendTable = () => {
         };
     const leftItems = [{icon: <MenuIcon />,onClickLeftItems: onClickMenuIcon} ];
     const TextGroupList = [
-        {description: '오늘 나는,고기가 먹고 싶다'},
-        {description: '분위기를 내고 싶을때, 양식데이트'},
-        {description: '오붓한 둘만의 데이트'},
-        {description: '피자'},
-        {description: '커피'},
-        {description: '아이스크림'},
-        {description: '짜장면'},
-        {description: '찜닭'},
-        {description: '햄버거'},
+        {topCommaText: '오늘 나는,', bottomText:'고기가 먹고 싶다'},
+        {topCommaText: '분위기를 내고 싶을때,', bottomText:'양식데이트'},
+        {topText: '오붓한', bottomText:'둘만의 데이트'},
+        {topText: '주인장', bottomText:'추천 데이트'},
+        {topText: '달콤 당충전', bottomText:'데이트'},
+        {topCommaText: '날씨가 안 좋은 날,', bottomText:'실내 데이트'},
+        {topText: '공연 혹은 음악에', bottomText:'취하는 하루'},
+        {topText: '뚜벅뚜벅', bottomText:'산책 데이트'},
+        {topCommaText: '색다른 추억을 위한,', bottomText:'이색 데이트'},
 
     ]
     return (
