@@ -1,8 +1,8 @@
 post:
   tags:
     - user
-  summary : 유저 로그인
-  description : Post 방식으로 유저를 로그인합니다.
+  summary: 유저 로그인
+  description: Post 방식으로 유저를 로그인합니다.
   requestBody:
     description: 유저 로그인 body 입니다.
     required: true
@@ -14,13 +14,13 @@ post:
             email:
               type: string
               description: 유저 이메일입니다.
-              example : jjs05hwang@gmail.com
+              example: test@gmail.com
             password:
               type: string
               description: 유저 비밀번호입니다.
-              example : 1234
+              example: 1234
   responses:
     401:
-      description : 인증 실패.
+      description: 인증 실패.
     200:
-      description : 로그인 성공
+      description: 로그인 성공

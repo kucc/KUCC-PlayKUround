@@ -1,0 +1,34 @@
+post:
+  tags:
+    - post
+  summary: 게시물 좋아요
+  description: Post 방식으로 게시물의 좋아요를 작성합니다. userId와 postId가 각각 필요합니다.
+  requestBody:
+    description: 게시물 데이터입니다.
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - source
+            - hashtags
+          properties:
+            userId:
+              type: number
+              description: user id 값. 어느 유저가 좋아요를 눌렀는 지에 대한 정보입니다.
+              example: 1
+            postId:
+              type: number
+              description: post id 값. 어느 게시물에 좋아요를 눌렀는 지에 대한 정보입니다.
+              example: 1
+
+  responses:
+    200:
+      description: 생성 완료
+    400:
+      description: sequelize 생성 에러
+    403:
+      description: 필수인 정보가 입력되지 않았습니다.
+    404:
+      description: 해당 유저나 게시물이 없습니다.

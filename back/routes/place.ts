@@ -4,6 +4,8 @@ const { isLoggedIn } = require('../middlewares/Auth');
 
 const router = express.Router();
 
+router.get('/getByCategory', controller.getByCategory);
+
 router.get('/getByComment', controller.getByComment);
 
 router.get('/getByArea', controller.getByArea);
@@ -19,6 +21,8 @@ router.get('/getByLocation', controller.getByLocation);
 router.get('/getByName', controller.getByName);
 
 router.post('/create', isLoggedIn, controller.createPlace);
+
+router.post('/rate', isLoggedIn, controller.ratePlace);
 
 export {};
 module.exports = router;

@@ -1,0 +1,37 @@
+post:
+  tags:
+    - place
+  summary: 장소 별점 매기기
+  description: Post 방식으로 장소의 별점를 작성합니다. userId와 placeId, userRateNum이 필요합니다. 이미 별점을 준 장소에 대해서는 400을 return 하도록 했는데, 프론트에서 별도의 조치가 필요할 것 같습니다. (rate를 취소하거나 수정하고 싶을 경우에 대응해야 함.)
+  requestBody:
+    description: 장소 데이터입니다.
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - userId
+            - placeId
+            - userRateNum
+          properties:
+            userId:
+              type: number
+              description: user id 값. 어느 유저가 별점을 매겼는 지에 대한 정보입니다.
+              example: 1
+            placeId:
+              type: number
+              description: place id 값. 어느 장소에 별점을 매겼는 지에 대한 정보입니다.
+              example: 1
+            userRateNum:
+              type: number
+              description: 유저가 보낸 별점 값. 1부터 5까지의 값으로 보내주세요.
+              example: 4
+
+  responses:
+    200:
+      description: 생성 완료
+    400:
+      description: 이미 별점을 준 장소입니다.
+    404:
+      description: 해당 유저나 게시물이 없습니다.

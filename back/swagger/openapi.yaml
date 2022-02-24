@@ -23,8 +23,8 @@ paths:
     $ref: "./paths/user/userUpdate.yaml"
 
   ########### place path ###########
-  /api/place/create:
-    $ref: "./paths/place/placeCreate.yaml"
+  /api/place/getByCategory:
+    $ref: "./paths/place/placeGetByCategory.yaml"
   /api/place/getByName:
     $ref: "./paths/place/placeGetByName.yaml"
   /api/place/getByLocation:
@@ -39,16 +39,30 @@ paths:
     $ref: "./paths/place/placeGetByComment.yaml"
   /api/place/getByArea:
     $ref: "./paths/place/placeGetByArea.yaml"
+  /api/place/create:
+    $ref: "./paths/place/placeCreate.yaml"
+  /api/place/rate:
+    $ref: "./paths/place/placeRate.yaml"
+
+  ########### post path ###########
+  /api/post/getByLatest:
+    $ref: "./paths/post/postGetByLatest.yaml"
+  /api/post/getByPlace:
+    $ref: "./paths/post/postGetByPlace.yaml"
+  /api/post/like:
+    $ref: "./paths/post/postLike.yaml"
+  /api/post/create:
+    $ref: "./paths/post/postCreate.yaml"
 
   ########### comment path ###########
   /api/comment/create:
     $ref: "./paths/comment/commentCreate.yaml"
 
   ########### hashtag path ###########
-  /api/hashtag/create:
-    $ref: "./paths/hashtag/hashtagCreate.yaml"
   /api/hashtag/get:
     $ref: "./paths/hashtag/hashtagGet.yaml"
+  /api/hashtag/create:
+    $ref: "./paths/hashtag/hashtagCreate.yaml"
 
 components:
   parameters: null
@@ -57,6 +71,8 @@ components:
       $ref: "./schemas/user.yaml"
     Place:
       $ref: "./schemas/place.yaml"
+    Post:
+      $ref: "./schemas/post.yaml"
     Menu:
       $ref: "./schemas/menu.yaml"
     Image:
