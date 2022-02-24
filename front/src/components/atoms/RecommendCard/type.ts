@@ -5,4 +5,6 @@ export interface RecommendCardProps {
     topText?: string;
     bottomText?: string;
     topCommaText?: string;
+    background?: string;
+    style?: React.CSSProperties;
 };
