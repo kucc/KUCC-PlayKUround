@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Colors } from "@styles";
-export const CardWrapper = styled.div<{width:number; height: number, background?: string}>`
+export const CardWrapper = styled.div<{width:number; height: number}>`
   position: relative;
   overflow:hidden;
   width: ${({ width }) => width}px;
@@ -8,21 +8,15 @@ export const CardWrapper = styled.div<{width:number; height: number, background?
   border-radius: 12px;
   display: flex;
   cursor: pointer;
-  &:hover {
-    background-color:${({background})=> background || Colors.black};
-    opacity: 0.7;
-  }
   `;
-export const CardImg = styled.img`
+export const CardImg = styled.img<{background?:string}>`
   position: absolute;
   width: 100%;
   height: 100%;
   object-fit: cover;
   border-radius: 12px;
-  &:hover {
-      background: black;
-      opacity: 50%;
-  }
+  background-color:${({background})=> background || Colors.black};
+  filter: brightness(50%);
     `;
 export const CardDescription = styled.div`
 position: absolute;
