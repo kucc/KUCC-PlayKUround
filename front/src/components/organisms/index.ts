@@ -5,5 +5,5 @@ export * from './MainTable';
 export * from './Map';
 export * from './MyInfoCard';
 export * from './Navbar';
+export * from './RecommendTable';
 export * from './SignupInput';
-export * from './RecommendTable'

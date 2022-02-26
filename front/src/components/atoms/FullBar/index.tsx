@@ -1,5 +1,7 @@
-import React from "react";
-import { FullBarWrapper } from "./styled";
+import React from 'react';
+
+import { FullBarWrapper } from './styled';
+
 export const FullBar = () => {
-    return (<FullBarWrapper/>)
-}
+  return <FullBarWrapper />;
+};

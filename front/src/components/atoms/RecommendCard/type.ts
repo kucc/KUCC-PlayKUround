@@ -1,10 +1,11 @@
 import React from 'react';
+
 export interface RecommendCardProps {
-    description?: string;
-    imageSource?: string;
-    topText?: string;
-    bottomText?: string;
-    topCommaText?: string;
-    background?: string;
-    style?: React.CSSProperties;
-};
+  description?: string;
+  imageSource?: string;
+  topText?: string;
+  bottomText?: string;
+  topCommaText?: string;
+  background?: string;
+  style?: React.CSSProperties;
+}
