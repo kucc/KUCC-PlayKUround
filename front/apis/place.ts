@@ -12,6 +12,16 @@ interface responseProps {
   result: any;
 }
 
+// export const getAPIByConditional = (value: 'close' | 'review' | 'rate') => {
+//   if (value === 'review') {
+//     return getByCommentAPI;
+//   } else if (value === 'rate') {
+//     return getByRateAPI;
+//   } else {
+//     return getByLocationAPI;
+//   }
+// };
+
 // parameter : body, hashtags
 export async function createPlaceAPI({ queryKey }: { queryKey: any[] }) {
   const [, body, hashtags] = queryKey;
