@@ -14,6 +14,7 @@ import useWindowDimensions from '@hooks/useWindowDimensions';
 import {
   CursorHorizontalArrangement,
   Div,
+  FixInfo,
   HamburgerMenuWithAvatarWrapper,
   InfoWrapper,
   Label,
@@ -59,7 +60,9 @@ export const HamburgerMenuWithAvatar = () => {
       height: 22,
       icon: <Info />,
       label: '내 정보',
-      onClick: () => {},
+      onClick: () => {
+        Router.push('/info');
+      },
     },
     {
       width: 24,
@@ -74,6 +77,8 @@ export const HamburgerMenuWithAvatar = () => {
     Router.replace('/login');
   };
 
+  const onClickMoveFixInfo = () => {};
+
   return (
     <HamburgerMenuWithAvatarWrapper width={width * 0.75} height={height}>
       <ToggleDark />
@@ -86,7 +91,7 @@ export const HamburgerMenuWithAvatar = () => {
                 {me?.name} <span>님</span>
               </Label>
               <CursorHorizontalArrangement>
-                <div>로그인 정보 수정</div>
+                <FixInfo onClick={onClickMoveFixInfo}>로그인 정보 수정</FixInfo>
                 <StyledArrowRight />
               </CursorHorizontalArrangement>
             </Div>
