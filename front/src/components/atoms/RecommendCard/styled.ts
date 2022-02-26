@@ -32,31 +32,18 @@ color: ${Colors.white};
 left: 2%;
 right: 2%;
 bottom:16%;
-`;
-export const topCommaText = styled.span`
-font-family: Apple SD Gothic Neo;
+span {
 font-size: 10px;
-font-style: normal;
 font-weight: 300;
 line-height: 14px;
 letter-spacing: 0em;
 text-align: center;
-`
-export const topText = styled.span`
-font-family: Apple SD Gothic Neo;
+};
+div {
 font-size: 12px;
-font-style: normal;
-font-weight: 700;
+font-weight: bold;
 line-height: 14px;
 letter-spacing: 0em;
 text-align: center;
-`
-export const bottomText = styled.span`
-font-family: Apple SD Gothic Neo;
-font-size: 12px;
-font-style: normal;
-font-weight: 700;
-line-height: 14px;
-letter-spacing: 0em;
-text-align: center;
-`
+};
+`;

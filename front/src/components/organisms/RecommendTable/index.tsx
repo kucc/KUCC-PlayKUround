@@ -12,7 +12,7 @@ export const RecommendTable = () => {
         };
     const leftItems = [{icon: <MenuIcon />,onClickLeftItems: onClickMenuIcon} ];
     const TextGroupList = [
-        {topCommaText: '오늘 나는,', bottomText:'고기가 먹고 싶다'},
+        {topText: '오늘 나는,', bottomText:'고기가 먹고 싶다'},
         {topCommaText: '분위기를 내고 싶을때,', bottomText:'양식데이트'},
         {topText: '오붓한', bottomText:'둘만의 데이트'},
         {topText: '주인장', bottomText:'추천 데이트'},
