@@ -142,6 +142,23 @@ export async function getByAreaAPI({ queryKey }: { queryKey: any[] }) {
   }
 }
 
+// parameter : category, categoryDetail
+export async function getByCategoryAPI({ queryKey }: { queryKey: any[] }) {
+  const [, category, categoryDetail] = queryKey;
+
+  try {
+    const { data }: { data: responseProps } = await axios.get(
+      `/api/place/getByCategory?category=${category}&categoryDetail=${categoryDetail}`,
+    );
+    if (data.success) {
+      return data.result;
+    }
+  } catch (error) {
+    //
+    return;
+  }
+}
+
 // parameter : hashtag
 // 이것도 하나로 통일할까여??
 export async function getByHashtagAPI({ queryKey }: { queryKey: any[] }) {
