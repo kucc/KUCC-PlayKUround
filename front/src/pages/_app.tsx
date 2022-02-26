@@ -7,6 +7,7 @@ import { AppProps, NextWebVitalsMetric } from 'next/app';
 import Head from 'next/head';
 import PropTypes from 'prop-types';
 
+import { MakeTableListProvider } from '@contexts/tableList';
 // 패키지 불러오기
 import { GlobalStyle } from '@styles';
 import Providers from '@util/provider';
@@ -26,22 +27,24 @@ const App = ({ Component, pageProps }: AppProps) => {
   }, []);
 
   return (
-    <QueryClientProvider client={queryClientRef.current}>
-      <Hydrate state={pageProps.dehydratedState}>
-        <Head>
-          <meta charSet='utf-8' />
-          <title>PlayKUround</title>
-          <script
-            type='text/javascript'
-            src={`http://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=rses05b7bh`}></script>
-        </Head>
-        <Providers>
-          <GlobalStyle />
-          {isMounted && <Component {...pageProps} />}
-        </Providers>
-        <ReactQueryDevtools initialIsOpen={false} />
-      </Hydrate>
-    </QueryClientProvider>
+    <MakeTableListProvider>
+      <QueryClientProvider client={queryClientRef.current}>
+        <Hydrate state={pageProps.dehydratedState}>
+          <Head>
+            <meta charSet='utf-8' />
+            <title>PlayKUround</title>
+            <script
+              type='text/javascript'
+              src={`http://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=rses05b7bh`}></script>
+          </Head>
+          <Providers>
+            <GlobalStyle />
+            {isMounted && <Component {...pageProps} />}
+          </Providers>
+          <ReactQueryDevtools initialIsOpen={false} />
+        </Hydrate>
+      </QueryClientProvider>
+    </MakeTableListProvider>
   );
 };
 

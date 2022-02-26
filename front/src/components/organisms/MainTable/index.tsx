@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 
 import { Skeleton } from 'antd';
@@ -7,6 +7,8 @@ import { CardArray, MainSelect, MainToggleBar } from '@components';
 
 import { getByCommentAPI, getByLocationAPI, getByMapAPI, getByRateAPI } from 'apis/place';
 import { PlaceType } from 'interfaces/place';
+
+import { MakeTableListContext } from '@contexts/tableList';
 
 import { Map } from '../Map';
 import { StlyedMainTableTop, StyledMainTable } from './styled';
@@ -33,6 +35,8 @@ export const MainTable = () => {
   });
   const { data: map, isLoading: mapLoading } = useQuery('place', getByMapAPI);
 
+  // TODO: tableList를 어떻게 사용할지 백이랑 협의하기
+  const { tableList } = useContext(MakeTableListContext);
   const places = locationSorted || reviewSorted || rateSorted;
   const isLoading = locationLoading || reviewLoading || rateLoading || mapLoading;
 
