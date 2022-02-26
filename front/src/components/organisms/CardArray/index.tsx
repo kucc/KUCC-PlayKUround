@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Card } from '@components';
 
-import { PlaceType } from 'interfaces/place';
+import { SimplePlaceType } from 'interfaces/place';
 
 import { StyledCardContainer, StyledReview, StyledScrap, StyledStar } from './styled';
 import { CardArrayProps } from './type';
@@ -10,8 +10,9 @@ import { CardArrayProps } from './type';
 export const CardArray = ({ places, style }: CardArrayProps) => {
   return (
     <StyledCardContainer style={style}>
-      {places?.map((place: PlaceType, key: number) => {
-        const { placeName, scrapCount, ratingNumber, commentCount, placeDescription } = place;
+      {places?.map((place: SimplePlaceType, key: number) => {
+        const { placeName, pictureLink, scrapCount, ratingNumber, commentCount, placeDescription } =
+          place;
         const ChipGroupList = [
           {
             icon: <StyledScrap />,
@@ -28,6 +29,7 @@ export const CardArray = ({ places, style }: CardArrayProps) => {
         ];
         return (
           <Card
+            imageSource={pictureLink[0]}
             key={`card_${key}`}
             title={placeName}
             description={placeDescription}

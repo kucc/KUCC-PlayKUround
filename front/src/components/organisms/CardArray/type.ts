@@ -1,6 +1,6 @@
-import { PlaceType } from 'interfaces/place';
+import { SimplePlaceType } from 'interfaces/place';
 
 export type CardArrayProps = {
-  places: Array<PlaceType>;
+  places: Array<SimplePlaceType>;
   style?: React.CSSProperties;
 };
