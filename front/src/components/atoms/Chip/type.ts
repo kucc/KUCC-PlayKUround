@@ -10,4 +10,6 @@ export type ChipProps = {
   onClick?: () => void;
   clicked?: boolean;
   clickable: boolean;
+  category?: 'A' | 'B' | 'C';
+  categoryDetail?: number;
 };
