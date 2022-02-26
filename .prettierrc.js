@@ -16,7 +16,7 @@ var tsOption = {
     // TODO: 이후에 containers -> template으로 변경하기
     '^@(?:components|atoms|molecules|organisms|templates|pages|containers)(.*)$',
     '^(?:apis|interfaces|config)(.*)$',
-    '^@(?:assets|hooks|styles|util|store)(.*)$',
+    '^@(?:assets|contexts|constants|hooks|styles|util|store)(.*)$',
     '^[./]',
   ],
   importOrderSeparation: true,
