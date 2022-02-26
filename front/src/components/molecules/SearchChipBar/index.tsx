@@ -9,6 +9,7 @@ import { Container } from './styled';
 
 export const SearchChipBar = () => {
   const menuList = [
+    { icon: <Good />, label: '전체' },
     { icon: <Good />, label: '맛집' },
     {
       icon: <Movie />,
@@ -32,14 +33,10 @@ export const SearchChipBar = () => {
     },
   ];
 
-  const [selectedIndex, setSelectedIndex] = useState<number>(-1);
+  const [selectedIndex, setSelectedIndex] = useState<number>(0);
 
   const onClickHandler = (index: number) => {
-    if (index === selectedIndex) {
-      setSelectedIndex(-1);
-    } else {
-      setSelectedIndex(index);
-    }
+    setSelectedIndex(index);
   };
 
   return (
