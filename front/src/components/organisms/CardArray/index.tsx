@@ -27,9 +27,13 @@ export const CardArray = ({ places, style }: CardArrayProps) => {
             label: commentCount,
           },
         ];
+
+        const blob = new Blob([new ArrayBuffer(pictureLink[0])]);
+        const blobLink = URL.createObjectURL(blob);
+
         return (
           <Card
-            imageSource={pictureLink[0]}
+            imageSource={blobLink}
             key={`card_${key}`}
             title={placeName}
             description={placeDescription}
