@@ -19,7 +19,7 @@ export const Info = ({ title, leftItems, NavBarTitle }: InfoProps) => {
   const screenHeight = window.innerHeight;
   const [latitude, setLatitude] = useState<number>(37.5908);
   const [longitude, setLongitude] = useState<number>(127.0278);
-  const { data: places, isLoading } = useQuery(['user', latitude, longitude], getByLocationAPI);
+  const { data: places, isLoading } = useQuery(['place', latitude, longitude], getByLocationAPI);
 
   // 공통 함수에 집어넣기
   const getLocation = async () => {

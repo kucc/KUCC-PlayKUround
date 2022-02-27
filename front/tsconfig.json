@@ -10,11 +10,13 @@
     "paths": {
       "@components": ["src/components"],
       "@components/*": ["src/components/*"],
+      "@contexts/*": ["src/contexts/*"],
       "@atoms/*": ["src/components/atoms/*"],
       "@molecules/*": ["src/components/molecules/*"],
       "@organisms/*": ["src/components/organisms/*"],
       "@templates": ["src/templates"],
       "@templates/*": ["src/templates/*"],
+      "@constants": ["src/constants"],
       "@constants/*": ["src/constants/*"],
       "@config/*": ["src/config/*"],
       "@assets": ["src/assets"],

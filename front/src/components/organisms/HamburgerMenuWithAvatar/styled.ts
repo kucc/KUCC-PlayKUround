@@ -43,6 +43,10 @@ export const CursorHorizontalArrangement = styled(HorizontalArrangement)`
   cursor: pointer;
 `;
 
+export const FixInfo = styled.div`
+  cursor: pointer;
+`;
+
 export const StyledArrowRight = styled(ArrowRight)`
   margin-left: 6px;
 `;

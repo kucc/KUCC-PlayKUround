@@ -12,6 +12,16 @@ interface responseProps {
   result: any;
 }
 
+// export const getAPIByConditional = (value: 'close' | 'review' | 'rate') => {
+//   if (value === 'review') {
+//     return getByCommentAPI;
+//   } else if (value === 'rate') {
+//     return getByRateAPI;
+//   } else {
+//     return getByLocationAPI;
+//   }
+// };
+
 // parameter : body, hashtags
 export async function createPlaceAPI({ queryKey }: { queryKey: any[] }) {
   const [, body, hashtags] = queryKey;
@@ -123,6 +133,23 @@ export async function getByAreaAPI({ queryKey }: { queryKey: any[] }) {
 
   try {
     const { data }: { data: responseProps } = await axios.get(`/api/place/getByArea?area=${area}`);
+    if (data.success) {
+      return data.result;
+    }
+  } catch (error) {
+    //
+    return;
+  }
+}
+
+// parameter : category, categoryDetail
+export async function getByCategoryAPI({ queryKey }: { queryKey: any[] }) {
+  const [, category, categoryDetail] = queryKey;
+
+  try {
+    const { data }: { data: responseProps } = await axios.get(
+      `/api/place/getByCategory?category=${category}&categoryDetail=${categoryDetail}`,
+    );
     if (data.success) {
       return data.result;
     }

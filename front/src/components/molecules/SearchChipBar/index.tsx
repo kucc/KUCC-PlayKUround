@@ -2,49 +2,23 @@ import React, { useState } from 'react';
 
 import { Chip } from '@components';
 
-import { Cartoon, Coffee, Dice, Good, Movie, Smile } from '@assets';
-import { Colors } from '@styles';
+import { categoryDetailMenuList, categoryMenuList, categoryMenuListType } from '@constants';
 
 import { Container } from './styled';
 
 export const SearchChipBar = () => {
-  const menuList = [
-    { icon: <Good />, label: '맛집' },
-    {
-      icon: <Movie />,
-      label: '영화/연극',
-    },
-    {
-      icon: <Smile />,
-      label: '힐링',
-    },
-    {
-      icon: <Coffee />,
-      label: '카페',
-    },
-    {
-      icon: <Cartoon />,
-      label: '만화카페',
-    },
-    {
-      icon: <Dice />,
-      label: '보드게임카페',
-    },
-  ];
+  const [selectedIndex, setSelectedIndex] = useState<number>(0);
+  const [itemCategory, setItemCategory] = useState<'A' | 'B' | 'C' | undefined>(undefined);
+  const [itemCategoryDetail, setItemCategoryDetail] = useState<number | undefined>(undefined);
 
-  const [selectedIndex, setSelectedIndex] = useState<number>(-1);
-
+  const menuList = [...categoryMenuList(), ...categoryDetailMenuList()] as categoryMenuListType;
   const onClickHandler = (index: number) => {
-    if (index === selectedIndex) {
-      setSelectedIndex(-1);
-    } else {
-      setSelectedIndex(index);
-    }
+    setSelectedIndex(index);
   };
 
   return (
     <Container>
-      {menuList.map(({ icon, label }, index) => {
+      {menuList.map(({ icon, label, category, categoryDetail }, index) => {
         return (
           <Chip
             key={index}
@@ -52,8 +26,14 @@ export const SearchChipBar = () => {
             icon={icon}
             label={label}
             labelStyle={{ width: 'max-content' }}
-            onClick={() => onClickHandler(index)}
+            onClick={() => {
+              onClickHandler(index);
+              setItemCategory(category);
+              setItemCategoryDetail(categoryDetail);
+            }}
             clickable={true}
+            category={itemCategory}
+            categoryDetail={itemCategoryDetail}
             clicked={selectedIndex === index}
             style={{
               padding: '10px 13px',
