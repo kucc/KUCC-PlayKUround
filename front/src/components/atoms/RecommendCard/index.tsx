@@ -15,7 +15,7 @@ export const RecommendCard = ({
 }: RecommendCardProps) => {
   const { width } = useWindowDimensions();
   return (
-    <CardWrapper width={width * 0.3} height={width * 0.3} style={style}>
+    <CardWrapper width={width * 0.28} height={width * 0.28} style={style}>
       <CardImg background={background} src={imageSource || 'pictures/insta-card.png'} />
       <CardDescription>
         <span>{topCommaText}</span>

@@ -1,10 +1,10 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const CardsWrapper = styled.div`
-width: 100%;
-display: grid;
-justify-content: space-around;
-grid-template-columns: auto auto auto;
-grid-gap: 1rem;
+  display: grid;
+  justify-items: center;
+  grid-template-columns: repeat(3, 1fr);
+  row-gap: 0.7rem;
+  column-gap: 0.7rem;
+  padding: 0 1.2rem;
 `;
-

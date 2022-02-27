@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { FullBar, RecommendCardList } from '@components';
+import { RecommendCardList } from '@components';
 
 import { MenuIcon } from '@styles';
 
@@ -27,7 +27,6 @@ export const RecommendTable = () => {
   const leftItems = [{ icon: <MenuIcon />, onClickLeftItems: onClickMenuIcon }];
 
   return (
-    // <RecommendTableWrapper>
     <>
       <Navbar leftItems={leftItems} text='코스 추천' />
       <TextWrapper>추천코스</TextWrapper>
@@ -35,7 +34,5 @@ export const RecommendTable = () => {
       <TextWrapper>PlayKUround 인기코스</TextWrapper>
       <RecommendCardList TextGroupList={TextGroupList} />
     </>
-
-    //</RecommendTableWrapper>
   );
 };
