@@ -31,6 +31,7 @@ import Smile from './icons/smile.svg';
 import Star from './icons/star.svg';
 import Sun from './icons/sun.svg';
 import Table from './icons/table.svg';
+import WritePost from './icons/write-post.svg';
 
 export {
   ArrowRight,
@@ -66,4 +67,5 @@ export {
   Star,
   Sun,
   Table,
+  WritePost,
 };
