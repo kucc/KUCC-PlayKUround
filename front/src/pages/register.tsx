@@ -1,133 +1,86 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 
-import { Checkbox, Form, Modal } from 'antd';
+import { Modal } from 'antd';
 import axios from 'axios';
 import { GetServerSidePropsContext } from 'next';
-import Link from 'next/link';
 import Router from 'next/router';
+import { useRouter } from 'next/router';
 
-import { BaseButton, Div, Navbar, SignupInput, Text } from '@components';
+import { FirstSignupInput, Navbar, SecondSignupInput, Text } from '@components';
 
 import { loadMyInfoAPI, registerAPI } from 'apis/user';
 import User from 'interfaces/user';
 
+import { Back } from '@assets';
 import useInput from '@hooks/useInput';
+import useWindowDimensions from '@hooks/useWindowDimensions';
+import { ALREADY_LOGINED } from '@util/message';
 
 const RegisterPage = () => {
-  const { data: me } = useQuery<User>('user', loadMyInfoAPI);
-  console.log('me', me);
-  useEffect(() => {
-    if (me) {
-      Router.replace('/');
-    }
-  }, [me]);
-
+  const { data: me, isSuccess } = useQuery<User>('user', loadMyInfoAPI);
   const [email, onChangeEmail] = useInput('');
   const [password, onChangePassword] = useInput('');
-  const [name, onChangeName] = useInput('');
-  const [passwordCheck, setPasswordCheck] = useState('');
-  const [passwordError, setPasswordError] = useState(false);
+  const [passwordCheck, onChangePasswordCheck] = useInput('');
+  const [nickname, onChangeNickname] = useInput('');
+
+  const [firstPage, setFirstPage] = useState<boolean>(true);
+  const { width } = useWindowDimensions();
+
+  const router = useRouter();
 
   useEffect(() => {
-    if (me && me.id) {
-      alert('로그인이 완료됐습니다. 메인 페이지로 이동합니다.');
+    if (isSuccess && me && me.id) {
+      Modal.error({
+        content: ALREADY_LOGINED,
+        width: `${width * 0.7}px`,
+        style: {
+          top: '50%',
+          transform: 'translateY(-50%)',
+        },
+      });
       Router.replace('/');
     }
   }, [me]);
 
-  const onChangePasswordCheck = useCallback(
-    e => {
-      setPasswordCheck(e.target.value);
-      setPasswordError(e.target.value !== password);
-    },
-    [password],
-  );
-
-  const [loading, setLoading] = useState(false);
-  const [term, setTerm] = useState(false);
-  const [termError, setTermError] = useState(false);
-  const [isModalVisible, setIsModalVisible] = useState(false);
-
-  const onSubmit = useCallback(() => {
-    if (password !== passwordCheck) {
-      return setPasswordError(true);
+  const onClickBackIcon = () => {
+    if (firstPage) {
+      router.back();
+    } else {
+      setFirstPage(true);
     }
-    if (!term) {
-      return setTermError(true);
-    }
-    console.log(email, name, password);
-    setLoading(true);
-    registerAPI({ email, password, name })
-      .then(() => {
-        Router.replace('/');
-      })
-      .catch(error => {
-        alert(error.response.data);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  }, [email, name, password, passwordCheck, term]);
-
-  const onChangeTerm = useCallback(e => {
-    setTerm(e.target.checked);
-    setTermError(false);
-  }, []);
-
-  const showModal = () => {
-    setIsModalVisible(true);
-  };
-  const handleOk = () => {
-    setIsModalVisible(false);
   };
 
-  const handleCancel = () => {
-    setIsModalVisible(false);
-  };
+  const leftItems = [{ icon: <Back />, onClickLeftItems: onClickBackIcon }];
 
   return (
     <>
-      <Navbar />
+      <Navbar text='회원가입' leftItems={leftItems} />
       {me?.id ? (
-        <Text h1 center>
+        <Text h4 center>
           메인 페이지로 이동 중입니다. 잠시만 기다려주세요
         </Text>
       ) : (
-        <Div center>
-          <Form onFinish={onSubmit}>
-            <SignupInput passwordError={passwordError} />
-            <Div row style={{ marginTop: 8 }}>
-              <Checkbox name='user-term' checked={term} onChange={onChangeTerm}>
-                <Modal
-                  title='약관 내용'
-                  visible={isModalVisible}
-                  onOk={handleOk}
-                  onCancel={handleCancel}>
-                  <Text>content</Text>
-                </Modal>
-              </Checkbox>
-              <a>
-                <Text body2 bold red_4 onClick={showModal}>
-                  약관을 확인하려면 눌러주세요
-                </Text>
-              </a>
-            </Div>
-            <Div row style={{ marginTop: 8 }}>
-              <BaseButton loading={loading}>가입하기</BaseButton>
-              <Link href='/'>
-                <BaseButton>메인페이지</BaseButton>
-              </Link>
-            </Div>
-            {termError && (
-              <Div style={{ marginTop: 16 }}>
-                <Text bold red_5>
-                  약관에 동의하셔야합니다.
-                </Text>
-              </Div>
-            )}
-          </Form>
-        </Div>
+        <>
+          {firstPage ? (
+            <FirstSignupInput
+              setFirstPage={setFirstPage}
+              email={email}
+              password={password}
+              passwordCheck={passwordCheck}
+              onChangeEmail={onChangeEmail}
+              onChangePassword={onChangePassword}
+              onChangePasswordCheck={onChangePasswordCheck}
+            />
+          ) : (
+            <SecondSignupInput
+              email={email}
+              password={password}
+              nickname={nickname}
+              onChangeNickname={onChangeNickname}
+            />
+          )}
+        </>
       )}
     </>
   );
