@@ -2,8 +2,8 @@ import React from 'react';
 
 import { RecommendTable } from '@components';
 
-const TestPage = () => {
+const RecommendPage = () => {
   return <RecommendTable />;
 };
 
-export default TestPage;
+export default RecommendPage;
