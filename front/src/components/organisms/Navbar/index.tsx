@@ -31,7 +31,10 @@ export const Navbar: React.FC<NavbarProps> = ({ leftItems, rightItems, text, fon
           <StyledNavbarItems>
             {leftItems &&
               leftItems.map(({ icon, onClickLeftItems }, key) => (
-                <div key={key} onClick={onClickLeftItems}>
+                <div
+                  key={key}
+                  onClick={onClickLeftItems}
+                  style={{ display: 'flex', alignItems: 'center' }}>
                   {icon}
                 </div>
               ))}
@@ -39,7 +42,10 @@ export const Navbar: React.FC<NavbarProps> = ({ leftItems, rightItems, text, fon
           <StyledNavbarItems>
             {rightItems &&
               rightItems.map(({ icon, onClickRightItems }, key) => (
-                <div key={key} onClick={onClickRightItems}>
+                <div
+                  key={key}
+                  onClick={onClickRightItems}
+                  style={{ display: 'flex', alignItems: 'center' }}>
                   {icon}
                 </div>
               ))}
