@@ -5,19 +5,11 @@ const upload = require('../middlewares/Upload');
 
 const router = express.Router();
 
-router.get('/getByCategory', controller.getByCategory);
-
-router.get('/getByComment', controller.getByComment);
-
-router.get('/getByArea', controller.getByArea);
-
-router.get('/getByRate', controller.getByRate);
+router.get('/getByFilter', controller.getByFilter);
 
 router.get('/getByMap', controller.getByMap);
 
 router.get('/getByOne', controller.getByOne);
-
-router.get('/getByLocation', controller.getByLocation);
 
 router.get('/getByName', controller.getByName);
 

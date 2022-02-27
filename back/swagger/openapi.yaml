@@ -23,22 +23,14 @@ paths:
     $ref: "./paths/user/userUpdate.yaml"
 
   ########### place path ###########
-  /api/place/getByCategory:
-    $ref: "./paths/place/placeGetByCategory.yaml"
+  /api/place/getByFilter:
+    $ref: "./paths/place/placeGetByFilter.yaml"
   /api/place/getByName:
     $ref: "./paths/place/placeGetByName.yaml"
-  /api/place/getByLocation:
-    $ref: "./paths/place/placeGetByLocation.yaml"
   /api/place/getByOne:
     $ref: "./paths/place/placeGetByOne.yaml"
   /api/place/getByMap:
     $ref: "./paths/place/placeGetByMap.yaml"
-  /api/place/getByRate:
-    $ref: "./paths/place/placeGetByRate.yaml"
-  /api/place/getByComment:
-    $ref: "./paths/place/placeGetByComment.yaml"
-  /api/place/getByArea:
-    $ref: "./paths/place/placeGetByArea.yaml"
   /api/place/create:
     $ref: "./paths/place/placeCreate.yaml"
   /api/place/rate:

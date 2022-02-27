@@ -10,71 +10,68 @@ const sequelize = require('sequelize');
 
 const Op = sequelize.Op;
 
-const getByCategory: RequestHandler = async (req, res, next) => {
-  const { category, categoryDetail } = req.query;
-  try {
-    const result = await Place.findAll({
-      where: {
-        placeCategory: category,
-        placeCategoryDetail: categoryDetail,
-      },
-      attributes: mainAttributes,
-    });
-    res.status(200).json({
-      success: true,
-      result,
-    });
-  } catch (error) {
-    res.status(400).json({ success: false, error });
-    next(error);
-  }
-};
+const getByFilter: RequestHandler = async (req, res, next) => {
+  // order : distance, comment, rate
+  // area : 혜화, 안암, 성신여대, 경희대
+  const { category, categoryDetail, order, area } = req.query;
+  const validateArea = ['혜화', '안암', '성신여대', '경희대'];
 
-// 댓글 개수에 따라 불러오기
-const getByComment: RequestHandler = async (req, res, next) => {
-  try {
-    const result = await Place.findAll({
-      order: [['commentCount', 'DESC']],
-      attributes: mainAttributes,
-    });
-    res.status(200).json({
-      success: true,
-      result,
-    });
-  } catch (error) {
-    res.status(400).json({ success: false, error });
-    next(error);
-  }
-};
+  const latitude: number = parseFloat(req.query.latitude as string);
+  const longitude: number = parseFloat(req.query.longitude as string);
 
-// 지역에 따라 불러오기
-const getByArea: RequestHandler = async (req, res, next) => {
-  const area: string = req.query.area as string;
-  const validateArea = ['혜화', '안암', '성신여대'];
-  if (validateArea.includes(area) === false)
-    return res.status(403).send('유효한 값 ("혜화", "안암", "성신여대")이 아닙니다.');
   try {
-    const result = await Place.findAll({
-      where: { addressCategory: area },
-      attributes: mainAttributes,
-    });
-    res.status(200).json({
-      success: true,
-      result,
-    });
-  } catch (error) {
-    res.status(400).json({ success: false, error });
-    next(error);
-  }
-};
+    const whereCondition: any = {};
+    let orderCondition: any = [];
+    // 카테고리가 있으면
+    if (category) whereCondition['placeCategory'] = category;
+    if (categoryDetail) whereCondition['placeCategoryDetail'] = categoryDetail;
+    // area가 있으면
+    if (area) {
+      if (validateArea.includes(area as string) === false)
+        return res.status(403).send('유효한 값 ("혜화", "안암", "성신여대")이 아닙니다.');
+      whereCondition['addressCategory'] = area;
+    }
+    if (order === 'comment') {
+      orderCondition = [['commentCount', 'DESC']];
+    }
+    if (order === 'rate') {
+      orderCondition = [['ratingNumber', 'DESC']];
+    }
 
-// 별점순으로 불러오기
-const getByRate: RequestHandler = async (req, res, next) => {
-  try {
     const result = await Place.findAll({
-      order: [['ratingNumber', 'DESC']],
+      where: whereCondition,
+      order: orderCondition,
       attributes: mainAttributes,
+      include: Image,
     });
+
+    if (order === 'distance') {
+      if (!latitude || !longitude) {
+        return res.status(403).send('필수인 정보가 입력되지 않았습니다.');
+      }
+      result.sort(function (a: PlaceAttributes, b: PlaceAttributes) {
+        const a_distance = getDistance(
+          a.addressLocation[0],
+          a.addressLocation[1],
+          latitude,
+          longitude,
+        );
+        const b_distance = getDistance(
+          b.addressLocation[0],
+          b.addressLocation[1],
+          latitude,
+          longitude,
+        );
+        if (a_distance > b_distance) {
+          return 1;
+        }
+        if (a_distance < b_distance) {
+          return -1;
+        }
+        // a must be equal to b
+        return 0;
+      });
+    }
     res.status(200).json({
       success: true,
       result,
@@ -89,14 +86,8 @@ const getByRate: RequestHandler = async (req, res, next) => {
 const getByMap: RequestHandler = async (req, res, next) => {
   try {
     const result = await Place.findAll({
-      attributes: [
-        'id',
-        'addressLocation',
-        'placeName',
-        'pictureLink',
-        'placeCategory',
-        'placeCategoryDetail',
-      ],
+      attributes: ['id', 'addressLocation', 'placeName', 'placeCategory', 'placeCategoryDetail'],
+      include: Image,
     });
     res.status(200).json({
       success: true,
@@ -115,52 +106,7 @@ const getByOne: RequestHandler = async (req, res, next) => {
   try {
     const result = await Place.findOne({
       where: { id: placeId },
-      include: [{ model: Menu }, { model: Comment }],
-    });
-    res.status(200).json({
-      success: true,
-      result,
-    });
-  } catch (error) {
-    res.status(400).json({ success: false, error });
-    next(error);
-  }
-};
-
-// 좌표에 따른 검색
-const getByLocation: RequestHandler = async (req, res, next) => {
-  const latitude: number = parseFloat(req.query.latitude as string);
-  const longitude: number = parseFloat(req.query.longitude as string);
-  if (!latitude || !longitude) {
-    return res.status(403).send('필수인 정보가 입력되지 않았습니다.');
-  }
-  try {
-    const result = await Place.findAll({
-      attributes: mainAttributes,
-    });
-    // sequelize의 order 함수로 sort하면 더 효율적일 것 같은데, order에 custom 함수가 안들어가는듯..
-    // 부득이하게 js로 sort 진행
-    result.sort(function (a: PlaceAttributes, b: PlaceAttributes) {
-      const a_distance = getDistance(
-        a.addressLocation[0],
-        a.addressLocation[1],
-        latitude,
-        longitude,
-      );
-      const b_distance = getDistance(
-        b.addressLocation[0],
-        b.addressLocation[1],
-        latitude,
-        longitude,
-      );
-      if (a_distance > b_distance) {
-        return 1;
-      }
-      if (a_distance < b_distance) {
-        return -1;
-      }
-      // a must be equal to b
-      return 0;
+      include: [{ model: Menu }, { model: Comment }, { model: Image }],
     });
     res.status(200).json({
       success: true,
@@ -339,13 +285,9 @@ const ratePlace: RequestHandler = async (req, res, next) => {
 const updatePlace: RequestHandler = async (req, res, next) => {};
 
 module.exports = {
-  getByCategory,
-  getByComment,
-  getByArea,
-  getByRate,
+  getByFilter,
   getByMap,
   getByOne,
-  getByLocation,
   getByName,
   createPlace,
   updatePlace,
