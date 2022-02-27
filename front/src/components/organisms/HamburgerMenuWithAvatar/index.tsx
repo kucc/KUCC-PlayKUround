@@ -88,7 +88,7 @@ export const HamburgerMenuWithAvatar = () => {
           <>
             <Div>
               <Label>
-                {me?.name.length > 6 ? me?.name.slice(0, -1) + '...' : me?.name} <span>님</span>
+                {me?.name.length > 6 ? me?.name.slice(0, 6) + '...' : me?.name} <span>님</span>
               </Label>
               <CursorHorizontalArrangement>
                 <FixInfo onClick={onClickMoveFixInfo}>로그인 정보 수정</FixInfo>
