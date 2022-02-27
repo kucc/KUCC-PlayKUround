@@ -14,7 +14,15 @@ router.post('/login', controller.userLogin);
 
 router.post('/logout', isLoggedIn, controller.userLogout);
 
-router.patch('/update', isLoggedIn, upload, controller.userUpdate);
+router.patch(
+  '/update',
+  isLoggedIn,
+  upload.single(
+    // 프론트에서 넘겨울 params key 값, 오른쪽 같이 넘겨줘야함-> {img: binary}
+    'img',
+  ),
+  controller.userUpdate,
+);
 
 export {};
 module.exports = router;

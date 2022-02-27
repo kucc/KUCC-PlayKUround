@@ -1,6 +1,8 @@
 import { NextFunction, Request, RequestHandler, Response } from 'express';
+import fs from 'fs';
 
-import { Comment, Hashtag, Menu, Place, User } from '../models';
+import { Comment, Hashtag, Image, Menu, Place, User } from '../models';
+import { MulterFile } from '../models/image/imageType';
 import { PlaceAttributes } from '../models/place/placeType';
 import { getDistance, mainAttributes } from './utils';
 
@@ -194,12 +196,14 @@ const getByName: RequestHandler = async (req, res, next) => {
   }
 };
 
-const createPlace: RequestHandler = async (req, res, next) => {
+const createPlace = async (
+  req: Request & { files: MulterFile[] },
+  res: Response,
+  next: NextFunction,
+) => {
   const {
-    addressLocation,
     addressExact,
     addressCategory,
-    pictureLink,
     placeName,
     placeDescription,
     placeTime,
@@ -213,7 +217,9 @@ const createPlace: RequestHandler = async (req, res, next) => {
     dateConcept,
     writer,
   }: PlaceAttributes = req.body;
-  const { menu } = req.body;
+  // 배열, object 형 변환
+  const addressLocation = req.body.addressLocation.map(Number);
+  const menu = JSON.parse(req.body.menu);
   if (
     !addressLocation ||
     !addressExact ||
@@ -233,7 +239,6 @@ const createPlace: RequestHandler = async (req, res, next) => {
       addressLocation,
       addressExact,
       addressCategory,
-      pictureLink,
       placeName,
       placeDescription,
       placeTime,
@@ -251,21 +256,42 @@ const createPlace: RequestHandler = async (req, res, next) => {
     });
     // 자주 사용할 placeId이기 때문에 변수화
     const placeId = placeResult.id;
+    let menuId: number | undefined;
     // Place 생성 후 동일한 sourceId 값을 넣어줌.
     await Place.update({ sourceId: `place_${placeId}` }, { where: { id: placeId } });
     // menu가 존재한다면
+    // menu는 여러개를 받을 경우 따로 빼줄 예정.. (사진 받기가 곤란함)
     if (menu) {
-      const { menuName, menuPrice, menuPicture, isRecommend } = menu;
+      const { menuName, menuPrice, isRecommend } = menu;
       // menu table 생성
       const menuResult = await Menu.create({
         placeId,
         menuName,
         menuPrice,
-        menuPicture,
         isRecommend,
         sourceId: 'temp',
       });
-      Menu.update({ sourceId: `menu_${menuResult.id}` }, { where: { id: menuResult.id } });
+      menuId = menuResult.id;
+      Menu.update({ sourceId: `menu_${menuId}` }, { where: { id: menuId } });
+    }
+    // 사진이 있으면
+    if (req.files) {
+      await Promise.all(
+        req.files.map(async (file: MulterFile) => {
+          // user 사진은 한 장만 지정 가능.
+          const imgData = fs
+            .readFileSync(`assets${file.path.split('assets')[1]}`)
+            .toString('base64');
+          // 장소 이미지 생성
+          if (file.fieldname === 'placeImages') {
+            // path는 BLOB 형식으로 저장. 프론트에서 사용시 Buffer 이용.
+            await Image.create({ path: imgData, source: `place_${placeId}` });
+          } else if (file.fieldname === 'menuImages' && menuId) {
+            // 메뉴 이미지 생성
+            await Image.create({ path: imgData, source: `menu_${menuId}` });
+          }
+        }),
+      );
     }
     res.status(200).json({
       success: true,
