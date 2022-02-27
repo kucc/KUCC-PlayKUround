@@ -5,6 +5,12 @@ const lightGrey = '#F4F4F4';
 const boldGrey = '#989898';
 const yellow = '#F8E08B';
 const green = '#26C1AA';
+const gradient = `linear-gradient(
+  54.4deg,
+  #ED6355 11.46%,
+  #f5c68c 99.99%,
+  #f9f8a8 100%
+)`;
 
 const colorsPrimary = generate(primary);
 const colorsLightGrey = generate(lightGrey);
@@ -32,6 +38,7 @@ export const Colors = {
   boldGrey: '#989898',
   yellow: '#F8E08B',
   green: '#26C1AA',
+  gradient: gradient,
   background: '#F4F4F4',
   ...loadColor(colorsPrimary, 'primary'),
   ...loadColor(colorsLightGrey, 'lightGrey'),
