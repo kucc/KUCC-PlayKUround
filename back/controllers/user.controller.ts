@@ -34,18 +34,12 @@ const userGet: RequestHandler = async (req, res, next) => {
 // eslint-disable-next-line consistent-return
 const userRegister: RequestHandler = async (req, res, next) => {
   try {
-    const exUser = await User.findOne({
-      where: {
-        email: req.body.email,
-      },
-    });
-    if (exUser) {
-      if (typeof window !== 'undefined') {
-        // eslint-disable-next-line no-undef
-        alert('이미 사용중인 이메일입니다.');
-      }
-      return res.status(403).send('이미 사용중인 이메일입니다.');
-    }
+    const exUserEmail = await User.findOne({ where: { email: req.body.email } });
+    if (exUserEmail) return res.status(403).send('이미 사용중인 이메일입니다.');
+
+    const exUserName = await User.findOne({ where: { name: req.body.name } });
+    if (exUserName) return res.status(403).send('이미 사용중인 닉네임입니다.');
+
     const hashedPassword = await bcrypt.hash(req.body.password, 12);
     const userResult = await User.create({
       email: req.body.email,
@@ -67,7 +61,6 @@ const userRegister: RequestHandler = async (req, res, next) => {
 
     res.status(200).json({
       success: true,
-      exUser,
     });
   } catch (err) {
     res.json({ success: false, err });
@@ -105,7 +98,7 @@ const userLogin: RequestHandler = (req, res, next) => {
 const userLogout: RequestHandler = (req, res, next) => {
   req.logout();
   req.session.destroy;
-  res.send('ok');
+  res.send({ success: true });
 };
 
 const userUpdate = async (
