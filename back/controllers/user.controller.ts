@@ -108,7 +108,7 @@ const userUpdate = async (
   const { userId } = req.body;
   if (!userId) return res.status(403).send('유저 아이디가 필요합니다.');
   try {
-    // 일단은 한 장만 지정 가능.
+    // user 사진은 한 장만 지정 가능.
     const imgData = fs.readFileSync(`assets${req.file.path.split('assets')[1]}`).toString('base64');
     // path는 BLOB 형식으로 저장. 프론트에서 사용시 Buffer 이용.
     await Image.create({ path: imgData, source: `user_${userId}` });

@@ -278,7 +278,6 @@ const createPlace = async (
     if (req.files) {
       await Promise.all(
         req.files.map(async (file: MulterFile) => {
-          // user 사진은 한 장만 지정 가능.
           const imgData = fs
             .readFileSync(`assets${file.path.split('assets')[1]}`)
             .toString('base64');

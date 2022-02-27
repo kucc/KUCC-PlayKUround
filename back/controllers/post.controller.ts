@@ -1,6 +1,8 @@
-import { RequestHandler } from 'express';
+import { NextFunction, Request, RequestHandler, Response } from 'express';
+import fs from 'fs';
 
-import { Comment, Hashtag, Place, Post, User } from '../models';
+import { Comment, Hashtag, Image, Place, Post, User } from '../models';
+import { MulterFile } from '../models/image/imageType';
 import { mainAttributes } from './utils';
 
 const sequelize = require('sequelize');
@@ -69,7 +71,11 @@ const likePost: RequestHandler = async (req, res, next) => {
   }
 };
 
-const createPost: RequestHandler = async (req, res, next) => {
+const createPost = async (
+  req: Request & { files: MulterFile[] },
+  res: Response,
+  next: NextFunction,
+) => {
   const { placeId, description } = req.body;
   if (!placeId || !description) {
     return res.status(403).send('필수인 정보가 입력되지 않았습니다.');
@@ -81,6 +87,17 @@ const createPost: RequestHandler = async (req, res, next) => {
       sourceId: 'temp',
     });
     await Post.update({ sourceId: `post_${placeId}` }, { where: { id: postResult.id } });
+    // 사진이 있으면
+    if (req.files) {
+      await Promise.all(
+        req.files.map(async (file: MulterFile) => {
+          const imgData = fs
+            .readFileSync(`assets${file.path.split('assets')[1]}`)
+            .toString('base64');
+          await Image.create({ path: imgData, source: `post_${postResult.id}` });
+        }),
+      );
+    }
     res.status(200).send({ success: true });
   } catch (error) {
     res.status(400).json({ success: false, error });

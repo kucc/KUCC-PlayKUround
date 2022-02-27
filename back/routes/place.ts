@@ -21,13 +21,7 @@ router.get('/getByLocation', controller.getByLocation);
 
 router.get('/getByName', controller.getByName);
 
-router.post(
-  '/create',
-  isLoggedIn,
-  // array로 여러 개를 한 번에 받아올 수 있음.
-  upload.any(),
-  controller.createPlace,
-);
+router.post('/create', isLoggedIn, upload.any(), controller.createPlace);
 
 router.post('/rate', isLoggedIn, controller.ratePlace);
 
