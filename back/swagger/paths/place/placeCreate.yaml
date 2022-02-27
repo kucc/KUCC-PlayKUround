@@ -7,7 +7,7 @@ post:
     description: 장소 데이터입니다.
     required: true
     content:
-      application/json:
+      multipart/form-data:
         schema:
           type: object
           required:
@@ -22,7 +22,10 @@ post:
             - dateConcept
           properties:
             addressLocation:
-              type: number[]
+              type: array
+              style: form
+              items:
+                type: number
               description: 위도 경도 좌표입니다, 배열 첫번째 요소에는 위도, 두번째 요소에는 경도를 넣어주세요
               example: [37.5908, 127.0278]
             addressExact:
@@ -33,10 +36,12 @@ post:
               type: string
               description: 장소가 어디에 속하는지에 대한 정보입니다. "혜화", "안암", "성신여대" 3개 중에 값을 선택해주세요.
               example: 혜화
-            pictureLink:
-              type: string[]
-              description: 사진에 대한 배열 정보입니다.
-              example: ["example-bookcafe.png", "213fa2$fas.png"]
+            placeImages:
+              type: array
+              description: 장소의 사진 정보입니다.
+              items:
+                type: string
+                format: binary
             placeName:
               type: string
               description: 장소의 제목입니다.
@@ -46,8 +51,10 @@ post:
               description: 장소의 간단한 설명입니다.
               example: No.1 만화카페에 관한 설명입니다. No.1 만화카페에 관한 설명입니다. No.1 만화카페에 관한 설명입니···
             placeTime:
-              type: string[]
+              type: array
               description: 장소의 운영 시간입니다. 배열의 첫 번쨰 요소에는 시작 시간, 두 번째 요소에는 마감 시간을 넣어주세요.
+              items:
+                type: string
               example: ["9:00", "22:00"]
             placePhoneNum:
               type: string
@@ -85,6 +92,12 @@ post:
               type: number
               description: 장소를 작성한 사람의 id입니다. 현재 유저의 id를 보내주세요.
               example: 1
+            menuImages:
+              description: 메뉴의 사진 정보입니다.
+              type: array
+              items:
+                type: string
+                format: binary
             menu:
               type: object
               description: menu에 대한 object입니다. 예시를 확인해주세요.
@@ -99,14 +112,17 @@ post:
                   type: number
                   description: 메뉴의 가격 정보입니다. 원화 가격을 숫자만 보내주세요.
                   example: 12000
-                menuPicture:
-                  type: string[]
-                  description: 메뉴의 사진 정보입니다. 여러 개일 수 있으니, string 배열을 담아주세요.
-                  example: ["vongole.png"]
                 isRecommend:
                   type: boolean
                   description: 추천 메뉴인지 여부입니다. 기본 값은 false입니다.
                   example: true
+        encoding:
+          addressLocation:
+            style: form
+            explode: true
+          placeTime:
+            style: form
+            explode: true
 
   responses:
     200:

@@ -27,8 +27,5 @@ var storage = multer.diskStorage({
   },
 });
 
-var uploadFile = multer({ storage: storage, fileFilter: imageFilter }).single(
-  // 프론트에서 넘겨울 params key 값, 오른쪽 같이 넘겨줘야함-> {photo: binary}
-  'photo',
-);
+var uploadFile = multer({ storage: storage, fileFilter: imageFilter });
 module.exports = uploadFile;

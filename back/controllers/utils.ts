@@ -15,7 +15,6 @@ export const mainAttributes = [
   'addressLocation',
   'placeName',
   'placeDescription',
-  'pictureLink',
   'placeCategory',
   'placeCategoryDetail',
   'scrapCount',

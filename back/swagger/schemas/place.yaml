@@ -22,10 +22,6 @@ properties:
     type: string
     description: 장소가 어디에 속하는지에 대한 정보입니다. "혜화", "안암", "성신여대" 3개 중에 값을 선택해주세요.
     example: 혜화
-  pictureLink:
-    type: string[]
-    description: 사진에 대한 배열 정보입니다.
-    example: ["a1%f2ds&11.png", "213fa2$fas.png"]
   placeName:
     type: string
     description: 장소의 제목입니다.

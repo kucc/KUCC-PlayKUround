@@ -1,6 +1,8 @@
 import { NextFunction, Request, RequestHandler, Response } from 'express';
+import fs from 'fs';
 
-import { Comment, Hashtag, Menu, Place, User } from '../models';
+import { Comment, Hashtag, Image, Menu, Place, User } from '../models';
+import { MulterFile } from '../models/image/imageType';
 import { PlaceAttributes } from '../models/place/placeType';
 import { getDistance, mainAttributes } from './utils';
 
@@ -8,71 +10,70 @@ const sequelize = require('sequelize');
 
 const Op = sequelize.Op;
 
-const getByCategory: RequestHandler = async (req, res, next) => {
-  const { category, categoryDetail } = req.query;
-  try {
-    const result = await Place.findAll({
-      where: {
-        placeCategory: category,
-        placeCategoryDetail: categoryDetail,
-      },
-      attributes: mainAttributes,
-    });
-    res.status(200).json({
-      success: true,
-      result,
-    });
-  } catch (error) {
-    res.status(400).json({ success: false, error });
-    next(error);
-  }
-};
+const getByFilter: RequestHandler = async (req, res, next) => {
+  // order : distance, comment, rate
+  // area : 혜화, 안암, 성신여대, 경희대
+  const { category, categoryDetail, order, area } = req.query;
+  const validateArea = ['혜화', '안암', '성신여대', '경희대'];
 
-// 댓글 개수에 따라 불러오기
-const getByComment: RequestHandler = async (req, res, next) => {
-  try {
-    const result = await Place.findAll({
-      order: [['commentCount', 'DESC']],
-      attributes: mainAttributes,
-    });
-    res.status(200).json({
-      success: true,
-      result,
-    });
-  } catch (error) {
-    res.status(400).json({ success: false, error });
-    next(error);
-  }
-};
+  const latitude: number = parseFloat(req.query.latitude as string);
+  const longitude: number = parseFloat(req.query.longitude as string);
 
-// 지역에 따라 불러오기
-const getByArea: RequestHandler = async (req, res, next) => {
-  const area: string = req.query.area as string;
-  const validateArea = ['혜화', '안암', '성신여대'];
-  if (validateArea.includes(area) === false)
-    return res.status(403).send('유효한 값 ("혜화", "안암", "성신여대")이 아닙니다.');
   try {
-    const result = await Place.findAll({
-      where: { addressCategory: area },
-      attributes: mainAttributes,
-    });
-    res.status(200).json({
-      success: true,
-      result,
-    });
-  } catch (error) {
-    res.status(400).json({ success: false, error });
-    next(error);
-  }
-};
+    const whereCondition: any = {};
+    let orderCondition: any = [];
+    // 카테고리가 있으면
+    if (category) whereCondition['placeCategory'] = category;
+    if (categoryDetail) whereCondition['placeCategoryDetail'] = categoryDetail;
+    // area가 있으면
+    if (area) {
+      if (validateArea.includes(area as string) === false)
+        return res.status(403).send('유효한 값 ("혜화", "안암", "성신여대")이 아닙니다.');
+      whereCondition['addressCategory'] = area;
+    }
+    // order에 따른..
+    if (order === 'comment') {
+      orderCondition = [['commentCount', 'DESC']];
+    }
+    if (order === 'rate') {
+      orderCondition = [['ratingNumber', 'DESC']];
+    }
 
-// 별점순으로 불러오기
-const getByRate: RequestHandler = async (req, res, next) => {
-  try {
     const result = await Place.findAll({
-      order: [['ratingNumber', 'DESC']],
+      where: whereCondition,
+      order: orderCondition,
       attributes: mainAttributes,
+      include: Image,
     });
+
+    // distance는 sequelize에서 찾은 다음 처리
+    if (order === 'distance') {
+      if (!latitude || !longitude) {
+        return res.status(403).send('필수인 정보가 입력되지 않았습니다.');
+      }
+      result.sort(function (a: PlaceAttributes, b: PlaceAttributes) {
+        const a_distance = getDistance(
+          a.addressLocation[0],
+          a.addressLocation[1],
+          latitude,
+          longitude,
+        );
+        const b_distance = getDistance(
+          b.addressLocation[0],
+          b.addressLocation[1],
+          latitude,
+          longitude,
+        );
+        if (a_distance > b_distance) {
+          return 1;
+        }
+        if (a_distance < b_distance) {
+          return -1;
+        }
+        // a must be equal to b
+        return 0;
+      });
+    }
     res.status(200).json({
       success: true,
       result,
@@ -87,14 +88,8 @@ const getByRate: RequestHandler = async (req, res, next) => {
 const getByMap: RequestHandler = async (req, res, next) => {
   try {
     const result = await Place.findAll({
-      attributes: [
-        'id',
-        'addressLocation',
-        'placeName',
-        'pictureLink',
-        'placeCategory',
-        'placeCategoryDetail',
-      ],
+      attributes: ['id', 'addressLocation', 'placeName', 'placeCategory', 'placeCategoryDetail'],
+      include: Image,
     });
     res.status(200).json({
       success: true,
@@ -113,52 +108,7 @@ const getByOne: RequestHandler = async (req, res, next) => {
   try {
     const result = await Place.findOne({
       where: { id: placeId },
-      include: [{ model: Menu }, { model: Comment }],
-    });
-    res.status(200).json({
-      success: true,
-      result,
-    });
-  } catch (error) {
-    res.status(400).json({ success: false, error });
-    next(error);
-  }
-};
-
-// 좌표에 따른 검색
-const getByLocation: RequestHandler = async (req, res, next) => {
-  const latitude: number = parseFloat(req.query.latitude as string);
-  const longitude: number = parseFloat(req.query.longitude as string);
-  if (!latitude || !longitude) {
-    return res.status(403).send('필수인 정보가 입력되지 않았습니다.');
-  }
-  try {
-    const result = await Place.findAll({
-      attributes: mainAttributes,
-    });
-    // sequelize의 order 함수로 sort하면 더 효율적일 것 같은데, order에 custom 함수가 안들어가는듯..
-    // 부득이하게 js로 sort 진행
-    result.sort(function (a: PlaceAttributes, b: PlaceAttributes) {
-      const a_distance = getDistance(
-        a.addressLocation[0],
-        a.addressLocation[1],
-        latitude,
-        longitude,
-      );
-      const b_distance = getDistance(
-        b.addressLocation[0],
-        b.addressLocation[1],
-        latitude,
-        longitude,
-      );
-      if (a_distance > b_distance) {
-        return 1;
-      }
-      if (a_distance < b_distance) {
-        return -1;
-      }
-      // a must be equal to b
-      return 0;
+      include: [{ model: Menu }, { model: Comment }, { model: Image }],
     });
     res.status(200).json({
       success: true,
@@ -183,6 +133,7 @@ const getByName: RequestHandler = async (req, res, next) => {
         },
       },
       attributes: mainAttributes,
+      include: Image,
     });
     res.status(200).json({
       success: true,
@@ -194,12 +145,14 @@ const getByName: RequestHandler = async (req, res, next) => {
   }
 };
 
-const createPlace: RequestHandler = async (req, res, next) => {
+const createPlace = async (
+  req: Request & { files: MulterFile[] },
+  res: Response,
+  next: NextFunction,
+) => {
   const {
-    addressLocation,
     addressExact,
     addressCategory,
-    pictureLink,
     placeName,
     placeDescription,
     placeTime,
@@ -213,7 +166,9 @@ const createPlace: RequestHandler = async (req, res, next) => {
     dateConcept,
     writer,
   }: PlaceAttributes = req.body;
-  const { menu } = req.body;
+  // 배열, object 형 변환
+  const addressLocation = req.body.addressLocation.map(Number);
+  const menu = JSON.parse(req.body.menu);
   if (
     !addressLocation ||
     !addressExact ||
@@ -233,7 +188,6 @@ const createPlace: RequestHandler = async (req, res, next) => {
       addressLocation,
       addressExact,
       addressCategory,
-      pictureLink,
       placeName,
       placeDescription,
       placeTime,
@@ -251,21 +205,41 @@ const createPlace: RequestHandler = async (req, res, next) => {
     });
     // 자주 사용할 placeId이기 때문에 변수화
     const placeId = placeResult.id;
+    let menuId: number | undefined;
     // Place 생성 후 동일한 sourceId 값을 넣어줌.
     await Place.update({ sourceId: `place_${placeId}` }, { where: { id: placeId } });
     // menu가 존재한다면
+    // menu는 여러개를 받을 경우 따로 빼줄 예정.. (사진 받기가 곤란함)
     if (menu) {
-      const { menuName, menuPrice, menuPicture, isRecommend } = menu;
+      const { menuName, menuPrice, isRecommend } = menu;
       // menu table 생성
       const menuResult = await Menu.create({
         placeId,
         menuName,
         menuPrice,
-        menuPicture,
         isRecommend,
         sourceId: 'temp',
       });
-      Menu.update({ sourceId: `menu_${menuResult.id}` }, { where: { id: menuResult.id } });
+      menuId = menuResult.id;
+      Menu.update({ sourceId: `menu_${menuId}` }, { where: { id: menuId } });
+    }
+    // 사진이 있으면
+    if (req.files) {
+      await Promise.all(
+        req.files.map(async (file: MulterFile) => {
+          const imgData = fs
+            .readFileSync(`assets${file.path.split('assets')[1]}`)
+            .toString('base64');
+          // 장소 이미지 생성
+          if (file.fieldname === 'placeImages') {
+            // path는 BLOB 형식으로 저장. 프론트에서 사용시 Buffer 이용.
+            await Image.create({ path: imgData, source: `place_${placeId}` });
+          } else if (file.fieldname === 'menuImages' && menuId) {
+            // 메뉴 이미지 생성
+            await Image.create({ path: imgData, source: `menu_${menuId}` });
+          }
+        }),
+      );
     }
     res.status(200).json({
       success: true,
@@ -314,13 +288,9 @@ const ratePlace: RequestHandler = async (req, res, next) => {
 const updatePlace: RequestHandler = async (req, res, next) => {};
 
 module.exports = {
-  getByCategory,
-  getByComment,
-  getByArea,
-  getByRate,
+  getByFilter,
   getByMap,
   getByOne,
-  getByLocation,
   getByName,
   createPlace,
   updatePlace,

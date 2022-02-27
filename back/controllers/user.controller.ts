@@ -12,7 +12,6 @@ const userGet: RequestHandler = async (req, res, next) => {
   try {
     if (req.user) {
       // Image는 테이블을 분리했기 때문에 찾아줘야 함.
-      // Blob type 그대로 보내는게 맞나??
       const imageResult = await Image.findOne({ where: { source: `user_${req.user.id}` } });
       // user의 session에 담긴 정보를 보냄
       res.status(200).json({
@@ -54,8 +53,17 @@ const userRegister: RequestHandler = async (req, res, next) => {
       password: hashedPassword,
       sourceId: 'temp',
     });
+    const { id: userId } = userResult;
     // user 생성 후 sourceId 값 채워주기
-    await User.update({ sourceId: `user_${userResult.id}` }, { where: { id: userResult.id } });
+    await User.update({ sourceId: `user_${userId}` }, { where: { id: userId } });
+    if (req.file) {
+      // user 사진은 한 장만 지정 가능.
+      const imgData = fs
+        .readFileSync(`assets${req.file.path.split('assets')[1]}`)
+        .toString('base64');
+      // path는 BLOB 형식으로 저장. 프론트에서 사용시 Buffer 이용.
+      await Image.create({ path: imgData, source: `user_${userId}` });
+    }
 
     res.status(200).json({
       success: true,
@@ -108,11 +116,15 @@ const userUpdate = async (
   const { userId } = req.body;
   if (!userId) return res.status(403).send('유저 아이디가 필요합니다.');
   try {
-    // 일단은 한 장만 지정 가능.
-    const imgData = fs.readFileSync(`assets${req.file.path.split('assets')[1]}`).toString('base64');
-    // path는 BLOB 형식으로 저장. 프론트에서 사용시 Buffer 이용.
-    await Image.create({ path: imgData, source: `user_${userId}` });
-    res.json({ success: true, path: imgData });
+    if (req.file) {
+      // user 사진은 한 장만 지정 가능.
+      const imgData = fs
+        .readFileSync(`assets${req.file.path.split('assets')[1]}`)
+        .toString('base64');
+      // path는 BLOB 형식으로 저장. 프론트에서 사용시 Buffer 이용.
+      await Image.create({ path: imgData, source: `user_${userId}` });
+    }
+    res.json({ success: true });
   } catch (error) {
     res.status(400).json({ success: false, error });
     next(error);
