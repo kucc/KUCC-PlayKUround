@@ -8,6 +8,15 @@ import { UserAttributes } from '../models/user/userType';
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
 
+const userGetName: RequestHandler = async (req, res, next) => {
+  const { userEmail } = req.body;
+
+  if (!userEmail) return res.status(403).send('필수인 정보가 입력되지 않았습니다.');
+
+  try {
+  } catch (error) {}
+};
+
 const userGet: RequestHandler = async (req, res, next) => {
   try {
     if (req.user) {
