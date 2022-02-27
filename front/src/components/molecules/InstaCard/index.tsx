@@ -2,11 +2,14 @@ import React, { useState } from 'react';
 
 import { Chip } from '@components';
 
+import { Likes } from '@assets';
+
 import {
   CardHeadContainer,
   ChipContainer,
   Container,
   Description,
+  LikesContainer,
   Place,
   StyledImg,
   TextContainer,
@@ -20,6 +23,7 @@ export const InstaCard = ({
   icon,
   label,
   descriptionText,
+  likesCount,
 }: InstaCardProps) => {
   const [clicked, setIsClicked] = useState<boolean>(false);
   const onClick = () => {
@@ -33,6 +37,12 @@ export const InstaCard = ({
           <Title>{titleText}</Title>
           <Place>{placeText}</Place>
         </TextContainer>
+        <LikesContainer>
+          <div>
+            <Likes />
+          </div>
+          <span>{likesCount}</span>
+        </LikesContainer>
         <ChipContainer>
           <Chip
             icon={icon}

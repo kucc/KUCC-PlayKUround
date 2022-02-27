@@ -6,4 +6,5 @@ export type InstaCardProps = {
   placeText: string;
   icon: React.ReactNode;
   descriptionText: string;
+  likesCount: number;
 };
