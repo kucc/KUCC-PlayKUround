@@ -31,6 +31,7 @@ const getByFilter: RequestHandler = async (req, res, next) => {
         return res.status(403).send('유효한 값 ("혜화", "안암", "성신여대")이 아닙니다.');
       whereCondition['addressCategory'] = area;
     }
+    // order에 따른..
     if (order === 'comment') {
       orderCondition = [['commentCount', 'DESC']];
     }
@@ -45,6 +46,7 @@ const getByFilter: RequestHandler = async (req, res, next) => {
       include: Image,
     });
 
+    // distance는 sequelize에서 찾은 다음 처리
     if (order === 'distance') {
       if (!latitude || !longitude) {
         return res.status(403).send('필수인 정보가 입력되지 않았습니다.');
@@ -131,6 +133,7 @@ const getByName: RequestHandler = async (req, res, next) => {
         },
       },
       attributes: mainAttributes,
+      include: Image,
     });
     res.status(200).json({
       success: true,
