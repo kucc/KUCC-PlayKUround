@@ -33,10 +33,6 @@ const PlaceModel = (sequelize: Sequelize) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      placeTime: {
-        type: DataTypes.JSON,
-        allowNull: true,
-      },
       placePhoneNum: {
         type: DataTypes.STRING,
         allowNull: true,

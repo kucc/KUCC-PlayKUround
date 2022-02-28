@@ -50,12 +50,6 @@ post:
               type: string
               description: 장소의 간단한 설명입니다.
               example: No.1 만화카페에 관한 설명입니다. No.1 만화카페에 관한 설명입니다. No.1 만화카페에 관한 설명입니···
-            placeTime:
-              type: array
-              description: 장소의 운영 시간입니다. 배열의 첫 번쨰 요소에는 시작 시간, 두 번째 요소에는 마감 시간을 넣어주세요.
-              items:
-                type: string
-              example: ["9:00", "22:00"]
             placePhoneNum:
               type: string
               description: 장소의 전화번호입니다.
@@ -116,6 +110,66 @@ post:
                   type: boolean
                   description: 추천 메뉴인지 여부입니다. 기본 값은 false입니다.
                   example: true
+            operatingHour:
+              type: object
+              description: 운영 시간에 대한 object입니다. 예시를 확인해주세요.
+              required:
+                - menuName
+              properties:
+                defaultTime:
+                  type: array
+                  description: 장소의 기본 운영 시간입니다. 배열의 첫 번쨰 요소에는 시작 시간, 두 번째 요소에는 마감 시간을 넣어주세요.
+                  items:
+                    type: string
+                  example: ["9:00", "22:00"]
+                breakTime:
+                  type: array
+                  description: 장소의 브레이크 타임입니다.
+                  items:
+                    type: string
+                  example: ["12:00", "14:00"]
+                Monday:
+                  type: array
+                  description: 장소의 월요일 운영 시간입니다.
+                  items:
+                    type: string
+                  example: ["9:00", "22:00"]
+                Tuesday:
+                  type: array
+                  description: 장소의 화요일 운영 시간입니다.
+                  items:
+                    type: string
+                  example: ["9:00", "22:00"]
+                Wednesday:
+                  type: array
+                  description: 장소의 수요일 운영 시간입니다.
+                  items:
+                    type: string
+                  example: ["9:00", "22:00"]
+                Thursday:
+                  type: array
+                  description: 장소의 목요일 운영 시간입니다.
+                  items:
+                    type: string
+                  example: ["9:00", "22:00"]
+                Friday:
+                  type: array
+                  description: 장소의 금요일 운영 시간입니다.
+                  items:
+                    type: string
+                  example: ["9:00", "22:00"]
+                Saturday:
+                  type: array
+                  description: 장소의 토요일 운영 시간입니다.
+                  items:
+                    type: string
+                  example: ["9:00", "22:00"]
+                Sunday:
+                  type: array
+                  description: 장소의 일요일 운영 시간입니다.
+                  items:
+                    type: string
+                  example: ["9:00", "22:00"]
         encoding:
           addressLocation:
             style: form

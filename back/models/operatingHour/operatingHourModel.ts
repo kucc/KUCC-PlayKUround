@@ -16,7 +16,7 @@ const OperatingHourModel = (sequelize: Sequelize) => {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
-      default: {
+      defaultTime: {
         type: DataTypes.JSON,
         allowNull: false,
       },

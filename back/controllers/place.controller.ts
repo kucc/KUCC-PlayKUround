@@ -1,7 +1,7 @@
 import { NextFunction, Request, RequestHandler, Response } from 'express';
 import fs from 'fs';
 
-import { Comment, Hashtag, Image, Menu, Place, User } from '../models';
+import { Comment, Hashtag, Image, Menu, OperatingHour, Place, User } from '../models';
 import { MulterFile } from '../models/image/imageType';
 import { PlaceAttributes } from '../models/place/placeType';
 import { getDistance, mainAttributes } from './utils';
@@ -108,7 +108,7 @@ const getByOne: RequestHandler = async (req, res, next) => {
   try {
     const result = await Place.findOne({
       where: { id: placeId },
-      include: [{ model: Menu }, { model: Comment }, { model: Image }],
+      include: [{ model: Menu }, { model: Comment }, { model: Image }, { model: OperatingHour }],
     });
     res.status(200).json({
       success: true,
@@ -155,7 +155,6 @@ const createPlace = async (
     addressCategory,
     placeName,
     placeDescription,
-    placeTime,
     placePhoneNum,
     naverLink,
     catchTableLink,
@@ -168,7 +167,9 @@ const createPlace = async (
   }: PlaceAttributes = req.body;
   // 배열, object 형 변환
   const addressLocation = req.body.addressLocation.map(Number);
+  // String to Object
   const menu = JSON.parse(req.body.menu);
+  const operatingHour = JSON.parse(req.body.operatingHour);
   if (
     !addressLocation ||
     !addressExact ||
@@ -190,7 +191,6 @@ const createPlace = async (
       addressCategory,
       placeName,
       placeDescription,
-      placeTime,
       placePhoneNum,
       naverLink,
       catchTableLink,
@@ -240,6 +240,33 @@ const createPlace = async (
           }
         }),
       );
+    }
+    // 운영 시간이 있으면
+    if (operatingHour) {
+      const {
+        defaultTime,
+        breakTime,
+        Monday,
+        Tuesday,
+        Wednesday,
+        Thursday,
+        Friday,
+        Saturday,
+        Sunday,
+      } = operatingHour;
+      // menu table 생성
+      await OperatingHour.create({
+        placeId,
+        defaultTime,
+        breakTime,
+        Monday,
+        Tuesday,
+        Wednesday,
+        Thursday,
+        Friday,
+        Saturday,
+        Sunday,
+      });
     }
     res.status(200).json({
       success: true,
