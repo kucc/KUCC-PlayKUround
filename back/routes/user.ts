@@ -6,6 +6,8 @@ const { isLoggedIn } = require('../middlewares/Auth');
 
 const router = express.Router();
 
+router.get('/getName', controller.userGetName);
+
 router.get('/', controller.userGet);
 
 router.post(

@@ -9,12 +9,15 @@ const bcrypt = require('bcryptjs');
 const passport = require('passport');
 
 const userGetName: RequestHandler = async (req, res, next) => {
-  const { userEmail } = req.body;
-
+  const { userEmail } = req.query;
   if (!userEmail) return res.status(403).send('필수인 정보가 입력되지 않았습니다.');
-
   try {
-  } catch (error) {}
+    const result = await User.findOne({ where: { email: userEmail } });
+    res.status(200).send({ success: true, result: result ? result.name : null });
+  } catch (error) {
+    res.status(400).json({ success: false, error });
+    next(error);
+  }
 };
 
 const userGet: RequestHandler = async (req, res, next) => {
@@ -134,6 +137,7 @@ const userUpdate = async (
 };
 
 module.exports = {
+  userGetName,
   userRegister,
   userLogin,
   userLogout,

@@ -19,6 +19,7 @@ export interface UserAttributes {
   scrabList?: string[];
   likeList?: string[];
   rateList?: string[];
+  historyList?: string[];
 }
 
 interface UserCreationAttributes
@@ -34,6 +35,7 @@ interface UserCreationAttributes
     | 'scrabList'
     | 'likeList'
     | 'rateList'
+    | 'historyList'
   > {}
 
 export interface UserInterface

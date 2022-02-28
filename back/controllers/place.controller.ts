@@ -102,6 +102,8 @@ const getByMap: RequestHandler = async (req, res, next) => {
 };
 
 // 장소 상세 정보
+// 만약 유저 정보(세션)이 있으면, 최근 history에 sourceId를 담음.
+// course getByOne에도 똑같은 로직 구현
 const getByOne: RequestHandler = async (req, res, next) => {
   const placeId: number = parseInt(req.query.id as string);
   if (!placeId) return res.status(403).send('비정상적인 접근입니다.');
