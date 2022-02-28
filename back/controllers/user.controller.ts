@@ -38,7 +38,7 @@ const userGet: RequestHandler = async (req, res, next) => {
       res.status(200).json(null);
     }
   } catch (error) {
-    console.error(error);
+    res.status(400).json({ success: false, error });
     next(error);
   }
 };
