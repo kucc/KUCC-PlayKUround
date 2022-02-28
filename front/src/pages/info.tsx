@@ -10,13 +10,11 @@ import { loadMyInfoAPI } from 'apis/user';
 import User from 'interfaces/user';
 
 import useWindowDimensions from '@hooks/useWindowDimensions';
-import { MenuIcon } from '@styles';
 import { WRONG_LOGIN_ACCESS } from '@util/message';
 
 const InfoPage = () => {
   const { data: me, isSuccess } = useQuery<User>('user', loadMyInfoAPI);
   const { width } = useWindowDimensions();
-  const leftItems = [<MenuIcon />];
 
   useEffect(() => {
     if (isSuccess && !(me && me.id)) {
@@ -32,11 +30,7 @@ const InfoPage = () => {
     }
   }, [me]);
 
-  return me ? (
-    <Info title='최근에 본 장소/코스' NavBarTitle='내 정보' leftItems={leftItems} />
-  ) : (
-    <div></div>
-  );
+  return me ? <Info title='최근에 본 장소/코스' navbarTitle='내 정보' /> : <div></div>;
 };
 
 export default InfoPage;
