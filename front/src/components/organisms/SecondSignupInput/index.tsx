@@ -95,6 +95,7 @@ export const SecondSignupInput = ({
         />
         <ButtonWrapper>
           <BaseButton
+            width='174'
             label='Join !'
             disabled={!isSuccessNickname}
             gradient={true}
