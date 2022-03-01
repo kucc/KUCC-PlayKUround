@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 
 import { Chip } from '@components';
+import { Carousel } from '@components';
 import { LikesButton } from '@components/atoms/LikesButton';
 
 import {
   CardHeadContainer,
-  ChipContainer,
   Container,
   Description,
   Place,
@@ -15,11 +15,7 @@ import {
 } from './styled';
 import { InstaCardProps } from './type';
 
-export const InstaCard = ({ titleText, placeText, descriptionText }: InstaCardProps) => {
-  const [clicked, setIsClicked] = useState<boolean>(false);
-  const onClick = () => {
-    setIsClicked(!clicked);
-  };
+export const InstaCard = ({ titleText, placeText, likesCount, CarouselList }: InstaCardProps) => {
   return (
     <Container>
       <CardHeadContainer>
@@ -27,10 +23,9 @@ export const InstaCard = ({ titleText, placeText, descriptionText }: InstaCardPr
           <Title>{titleText}</Title>
           <Place>{placeText}</Place>
         </TextContainer>
-        <LikesButton likesCount={123} />
+        <LikesButton likesCount={likesCount} />
       </CardHeadContainer>
-      <StyledImg src='pictures/insta-card.png' width={'100%'} height={270} />
-      <Description>{descriptionText}</Description>
+      <Carousel CarouselList={CarouselList} />
     </Container>
   );
 };
