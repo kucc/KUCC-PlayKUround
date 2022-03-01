@@ -44,9 +44,9 @@ const userGetName: RequestHandler = async (req, res, next) => {
 };
 
 const userGet: RequestHandler = async (req, res, next) => {
-  const { id, name, email, role } = req.user;
   try {
     if (req.user) {
+      const { id, name, email, role } = req.user;
       // Image는 테이블을 분리했기 때문에 찾아줘야 함.
       const imageResult = await Image.findOne({ where: { source: `user_${id}` } });
       // user의 session에 담긴 정보를 보냄
