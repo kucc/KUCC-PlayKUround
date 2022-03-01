@@ -26,7 +26,7 @@ export const Modal = ({
 
   return (
     <>
-      <ModalOverlay show={show} />
+      {show && <ModalOverlay />}
       {transitions(
         (styles, item) =>
           item && (
