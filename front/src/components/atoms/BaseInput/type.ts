@@ -6,6 +6,7 @@ export interface BaseInputProps extends Omit<React.HTMLProps<HTMLInputElement>, 
   children?: React.ReactNode;
   errorMessage?: string;
   successMessage?: string;
+  message?: string;
   isError?: boolean;
   isSuccess?: boolean;
   label?: string;

@@ -56,6 +56,10 @@ export const SuccessMessage = styled(ErrorMessage)`
   color: ${Colors.green};
 `;
 
+export const Message = styled(ErrorMessage)`
+  color: ${Colors.lightGrey_7};
+`;
+
 export const Label = styled.label`
   ${lowerTypography.label};
   margin-bottom: 25px;
