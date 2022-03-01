@@ -15,6 +15,8 @@ export const BaseButton = ({
   width,
   spinnerSize,
   gradient,
+  color,
+  boxShadow,
 }: ButtonProps) => {
   return (
     <>
@@ -25,7 +27,9 @@ export const BaseButton = ({
         width={width}
         style={style}
         block={block}
-        onClick={onClick}>
+        onClick={onClick}
+        color={color}
+        boxShadow={boxShadow}>
         <Label>
           {label || children}
           {loading && <Spinner spinnerSize={spinnerSize} />}
