@@ -1,8 +1,8 @@
 import React from 'react';
 
 export type ChipProps = {
-  icon: React.ReactNode;
-  label: string | number;
+  icon?: React.ReactNode;
+  label?: string | number;
   style?: React.CSSProperties;
   labelStyle?: React.CSSProperties;
   shadow?: boolean;

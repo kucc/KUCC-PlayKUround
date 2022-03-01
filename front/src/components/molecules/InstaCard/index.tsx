@@ -20,8 +20,6 @@ import { InstaCardProps } from './type';
 export const InstaCard = ({
   titleText,
   placeText,
-  icon,
-  label,
   descriptionText,
   likesCount,
 }: InstaCardProps) => {
@@ -44,14 +42,7 @@ export const InstaCard = ({
           <span>{likesCount}</span>
         </LikesContainer>
         <ChipContainer>
-          <Chip
-            icon={icon}
-            label={label}
-            shadow={true}
-            onClick={onClick}
-            clickable={true}
-            clicked={clicked}
-          />
+          <Chip shadow={true} onClick={onClick} clickable={true} clicked={clicked} />
         </ChipContainer>
       </CardHeadContainer>
       <StyledImg src='pictures/insta-card.png' width={'100%'} height={270} />
