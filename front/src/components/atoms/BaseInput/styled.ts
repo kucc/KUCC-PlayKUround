@@ -8,7 +8,6 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding-top: 68px;
 `;
 
 export const SubContainer = styled.div<BaseInputProps>`
@@ -54,6 +53,10 @@ export const ErrorMessage = styled.div`
 
 export const SuccessMessage = styled(ErrorMessage)`
   color: ${Colors.green};
+`;
+
+export const Message = styled(ErrorMessage)`
+  color: ${Colors.lightGrey_7};
 `;
 
 export const Label = styled.label`

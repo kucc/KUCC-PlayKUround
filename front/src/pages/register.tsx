@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 
 import { Modal } from 'antd';
@@ -7,19 +7,20 @@ import { GetServerSidePropsContext } from 'next';
 import Router from 'next/router';
 import { useRouter } from 'next/router';
 
-import { FirstSignupInput, Navbar, SecondSignupInput, Text } from '@components';
+import { BackIconWithNavbar, FirstSignupInput, SecondSignupInput, Text } from '@components';
 
-import { loadMyInfoAPI, registerAPI } from 'apis/user';
+import { loadMyInfoAPI } from 'apis/user';
 import User from 'interfaces/user';
 
-import { Back } from '@assets';
+import { MakeEmailContext } from '@contexts/globalEmail';
 import useInput from '@hooks/useInput';
 import useWindowDimensions from '@hooks/useWindowDimensions';
 import { ALREADY_LOGINED } from '@util/message';
 
 const RegisterPage = () => {
+  const { email: globalEmail } = useContext(MakeEmailContext);
   const { data: me, isSuccess } = useQuery<User>('user', loadMyInfoAPI);
-  const [email, onChangeEmail] = useInput('');
+  const [email, onChangeEmail] = useInput(globalEmail || '');
   const [password, onChangePassword] = useInput('');
   const [passwordCheck, onChangePasswordCheck] = useInput('');
   const [nickname, onChangeNickname] = useInput('');
@@ -51,11 +52,9 @@ const RegisterPage = () => {
     }
   };
 
-  const leftItems = [{ icon: <Back />, onClickLeftItems: onClickBackIcon }];
-
   return (
     <>
-      <Navbar text='회원가입' leftItems={leftItems} />
+      <BackIconWithNavbar text='회원가입' onClickBackIcon={onClickBackIcon} />
       {me?.id ? (
         <Text h4 center>
           메인 페이지로 이동 중입니다. 잠시만 기다려주세요

@@ -6,6 +6,7 @@ import {
   InputStyled,
   Label,
   Line,
+  Message,
   SubContainer,
   SuccessMessage,
 } from './styled';
@@ -21,6 +22,7 @@ export const BaseInput = ({
   style,
   errorMessage,
   successMessage,
+  message,
   isError,
   isSuccess,
   label,
@@ -53,6 +55,7 @@ export const BaseInput = ({
       <Line isError={isError} isSuccess={isSuccess} />
       {isError && <ErrorMessage>{errorMessage}</ErrorMessage>}
       {isSuccess && <SuccessMessage>{successMessage}</SuccessMessage>}
+      {message && <Message>{message}</Message>}
     </Container>
   );
 };

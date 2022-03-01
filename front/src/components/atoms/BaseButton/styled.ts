@@ -9,7 +9,6 @@ export const ButtonStyled = styled.button<ButtonProps>`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: 0 68px;
   width: ${({ width, block }) => (block ? '100%' : width ? `${width}px` : 'auto')};
   height: 44px;
   ${({ gradient, disabled }) => !disabled && gradient && `background-image: ${Colors.gradient};`}
@@ -17,9 +16,9 @@ export const ButtonStyled = styled.button<ButtonProps>`
     `background-color: ${
       disabled ? Colors.white : !disabled && backgroundColor ? backgroundColor : Colors.primary
     };`}
-  box-shadow: 0 0 4px ${({ backgroundColor, disabled }) =>
-    disabled ? Colors.shadow : !disabled && backgroundColor ? backgroundColor : Colors.primary};
-  color: ${({ disabled }) => (disabled ? Colors.lightGrey_6 : Colors.white)};
+  box-shadow: 0 0 4px ${({ disabled, boxShadow }) =>
+    disabled ? Colors.shadow : boxShadow ? boxShadow : Colors.primary};
+  color: ${({ disabled, color }) => (disabled ? Colors.lightGrey_6 : color ? color : Colors.white)};
   border: none;
   border-radius: 27px;
   font-size: 16px;

@@ -1,4 +1,5 @@
 // @index('./*', f => `export * from '${f.path}'`)
+export * from './BackIconWithNavbar';
 export * from './CardArray';
 export * from './FirstSignupInput';
 export * from './HamburgerMenuWithAvatar';

@@ -1,11 +1,12 @@
 import React, { useCallback, useEffect, useState } from 'react';
+import { useQuery } from 'react-query';
 
 import { Modal } from 'antd';
 import Router from 'next/router';
 
 import { Avatar, BaseButton, BaseInput } from '@components';
 
-import { logInAPI, registerAPI } from 'apis/user';
+import { checkNameAPI, logInAPI, registerAPI } from 'apis/user';
 
 import useWindowDimensions from '@hooks/useWindowDimensions';
 import { ERROR_LOG, SIGNUP_SUCCESS } from '@util/message';
@@ -19,12 +20,15 @@ export const SecondSignupInput = ({
   nickname,
   onChangeNickname,
 }: SecondSignupInputProps) => {
+  const { data: isNickNameExist } = useQuery(['user', nickname], checkNameAPI);
   const [isSuccessNickname, setIsSuccessNickname] = useState(false);
   const [isErrorNickname, setIsErrorNickname] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const { width } = useWindowDimensions();
 
   const onClickJoin = useCallback(() => {
+    setIsLoading(true);
     registerAPI({ email, name: nickname, password })
       .then(result => {
         if (result) {
@@ -65,14 +69,14 @@ export const SecondSignupInput = ({
   }, [email, nickname, password]);
 
   useEffect(() => {
-    if (nickname.length > 0 && nickname.length < 6) {
-      setIsErrorNickname(true);
-      setIsSuccessNickname(false);
-    } else if (nickname.length > 6) {
-      setIsErrorNickname(false);
-      setIsSuccessNickname(true);
-    } else {
-      return;
+    if (nickname.length > 0) {
+      if (!isNickNameExist) {
+        setIsErrorNickname(false);
+        setIsSuccessNickname(true);
+      } else {
+        setIsErrorNickname(true);
+        setIsSuccessNickname(false);
+      }
     }
   }, [nickname]);
 
@@ -92,13 +96,16 @@ export const SecondSignupInput = ({
           isSuccess={isSuccessNickname}
           errorMessage='중복된 닉네임입니다.'
           successMessage='사용 가능한 닉네임입니다 !'
+          style={{ paddingTop: '68px' }}
         />
         <ButtonWrapper>
           <BaseButton
+            width='174'
             label='Join !'
             disabled={!isSuccessNickname}
             gradient={true}
             onClick={onClickJoin}
+            loading={isLoading}
           />
         </ButtonWrapper>
       </div>
