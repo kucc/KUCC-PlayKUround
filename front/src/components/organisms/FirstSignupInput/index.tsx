@@ -100,7 +100,8 @@ export const FirstSignupInput = ({
       />
       <ButtonWrapper>
         <BaseButton
-          label='Next !'
+          width='174'
+          label='Next'
           disabled={!isSuccessEmail || !isSuccessPasswordCheck || !isSuccessPassword}
           gradient={true}
           onClick={onClickNextButton}
