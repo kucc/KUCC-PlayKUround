@@ -8,6 +8,29 @@ import { UserAttributes } from '../models/user/userType';
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
 
+const userCheckName: RequestHandler = async (req, res, next) => {
+  const { name } = req.query;
+
+  try {
+    const exUserName = await User.findOne({ where: { name } });
+    res.status(200).send({ success: true, result: exUserName ? true : false });
+  } catch (error) {
+    res.status(400).json({ success: false, error });
+    next(error);
+  }
+};
+
+const userCheckEmail: RequestHandler = async (req, res, next) => {
+  const { email } = req.query;
+  try {
+    const exUserEmail = await User.findOne({ where: { email } });
+    res.status(200).send({ success: true, result: exUserEmail ? true : false });
+  } catch (error) {
+    res.status(400).json({ success: false, error });
+    next(error);
+  }
+};
+
 const userGetName: RequestHandler = async (req, res, next) => {
   const { userEmail } = req.query;
   if (!userEmail) return res.status(403).send('필수인 정보가 입력되지 않았습니다.');
@@ -149,6 +172,8 @@ const userUpdate = async (
 };
 
 module.exports = {
+  userCheckName,
+  userCheckEmail,
   userGetName,
   userRegister,
   userLogin,
