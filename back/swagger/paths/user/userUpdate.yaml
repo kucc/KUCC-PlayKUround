@@ -20,7 +20,7 @@ patch:
             email:
               type: string
               example: test1@naver.com
-  description: Patch 방식으로 현재 유저의 정보를 업데이트합니다. 로그인이 필요한 작업입니다. 일단은 한 장만 업로드할 수 있게 했습니다. 사진의 형식은 다음을 참고하면 좋을 거 같습니다. https://kyounghwan01.github.io/blog/React/image-upload/#formdata-%E1%84%92%E1%85%A2%E1%86%AB%E1%84%83%E1%85%B3%E1%86%AF%E1%84%85%E1%85%B5%E1%86%BC
+  description: Patch 방식으로 현재 유저의 정보를 업데이트합니다. 로그인이 필요한 작업입니다. 사진은 한 장만 업로드할 수 있게 했습니다. 사진의 형식은 다음을 참고하면 좋을 거 같습니다. https://kyounghwan01.github.io/blog/React/image-upload/#formdata-%E1%84%92%E1%85%A2%E1%86%AB%E1%84%83%E1%85%B3%E1%86%AF%E1%84%85%E1%85%B5%E1%86%BC
   # https://swagger.io/docs/specification/describing-request-body/file-upload/
   responses:
     200:
