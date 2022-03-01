@@ -8,7 +8,6 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding-top: 68px;
 `;
 
 export const SubContainer = styled.div<BaseInputProps>`
