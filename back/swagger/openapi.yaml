@@ -15,6 +15,10 @@ paths:
     $ref: "./paths/user/userGet.yaml"
   /api/user/getName:
     $ref: "./paths/user/userGetName.yaml"
+  /api/user/checkEmail:
+    $ref: "./paths/user/userCheckEmail.yaml"
+  /api/user/checkName:
+    $ref: "./paths/user/userCheckName.yaml"
   /api/user/register:
     $ref: "./paths/user/userRegister.yaml"
   /api/user/login:
