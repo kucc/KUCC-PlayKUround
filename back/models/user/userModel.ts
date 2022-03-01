@@ -72,6 +72,11 @@ const UserModel = (sequelize: Sequelize) => {
         defaultValue: [],
         allowNull: true,
       },
+      historyList: {
+        type: DataTypes.JSON,
+        defaultValue: [],
+        allowNull: true,
+      },
     },
     {
       timestamps: true,

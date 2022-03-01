@@ -1,0 +1,18 @@
+get:
+  tags:
+    - user
+  summary: 유저 이메일 확인
+  description: Get 방식으로 해당 이메일의 유저의 이메일을 확인합니다. return 값으로는 boolean을 return 합니다.
+  parameters:
+    - in: query
+      name: email
+      schema:
+        type: string
+      required: true
+      description: user email 값.
+      example: test@gmail.com
+  responses:
+    200:
+      description: 유저 이메일 확인 성공.
+    400:
+      description: sequelize 에러

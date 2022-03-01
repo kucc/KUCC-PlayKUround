@@ -9,7 +9,6 @@ export interface PlaceAttributes {
   addressCategory: '혜화' | '안암' | '성신여대';
   placeName: string;
   placeDescription: string;
-  placeTime: string[];
   placePhoneNum: string;
   naverLink: string;
   catchTableLink: string;
@@ -31,7 +30,6 @@ interface PlaceCreationAttributes
   extends Optional<
     PlaceAttributes,
     | 'id'
-    | 'placeTime'
     | 'placePhoneNum'
     | 'naverLink'
     | 'catchTableLink'

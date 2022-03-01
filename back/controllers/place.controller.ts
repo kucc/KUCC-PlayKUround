@@ -1,7 +1,7 @@
 import { NextFunction, Request, RequestHandler, Response } from 'express';
 import fs from 'fs';
 
-import { Comment, Hashtag, Image, Menu, Place, User } from '../models';
+import { Comment, Hashtag, Image, Menu, OperatingHour, Place, User } from '../models';
 import { MulterFile } from '../models/image/imageType';
 import { PlaceAttributes } from '../models/place/placeType';
 import { getDistance, mainAttributes } from './utils';
@@ -108,8 +108,33 @@ const getByOne: RequestHandler = async (req, res, next) => {
   try {
     const result = await Place.findOne({
       where: { id: placeId },
-      include: [{ model: Menu }, { model: Comment }, { model: Image }],
+      include: [{ model: Menu }, { model: Comment }, { model: Image }, { model: OperatingHour }],
     });
+    // 만약 유저 정보(세션)이 있으면, 최근 history에 sourceId를 담음.
+    // course getByOne에도 똑같은 로직 구현
+    if (req.user && result) {
+      const { historyList } = req.user;
+      const { sourceId } = result;
+      if (historyList) {
+        // findIndex는 해당 배열에 값이 존재하지 않으면 -1을 return
+        const findIndex = historyList.indexOf(sourceId as string) as number;
+        // 이미 리스트에 sourceId가 있으면..
+        if (findIndex !== -1) {
+          // 해당 배열에서 findIndex의 값을 삭제
+          const deletedNum = historyList.splice(findIndex, 1)[0];
+          // 배열의 첫번째 값에 추가
+          historyList.unshift(deletedNum);
+        }
+        // 없으면
+        else {
+          // 배열의 첫번째 값에 추가
+          historyList.unshift(sourceId as any);
+          // 배열의 크기가 30 이상일 경우에, 배열의 맨 마지막 값 제거
+          if (historyList.length > 30) historyList.pop();
+        }
+        await User.update({ historyList }, { where: { id: req.user.id } });
+      }
+    }
     res.status(200).json({
       success: true,
       result,
@@ -155,7 +180,6 @@ const createPlace = async (
     addressCategory,
     placeName,
     placeDescription,
-    placeTime,
     placePhoneNum,
     naverLink,
     catchTableLink,
@@ -168,7 +192,9 @@ const createPlace = async (
   }: PlaceAttributes = req.body;
   // 배열, object 형 변환
   const addressLocation = req.body.addressLocation.map(Number);
+  // String to Object
   const menu = JSON.parse(req.body.menu);
+  const operatingHour = JSON.parse(req.body.operatingHour);
   if (
     !addressLocation ||
     !addressExact ||
@@ -190,7 +216,6 @@ const createPlace = async (
       addressCategory,
       placeName,
       placeDescription,
-      placeTime,
       placePhoneNum,
       naverLink,
       catchTableLink,
@@ -240,6 +265,33 @@ const createPlace = async (
           }
         }),
       );
+    }
+    // 운영 시간이 있으면
+    if (operatingHour) {
+      const {
+        defaultTime,
+        breakTime,
+        Monday,
+        Tuesday,
+        Wednesday,
+        Thursday,
+        Friday,
+        Saturday,
+        Sunday,
+      } = operatingHour;
+      // menu table 생성
+      await OperatingHour.create({
+        placeId,
+        defaultTime,
+        breakTime,
+        Monday,
+        Tuesday,
+        Wednesday,
+        Thursday,
+        Friday,
+        Saturday,
+        Sunday,
+      });
     }
     res.status(200).json({
       success: true,
