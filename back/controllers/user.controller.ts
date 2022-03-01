@@ -21,17 +21,18 @@ const userGetName: RequestHandler = async (req, res, next) => {
 };
 
 const userGet: RequestHandler = async (req, res, next) => {
+  const { id, name, email, role } = req.user;
   try {
     if (req.user) {
       // Image는 테이블을 분리했기 때문에 찾아줘야 함.
-      const imageResult = await Image.findOne({ where: { source: `user_${req.user.id}` } });
+      const imageResult = await Image.findOne({ where: { source: `user_${id}` } });
       // user의 session에 담긴 정보를 보냄
       res.status(200).json({
         success: true,
-        id: req.user.id,
-        name: req.user.name,
-        email: req.user.email,
-        role: req.user.role,
+        id,
+        name,
+        email,
+        role,
         image: imageResult?.path,
       });
     } else {
@@ -45,17 +46,18 @@ const userGet: RequestHandler = async (req, res, next) => {
 
 // eslint-disable-next-line consistent-return
 const userRegister: RequestHandler = async (req, res, next) => {
+  const { email, name } = req.body;
   try {
-    const exUserEmail = await User.findOne({ where: { email: req.body.email } });
+    const exUserEmail = await User.findOne({ where: { email } });
     if (exUserEmail) return res.status(403).send('이미 사용중인 이메일입니다.');
 
-    const exUserName = await User.findOne({ where: { name: req.body.name } });
+    const exUserName = await User.findOne({ where: { name } });
     if (exUserName) return res.status(403).send('이미 사용중인 닉네임입니다.');
 
     const hashedPassword = await bcrypt.hash(req.body.password, 12);
     const userResult = await User.create({
-      email: req.body.email,
-      name: req.body.name,
+      email,
+      name,
       password: hashedPassword,
       sourceId: 'temp',
     });
@@ -118,9 +120,19 @@ const userUpdate = async (
   res: Response,
   next: NextFunction,
 ) => {
-  const { userId } = req.body;
+  const { userId, email, name } = req.body;
   if (!userId) return res.status(403).send('유저 아이디가 필요합니다.');
+  const exUserEmail = await User.findOne({ where: { email: email } });
+  const exUserName = await User.findOne({ where: { name: name } });
   try {
+    if (email) {
+      if (exUserEmail) return res.status(403).send('이미 사용중인 이메일입니다.');
+      await User.update({ email }, { where: { id: userId } });
+    }
+    if (name) {
+      if (exUserName) return res.status(403).send('이미 사용중인 닉네임입니다.');
+      await User.update({ name }, { where: { id: userId } });
+    }
     if (req.file) {
       // user 사진은 한 장만 지정 가능.
       const imgData = fs
