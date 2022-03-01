@@ -1,15 +1,13 @@
 import React, { useState } from 'react';
 
 import { Chip } from '@components';
-
-import { Likes } from '@assets';
+import { LikesButton } from '@components/atoms/LikesButton';
 
 import {
   CardHeadContainer,
   ChipContainer,
   Container,
   Description,
-  LikesContainer,
   Place,
   StyledImg,
   TextContainer,
@@ -17,17 +15,11 @@ import {
 } from './styled';
 import { InstaCardProps } from './type';
 
-export const InstaCard = ({
-  titleText,
-  placeText,
-  descriptionText,
-  likesCount,
-}: InstaCardProps) => {
+export const InstaCard = ({ titleText, placeText, descriptionText }: InstaCardProps) => {
   const [clicked, setIsClicked] = useState<boolean>(false);
   const onClick = () => {
     setIsClicked(!clicked);
   };
-
   return (
     <Container>
       <CardHeadContainer>
@@ -35,15 +27,7 @@ export const InstaCard = ({
           <Title>{titleText}</Title>
           <Place>{placeText}</Place>
         </TextContainer>
-        <LikesContainer>
-          <div>
-            <Likes />
-          </div>
-          <span>{likesCount}</span>
-        </LikesContainer>
-        <ChipContainer>
-          <Chip shadow={true} onClick={onClick} clickable={true} clicked={clicked} />
-        </ChipContainer>
+        <LikesButton likesCount={123} />
       </CardHeadContainer>
       <StyledImg src='pictures/insta-card.png' width={'100%'} height={270} />
       <Description>{descriptionText}</Description>

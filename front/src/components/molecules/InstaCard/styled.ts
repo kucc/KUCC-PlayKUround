@@ -57,6 +57,7 @@ export const LikesContainer = styled.div`
   position: absolute;
   right: 20px;
   box-shadow: 0px 0px 10px ${Colors.shadow};
+  cursor: pointer;
   span {
     margin-left: 5px;
     font-size: 16px;

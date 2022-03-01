@@ -4,5 +4,4 @@ export type InstaCardProps = {
   titleText: string;
   placeText: string;
   descriptionText: string;
-  likesCount?: number;
 };
