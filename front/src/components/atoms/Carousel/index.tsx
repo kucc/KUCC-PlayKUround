@@ -6,13 +6,17 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-import { SwiperContainer } from './styled';
+import { ArrowRight } from '@assets';
+
+import { DescriptionContainer, MoreDescriptionContainer, SwiperContainer } from './styled';
 import { CarouselProps } from './type';
 
 SwiperCore.use([Keyboard, Pagination]);
 export const Carousel = ({ CarouselList }: CarouselProps) => {
-  //   const images = ['/pictures/profile.png', '/pictures/profile.png', '/pictures/profile.png'];
-  //   const numbers = [1, 2, 3];
+  const [isHidden, setIsHidden] = useState<boolean>(true);
+  const HiddenEvent = () => {
+    setIsHidden(!isHidden);
+  };
   return (
     <SwiperContainer>
       <Swiper
@@ -30,7 +34,11 @@ export const Carousel = ({ CarouselList }: CarouselProps) => {
         {CarouselList.map(({ imageSource, description }, index) => (
           <SwiperSlide key={index}>
             <img src={imageSource} alt='없음' />
-            <div>{description}</div>
+            <DescriptionContainer isHidden={isHidden}>{description}</DescriptionContainer>
+            <MoreDescriptionContainer onClick={HiddenEvent} isHidden={isHidden}>
+              자세히 보기
+              <ArrowRight />
+            </MoreDescriptionContainer>
           </SwiperSlide>
         ))}
       </Swiper>
