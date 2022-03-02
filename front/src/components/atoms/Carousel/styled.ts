@@ -7,4 +7,8 @@ export const SwiperContainer = styled.div`
   .swiper-pagination-horizontal.swiper-pagination-bullets .swiper-pagination-bullet {
     background: ${Colors.primary};
   }
+  img {
+    width: 100%;
+    height: 270px;
+  }
 `;

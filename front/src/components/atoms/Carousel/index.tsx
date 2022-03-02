@@ -29,7 +29,7 @@ export const Carousel = ({ CarouselList }: CarouselProps) => {
         centeredSlides={true}>
         {CarouselList.map(({ imageSource, description }, index) => (
           <SwiperSlide key={index}>
-            <img src={imageSource} alt='없음' width='100%' height='270px' />
+            <img src={imageSource} alt='없음' />
             <div>{description}</div>
           </SwiperSlide>
         ))}
