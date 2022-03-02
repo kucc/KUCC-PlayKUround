@@ -4,15 +4,7 @@ import { Chip } from '@components';
 import { Carousel } from '@components';
 import { LikesButton } from '@components/atoms/LikesButton';
 
-import {
-  CardHeadContainer,
-  Container,
-  Description,
-  Place,
-  StyledImg,
-  TextContainer,
-  Title,
-} from './styled';
+import { CardHeadContainer, Container, Place, TextContainer, Title } from './styled';
 import { InstaCardProps } from './type';
 
 export const InstaCard = ({ titleText, placeText, likesCount, CarouselList }: InstaCardProps) => {
