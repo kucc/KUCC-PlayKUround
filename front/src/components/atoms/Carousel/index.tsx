@@ -6,6 +6,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
+import { SwiperContainer } from './styled';
 import { CarouselProps } from './type';
 
 SwiperCore.use([Keyboard, Pagination]);
@@ -13,7 +14,7 @@ export const Carousel = ({ CarouselList }: CarouselProps) => {
   //   const images = ['/pictures/profile.png', '/pictures/profile.png', '/pictures/profile.png'];
   //   const numbers = [1, 2, 3];
   return (
-    <>
+    <SwiperContainer>
       <Swiper
         modules={[Keyboard, Pagination]}
         slidesPerView={1}
@@ -33,6 +34,6 @@ export const Carousel = ({ CarouselList }: CarouselProps) => {
           </SwiperSlide>
         ))}
       </Swiper>
-    </>
+    </SwiperContainer>
   );
 };
