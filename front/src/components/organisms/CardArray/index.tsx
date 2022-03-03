@@ -11,8 +11,9 @@ export const CardArray = ({ places, style }: CardArrayProps) => {
   return (
     <StyledCardContainer style={style}>
       {places?.map((place: SimplePlaceType, key: number) => {
-        const { placeName, pictureLink, scrapCount, ratingNumber, commentCount, placeDescription } =
+        const { placeName, images, scrapCount, ratingNumber, commentCount, placeDescription } =
           place;
+
         const ChipGroupList = [
           {
             icon: <StyledScrap />,
@@ -28,12 +29,19 @@ export const CardArray = ({ places, style }: CardArrayProps) => {
           },
         ];
 
-        const blob = new Blob([new ArrayBuffer(pictureLink[0])]);
-        const blobLink = URL.createObjectURL(blob);
+        let imageLink;
+
+        if (images.length > 0) {
+          const buff = Buffer.from(images[0].path.data, 'base64');
+          const text = buff.toString('ascii');
+          imageLink = `data:image/png;base64,${text}`;
+        } else {
+          imageLink = `pictures/no-image.svg`;
+        }
 
         return (
           <Card
-            imageSource={blobLink}
+            imageSource={imageLink}
             key={`card_${key}`}
             title={placeName}
             description={placeDescription}
