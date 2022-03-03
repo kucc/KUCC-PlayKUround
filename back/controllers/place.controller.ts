@@ -32,7 +32,7 @@ const getByFilter: RequestHandler = async (req, res, next) => {
       whereCondition['addressCategory'] = area;
     }
     // order에 따른..
-    if (order === 'comment') {
+    if (order === 'review') {
       orderCondition = [['commentCount', 'DESC']];
     }
     if (order === 'rate') {
@@ -47,7 +47,7 @@ const getByFilter: RequestHandler = async (req, res, next) => {
     });
 
     // distance는 sequelize에서 찾은 다음 처리
-    if (order === 'distance') {
+    if (order === 'close') {
       if (!latitude || !longitude) {
         return res.status(403).send('필수인 정보가 입력되지 않았습니다.');
       }
@@ -106,10 +106,11 @@ const getByOne: RequestHandler = async (req, res, next) => {
   const placeId: number = parseInt(req.query.id as string);
   if (!placeId) return res.status(403).send('비정상적인 접근입니다.');
   try {
-    const result = await Place.findOne({
+    const result: any = await Place.findOne({
       where: { id: placeId },
       include: [{ model: Menu }, { model: Comment }, { model: Image }, { model: OperatingHour }],
     });
+
     // 만약 유저 정보(세션)이 있으면, 최근 history에 sourceId를 담음.
     // course getByOne에도 똑같은 로직 구현
     if (req.user && result) {
