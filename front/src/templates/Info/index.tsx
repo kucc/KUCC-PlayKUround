@@ -20,8 +20,6 @@ export const Info = ({ title, navbarTitle }: InfoProps) => {
   const screenHeight = window.innerHeight;
   const { data: places, isLoading } = useQuery('post', getByLatestAPI);
 
-  console.log(me);
-
   return (
     <>
       <Container screenHeight={screenHeight}>
