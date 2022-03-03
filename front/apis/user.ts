@@ -25,6 +25,18 @@ export function registerAPI(data: { email: string; name: string; password: strin
   return axios.post('/api/user/register', data).then(response => response.data);
 }
 
+export function updateImageAPI(data: any) {
+  const headers = {
+    'Content-Type': 'multipart/form-data',
+  };
+
+  return axios.patch('/api/user/update', data, { headers }).then(result => {
+    if (result.data.success) {
+      window.location.replace('/info');
+    }
+  });
+}
+
 // parameter : email
 export async function checkEmailAPI({ queryKey }: { queryKey: any[] }) {
   const [, email] = queryKey;

@@ -16,6 +16,7 @@
     "antd": "^4.16.7",
     "axios": "^0.21.1",
     "babel-plugin-import": "^1.13.3",
+    "browser-image-compression": "^1.0.17",
     "connect-redis": "^6.0.0",
     "cross-env": "^7.0.3",
     "dotenv": "^10.0.0",

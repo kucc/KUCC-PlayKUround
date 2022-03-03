@@ -4,6 +4,8 @@ import { Card } from '@components';
 
 import { SimplePlaceType } from 'interfaces/place';
 
+import { getImageLink } from '@util/imageLinkDecoder';
+
 import { StyledCardContainer, StyledReview, StyledScrap, StyledStar } from './styled';
 import { CardArrayProps } from './type';
 
@@ -11,8 +13,9 @@ export const CardArray = ({ places, style }: CardArrayProps) => {
   return (
     <StyledCardContainer style={style}>
       {places?.map((place: SimplePlaceType, key: number) => {
-        const { placeName, pictureLink, scrapCount, ratingNumber, commentCount, placeDescription } =
+        const { placeName, images, scrapCount, ratingNumber, commentCount, placeDescription } =
           place;
+
         const ChipGroupList = [
           {
             icon: <StyledScrap />,
@@ -28,12 +31,12 @@ export const CardArray = ({ places, style }: CardArrayProps) => {
           },
         ];
 
-        const blob = new Blob([new ArrayBuffer(pictureLink[0])]);
-        const blobLink = URL.createObjectURL(blob);
+        const imageLink =
+          images.length > 0 ? getImageLink(images[0].path.data) : `pictures/no-image.svg`;
 
         return (
           <Card
-            imageSource={blobLink}
+            imageSource={imageLink}
             key={`card_${key}`}
             title={placeName}
             description={placeDescription}

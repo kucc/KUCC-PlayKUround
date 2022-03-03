@@ -20,7 +20,7 @@ get:
       name: order
       schema:
         type: string
-      description: 정렬 방법입니다. distance, comment, rate 중에 하나를 보내주세요. 기본값(내위치 주변)인 경우 null을 보내주시면 됩니다.
+      description: 정렬 방법입니다. close, review, rate 중에 하나를 보내주세요. 기본값(내위치 주변)인 경우 null을 보내주시면 됩니다.
       example: distance
     - in: query
       name: area

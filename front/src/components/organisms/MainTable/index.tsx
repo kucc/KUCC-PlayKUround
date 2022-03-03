@@ -5,7 +5,7 @@ import { Skeleton } from 'antd';
 
 import { CardArray, MainSelect, MainToggleBar } from '@components';
 
-import { getByCommentAPI, getByLocationAPI, getByMapAPI, getByRateAPI } from 'apis/place';
+import { getByFilterAPI, getByMapAPI } from 'apis/place';
 import { PlaceType } from 'interfaces/place';
 
 import { MakeTableListContext } from '@contexts/tableList';
@@ -20,25 +20,22 @@ export const MainTable = () => {
   const [longitude, setLongitude] = useState<number>(127.0278);
   const [currentMode, setCurrentMode] = useState<string>('table');
 
-  const { data: locationSorted, isLoading: locationLoading } = useQuery(
-    ['place', latitude, longitude],
-    getByLocationAPI,
-    {
-      enabled: value === 'close',
-    },
+  const { data: places, isLoading } = useQuery(
+    [
+      'place',
+      // category
+      '',
+      // categoryDetail
+      '',
+      value,
+      // area
+      '혜화',
+      latitude,
+      longitude,
+    ],
+    getByFilterAPI,
   );
-  const { data: reviewSorted, isLoading: reviewLoading } = useQuery('place', getByCommentAPI, {
-    enabled: value === 'review',
-  });
-  const { data: rateSorted, isLoading: rateLoading } = useQuery('place', getByRateAPI, {
-    enabled: value === 'rate',
-  });
-  const { data: map, isLoading: mapLoading } = useQuery('place', getByMapAPI);
-
-  // TODO: tableList를 어떻게 사용할지 백이랑 협의하기
-  const { tableList } = useContext(MakeTableListContext);
-  const places = locationSorted || reviewSorted || rateSorted;
-  const isLoading = locationLoading || reviewLoading || rateLoading || mapLoading;
+  const { data: map } = useQuery('place', getByMapAPI);
 
   // 공통 함수에 집어넣기
   const getLocation = async () => {
@@ -55,7 +52,7 @@ export const MainTable = () => {
 
   const renderMainItem = () => {
     if (currentMode === 'table') {
-      return isLoading ? <Skeleton active /> : <CardArray places={places as PlaceType[]} />;
+      return isLoading ? <Skeleton active /> : <CardArray places={places} />;
     } else {
       return <Map places={map} />;
     }

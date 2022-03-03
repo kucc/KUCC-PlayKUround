@@ -46,7 +46,18 @@ const userGetName: RequestHandler = async (req, res, next) => {
 const userGet: RequestHandler = async (req, res, next) => {
   try {
     if (req.user) {
-      const { id, name, email, role } = req.user;
+      const {
+        id,
+        name,
+        email,
+        role,
+        postList,
+        courseList,
+        scrapList,
+        likeList,
+        rateList,
+        historyList,
+      } = req.user;
       // Image는 테이블을 분리했기 때문에 찾아줘야 함.
       const imageResult = await Image.findOne({ where: { source: `user_${id}` } });
       // user의 session에 담긴 정보를 보냄
@@ -56,6 +67,12 @@ const userGet: RequestHandler = async (req, res, next) => {
         name,
         email,
         role,
+        postList,
+        courseList,
+        scrapList,
+        likeList,
+        rateList,
+        historyList,
         image: imageResult?.path,
       });
     } else {
@@ -143,16 +160,18 @@ const userUpdate = async (
   res: Response,
   next: NextFunction,
 ) => {
-  const { userId, email, name } = req.body;
-  if (!userId) return res.status(403).send('유저 아이디가 필요합니다.');
-  const exUserEmail = await User.findOne({ where: { email: email } });
-  const exUserName = await User.findOne({ where: { name: name } });
+  if (!req.body.userId) return res.status(403).send('유저 아이디가 필요합니다.');
+  const { userId } = req.body;
   try {
-    if (email) {
+    if (req.body.email) {
+      const { email } = req.body;
+      const exUserEmail = await User.findOne({ where: { email: email } });
       if (exUserEmail) return res.status(403).send('이미 사용중인 이메일입니다.');
       await User.update({ email }, { where: { id: userId } });
     }
-    if (name) {
+    if (req.body.name) {
+      const { name } = req.body;
+      const exUserName = await User.findOne({ where: { name: name } });
       if (exUserName) return res.status(403).send('이미 사용중인 닉네임입니다.');
       await User.update({ name }, { where: { id: userId } });
     }
@@ -162,7 +181,15 @@ const userUpdate = async (
         .readFileSync(`assets${req.file.path.split('assets')[1]}`)
         .toString('base64');
       // path는 BLOB 형식으로 저장. 프론트에서 사용시 Buffer 이용.
-      await Image.create({ path: imgData, source: `user_${userId}` });
+      const exUserImage = await Image.findOne({ where: { source: `user_${userId}` } });
+      if (exUserImage) {
+        await Image.update(
+          { path: imgData, source: `user_${userId}` },
+          { where: { source: `user_${userId}` } },
+        );
+      } else {
+        await Image.create({ path: imgData, source: `user_${userId}` });
+      }
     }
     res.json({ success: true });
   } catch (error) {
