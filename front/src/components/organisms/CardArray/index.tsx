@@ -4,6 +4,8 @@ import { Card } from '@components';
 
 import { SimplePlaceType } from 'interfaces/place';
 
+import { getImageLink } from '@util/imageLinkDecoder';
+
 import { StyledCardContainer, StyledReview, StyledScrap, StyledStar } from './styled';
 import { CardArrayProps } from './type';
 
@@ -29,15 +31,8 @@ export const CardArray = ({ places, style }: CardArrayProps) => {
           },
         ];
 
-        let imageLink;
-
-        if (images.length > 0) {
-          const buff = Buffer.from(images[0].path.data, 'base64');
-          const text = buff.toString('ascii');
-          imageLink = `data:image/png;base64,${text}`;
-        } else {
-          imageLink = `pictures/no-image.svg`;
-        }
+        const imageLink =
+          images.length > 0 ? getImageLink(images[0].path.data) : `pictures/no-image.svg`;
 
         return (
           <Card

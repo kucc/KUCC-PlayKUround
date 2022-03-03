@@ -16,7 +16,7 @@ export interface UserAttributes {
   sourceId?: string;
   postList?: string[];
   courseList?: string[];
-  scrabList?: string[];
+  scrapList?: string[];
   likeList?: string[];
   rateList?: string[];
   historyList?: string[];
@@ -32,7 +32,7 @@ interface UserCreationAttributes
     | 'sourceId'
     | 'postList'
     | 'courseList'
-    | 'scrabList'
+    | 'scrapList'
     | 'likeList'
     | 'rateList'
     | 'historyList'
