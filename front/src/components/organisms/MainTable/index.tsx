@@ -29,7 +29,7 @@ export const MainTable = () => {
       '',
       value,
       // area
-      '혜화',
+      '',
       latitude,
       longitude,
     ],
