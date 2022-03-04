@@ -8,7 +8,7 @@ import { Avatar, MenuBar } from '@components';
 import { loadMyInfoAPI, updateImageAPI } from 'apis/user';
 import User from 'interfaces/user';
 
-import { uploadImage } from '@util/uploadImage';
+import { uploadProps } from '@util/uploadImage';
 
 import {
   AvatarLabelWrapper,
@@ -88,25 +88,10 @@ export const MyInfoCard = ({ iconLabel, imageSource, name, style }: MyInfoCardPr
   const { data: user } = useQuery<User>('user', loadMyInfoAPI);
   const [imageLink, setImageLink] = useState<any>(imageSource);
 
-  const uploadProps = {
-    name: 'file',
-    onChange(info: any) {
-      if (info.file.status !== 'uploading') {
-        uploadImage(info.file.originFileObj, user, imageLink => {
-          setImageLink(imageLink);
-        });
-      }
-      if (info.file.status === 'done') {
-        message.loading('파일을 업로드 중입니다.', 1);
-      } else if (info.file.status === 'error') {
-        message.error(`${info.file.name} 파일을 업로드하는데 실패했습니다.`);
-      }
-    },
-  };
   return (
     <MyInfoCardWrapper style={style}>
       <AvatarLabelWrapper>
-        <Upload {...uploadProps} showUploadList={false}>
+        <Upload {...uploadProps(setImageLink, user)} showUploadList={false}>
           <Avatar size={100} imageSource={imageLink || '/pictures/profile.png'} />
         </Upload>
       </AvatarLabelWrapper>
