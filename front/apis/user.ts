@@ -30,11 +30,7 @@ export function updateImageAPI(data: any) {
     'Content-Type': 'multipart/form-data',
   };
 
-  return axios.patch('/api/user/update', data, { headers }).then(result => {
-    if (result.data.success) {
-      window.location.replace('/info');
-    }
-  });
+  return axios.patch('/api/user/update', data, { headers });
 }
 
 // parameter : email

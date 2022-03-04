@@ -1,15 +1,16 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 
-import { Modal } from 'antd';
+import { Modal, Upload } from 'antd';
 import Router from 'next/router';
 
 import { Avatar, BaseButton, BaseInput } from '@components';
 
-import { checkNameAPI, logInAPI, registerAPI } from 'apis/user';
+import { checkNameAPI, loadMyInfoAPI, logInAPI, registerAPI } from 'apis/user';
 
 import useWindowDimensions from '@hooks/useWindowDimensions';
 import { ERROR_LOG, SIGNUP_SUCCESS } from '@util/message';
+import { uploadProps } from '@util/uploadImage';
 
 import { AvatarPosition, ButtonWrapper, Label } from './styled';
 import { SecondSignupInputProps } from './type';
@@ -24,8 +25,11 @@ export const SecondSignupInput = ({
   const [isSuccessNickname, setIsSuccessNickname] = useState(false);
   const [isErrorNickname, setIsErrorNickname] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [imageLink, setImageLink] = useState<any>(null);
 
   const { width } = useWindowDimensions();
+
+  // Todo : imageLink 포함해서 formData 형식으로 회원가입 데이터 넘겨줘야 함!
 
   const onClickJoin = useCallback(() => {
     setIsLoading(true);
@@ -83,8 +87,10 @@ export const SecondSignupInput = ({
   return (
     <>
       <AvatarPosition>
-        <Avatar size={125} />
-        <Label>사진 변경</Label>
+        <Avatar imageSource={imageLink} size={125} />
+        <Upload {...uploadProps(setImageLink, null)} showUploadList={false}>
+          <Label>사진 변경</Label>
+        </Upload>
       </AvatarPosition>
       <div style={{ padding: '0 16px' }}>
         <BaseInput
