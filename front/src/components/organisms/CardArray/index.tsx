@@ -32,7 +32,7 @@ export const CardArray = ({ places, style }: CardArrayProps) => {
         ];
 
         const imageLink =
-          images.length > 0 ? getImageLink(images[0].path.data) : `pictures/no-image.svg`;
+          images.length > 0 ? getImageLink(images[0].path.data) : `pictures/default-place.png`;
 
         return (
           <Card

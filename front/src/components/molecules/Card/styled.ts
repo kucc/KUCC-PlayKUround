@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Chip } from '@components';
 
 import { Scrap } from '@assets';
+import { Colors } from '@styles';
 
 export const CardContainer = styled.div`
   display: flex;
@@ -31,6 +32,7 @@ export const StyledScrapSvg = styled(Scrap)`
 
 export const StyledImg = styled.img`
   border-radius: 12px;
+  background-color: ${Colors.yellow};
 `;
 
 export const ContentWrapper = styled.div`
