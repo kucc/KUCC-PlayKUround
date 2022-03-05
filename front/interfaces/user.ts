@@ -10,4 +10,11 @@ export default interface User {
   password: string;
   role: 0 | 1;
   image: imageProps;
+  sourceId: string;
+  postList: number[];
+  courseList: number[];
+  scrapList: string[];
+  likeList: string[];
+  rateList: string[];
+  historyList: string[];
 }

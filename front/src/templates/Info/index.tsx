@@ -5,7 +5,7 @@ import { Skeleton } from 'antd';
 
 import { CardArray, MyInfoCard, Navbar, NavbarWIthHamburger } from '@components';
 
-import { getByLatestAPI } from 'apis/post';
+import { getByArrAPI } from 'apis/place';
 import { loadMyInfoAPI } from 'apis/user';
 import User from 'interfaces/user';
 
@@ -17,8 +17,11 @@ import { InfoProps } from './type';
 
 export const Info = ({ title, navbarTitle }: InfoProps) => {
   const { data: me } = useQuery<User>('user', loadMyInfoAPI);
+  const { data: places, isLoading } = useQuery(['post', me?.historyList], getByArrAPI, {
+    enabled: !!me,
+  });
+  // course는 나중에 따로 호출
   const screenHeight = window.innerHeight;
-  const { data: places, isLoading } = useQuery('post', getByLatestAPI);
 
   return (
     <>
