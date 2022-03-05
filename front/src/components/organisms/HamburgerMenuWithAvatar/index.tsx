@@ -8,7 +8,7 @@ import { Avatar, HamburgerMenu, ToggleDark } from '@components';
 import { loadMyInfoAPI } from 'apis/user';
 import User from 'interfaces/user';
 
-import { Configuation, Cross, Global, Home, Info, Post, Recommend } from '@assets';
+import { Clock, Configuation, Home, Info, Recommend } from '@assets';
 import useWindowDimensions from '@hooks/useWindowDimensions';
 
 import {
@@ -37,15 +37,8 @@ export const HamburgerMenuWithAvatar = () => {
     {
       width: 22,
       height: 22,
-      icon: <Global />,
-      label: '실시간 핫플레이스',
-      onClick: () => {},
-    },
-    {
-      width: 20,
-      height: 22,
-      icon: <Post />,
-      label: '게시물 작성',
+      icon: <Clock />,
+      label: `실시간 Play's`,
       onClick: () => {},
     },
     {
