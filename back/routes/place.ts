@@ -11,6 +11,8 @@ router.get('/getByMap', controller.getByMap);
 
 router.get('/getByOne', controller.getByOne);
 
+router.get('/getByArr', controller.getByArr);
+
 router.get('/getByName', controller.getByName);
 
 router.post('/create', isLoggedIn, upload.any(), controller.createPlace);
