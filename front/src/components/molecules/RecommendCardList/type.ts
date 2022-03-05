@@ -1,7 +1,7 @@
 import React from 'react';
 
 export type RecommendProps = {
-  TextGroupList: Array<{
+  textGroupList: Array<{
     imageSource?: string;
     topText?: string;
     topCommaText?: string;
