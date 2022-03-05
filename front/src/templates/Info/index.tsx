@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useQuery } from 'react-query';
 
 import { Skeleton } from 'antd';
 
-import { CardArray, MyInfoCard, Navbar, NavbarWIthHamburger } from '@components';
+import { CardArray, Footer, MyInfoCard, NavbarWIthHamburger } from '@components';
 
 import { getByLatestAPI } from 'apis/post';
 import { loadMyInfoAPI } from 'apis/user';
@@ -34,6 +34,7 @@ export const Info = ({ title, navbarTitle }: InfoProps) => {
         </StyledText>
         <SidePadding style={{ marginTop: '12px' }}>
           {isLoading ? <Skeleton active /> : <CardArray places={places} />}
+          <Footer />
         </SidePadding>
       </Container>
     </>
