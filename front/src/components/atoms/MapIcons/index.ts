@@ -66,6 +66,6 @@ export const placeNoPicture = `
     <div style="margin-top: 3.2px;">자세히 보기&nbsp;&nbsp;</div>
     <img src="icons/place-detail-black.svg" />
   </div>
-  <img src="pictures/no-image.svg" style="width:120px; padding:5px; border-radius: 15px;" />
+  <img src="pictures/default-place.png" style="width:120px; padding:5px; border-radius: 15px;" />
 </div>
 `;
