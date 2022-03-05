@@ -1,21 +1,13 @@
 import React, { useState } from 'react';
 
-import useDarkMode from 'use-dark-mode';
-
-// import { useMutation, useQuery, useQueryClient } from 'react-query';
-// import { AxiosError } from 'axios';
-// import Link from 'next/link';
-// import Router from 'next/router';
 import { MainTable, NavbarWIthHamburger, SearchChipBar, Text } from '@components';
 
-import useWindowDimensions from '@hooks/useWindowDimensions';
-
-// import { loadMyInfoAPI, logOutAPI } from 'apis/user';
-// import User from 'interfaces/user';
 import {
   ButtonWrapper,
   Description,
   FirstPageLayout,
+  NoLoginText,
+  StyledArrowRight,
   StyledButton,
   StyledImg,
   StyledLogo,
@@ -24,9 +16,6 @@ import {
 import { HomeProps } from './type';
 
 export const Home = ({ rightItems, navbarTitle }: HomeProps) => {
-  // const queryClient = useQueryClient();
-
-  // const [loading, setLoading] = useState<boolean>(false);
   const [join, setJoin] = useState<boolean>(false);
 
   const onClickJoinMainPage = () => {
@@ -34,31 +23,6 @@ export const Home = ({ rightItems, navbarTitle }: HomeProps) => {
     window.localStorage.setItem('isUserPass', 'pass');
   };
   const isLocalStorgeSave = localStorage.getItem('isUserPass');
-
-  // const { data: me } = useQuery<User>('user', loadMyInfoAPI);
-
-  // const moveLogin = useCallback(() => {
-  //   Router.replace('/login');
-  // }, []);
-
-  // const onLogOut = useCallback(() => {
-  //   mutation.mutate();
-  // }, [mutation]);
-
-  // const mutation = useMutation<void, AxiosError>(logOutAPI, {
-  //   onMutate: () => {
-  //     setLoading(true);
-  //   },
-  //   onError: error => {
-  //     alert(error.response?.data);
-  //   },
-  //   onSuccess: () => {
-  //     queryClient.setQueryData('user', null);
-  //   },
-  //   onSettled: () => {
-  //     setLoading(false);
-  //   },
-  // });
 
   return (
     <>
@@ -79,6 +43,10 @@ export const Home = ({ rightItems, navbarTitle }: HomeProps) => {
           <ButtonWrapper>
             <StyledButton onClick={onClickJoinMainPage}>Join !</StyledButton>
           </ButtonWrapper>
+          <NoLoginText>
+            로그인 없이 이용하기
+            <StyledArrowRight />
+          </NoLoginText>
         </FirstPageLayout>
       )}
     </>

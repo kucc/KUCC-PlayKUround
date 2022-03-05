@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
+import { ArrowRight } from '@assets';
 import { Colors } from '@styles';
 
 export const FirstPageLayout = styled.div`
@@ -62,4 +63,20 @@ export const StyledButton = styled.button`
   }
   cursor: pointer;
   transition: 0.5s;
+`;
+
+export const NoLoginText = styled.div`
+  padding-top: 14px;
+  font-size: 10px;
+  line-height: 10px;
+  color: ${Colors.lightGrey_6};
+`;
+
+export const StyledArrowRight = styled(ArrowRight)`
+  margin-left: 6px;
+  width: 4px;
+  height: 7px;
+  path {
+    fill: ${Colors.lightGrey_6};
+  }
 `;
