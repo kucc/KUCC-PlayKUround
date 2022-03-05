@@ -3,7 +3,7 @@ import fs from 'fs';
 
 import { Comment, Hashtag, Image, Menu, OperatingHour, Place, User } from '../models';
 import { MulterFile } from '../models/image/imageType';
-import { PlaceAttributes } from '../models/place/placeType';
+import { PlaceAttributes, PlaceInterface } from '../models/place/placeType';
 import { getDistance, mainAttributes } from './utils';
 
 const sequelize = require('sequelize');
@@ -139,6 +139,32 @@ const getByOne: RequestHandler = async (req, res, next) => {
     res.status(200).json({
       success: true,
       result,
+    });
+  } catch (error) {
+    res.status(400).json({ success: false, error });
+    next(error);
+  }
+};
+
+const getByArr: RequestHandler = async (req, res, next) => {
+  const placeString: string = req.query.placeList as string;
+  const placeArray = placeString.split(',');
+
+  try {
+    const resultArray: any[] = [];
+    await Promise.all(
+      placeArray.map(async (placeId: string) => {
+        const resultPlace = await Place.findOne({
+          where: { id: placeId },
+          attributes: mainAttributes,
+          include: Image,
+        });
+        resultArray.push(resultPlace);
+      }),
+    );
+    res.status(200).json({
+      success: true,
+      result: resultArray,
     });
   } catch (error) {
     res.status(400).json({ success: false, error });
@@ -344,6 +370,7 @@ module.exports = {
   getByFilter,
   getByMap,
   getByOne,
+  getByArr,
   getByName,
   createPlace,
   updatePlace,
