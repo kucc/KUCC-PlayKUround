@@ -1,14 +1,11 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 
 import { Skeleton } from 'antd';
 
-import { CardArray, MainSelect, MainToggleBar } from '@components';
+import { CardArray, Footer, MainSelect, MainToggleBar } from '@components';
 
 import { getByFilterAPI, getByMapAPI } from 'apis/place';
-import { PlaceType } from 'interfaces/place';
-
-import { MakeTableListContext } from '@contexts/tableList';
 
 import { Map } from '../Map';
 import { StlyedMainTableTop, StyledMainTable } from './styled';
@@ -65,6 +62,7 @@ export const MainTable = () => {
         {currentMode === 'table' && <MainSelect value={value} setValue={setValue} />}
       </StlyedMainTableTop>
       <div style={{ marginTop: '8px' }}>{renderMainItem()}</div>
+      <Footer />
     </StyledMainTable>
   );
 };
