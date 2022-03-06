@@ -5,7 +5,6 @@ export * from './BaseInput';
 export * from './BoxIcon';
 export * from './Chip';
 export * from './Div';
-export * from './AntdModal';
 export * from './Footer';
 export * from './FullBar';
 export * from './MapIcons';

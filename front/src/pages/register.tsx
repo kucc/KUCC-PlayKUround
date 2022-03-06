@@ -7,18 +7,13 @@ import { GetServerSidePropsContext } from 'next';
 import Router from 'next/router';
 import { useRouter } from 'next/router';
 
-import {
-  AntdModal,
-  BackIconWithNavbar,
-  FirstSignupInput,
-  SecondSignupInput,
-  Text,
-} from '@components';
+import { BackIconWithNavbar, FirstSignupInput, SecondSignupInput, Text } from '@components';
 
 import { loadMyInfoAPI } from 'apis/user';
 import User from 'interfaces/user';
 
 import { MakeEmailContext } from '@contexts/globalEmail';
+import useAntdModal from '@hooks/useAntdModal';
 import useInput from '@hooks/useInput';
 import { ALREADY_LOGINED } from '@util/message';
 
@@ -36,7 +31,7 @@ const RegisterPage = () => {
 
   useEffect(() => {
     if (me.isSuccess && me.data && me.data.id) {
-      <AntdModal message={ALREADY_LOGINED} />;
+      useAntdModal({ message: ALREADY_LOGINED });
       Router.replace('/');
     }
   }, [me.data]);
