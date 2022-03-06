@@ -86,7 +86,7 @@ export const HamburgerMenuWithAvatar = () => {
       <ToggleDark />
       <InfoWrapper>
         <Avatar size={59} />
-        {me.data.name ? (
+        {me.data && me.data.name ? (
           <>
             <Div>
               <Label>
