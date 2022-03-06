@@ -58,6 +58,9 @@ export const SecondSignupInput = ({
         setIsErrorNickname(true);
         setIsSuccessNickname(false);
       }
+    } else {
+      setIsErrorNickname(false);
+      setIsSuccessNickname(false);
     }
   }, [nickname]);
 
@@ -75,6 +78,9 @@ export const SecondSignupInput = ({
           baseText={nickname}
           onChangeText={onChangeNickname}
           label='닉네임'
+          message={
+            !isErrorNickname && !isSuccessNickname ? '닉네임은 최대 30자까지 입력 가능합니다' : ''
+          }
           isError={isErrorNickname}
           isSuccess={isSuccessNickname}
           errorMessage='중복된 닉네임입니다.'
