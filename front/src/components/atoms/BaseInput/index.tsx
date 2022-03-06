@@ -2,12 +2,13 @@ import React from 'react';
 
 import {
   Container,
-  CrossSvg,
   ErrorMessage,
   InputStyled,
   Label,
-  SearchSvg,
+  Line,
+  Message,
   SubContainer,
+  SuccessMessage,
 } from './styled';
 import { BaseInputProps } from './type';
 
@@ -20,9 +21,14 @@ export const BaseInput = ({
   children,
   style,
   errorMessage,
+  successMessage,
+  message,
   isError,
+  isSuccess,
   label,
   labelStyle,
+  baseText,
+  onChangeText,
 }: BaseInputProps) => {
   const [text, setText] = React.useState('');
 
@@ -32,50 +38,24 @@ export const BaseInput = ({
 
   const inputRef = React.useRef<any>(null);
 
-  return !search ? (
+  return (
     <Container style={style}>
       {label ? <Label style={labelStyle}>{label}</Label> : null}
-      <SubContainer disabled={disabled ? true : false} size={size as any} search={search}>
+      <SubContainer disabled={disabled ? true : false} search={search}>
         <InputStyled
           disabled={disabled ? true : false}
           placeholder={placeholder}
-          onChange={onChange}
-          value={text}
+          onChange={onChangeText || onChange}
+          value={baseText || text}
           type={type}
           ref={inputRef}
         />
         {children}
       </SubContainer>
-      {errorMessage && isError ? <ErrorMessage>{errorMessage}</ErrorMessage> : null}
-    </Container>
-  ) : (
-    <Container style={style}>
-      {label ? <Label style={labelStyle}>{label}</Label> : null}
-      <SubContainer search={search} disabled={disabled ? true : false} size={size as any}>
-        <SearchSvg />
-        <InputStyled
-          disabled={disabled ? true : false}
-          placeholder={placeholder}
-          onChange={onChange}
-          value={text}
-          type={type}
-          ref={inputRef}
-        />
-        {
-          <CrossSvg
-            invisible={text.length === 0 ? true : false}
-            onClick={
-              disabled
-                ? () => {}
-                : () => {
-                    setText('');
-                    inputRef.current.focus();
-                  }
-            }
-          />
-        }
-      </SubContainer>
-      {errorMessage && isError ? <ErrorMessage search={search}>{errorMessage}</ErrorMessage> : null}
+      <Line isError={isError} isSuccess={isSuccess} />
+      {isError && <ErrorMessage>{errorMessage}</ErrorMessage>}
+      {isSuccess && <SuccessMessage>{successMessage}</SuccessMessage>}
+      {message && <Message>{message}</Message>}
     </Container>
   );
 };

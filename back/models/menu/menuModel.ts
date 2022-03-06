@@ -24,10 +24,6 @@ const MenuModel = (sequelize: Sequelize) => {
         type: DataTypes.INTEGER,
         allowNull: true,
       },
-      menuPicture: {
-        type: DataTypes.JSON,
-        allowNull: true,
-      },
       isRecommend: {
         type: DataTypes.BOOLEAN,
         defaultValue: false,

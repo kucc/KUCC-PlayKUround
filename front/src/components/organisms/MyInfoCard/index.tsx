@@ -1,6 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useQuery } from 'react-query';
+
+import { Upload, message } from 'antd';
 
 import { Avatar, MenuBar } from '@components';
+
+import { loadMyInfoAPI, updateImageAPI } from 'apis/user';
+import User from 'interfaces/user';
+
+import { uploadProps } from '@util/uploadImage';
 
 import {
   AvatarLabelWrapper,
@@ -75,11 +83,17 @@ const DefaultIconLabel = [
     ),
   },
 ];
+
 export const MyInfoCard = ({ iconLabel, imageSource, name, style }: MyInfoCardProps) => {
+  const { data: user } = useQuery<User>('user', loadMyInfoAPI);
+  const [imageLink, setImageLink] = useState<any>(imageSource);
+
   return (
     <MyInfoCardWrapper style={style}>
       <AvatarLabelWrapper>
-        <Avatar size={100} imageSource={imageSource || '/pictures/profile.png'} />
+        <Upload {...uploadProps(setImageLink, user)} showUploadList={false}>
+          <Avatar size={100} imageSource={imageLink || '/pictures/profile.png'} />
+        </Upload>
       </AvatarLabelWrapper>
       <NameWrapper>
         {name ? (

@@ -7,12 +7,12 @@ post:
     description: 게시물 데이터입니다.
     required: true
     content:
-      application/json:
+      multipart/form-data:
         schema:
           type: object
           required:
-            - source
-            - hashtags
+            - placeId
+            - description
           properties:
             placeId:
               type: number
@@ -22,6 +22,12 @@ post:
               type: string
               description: post 설명입니다.
               example: 이 사진에 대한 자세한 설명 이 사진에 대한 자세한 설명 이 사진에 대한 자세한 설명 이 사진에 대한 자세한 설명 이 사진에 대한 자세한 설명 이 사진에 대한 자세한 설명 이 사진에 대한 자세한 설명 이 사진에 대한 자세한 설명 이 사진에 대한 자세한 설명
+            postImages:
+              type: array
+              description: 게시물의 사진 정보입니다.
+              items:
+                type: string
+                format: binary
 
   responses:
     200:

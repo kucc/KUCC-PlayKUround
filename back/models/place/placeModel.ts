@@ -25,10 +25,6 @@ const PlaceModel = (sequelize: Sequelize) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      pictureLink: {
-        type: DataTypes.JSON,
-        allowNull: true,
-      },
       placeName: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -36,10 +32,6 @@ const PlaceModel = (sequelize: Sequelize) => {
       placeDescription: {
         type: DataTypes.STRING,
         allowNull: false,
-      },
-      placeTime: {
-        type: DataTypes.JSON,
-        allowNull: true,
       },
       placePhoneNum: {
         type: DataTypes.STRING,
@@ -77,12 +69,12 @@ const PlaceModel = (sequelize: Sequelize) => {
         type: DataTypes.INTEGER,
         defaultValue: 0,
       },
-      commentCount: {
-        type: DataTypes.INTEGER,
-        defaultValue: 0,
-      },
       ratingNumber: {
         type: DataTypes.FLOAT,
+        defaultValue: 0,
+      },
+      commentCount: {
+        type: DataTypes.INTEGER,
         defaultValue: 0,
       },
       dateConcept: {

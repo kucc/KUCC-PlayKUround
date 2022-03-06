@@ -7,10 +7,8 @@ export interface PlaceAttributes {
   // 정확한 좌표
   addressExact: string;
   addressCategory: '혜화' | '안암' | '성신여대';
-  pictureLink: string[];
   placeName: string;
   placeDescription: string;
-  placeTime: string[];
   placePhoneNum: string;
   naverLink: string;
   catchTableLink: string;
@@ -32,8 +30,6 @@ interface PlaceCreationAttributes
   extends Optional<
     PlaceAttributes,
     | 'id'
-    | 'pictureLink'
-    | 'placeTime'
     | 'placePhoneNum'
     | 'naverLink'
     | 'catchTableLink'

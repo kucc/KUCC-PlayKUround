@@ -5,10 +5,10 @@ import { RecommendCard } from '@components';
 import { CardsWrapper } from './styled';
 import { RecommendProps } from './type';
 
-export const RecommendCardList = ({ TextGroupList }: RecommendProps) => {
+export const RecommendCardList = ({ textGroupList }: RecommendProps) => {
   return (
     <CardsWrapper>
-      {TextGroupList.map(({ imageSource, topCommaText, topText, bottomText }) => {
+      {textGroupList.map(({ imageSource, topCommaText, topText, bottomText }) => {
         return (
           <RecommendCard
             imageSource={imageSource}

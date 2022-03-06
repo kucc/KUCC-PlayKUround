@@ -11,7 +11,7 @@ export const ToggleDark = () => {
   const darkMode = useDarkMode(false);
 
   const heightProp = useSpring({
-    height: darkMode.value ? 20 : 68,
+    height: darkMode.value ? 40 : 68,
     config: {
       // 튕기는 정도
       friction: 12,

@@ -2,7 +2,7 @@ export interface SimplePlaceType {
   id?: number;
   addressLocation: number[];
   placeName: string;
-  pictureLink: any[];
+  images: any[];
   placeCategory: string;
   placeCategoryDetail: number;
   scrapCount: number;

@@ -60,3 +60,7 @@
 ### 2.4. ML
   - scikit-learn
   - numpy, pandas
+  
+### 2.4. Design
+  - Figma
+  - Blender

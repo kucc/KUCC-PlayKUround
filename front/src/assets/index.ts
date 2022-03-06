@@ -3,6 +3,7 @@ import ArrowUp from './icons/arrow-up.svg';
 import Back from './icons/back.svg';
 import Bell from './icons/bell.svg';
 import Cartoon from './icons/cartoon.svg';
+import Clock from './icons/clock.svg';
 import Coffee from './icons/coffee.svg';
 import Configuation from './icons/configuration.svg';
 import Cross from './icons/cross.svg';
@@ -41,6 +42,7 @@ export {
   Bell,
   Cartoon,
   Coffee,
+  Clock,
   Configuation,
   Cross,
   Dice,

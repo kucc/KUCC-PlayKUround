@@ -5,13 +5,12 @@ export interface MenuAttributes {
   placeId: number | undefined;
   menuName: string;
   menuPrice: number;
-  menuPicture: string[];
   isRecommend: boolean;
   sourceId?: string;
 }
 
 interface MenuCreationAttributes
-  extends Optional<MenuAttributes, 'id' | 'menuPrice' | 'menuPicture' | 'isRecommend'> {}
+  extends Optional<MenuAttributes, 'id' | 'menuPrice' | 'isRecommend'> {}
 
 export interface MenuInterface
   extends Model<MenuAttributes, MenuCreationAttributes>,

@@ -1,22 +1,19 @@
-import React from "react";
+import React from 'react';
 
 export interface ButtonProps extends Omit<React.HTMLProps<HTMLButtonElement>, 'size' | 'type'> {
   label?: string;
   block?: boolean;
   children?: React.ReactNode;
   loading?: boolean;
-  size?: 'small' | 'default' | 'large';
   disabled?: boolean;
   style?: React.CSSProperties;
-  onClick? : React.MouseEventHandler<HTMLButtonElement>
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
   // html 타입이 왜 안불러와지지..
-  htmlType?: string
+  htmlType?: string;
+  backgroundColor?: string;
+  width?: string;
+  spinnerSize?: 'small' | 'large';
+  gradient?: boolean;
+  color?: string;
+  boxShadow?: string;
 }
-
-export type AdditionalTextButtonType<T> = Omit<T, 'size' | 'disabled'> & {
-  type?: 'default' | 'other' | 'white' | 'white-large' | 'underline';
-};
-
-export type AdditionalButtonType<T> = T & {
-  type?: 'solid' | 'bordered';
-};

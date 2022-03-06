@@ -57,7 +57,7 @@ const UserModel = (sequelize: Sequelize) => {
         defaultValue: [],
         allowNull: true,
       },
-      scrabList: {
+      scrapList: {
         type: DataTypes.JSON,
         defaultValue: [],
         allowNull: true,
@@ -68,6 +68,11 @@ const UserModel = (sequelize: Sequelize) => {
         allowNull: true,
       },
       rateList: {
+        type: DataTypes.JSON,
+        defaultValue: [],
+        allowNull: true,
+      },
+      historyList: {
         type: DataTypes.JSON,
         defaultValue: [],
         allowNull: true,

@@ -12,15 +12,22 @@ interface responseProps {
   result: any;
 }
 
-// export const getAPIByConditional = (value: 'close' | 'review' | 'rate') => {
-//   if (value === 'review') {
-//     return getByCommentAPI;
-//   } else if (value === 'rate') {
-//     return getByRateAPI;
-//   } else {
-//     return getByLocationAPI;
-//   }
-// };
+export async function getByFilterAPI({ queryKey }: { queryKey: any[] }) {
+  const [, category, categoryDetail, order, area, latitude, longitude] = queryKey;
+  try {
+    // 장소 생성
+    const { data }: { data: responseProps } =
+      await axios.get(`/api/place/getByFilter?category=${category}&categoryDetail=${categoryDetail}&order=${order}&area=${area}&latitude=${latitude}&longitude=${longitude}' \
+    `);
+    if (data.success) {
+      // 해시태그 생성
+      return data.result;
+    }
+  } catch (error) {
+    //
+    return;
+  }
+}
 
 // parameter : body, hashtags
 export async function createPlaceAPI({ queryKey }: { queryKey: any[] }) {
@@ -39,38 +46,6 @@ export async function createPlaceAPI({ queryKey }: { queryKey: any[] }) {
   } catch (error) {
     //
     return;
-  }
-}
-
-// parameter : name
-export async function getByNameAPI({ queryKey }: { queryKey: any[] }) {
-  const [, name] = queryKey;
-  try {
-    const { data }: { data: responseProps } = await axios.get(`/api/place/getByName?name=${name}`);
-    if (data.success) {
-      return data.result;
-    }
-  } catch (error) {
-    //
-    return;
-  }
-}
-
-// parameter : latitude, longitude
-export async function getByLocationAPI({ queryKey }: { queryKey: any[] }) {
-  const [, latitude, longitude] = queryKey;
-  try {
-    const { data }: { data: responseProps } = await axios.get(
-      `/api/place/getByLocation?latitude=${latitude}&longitude=${longitude}`,
-    );
-    if (data.success) {
-      return data.result;
-    }
-  } catch (error) {
-    // Router.push('/');
-    // alert(FAILED_DATA_FETCHING);
-    return;
-    // 메인 페이지로 보내야 할 듯.
   }
 }
 
@@ -100,67 +75,7 @@ export async function getByMapAPI() {
     return;
   }
 }
-
-// parameter : X
-export async function getByRateAPI() {
-  try {
-    const { data }: { data: responseProps } = await axios.get(`/api/place/getByRate`);
-    if (data.success) {
-      return data.result;
-    }
-  } catch (error) {
-    //
-    return;
-  }
-}
-
-// parameter : X
-export async function getByCommentAPI() {
-  try {
-    const { data }: { data: responseProps } = await axios.get(`/api/place/getByComment`);
-    if (data.success) {
-      return data.result;
-    }
-  } catch (error) {
-    //
-    return;
-  }
-}
-
-// parameter : area
-export async function getByAreaAPI({ queryKey }: { queryKey: any[] }) {
-  const [, area] = queryKey;
-
-  try {
-    const { data }: { data: responseProps } = await axios.get(`/api/place/getByArea?area=${area}`);
-    if (data.success) {
-      return data.result;
-    }
-  } catch (error) {
-    //
-    return;
-  }
-}
-
-// parameter : category, categoryDetail
-export async function getByCategoryAPI({ queryKey }: { queryKey: any[] }) {
-  const [, category, categoryDetail] = queryKey;
-
-  try {
-    const { data }: { data: responseProps } = await axios.get(
-      `/api/place/getByCategory?category=${category}&categoryDetail=${categoryDetail}`,
-    );
-    if (data.success) {
-      return data.result;
-    }
-  } catch (error) {
-    //
-    return;
-  }
-}
-
 // parameter : hashtag
-// 이것도 하나로 통일할까여??
 export async function getByHashtagAPI({ queryKey }: { queryKey: any[] }) {
   const [, hashtag] = queryKey;
   try {
