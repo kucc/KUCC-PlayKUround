@@ -52,14 +52,18 @@ const LoginPage = () => {
   }
 
   const onClickNextButton = () => {
-    getNameAPI({ email }).then(response => {
-      if (response) {
-        setFirstPage(false);
-        setName(response);
-      } else {
-        setModalVisible(true);
-      }
-    });
+    getNameAPI({ email })
+      .then(response => {
+        if (response) {
+          setFirstPage(false);
+          setName(response);
+        } else {
+          setModalVisible(true);
+        }
+      })
+      .catch(err => {
+        message.error(err.response.data);
+      });
   };
 
   const onClickBackIcon = () => {

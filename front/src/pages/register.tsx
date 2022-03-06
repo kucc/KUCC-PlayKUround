@@ -1,20 +1,25 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 
-import { Modal, Skeleton } from 'antd';
+import { Skeleton } from 'antd';
 import axios from 'axios';
 import { GetServerSidePropsContext } from 'next';
 import Router from 'next/router';
 import { useRouter } from 'next/router';
 
-import { BackIconWithNavbar, FirstSignupInput, SecondSignupInput, Text } from '@components';
+import {
+  AntdModal,
+  BackIconWithNavbar,
+  FirstSignupInput,
+  SecondSignupInput,
+  Text,
+} from '@components';
 
 import { loadMyInfoAPI } from 'apis/user';
 import User from 'interfaces/user';
 
 import { MakeEmailContext } from '@contexts/globalEmail';
 import useInput from '@hooks/useInput';
-import useWindowDimensions from '@hooks/useWindowDimensions';
 import { ALREADY_LOGINED } from '@util/message';
 
 const RegisterPage = () => {
@@ -26,20 +31,12 @@ const RegisterPage = () => {
   const [nickname, onChangeNickname] = useInput('');
 
   const [firstPage, setFirstPage] = useState<boolean>(true);
-  const { width } = useWindowDimensions();
 
   const router = useRouter();
 
   useEffect(() => {
     if (me.isSuccess && me.data && me.data.id) {
-      Modal.error({
-        content: ALREADY_LOGINED,
-        width: `${width * 0.7}px`,
-        style: {
-          top: '50%',
-          transform: 'translateY(-50%)',
-        },
-      });
+      <AntdModal message={ALREADY_LOGINED} />;
       Router.replace('/');
     }
   }, [me.data]);
