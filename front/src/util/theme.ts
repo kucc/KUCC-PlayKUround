@@ -5,6 +5,7 @@ const light = {
     primary: Colors.white,
     grey: Colors.lightGrey,
     black: Colors.black,
+    white: Colors.white,
   },
   text: {
     primary: Colors.black,
@@ -37,6 +38,7 @@ const dark = {
     primary: Colors.black,
     grey: Colors.boldGrey_8,
     black: Colors.white,
+    white: Colors.black,
   },
   text: {
     primary: Colors.white,

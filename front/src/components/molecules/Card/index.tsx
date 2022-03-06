@@ -8,7 +8,6 @@ import {
   StyledChip,
   StyledImg,
   StyledScrapSvg,
-  SvgWrapper,
   TextTopWrapper,
   TextWrapper,
   Title,
@@ -23,9 +22,7 @@ export const Card = ({ title, description, imageSource, ChipGroupList }: CardPro
         <TextWrapper>
           <TextTopWrapper>
             <Title>{title}</Title>
-            <SvgWrapper>
-              <StyledScrapSvg />
-            </SvgWrapper>
+            <StyledScrapSvg />
           </TextTopWrapper>
           <Description>{description}</Description>
         </TextWrapper>
