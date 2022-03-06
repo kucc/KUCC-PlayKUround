@@ -106,7 +106,9 @@ const CourseMap = ({
           infoWindows.push(
             new naver.maps.InfoWindow({
               content:
-                place.pictureLink.length > 0 ? placePicture(place.pictureLink[0]) : placeNoPicture,
+                place.pictureLink && place.pictureLink.length > 0
+                  ? placePicture(place.pictureLink[0])
+                  : placeNoPicture,
               // img 태그에 a 태그를 넣어 이동하게 하자.
               borderWidth: 1,
               borderColor: '#E4E4E4',
