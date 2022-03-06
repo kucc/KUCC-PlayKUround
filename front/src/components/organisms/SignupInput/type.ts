@@ -7,3 +7,10 @@ export interface FirstSignupInputProps {
   onChangePasswordCheck: (event: React.ChangeEvent<HTMLInputElement>) => void;
   setFirstPage: (value: boolean) => void;
 }
+
+export interface SecondSignupInputProps {
+  email: string;
+  password: string;
+  nickname: string;
+  onChangeNickname: (event: React.ChangeEvent<HTMLInputElement>) => void;
+}

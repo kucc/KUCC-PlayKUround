@@ -1,7 +1,7 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 
-import { Modal } from 'antd';
+import { Skeleton } from 'antd';
 import axios from 'axios';
 import { GetServerSidePropsContext } from 'next';
 import Router from 'next/router';
@@ -13,36 +13,39 @@ import { loadMyInfoAPI } from 'apis/user';
 import User from 'interfaces/user';
 
 import { MakeEmailContext } from '@contexts/globalEmail';
+import useAntdModal from '@hooks/useAntdModal';
 import useInput from '@hooks/useInput';
-import useWindowDimensions from '@hooks/useWindowDimensions';
-import { ALREADY_LOGINED } from '@util/message';
+import { ALREADY_LOGINED, NICKNAME_OVERLENGTH } from '@util/message';
 
 const RegisterPage = () => {
   const { email: globalEmail } = useContext(MakeEmailContext);
-  const { data: me, isSuccess } = useQuery<User>('user', loadMyInfoAPI);
+  const me = useQuery<User>('user', loadMyInfoAPI);
   const [email, onChangeEmail] = useInput(globalEmail || '');
   const [password, onChangePassword] = useInput('');
   const [passwordCheck, onChangePasswordCheck] = useInput('');
-  const [nickname, onChangeNickname] = useInput('');
 
+  const [nickname, setNickname] = useState('');
   const [firstPage, setFirstPage] = useState<boolean>(true);
-  const { width } = useWindowDimensions();
 
   const router = useRouter();
 
+  const onChangeNickname = useCallback(e => {
+    setNickname(e.target.value);
+  }, []);
+
   useEffect(() => {
-    if (isSuccess && me && me.id) {
-      Modal.error({
-        content: ALREADY_LOGINED,
-        width: `${width * 0.7}px`,
-        style: {
-          top: '50%',
-          transform: 'translateY(-50%)',
-        },
-      });
+    if (me.isSuccess && me.data && me.data.id) {
+      useAntdModal({ message: ALREADY_LOGINED });
       Router.replace('/');
     }
-  }, [me]);
+  }, [me.data]);
+
+  useEffect(() => {
+    if (nickname.length > 30) {
+      useAntdModal({ message: NICKNAME_OVERLENGTH });
+      setNickname(nickname.slice(0, 30));
+    }
+  }, [nickname]);
 
   const onClickBackIcon = () => {
     if (firstPage) {
@@ -52,10 +55,18 @@ const RegisterPage = () => {
     }
   };
 
+  if (me.isLoading || me.isIdle) {
+    return <Skeleton active />;
+  }
+
+  if (me.isError) {
+    return <span>Error</span>;
+  }
+
   return (
     <>
       <BackIconWithNavbar text='회원가입' onClickBackIcon={onClickBackIcon} />
-      {me?.id ? (
+      {me.data && me.data.id ? (
         <Text h4 center>
           메인 페이지로 이동 중입니다. 잠시만 기다려주세요
         </Text>

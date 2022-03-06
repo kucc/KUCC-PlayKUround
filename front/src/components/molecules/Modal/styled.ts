@@ -3,8 +3,6 @@ import styled from 'styled-components';
 
 import { Colors } from '@styles';
 
-import { ModalOverlayProps } from './type';
-
 export const ModalOverlay = styled.div`
   position: fixed;
   top: 0;
