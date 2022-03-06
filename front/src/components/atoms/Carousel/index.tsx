@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import SwiperCore, { Keyboard, Pagination } from 'swiper';
 import 'swiper/css';
@@ -13,9 +13,8 @@ import { CarouselProps } from './type';
 
 SwiperCore.use([Keyboard, Pagination]);
 export const Carousel = ({ CarouselList }: CarouselProps) => {
-  const [isHidden, setIsHidden] = useState<boolean>(true);
-  const HiddenEvent = () => {
-    setIsHidden(!isHidden);
+  const ClickHandler = (e: any) => {
+    console.log(e);
   };
   return (
     <SwiperContainer>
@@ -34,8 +33,8 @@ export const Carousel = ({ CarouselList }: CarouselProps) => {
         {CarouselList.map(({ imageSource, description }, index) => (
           <SwiperSlide key={index}>
             <img src={imageSource} alt='없음' />
-            <DescriptionContainer isHidden={isHidden}>{description}</DescriptionContainer>
-            <MoreDescriptionContainer onClick={HiddenEvent} isHidden={isHidden}>
+            <DescriptionContainer>{description}</DescriptionContainer>
+            <MoreDescriptionContainer onClick={ClickHandler}>
               자세히 보기
               <ArrowRight />
             </MoreDescriptionContainer>

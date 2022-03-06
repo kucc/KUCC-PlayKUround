@@ -26,11 +26,7 @@ export const SwiperContainer = styled.div`
     height: 270px;
   }
 `;
-export const DescriptionContainer = styled.div<{ isHidden: boolean }>`
-  ${({ isHidden }) => {
-    if (isHidden === true) {
-      return `
-      
+export const DescriptionContainer = styled.div`
   font-size: 12px;
   line-height: 16px;
   margin: 0 auto;
@@ -43,39 +39,20 @@ export const DescriptionContainer = styled.div<{ isHidden: boolean }>`
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
 `;
-    } else {
-      return `
-  font-size: 12px;
-  line-height: 16px;  
-  margin: 0 auto;
-  margin-top: 14px;
+export const MoreDescriptionContainer = styled.div`
   width: 90%;
-  height: auto;`;
-    }
-  }}
-`;
-export const MoreDescriptionContainer = styled.div<{ isHidden: boolean }>`
-  ${({ isHidden }) => {
-    if (isHidden === true) {
-      return `
-      width: 90%;
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      margin: 0 auto;
-      right: 0;
-      font-size: 10px;
-      color: ${Colors.lightGrey_7};
-      cursor: pointer;
-      svg{
-        margin-left: 5px;
-      }
-      svg > path {
-        fill: ${Colors.lightGrey_7};
-      }
-  `;
-    } else {
-      return `display: none`;
-    }
-  }}
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin: 0 auto;
+  right: 0;
+  font-size: 10px;
+  color: ${Colors.lightGrey_7};
+  cursor: pointer;
+  svg {
+    margin-left: 5px;
+  }
+  svg > path {
+    fill: ${Colors.lightGrey_7};
+  }
 `;

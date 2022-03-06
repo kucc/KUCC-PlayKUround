@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 
-import { Chip } from '@components';
 import { Carousel } from '@components';
 import { LikesButton } from '@components/atoms/LikesButton';
 
