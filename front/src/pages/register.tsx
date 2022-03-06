@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 
 import { Skeleton } from 'antd';
@@ -15,7 +15,7 @@ import User from 'interfaces/user';
 import { MakeEmailContext } from '@contexts/globalEmail';
 import useAntdModal from '@hooks/useAntdModal';
 import useInput from '@hooks/useInput';
-import { ALREADY_LOGINED } from '@util/message';
+import { ALREADY_LOGINED, NICKNAME_OVERLENGTH } from '@util/message';
 
 const RegisterPage = () => {
   const { email: globalEmail } = useContext(MakeEmailContext);
@@ -23,11 +23,15 @@ const RegisterPage = () => {
   const [email, onChangeEmail] = useInput(globalEmail || '');
   const [password, onChangePassword] = useInput('');
   const [passwordCheck, onChangePasswordCheck] = useInput('');
-  const [nickname, onChangeNickname] = useInput('');
 
+  const [nickname, setNickname] = useState('');
   const [firstPage, setFirstPage] = useState<boolean>(true);
 
   const router = useRouter();
+
+  const onChangeNickname = useCallback(e => {
+    setNickname(e.target.value);
+  }, []);
 
   useEffect(() => {
     if (me.isSuccess && me.data && me.data.id) {
@@ -35,6 +39,13 @@ const RegisterPage = () => {
       Router.replace('/');
     }
   }, [me.data]);
+
+  useEffect(() => {
+    if (nickname.length > 30) {
+      useAntdModal({ message: NICKNAME_OVERLENGTH });
+      setNickname(nickname.slice(0, 30));
+    }
+  }, [nickname]);
 
   const onClickBackIcon = () => {
     if (firstPage) {
