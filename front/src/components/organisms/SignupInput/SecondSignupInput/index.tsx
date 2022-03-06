@@ -4,7 +4,7 @@ import { useQuery } from 'react-query';
 import { Modal, Upload } from 'antd';
 import Router from 'next/router';
 
-import { Avatar, BaseButton, BaseInput } from '@components';
+import { AntdModal, Avatar, BaseButton, BaseInput } from '@components';
 
 import { checkNameAPI, logInAPI, registerAPI } from 'apis/user';
 
@@ -49,26 +49,12 @@ export const SecondSignupInput = ({
               Router.replace('/');
             })
             .catch(() => {
-              Modal.error({
-                content: ERROR_LOG,
-                width: `${width * 0.7}px`,
-                style: {
-                  top: '50%',
-                  transform: 'translateY(-50%)',
-                },
-              });
+              <AntdModal message={ERROR_LOG} />;
             });
         }
       })
       .catch(() => {
-        Modal.error({
-          content: ERROR_LOG,
-          width: `${width * 0.7}px`,
-          style: {
-            top: '50%',
-            transform: 'translateY(-50%)',
-          },
-        });
+        <AntdModal message={ERROR_LOG} />;
       });
   }, [email, nickname, password]);
 
