@@ -67,6 +67,9 @@ export const MoreDescriptionContainer = styled.div<{ isHidden: boolean }>`
       font-size: 10px;
       color: ${Colors.lightGrey_7};
       cursor: pointer;
+      svg{
+        margin-left: 5px;
+      }
       svg > path {
         fill: ${Colors.lightGrey_7};
       }
