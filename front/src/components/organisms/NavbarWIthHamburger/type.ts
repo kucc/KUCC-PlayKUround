@@ -1,4 +1,4 @@
-export type NavbarWIthHamburgerProps = {
+export type NavbarWithHamburgerProps = {
   navbarTitle: string;
   rightItems?: Array<{
     icon: JSX.Element;

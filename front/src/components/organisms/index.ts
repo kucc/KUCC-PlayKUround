@@ -7,6 +7,6 @@ export * from './MainTable';
 export * from './Map';
 export * from './MyInfoCard';
 export * from './Navbar';
-export * from './NavbarWIthHamburger';
+export * from './NavbarWithHamburger';
 export * from './RecommendTable';
 export * from './SignupInput';

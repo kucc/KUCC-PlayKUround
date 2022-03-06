@@ -9,9 +9,9 @@ import useWindowDimensions from '@hooks/useWindowDimensions';
 import { MenuIcon } from '@styles';
 
 import { HamburgerOverlay, HamburgerWrapper } from './styled';
-import { NavbarWIthHamburgerProps } from './type';
+import { NavbarWithHamburgerProps } from './type';
 
-export const NavbarWIthHamburger = ({ navbarTitle, rightItems }: NavbarWIthHamburgerProps) => {
+export const NavbarWithHamburger = ({ navbarTitle, rightItems }: NavbarWithHamburgerProps) => {
   const [visible, setVisible] = useState<boolean>(false);
   const { width } = useWindowDimensions();
 
