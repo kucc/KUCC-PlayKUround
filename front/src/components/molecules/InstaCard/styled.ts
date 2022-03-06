@@ -4,7 +4,7 @@ import { Colors } from '@styles';
 
 export const Container = styled.div`
   background-color: ${Colors.white};
-  height: 438px;
+  height: auto;
   box-shadow: 0px 0px 10px ${Colors.shadow};
   border-radius: 12px;
   margin: 6px 16px;

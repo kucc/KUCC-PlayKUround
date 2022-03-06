@@ -50,7 +50,7 @@ export const DescriptionContainer = styled.div<{ isHidden: boolean }>`
   margin: 0 auto;
   margin-top: 14px;
   width: 90%;
-  height: 50px;`;
+  height: auto;`;
     }
   }}
 `;
@@ -65,8 +65,11 @@ export const MoreDescriptionContainer = styled.div<{ isHidden: boolean }>`
       margin: 0 auto;
       right: 0;
       font-size: 10px;
-      color: ${Colors.black};
+      color: ${Colors.lightGrey_7};
       cursor: pointer;
+      svg > path {
+        fill: ${Colors.lightGrey_7};
+      }
   `;
     } else {
       return `display: none`;
