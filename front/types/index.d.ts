@@ -4,6 +4,7 @@ interface backgroundProp {
   primary: string;
   grey: string;
   black: string;
+  white: string;
 }
 
 interface textProp {

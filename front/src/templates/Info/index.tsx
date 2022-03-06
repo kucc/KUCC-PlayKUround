@@ -5,7 +5,6 @@ import { Skeleton } from 'antd';
 
 import { CardArray, Footer, MyInfoCard, NavbarWIthHamburger } from '@components';
 
-import { getByLatestAPI } from 'apis/post';
 import { loadMyInfoAPI } from 'apis/user';
 import User from 'interfaces/user';
 
@@ -16,24 +15,31 @@ import { Container, StyledText } from './styled';
 import { InfoProps } from './type';
 
 export const Info = ({ title, navbarTitle }: InfoProps) => {
-  const { data: me } = useQuery<User>('user', loadMyInfoAPI);
+  const me = useQuery<User>('user', loadMyInfoAPI);
   const screenHeight = window.innerHeight;
-  const { data: places, isLoading } = useQuery('post', getByLatestAPI);
+
+  if (me.isLoading || me.isIdle) {
+    return <Skeleton active />;
+  }
+
+  if (me.isError) {
+    return <span>Error</span>;
+  }
 
   return (
     <>
       <Container screenHeight={screenHeight}>
         <NavbarWIthHamburger navbarTitle={navbarTitle} />
         <MyInfoCard
-          imageSource={getImageLink(me?.image?.data)}
-          name={me?.name as string}
+          imageSource={getImageLink(me.data.image?.data)}
+          name={me.data.name}
           style={{ marginBottom: '31px' }}
         />
         <StyledText subtitle2 bold primary>
           {title}
         </StyledText>
         <SidePadding style={{ marginTop: '12px' }}>
-          {isLoading ? <Skeleton active /> : <CardArray places={places} />}
+          <CardArray places={me.data.historyList} />
           <Footer />
         </SidePadding>
       </Container>
