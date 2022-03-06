@@ -1,6 +1,7 @@
 import React from 'react';
 import { useQuery } from 'react-query';
 
+import { Skeleton } from 'antd';
 import Router from 'next/router';
 
 import { Avatar, HamburgerMenu, ToggleDark } from '@components';
@@ -24,7 +25,7 @@ import {
 
 export const HamburgerMenuWithAvatar = () => {
   const { width, height } = useWindowDimensions();
-  const { data: me } = useQuery<User>('user', loadMyInfoAPI);
+  const me = useQuery<User>('user', loadMyInfoAPI);
 
   const menuArray = [
     {
@@ -72,16 +73,25 @@ export const HamburgerMenuWithAvatar = () => {
 
   const onClickMoveFixInfo = () => {};
 
+  if (me.isLoading || me.isIdle) {
+    return <Skeleton active />;
+  }
+
+  if (me.isError) {
+    return <span>Error</span>;
+  }
+
   return (
     <HamburgerMenuWithAvatarWrapper width={width * 0.75} height={height}>
       <ToggleDark />
       <InfoWrapper>
         <Avatar size={59} />
-        {me?.name ? (
+        {me.data && me.data.name ? (
           <>
             <Div>
               <Label>
-                {me?.name.length > 6 ? me?.name.slice(0, 6) + '...' : me?.name} <span>님</span>
+                {me.data.name.length > 6 ? me.data.name.slice(0, 6) + '...' : me.data.name}{' '}
+                <span>님</span>
               </Label>
               <CursorHorizontalArrangement>
                 <FixInfo onClick={onClickMoveFixInfo}>로그인 정보 수정</FixInfo>

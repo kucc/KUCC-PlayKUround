@@ -7,7 +7,7 @@ interface imageProps {
 
 export default interface User {
   id: number;
-  name: string;
+  name: string | null;
   email: string;
   role: 0 | 1;
   postList: Array<SimplePlaceType>;
