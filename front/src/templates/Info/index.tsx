@@ -35,21 +35,20 @@ export const Info = ({ title, navbarTitle }: InfoProps) => {
     return <span>Error</span>;
   }
 
-
   return (
     <>
       <Container screenHeight={screenHeight}>
         <NavbarWIthHamburger navbarTitle={navbarTitle} />
         <MyInfoCard
-          imageSource={getImageLink(me.data.image?.data)}
-          name={me.data.name}
+          imageSource={getImageLink(me?.image?.data)}
+          name={me?.name}
           style={{ marginBottom: '31px' }}
         />
         <StyledText subtitle2 bold primary>
           {title}
         </StyledText>
         <SidePadding style={{ marginTop: '12px' }}>
-          <CardArray places={me.data.historyList} />
+          <CardArray places={places} />
           <Footer />
         </SidePadding>
       </Container>
