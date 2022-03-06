@@ -6,16 +6,11 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-import { ArrowRight } from '@assets';
-
-import { DescriptionContainer, MoreDescriptionContainer, SwiperContainer } from './styled';
+import { SwiperContainer } from './styled';
 import { CarouselProps } from './type';
 
 SwiperCore.use([Keyboard, Pagination]);
-export const Carousel = ({ CarouselList }: CarouselProps) => {
-  const ClickHandler = (e: any) => {
-    console.log(e);
-  };
+export const Carousel = ({ CarouselList, description }: CarouselProps) => {
   return (
     <SwiperContainer>
       <Swiper
@@ -30,14 +25,9 @@ export const Carousel = ({ CarouselList }: CarouselProps) => {
         }}
         scrollbar={{ draggable: true }}
         centeredSlides={true}>
-        {CarouselList.map(({ imageSource, description }, index) => (
+        {CarouselList.map(({ imageSource }, index) => (
           <SwiperSlide key={index}>
             <img src={imageSource} alt='없음' />
-            <DescriptionContainer>{description}</DescriptionContainer>
-            <MoreDescriptionContainer onClick={ClickHandler}>
-              자세히 보기
-              <ArrowRight />
-            </MoreDescriptionContainer>
           </SwiperSlide>
         ))}
       </Swiper>

@@ -6,6 +6,6 @@ export type InstaCardProps = {
   likesCount?: number;
   CarouselList: Array<{
     imageSource: string;
-    description: string;
   }>;
+  description: string;
 };
