@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 
 import { Skeleton, message } from 'antd';
-import { Modal as AntdModal } from 'antd';
 import router from 'next/router';
 import Router from 'next/router';
 
@@ -12,8 +11,8 @@ import { getNameAPI, loadMyInfoAPI, logInAPI } from 'apis/user';
 import User from 'interfaces/user';
 
 import { MakeEmailContext } from '@contexts/globalEmail';
+import useAntdModal from '@hooks/useAntdModal';
 import useInput from '@hooks/useInput';
-import useWindowDimensions from '@hooks/useWindowDimensions';
 import { ALREADY_LOGINED } from '@util/message';
 
 const LoginPage = () => {
@@ -27,18 +26,9 @@ const LoginPage = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [name, setName] = useState<string>('');
 
-  const { width } = useWindowDimensions();
-
   useEffect(() => {
     if (me.isSuccess && me.data && me.data.id) {
-      AntdModal.error({
-        content: ALREADY_LOGINED,
-        width: `${width * 0.7}px`,
-        style: {
-          top: '50%',
-          transform: 'translateY(-50%)',
-        },
-      });
+      useAntdModal({ message: ALREADY_LOGINED });
       Router.replace('/');
     }
   }, [me.data]);

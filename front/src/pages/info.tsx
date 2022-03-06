@@ -3,12 +3,12 @@ import { useQuery } from 'react-query';
 
 import Router from 'next/router';
 
-import { AntdModal } from '@components';
 import { Info } from '@templates';
 
 import { loadMyInfoAPI } from 'apis/user';
 import User from 'interfaces/user';
 
+import useAntdModal from '@hooks/useAntdModal';
 import { WRONG_LOGIN_ACCESS } from '@util/message';
 
 const InfoPage = () => {
@@ -16,7 +16,7 @@ const InfoPage = () => {
 
   useEffect(() => {
     if (isSuccess && !(me && me.id)) {
-      <AntdModal message={WRONG_LOGIN_ACCESS} />;
+      useAntdModal({ message: WRONG_LOGIN_ACCESS });
       Router.replace('/login');
     }
   }, [me]);
