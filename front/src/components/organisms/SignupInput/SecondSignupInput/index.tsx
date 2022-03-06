@@ -6,14 +6,14 @@ import Router from 'next/router';
 
 import { Avatar, BaseButton, BaseInput } from '@components';
 
-import { checkNameAPI, loadMyInfoAPI, logInAPI, registerAPI } from 'apis/user';
+import { checkNameAPI, logInAPI, registerAPI } from 'apis/user';
 
 import useWindowDimensions from '@hooks/useWindowDimensions';
 import { ERROR_LOG, SIGNUP_SUCCESS } from '@util/message';
 import { uploadProps } from '@util/uploadImage';
 
-import { AvatarPosition, ButtonWrapper, Label } from './styled';
-import { SecondSignupInputProps } from './type';
+import { AvatarPosition, ButtonWrapper, Label } from '../styled';
+import { SecondSignupInputProps } from '../type';
 
 export const SecondSignupInput = ({
   email,

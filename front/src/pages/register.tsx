@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 
-import { Modal } from 'antd';
+import { Modal, Skeleton } from 'antd';
 import axios from 'axios';
 import { GetServerSidePropsContext } from 'next';
 import Router from 'next/router';
@@ -19,7 +19,7 @@ import { ALREADY_LOGINED } from '@util/message';
 
 const RegisterPage = () => {
   const { email: globalEmail } = useContext(MakeEmailContext);
-  const { data: me, isSuccess } = useQuery<User>('user', loadMyInfoAPI);
+  const me = useQuery<User>('user', loadMyInfoAPI);
   const [email, onChangeEmail] = useInput(globalEmail || '');
   const [password, onChangePassword] = useInput('');
   const [passwordCheck, onChangePasswordCheck] = useInput('');
@@ -31,7 +31,7 @@ const RegisterPage = () => {
   const router = useRouter();
 
   useEffect(() => {
-    if (isSuccess && me && me.id) {
+    if (me.isSuccess && me.data && me.data.id) {
       Modal.error({
         content: ALREADY_LOGINED,
         width: `${width * 0.7}px`,
@@ -42,7 +42,7 @@ const RegisterPage = () => {
       });
       Router.replace('/');
     }
-  }, [me]);
+  }, [me.data]);
 
   const onClickBackIcon = () => {
     if (firstPage) {
@@ -52,10 +52,18 @@ const RegisterPage = () => {
     }
   };
 
+  if (me.isLoading || me.isIdle) {
+    return <Skeleton active />;
+  }
+
+  if (me.isError) {
+    return <span>Error</span>;
+  }
+
   return (
     <>
       <BackIconWithNavbar text='회원가입' onClickBackIcon={onClickBackIcon} />
-      {me?.id ? (
+      {me.data && me.data.id ? (
         <Text h4 center>
           메인 페이지로 이동 중입니다. 잠시만 기다려주세요
         </Text>
