@@ -12,7 +12,7 @@ const getByPlace: RequestHandler = async (req, res, next) => {
   try {
     const result = await Post.findAll({
       where: { placeId },
-      include: Image,
+      include: [{ model: Comment }, { model: Image }, { model: Place }],
     });
     res.status(200).send({ success: true, result });
   } catch (error) {
@@ -25,7 +25,7 @@ const getByLatest: RequestHandler = async (req, res, next) => {
   try {
     const result = await Post.findAll({
       order: [['createdAt', 'DESC']],
-      include: Image,
+      include: [{ model: Comment }, { model: Image }, { model: Place }],
     });
     res.status(200).send({ success: true, result });
   } catch (error) {
