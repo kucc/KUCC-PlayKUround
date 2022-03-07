@@ -1,16 +1,13 @@
 import React, { useContext, useEffect } from 'react';
-import { useQuery } from 'react-query';
 
 import { useSpring } from '@react-spring/web';
 import useDarkMode from 'use-dark-mode';
 
-import { getByCategoryAPI } from 'apis/place';
-
-import { MakeTableListContext } from '@contexts/tableList';
 import { Colors } from '@styles';
 
 import { ChipWrapper, Label } from './styled';
 import { ChipProps } from './type';
+import { SendCategoryContext } from '@contexts/sendCategory';
 
 export const Chip = ({
   icon,
@@ -25,12 +22,11 @@ export const Chip = ({
   categoryDetail,
 }: ChipProps) => {
   const darkMode = useDarkMode(false);
-  const { data: places } = useQuery(['place', category, categoryDetail], getByCategoryAPI);
-  const { makeTableList } = useContext(MakeTableListContext);
+  const { sendCategory } = useContext(SendCategoryContext);
 
   useEffect(() => {
-    makeTableList(places);
-  }, [places]);
+    sendCategory([category, categoryDetail]);
+  }, [category, categoryDetail]);
 
   const darkBackgroundProp = useSpring({
     background: clicked ? Colors.primary : Colors.black,
