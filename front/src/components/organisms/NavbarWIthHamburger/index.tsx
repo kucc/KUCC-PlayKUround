@@ -18,11 +18,11 @@ export const NavbarWithHamburger = ({ navbarTitle, rightItems }: NavbarWithHambu
   const darkMode = useDarkMode();
 
   const onClickMenuIcon = () => {
-    setVisible(!visible);
+    setVisible(prev => !prev);
   };
 
   const onClickSetVisible = () => {
-    setVisible(!visible);
+    setVisible(prev => !prev);
   };
 
   const leftItems = [{ icon: <MenuIcon />, onClickLeftItems: onClickMenuIcon }];
@@ -47,7 +47,6 @@ export const NavbarWithHamburger = ({ navbarTitle, rightItems }: NavbarWithHambu
   return (
     <>
       <HamburgerOverlay
-        visible={visible}
         onClick={onClickSetVisible}
         style={
           darkMode.value
@@ -61,7 +60,7 @@ export const NavbarWithHamburger = ({ navbarTitle, rightItems }: NavbarWithHambu
               }
         }
       />
-      <HamburgerWrapper visible={visible} style={fadeAnimation}>
+      <HamburgerWrapper style={fadeAnimation}>
         <HamburgerMenuWithAvatar />
       </HamburgerWrapper>
       <Navbar text={navbarTitle} leftItems={leftItems} rightItems={rightItems} />
