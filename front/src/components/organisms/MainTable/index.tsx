@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useContext } from 'react';
 import { useQuery } from 'react-query';
 
 import { Skeleton } from 'antd';
@@ -7,18 +8,18 @@ import { CardArray, Footer, MainSelect, MainToggleBar } from '@components';
 
 import { getByFilterAPI, getByMapAPI } from 'apis/place';
 
+import { SendCategoryContext } from '@contexts/sendCategory';
+
 import { Map } from '../Map';
 import { StlyedMainTableTop, StyledMainTable } from './styled';
-import { useContext } from 'react';
-import { SendCategoryContext } from '@contexts/sendCategory';
 
 export const MainTable = () => {
   // 기본 값은 고려대
   const [value, setValue] = useState<'close' | 'rate' | 'review'>('close');
-  const [latitude, setLatitude] = useState<number>(37.5908);
-  const [longitude, setLongitude] = useState<number>(127.0278);
+  const [latitude, setLatitude] = useState<number | null>(null);
+  const [longitude, setLongitude] = useState<number | null>(null);
   const [currentMode, setCurrentMode] = useState<string>('table');
-  const {categoryList} = useContext(SendCategoryContext)
+  const { categoryList } = useContext(SendCategoryContext);
 
   const { data: places, isLoading } = useQuery(
     [
@@ -52,7 +53,11 @@ export const MainTable = () => {
 
   const renderMainItem = () => {
     if (currentMode === 'table') {
-      return isLoading ? <Skeleton active /> : <CardArray places={places} />;
+      return isLoading || !latitude || !longitude ? (
+        <Skeleton active />
+      ) : (
+        <CardArray places={places} />
+      );
     } else {
       return <Map places={map} />;
     }
