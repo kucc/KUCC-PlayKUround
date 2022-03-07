@@ -17,4 +17,11 @@ export default interface User {
   rateList: Array<SimplePlaceType>;
   historyList: Array<SimplePlaceType>;
   image: imageProps;
+  sourceId: string;
+  postList: number[];
+  courseList: number[];
+  scrapList: string[];
+  likeList: string[];
+  rateList: string[];
+  historyList: string[];
 }

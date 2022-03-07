@@ -5,6 +5,9 @@ import { Skeleton } from 'antd';
 
 import { CardArray, Footer, MyInfoCard, NavbarWithHamburger } from '@components';
 
+
+import { getByArrAPI } from 'apis/place';
+
 import { loadMyInfoAPI } from 'apis/user';
 import User from 'interfaces/user';
 
@@ -15,14 +18,20 @@ import { Container, StyledText } from './styled';
 import { InfoProps } from './type';
 
 export const Info = ({ title, navbarTitle }: InfoProps) => {
-  const me = useQuery<User>('user', loadMyInfoAPI);
+
+  const { data: me } = useQuery<User>('user', loadMyInfoAPI);
+  const { data: places, isLoading, isError, isIdle } = useQuery(['post', me?.historyList], getByArrAPI, {
+    enabled: !!me,
+  });
+  // course는 나중에 따로 호출
   const screenHeight = window.innerHeight;
 
-  if (me.isLoading || me.isIdle) {
+
+  if (isLoading || isIdle) {
     return <Skeleton active />;
   }
 
-  if (me.isError) {
+  if (isError) {
     return <span>Error</span>;
   }
 
@@ -31,15 +40,15 @@ export const Info = ({ title, navbarTitle }: InfoProps) => {
       <Container screenHeight={screenHeight}>
         <NavbarWithHamburger navbarTitle={navbarTitle} />
         <MyInfoCard
-          imageSource={getImageLink(me.data.image?.data)}
-          name={me.data.name}
+          imageSource={getImageLink(me?.image?.data)}
+          name={me?.name}
           style={{ marginBottom: '31px' }}
         />
         <StyledText subtitle2 bold primary>
           {title}
         </StyledText>
         <SidePadding style={{ marginTop: '12px' }}>
-          <CardArray places={me.data.historyList} />
+          <CardArray places={places} />
           <Footer />
         </SidePadding>
       </Container>

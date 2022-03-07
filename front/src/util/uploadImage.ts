@@ -4,6 +4,7 @@ import imageCompression from 'browser-image-compression';
 import { updateImageAPI } from 'apis/user';
 import User from 'interfaces/user';
 
+// 유저가 있을 경우(userUpdate) API 전송까지 하기
 const handlingDataForm = async (dataURI: any, user: User | undefined | null) => {
   // dataURL 값이 data:image/jpeg:base64,~~~~~~~ 이므로 ','를 기점으로 잘라서 ~~~~~인 부분만 다시 인코딩
   const byteString = window.atob(dataURI.split(',')[1]);
@@ -29,7 +30,7 @@ const handlingDataForm = async (dataURI: any, user: User | undefined | null) => 
   }
 };
 
-const uploadImage = async (
+const compressImage = async (
   fileSrc: any,
   user: User | undefined | null,
   imageLink?: (arg0: any) => void,
@@ -57,12 +58,13 @@ const uploadImage = async (
   }
 };
 
+// 단일 사진 업로드
 export const uploadProps = (setImageLink: (arg0: any) => void, user: User | undefined | null) => {
   return {
     name: 'file',
     onChange(info: any) {
       if (info.file.status !== 'uploading') {
-        uploadImage(info.file.originFileObj, user, imageLink => {
+        compressImage(info.file.originFileObj, user, imageLink => {
           setImageLink(imageLink);
         });
       }
