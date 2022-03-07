@@ -9,6 +9,8 @@ import { getByFilterAPI, getByMapAPI } from 'apis/place';
 
 import { Map } from '../Map';
 import { StlyedMainTableTop, StyledMainTable } from './styled';
+import { useContext } from 'react';
+import { SendCategoryContext } from '@contexts/sendCategory';
 
 export const MainTable = () => {
   // 기본 값은 고려대
@@ -16,14 +18,15 @@ export const MainTable = () => {
   const [latitude, setLatitude] = useState<number>(37.5908);
   const [longitude, setLongitude] = useState<number>(127.0278);
   const [currentMode, setCurrentMode] = useState<string>('table');
+  const {categoryList} = useContext(SendCategoryContext)
 
   const { data: places, isLoading } = useQuery(
     [
       'place',
       // category
-      '',
+      categoryList[0] ?? '',
       // categoryDetail
-      '',
+      categoryList[1] ?? '',
       value,
       // area
       '',
