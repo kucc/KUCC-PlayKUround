@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { Chip } from '@components';
 
@@ -8,17 +8,21 @@ import { Container } from './styled';
 
 export const SearchChipBar = () => {
   const [selectedIndex, setSelectedIndex] = useState<number>(0);
+  const [menuList, setMenuList] = useState<categoryMenuListType>([]);
   const [itemCategory, setItemCategory] = useState<'A' | 'B' | 'C' | undefined>(undefined);
   const [itemCategoryDetail, setItemCategoryDetail] = useState<number | undefined>(undefined);
 
-  const menuList = [...categoryMenuList(), ...categoryDetailMenuList()] as categoryMenuListType;
+  useEffect(() => {
+    setMenuList([...categoryMenuList(), ...categoryDetailMenuList()] as categoryMenuListType);
+  }, []);
+
   const onClickHandler = (index: number) => {
     setSelectedIndex(index);
   };
 
   return (
     <Container>
-      {menuList.map(({ icon, label, category, categoryDetail }, index) => {
+      {menuList?.map(({ icon, label, category, categoryDetail }, index) => {
         return (
           <Chip
             key={index}
