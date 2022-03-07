@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
+import { ArrowRight } from '@assets';
 import { Colors } from '@styles';
 
 export const Container = styled.div`
@@ -46,33 +47,34 @@ export const Description = styled.div`
   font-size: 12px;
   padding: 16px 18px;
 `;
+
 export const DescriptionContainer = styled.div`
   font-size: 12px;
   line-height: 16px;
   margin: 0 auto;
   margin-top: 14px;
   width: 90%;
-  height: 50px;
   text-overflow: ellipsis;
   overflow: hidden;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
 `;
+
 export const MoreDescriptionContainer = styled.div`
-  width: 90%;
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  margin: 0 auto;
-  right: 0;
   font-size: 10px;
-  color: ${Colors.lightGrey_7};
+  padding: 0px 18px 20px 0px;
+  color: ${Colors.lightGrey_6};
   cursor: pointer;
-  svg {
-    margin-left: 5px;
-  }
-  svg > path {
-    fill: ${Colors.lightGrey_7};
+`;
+
+export const StyledArrowRight = styled(ArrowRight)`
+  margin-left: 5px;
+  margin-bottom: 4px;
+  > path {
+    fill: ${Colors.lightGrey_6};
   }
 `;

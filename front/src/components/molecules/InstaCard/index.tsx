@@ -1,9 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { Carousel } from '@components';
 import { LikesButton } from '@components/atoms/LikesButton';
-
-import { ArrowRight } from '@assets';
 
 import {
   CardHeadContainer,
@@ -11,6 +9,7 @@ import {
   DescriptionContainer,
   MoreDescriptionContainer,
   Place,
+  StyledArrowRight,
   TextContainer,
   Title,
 } from './styled';
@@ -39,7 +38,7 @@ export const InstaCard = ({
       <DescriptionContainer>{description}</DescriptionContainer>
       <MoreDescriptionContainer onClick={ClickHandler}>
         자세히 보기
-        <ArrowRight />
+        <StyledArrowRight />
       </MoreDescriptionContainer>
     </Container>
   );
