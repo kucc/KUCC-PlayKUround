@@ -88,7 +88,7 @@ const createPost = async (
       description,
       sourceId: 'temp',
     });
-    await Post.update({ sourceId: `post_${placeId}` }, { where: { id: postResult.id } });
+    await Post.update({ sourceId: `post_${postResult.id}` }, { where: { id: postResult.id } });
     // 사진이 있으면
     if (req.files) {
       await Promise.all(

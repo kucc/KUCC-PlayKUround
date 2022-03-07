@@ -5,9 +5,7 @@ const SendCategoryContext = createContext({
   sendCategory: (places: any) => {},
 });
 
-
-
-const SendCategoryProvider : React.FC = ({ children }): JSX.Element => {
+const SendCategoryProvider: React.FC = ({ children }): JSX.Element => {
   const [categoryList, setCategoryList] = useState([]);
 
   const sendCategory = (places: any): void => {
