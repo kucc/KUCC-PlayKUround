@@ -5,9 +5,7 @@ import { Skeleton } from 'antd';
 
 import { CardArray, Footer, MyInfoCard, NavbarWIthHamburger } from '@components';
 
-
 import { getByArrAPI } from 'apis/place';
-
 import { loadMyInfoAPI } from 'apis/user';
 import User from 'interfaces/user';
 
@@ -18,19 +16,16 @@ import { Container, StyledText } from './styled';
 import { InfoProps } from './type';
 
 export const Info = ({ title, navbarTitle }: InfoProps) => {
-
   const { data, isLoading, isError, isIdle } = useQuery<User>('user', loadMyInfoAPI);
-  
-  const me = data as User
+
+  const me = data as User;
   const { data: places } = useQuery(['post', me.historyList], getByArrAPI, {
     enabled: !!me,
   });
-  
+
   // course는 나중에 따로 호출
   const screenHeight = window.innerHeight;
 
-
-  
   if (isError) {
     return <span>Error</span>;
   }
@@ -38,7 +33,7 @@ export const Info = ({ title, navbarTitle }: InfoProps) => {
   if (isLoading || isIdle) {
     return <Skeleton active />;
   }
-  
+
   return (
     <>
       <Container screenHeight={screenHeight}>
