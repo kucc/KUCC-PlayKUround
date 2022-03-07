@@ -6,11 +6,13 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
+import { getImageLink } from '@util/imageLinkDecoder';
+
 import { SwiperContainer } from './styled';
 import { CarouselProps } from './type';
 
 SwiperCore.use([Keyboard, Pagination]);
-export const Carousel = ({ CarouselList, description }: CarouselProps) => {
+export const Carousel = ({ CarouselList }: CarouselProps) => {
   return (
     <SwiperContainer>
       <Swiper
@@ -25,9 +27,11 @@ export const Carousel = ({ CarouselList, description }: CarouselProps) => {
         }}
         scrollbar={{ draggable: true }}
         centeredSlides={true}>
-        {CarouselList.map(({ imageSource }, index) => (
+        {CarouselList.map((image, index) => (
           <SwiperSlide key={index}>
-            <img src={imageSource} alt='없음' />
+            {image.path.data ? (
+              <img src={getImageLink(image.path.data)} style={{ objectFit: 'contain' }} />
+            ) : null}
           </SwiperSlide>
         ))}
       </Swiper>

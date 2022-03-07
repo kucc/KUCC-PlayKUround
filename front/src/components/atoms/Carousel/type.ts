@@ -1,6 +1,4 @@
 export type CarouselProps = {
-  CarouselList: Array<{
-    imageSource?: string;
-  }>;
+  CarouselList: Array<any>;
   onClick?: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
 };
