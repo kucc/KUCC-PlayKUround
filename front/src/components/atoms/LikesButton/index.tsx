@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import { Likes } from '@assets';
 
-import { LikesContainer } from './styled';
+import { HorizontalArrangementContainer, LikesContainer } from './styled';
 import { LikesButtonProps } from './type';
 
 export const LikesButton = ({ likesCount }: LikesButtonProps) => {
@@ -12,10 +12,12 @@ export const LikesButton = ({ likesCount }: LikesButtonProps) => {
   };
   return (
     <LikesContainer onClick={onClickLike} clickable={true} isLiked={isLiked}>
-      <div>
-        <Likes />
-      </div>
-      <span>{likesCount}</span>
+      <HorizontalArrangementContainer>
+        <div>
+          <Likes />
+        </div>
+        <span>{likesCount}</span>
+      </HorizontalArrangementContainer>
     </LikesContainer>
   );
 };
