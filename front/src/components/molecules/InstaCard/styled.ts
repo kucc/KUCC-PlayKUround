@@ -1,12 +1,14 @@
 import styled from 'styled-components';
 
+import { ArrowRight } from '@assets';
 import { Colors } from '@styles';
 
 export const Container = styled.div`
   background-color: ${Colors.white};
-  height: 438px;
+  height: auto;
   box-shadow: 0px 0px 10px ${Colors.shadow};
   border-radius: 12px;
+  margin: 6px 16px;
 `;
 
 export const CardHeadContainer = styled.div`
@@ -14,6 +16,8 @@ export const CardHeadContainer = styled.div`
   flex-direction: row;
   padding: 22px 15px 12px 15px;
   position: relative;
+  border-bottom: 1px solid ${({ theme }) => theme.border.primary};
+  margin-bottom: 6px;
 `;
 
 export const TextContainer = styled.div`
@@ -28,7 +32,7 @@ export const Title = styled.div`
 
 export const Place = styled.div`
   font-size: 11px;
-  color: ${Colors.grey};
+  color: ${Colors.lightGrey_7};
 `;
 
 export const ChipContainer = styled.div`
@@ -42,4 +46,35 @@ export const Description = styled.div`
   line-height: 12px;
   font-size: 12px;
   padding: 16px 18px;
+`;
+
+export const DescriptionContainer = styled.div`
+  font-size: 12px;
+  line-height: 16px;
+  margin: 0 auto;
+  margin-top: 14px;
+  width: 90%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+`;
+
+export const MoreDescriptionContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  font-size: 10px;
+  padding: 0px 18px 20px 0px;
+  color: ${Colors.lightGrey_6};
+  cursor: pointer;
+`;
+
+export const StyledArrowRight = styled(ArrowRight)`
+  margin-left: 5px;
+  margin-bottom: 4px;
+  > path {
+    fill: ${Colors.lightGrey_6};
+  }
 `;

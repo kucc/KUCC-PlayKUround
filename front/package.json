@@ -32,6 +32,7 @@
     "react-scripts": "3.4.1",
     "redis": "^3.1.2",
     "styled-components": "^5.3.3",
+    "swiper": "^8.0.6",
     "url-loader": "^4.1.1",
     "use-dark-mode": "^2.3.1"
   },

@@ -1,9 +1,7 @@
-import React from 'react';
-
 export type InstaCardProps = {
-  label: string;
   titleText: string;
-  placeText: string;
-  icon: React.ReactNode;
-  descriptionText: string;
+  placeText?: string;
+  likesCount?: number;
+  CarouselList: Array<any>;
+  description?: string;
 };
