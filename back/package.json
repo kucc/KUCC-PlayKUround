@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "NODE_ENV=production node ./dist/index.js",
+    "start": "cross-env NODE_ENV=production node ./dist/index.js",
+    "prewinddev": "yarn run window-api-docs",
+    "windev": "cross-env NODE_ENV=development tsc-watch --onSuccess \"ts-node ./dist/index.js\"",
+    "window-api-docs": "rmdir /s /q dist && mkdir dist\\swagger && swagger-cli bundle swagger\\openapi.yaml --outfile dist\\swagger\\swagger.yaml --type yaml",
     "dev": "NODE_ENV=development tsc-watch --onSuccess \"ts-node ./dist/index.js\"",
     "predev": "yarn run api-docs",
     "api-docs": "mkdir -p dist/swagger && swagger-cli bundle swagger/openapi.yaml --outfile dist/swagger/swagger.yaml --type yaml"
