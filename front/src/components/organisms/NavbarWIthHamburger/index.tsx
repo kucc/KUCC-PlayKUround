@@ -11,7 +11,11 @@ import { MenuIcon } from '@styles';
 import { HamburgerOverlay, HamburgerWrapper } from './styled';
 import { NavbarWIthHamburgerProps } from './type';
 
-export const NavbarWIthHamburger = ({ navbarTitle, rightItems }: NavbarWIthHamburgerProps) => {
+export const NavbarWIthHamburger = ({
+  navbarTitle,
+  isMiddleSelect,
+  rightItems,
+}: NavbarWIthHamburgerProps) => {
   const [visible, setVisible] = useState<boolean>(false);
   const { width } = useWindowDimensions();
 
@@ -63,7 +67,12 @@ export const NavbarWIthHamburger = ({ navbarTitle, rightItems }: NavbarWIthHambu
       <HamburgerWrapper style={fadeAnimation}>
         <HamburgerMenuWithAvatar />
       </HamburgerWrapper>
-      <Navbar text={navbarTitle} leftItems={leftItems} rightItems={rightItems} />
+      <Navbar
+        isMiddleSelect={isMiddleSelect}
+        text={navbarTitle}
+        leftItems={leftItems}
+        rightItems={rightItems}
+      />
     </>
   );
 };

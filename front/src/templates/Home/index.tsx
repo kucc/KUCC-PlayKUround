@@ -64,7 +64,7 @@ export const Home = ({ rightItems, navbarTitle }: HomeProps) => {
     <>
       {isLocalStorgeSave === 'pass' || join ? (
         <>
-          <NavbarWIthHamburger navbarTitle={navbarTitle} rightItems={rightItems} />
+          <NavbarWIthHamburger isMiddleSelect={true} rightItems={rightItems} />
           <SearchChipBar />
           <MainTable />
         </>

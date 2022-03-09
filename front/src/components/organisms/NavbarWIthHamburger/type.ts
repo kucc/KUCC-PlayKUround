@@ -1,5 +1,6 @@
 export type NavbarWIthHamburgerProps = {
-  navbarTitle: string;
+  navbarTitle?: string;
+  isMiddleSelect?: boolean;
   rightItems?: Array<{
     icon: JSX.Element;
     onClickRightItems: () => void;
