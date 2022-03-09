@@ -118,6 +118,7 @@ const LoginPage = () => {
               makeEmail(email);
               router.push('/register');
             }}
+            onClickOverlay={() => setModalVisible(false)}
           />
         </>
       )}

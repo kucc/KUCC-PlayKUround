@@ -15,6 +15,7 @@ const TestPage = () => {
         setShow(false);
       }}
       onClickRightButton={() => {}}
+      onClickOverlay={() => setShow(false)}
     />
   );
 };
