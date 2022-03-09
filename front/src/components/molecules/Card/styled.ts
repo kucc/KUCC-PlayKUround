@@ -65,8 +65,3 @@ export const ChipWrapper = styled.div`
   flex-direction: row;
   padding-left: 16px;
 `;
-
-export const StyledChip = styled(Chip)<{ index: number }>`
-  height: 28px;
-  ${({ index }) => (!index ? 'margin-left: 12px; margin-right: 6px;' : 'margin-right: 6px;')}
-`;

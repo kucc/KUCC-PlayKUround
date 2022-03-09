@@ -1,14 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-import { Chip } from '@components';
+import { Carousel } from '@components';
+import { LikesButton } from '@components/atoms/LikesButton';
 
 import {
   CardHeadContainer,
-  ChipContainer,
   Container,
-  Description,
+  DescriptionContainer,
+  MoreDescriptionContainer,
   Place,
-  StyledImg,
+  StyledArrowRight,
   TextContainer,
   Title,
 } from './styled';
@@ -17,15 +18,13 @@ import { InstaCardProps } from './type';
 export const InstaCard = ({
   titleText,
   placeText,
-  icon,
-  label,
-  descriptionText,
+  likesCount,
+  CarouselList,
+  description,
 }: InstaCardProps) => {
-  const [clicked, setIsClicked] = useState<boolean>(false);
-  const onClick = () => {
-    setIsClicked(!clicked);
+  const ClickHandler = (e: any) => {
+    console.log(e);
   };
-
   return (
     <Container>
       <CardHeadContainer>
@@ -33,19 +32,14 @@ export const InstaCard = ({
           <Title>{titleText}</Title>
           <Place>{placeText}</Place>
         </TextContainer>
-        <ChipContainer>
-          <Chip
-            icon={icon}
-            label={label}
-            shadow={true}
-            onClick={onClick}
-            clickable={true}
-            clicked={clicked}
-          />
-        </ChipContainer>
+        <LikesButton likesCount={likesCount} />
       </CardHeadContainer>
-      <StyledImg src='pictures/insta-card.png' width={'100%'} height={270} />
-      <Description>{descriptionText}</Description>
+      <Carousel CarouselList={CarouselList} />
+      <DescriptionContainer>{description}</DescriptionContainer>
+      <MoreDescriptionContainer onClick={ClickHandler}>
+        자세히 보기
+        <StyledArrowRight />
+      </MoreDescriptionContainer>
     </Container>
   );
 };

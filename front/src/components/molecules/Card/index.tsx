@@ -1,11 +1,12 @@
 import React from 'react';
 
+import { Chip } from '@components';
+
 import {
   CardContainer,
   ChipWrapper,
   ContentWrapper,
   Description,
-  StyledChip,
   StyledImg,
   StyledScrapSvg,
   TextTopWrapper,
@@ -29,13 +30,19 @@ export const Card = ({ title, description, imageSource, ChipGroupList }: CardPro
         <ChipWrapper>
           {ChipGroupList.map(({ label, icon }, index) => {
             return (
-              <StyledChip
+              <Chip
                 key={index}
-                index={index}
                 label={label}
                 icon={icon}
                 labelStyle={{ fontSize: '12px' }}
-                style={{ paddingTop: '6px', paddingRight: '16px' }}
+                style={Object.assign(
+                  {
+                    paddingTop: '6px',
+                    paddingRight: '16px',
+                    height: '28px',
+                  },
+                  !index ? { marginLeft: '12px' } : { marginRight: '6px' },
+                )}
                 clickable={false}
               />
             );

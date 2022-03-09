@@ -3,6 +3,7 @@ import swaggerUi from 'swagger-ui-express';
 import YAML from 'yamljs';
 
 import { sequelize } from './models';
+import mainRouter from './routes'
 
 const express = require('express');
 
@@ -25,12 +26,6 @@ const redisClient = redis.createClient({
   url: `redis://${process.env.REDIS_HOST}:${process.env.REDIS_PORT}`,
   password: process.env.REDIS_PASSWORD,
 });
-
-const userRouter = require('./routes/user');
-const placeRouter = require('./routes/place');
-const postRouter = require('./routes/post');
-const commentRouter = require('./routes/comment');
-const hashtagRouter = require('./routes/hashtag');
 
 const passportConfig = require('./passport');
 
@@ -102,11 +97,7 @@ app.get('/', (req: Request, res: Response) => {
 // 라우터
 // swagger의 route
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
-app.use('/api/user', userRouter);
-app.use('/api/place', placeRouter);
-app.use('/api/post', postRouter);
-app.use('/api/comment', commentRouter);
-app.use('/api/hashtag', hashtagRouter);
+app.use('/api', mainRouter)
 
 // 404처리 미들웨어
 app.use((req: Request, res: Response, next: NextFunction) => {
