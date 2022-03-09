@@ -1,9 +1,9 @@
 import React from 'react';
 
 import { combineComponents } from './combineComponents';
+import { filterValueProvider } from './filterValue';
 import { MakeEmailProvider } from './globalEmail';
-import { SendCategoryProvider } from './sendCategory';
 
-const providers = [MakeEmailProvider, SendCategoryProvider];
+const providers = [MakeEmailProvider, filterValueProvider];
 
 export const AppContextProvider = combineComponents(...providers);
