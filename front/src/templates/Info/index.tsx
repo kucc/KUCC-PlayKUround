@@ -3,7 +3,7 @@ import { useQuery } from 'react-query';
 
 import { Skeleton } from 'antd';
 
-import { CardArray, Footer, MyInfoCard, NavbarWIthHamburger } from '@components';
+import { CardArray, Footer, MyInfoCard, NavbarWithHamburger } from '@components';
 
 import { getByArrAPI } from 'apis/place';
 import { loadMyInfoAPI } from 'apis/user';
@@ -37,7 +37,7 @@ export const Info = ({ title, navbarTitle }: InfoProps) => {
   return (
     <>
       <Container screenHeight={screenHeight}>
-        <NavbarWIthHamburger navbarTitle={navbarTitle} />
+        <NavbarWithHamburger navbarTitle={navbarTitle} />
         <MyInfoCard
           imageSource={getImageLink(me.image?.data)}
           name={me.name}

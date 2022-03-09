@@ -1,4 +1,4 @@
-export type NavbarWIthHamburgerProps = {
+export type NavbarWithHamburgerProps = {
   navbarTitle?: string;
   isMiddleSelect?: boolean;
   rightItems?: Array<{

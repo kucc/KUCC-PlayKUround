@@ -9,13 +9,13 @@ import useWindowDimensions from '@hooks/useWindowDimensions';
 import { MenuIcon } from '@styles';
 
 import { HamburgerOverlay, HamburgerWrapper } from './styled';
-import { NavbarWIthHamburgerProps } from './type';
+import { NavbarWithHamburgerProps } from './type';
 
-export const NavbarWIthHamburger = ({
+export const NavbarWithHamburger = ({
   navbarTitle,
   isMiddleSelect,
   rightItems,
-}: NavbarWIthHamburgerProps) => {
+}: NavbarWithHamburgerProps) => {
   const [visible, setVisible] = useState<boolean>(false);
   const { width } = useWindowDimensions();
 

@@ -6,7 +6,7 @@ import useDarkMode from 'use-dark-mode';
 // import { AxiosError } from 'axios';
 // import Link from 'next/link';
 // import Router from 'next/router';
-import { MainTable, NavbarWIthHamburger, SearchChipBar, Text } from '@components';
+import { MainTable, NavbarWithHamburger, SearchChipBar, Text } from '@components';
 
 import useWindowDimensions from '@hooks/useWindowDimensions';
 
@@ -64,7 +64,7 @@ export const Home = ({ rightItems, navbarTitle }: HomeProps) => {
     <>
       {isLocalStorgeSave === 'pass' || join ? (
         <>
-          <NavbarWIthHamburger isMiddleSelect={true} rightItems={rightItems} />
+          <NavbarWithHamburger isMiddleSelect={true} rightItems={rightItems} />
           <SearchChipBar />
           <MainTable />
         </>
