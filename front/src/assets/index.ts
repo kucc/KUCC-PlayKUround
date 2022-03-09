@@ -26,6 +26,7 @@ import Recommend from './icons/recommend.svg';
 import Review from './icons/review.svg';
 import Scrap from './icons/scrap.svg';
 import Search from './icons/search.svg';
+import SelectArrow from './icons/select-arrow.svg';
 import Setting from './icons/setting.svg';
 import Share from './icons/share.svg';
 import Smile from './icons/smile.svg';
@@ -63,6 +64,7 @@ export {
   Scrap,
   Search,
   Setting,
+  SelectArrow,
   Share,
   Smile,
   Star,
