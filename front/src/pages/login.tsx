@@ -16,30 +16,17 @@ import useInput from '@hooks/useInput';
 import { ALREADY_LOGINED } from '@util/message';
 
 const LoginPage = () => {
-  const me = useQuery<User>('user', loadMyInfoAPI);
   const [email, onChangeEmail] = useInput('');
   const [password, onChangePassword] = useInput('');
-  const { makeEmail } = useContext(MakeEmailContext);
-
   const [modalVisible, setModalVisible] = useState<boolean>(false);
   const [firstPage, setFirstPage] = useState<boolean>(true);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [name, setName] = useState<string>('');
 
-  useEffect(() => {
-    if (me.isSuccess && me.data && me.data.id) {
-      useAntdModal({ message: ALREADY_LOGINED });
-      Router.replace('/');
-    }
-  }, [me.data]);
+  const { data, isSuccess, isIdle, isError } = useQuery<User>('user', loadMyInfoAPI);
 
-  if (me.isLoading || me.isIdle) {
-    return <Skeleton active />;
-  }
-
-  if (me.isError) {
-    return <span>Error</span>;
-  }
+  const me = data as User;
+  const { makeEmail } = useContext(MakeEmailContext);
 
   const onClickNextButton = () => {
     getNameAPI({ email })
@@ -79,32 +66,15 @@ const LoginPage = () => {
       });
   };
 
-  return (
-    <>
-      <BackIconWithNavbar text='로그인' onClickBackIcon={onClickBackIcon} />
-      {me.data && me.data.id ? (
-        <Text h4 center>
-          메인 페이지로 이동 중입니다. 잠시만 기다려주세요
-        </Text>
-      ) : (
+  const renderRegisterInput = () => {
+    if (firstPage) {
+      return (
         <>
-          <>
-            {firstPage ? (
-              <FirstLoginInput
-                email={email}
-                onChangeEmail={onChangeEmail}
-                onClickNextButton={onClickNextButton}
-              />
-            ) : (
-              <SecondLoginInput
-                name={name}
-                password={password}
-                onChangePassword={onChangePassword}
-                onClickJoinButton={onClickJoinButton}
-                isLoading={isLoading}
-              />
-            )}
-          </>
+          <FirstLoginInput
+            email={email}
+            onChangeEmail={onChangeEmail}
+            onClickNextButton={onClickNextButton}
+          />
           <Modal
             show={modalVisible}
             title='새로 회원가입을 하시겠어요?'
@@ -120,8 +90,51 @@ const LoginPage = () => {
             }}
           />
         </>
+      );
+    } else {
+      return (
+        <SecondLoginInput
+          name={name}
+          password={password}
+          onChangePassword={onChangePassword}
+          onClickJoinButton={onClickJoinButton}
+          isLoading={isLoading}
+        />
+      );
+    }
+  };
+
+  useEffect(() => {
+    if (isSuccess && me && me.id) {
+      useAntdModal({ message: ALREADY_LOGINED });
+      Router.replace('/');
+    }
+  }, [me]);
+
+  if (isLoading || isIdle) {
+    return <Skeleton active />;
+  }
+
+  if (isError) {
+    return <span>Error</span>;
+  }
+
+  return (
+    <React.Fragment>
+      {me && me.id ? (
+        <React.Fragment>
+          <BackIconWithNavbar text='로그인' onClickBackIcon={onClickBackIcon} />;
+          <Text h4 center>
+            메인 페이지로 이동 중입니다. 잠시만 기다려주세요
+          </Text>
+        </React.Fragment>
+      ) : (
+        <>
+          <BackIconWithNavbar text='로그인' onClickBackIcon={onClickBackIcon} />
+          {renderRegisterInput()}
+        </>
       )}
-    </>
+    </React.Fragment>
   );
 };
 
