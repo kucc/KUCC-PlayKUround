@@ -1,3 +1,7 @@
 export type LikesButtonProps = {
-  likesCount?: number;
+  likesCountProps?: number;
+  isLikedProps?: boolean;
+  userId?: number | null;
+  postId?: number;
+  setModalVisible: (value: boolean) => void;
 };
