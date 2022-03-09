@@ -7,6 +7,7 @@ export interface NavbarProps {
     icon: JSX.Element;
     onClickRightItems: () => void;
   }>;
+  isMiddleSelect?: boolean;
   text?: string;
   fontStyle?: React.CSSProperties;
 }

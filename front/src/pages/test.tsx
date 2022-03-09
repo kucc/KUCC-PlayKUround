@@ -19,6 +19,7 @@ const TestPage = () => {
     { icon: <Filter />, onClickRightItems: onClickMenuIcon },
   ];
   return (
+
     <>
       <Navbar leftItems={leftItems} rightItems={rightItems} text="실시간 Play's" />
       <InstaCard
@@ -61,6 +62,7 @@ const TestPage = () => {
         description='늘은 인아최고 만화카페에 가서 만화책을 읽었다. 만화책은 정말 재밌다. '
       />
     </>
+
   );
 };
 

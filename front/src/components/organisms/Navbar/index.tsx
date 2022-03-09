@@ -1,23 +1,41 @@
-import React from 'react';
+import React, { useContext } from 'react';
+
+import { Select } from 'antd';
 
 import { Text } from '@components';
+
+import { filterValueContext } from '@contexts/filterValue';
+import { SelectArrowIcon } from '@styles';
 
 import {
   StyledNavbarContainer,
   StyledNavbarItems,
   StyledNavbarItemsContainer,
+  StyledNavbarSelect,
   StyledNavbarTextContainer,
   WhiteBox,
 } from './styled';
 import { NavbarProps } from './type';
 
-export const Navbar: React.FC<NavbarProps> = ({ leftItems, rightItems, text, fontStyle }) => {
+const { Option } = Select;
+
+export const Navbar: React.FC<NavbarProps> = ({
+  leftItems,
+  rightItems,
+  isMiddleSelect,
+  text,
+  fontStyle,
+}) => {
+  const { sendArea } = useContext(filterValueContext);
+  const handleChange = (value: any) => {
+    sendArea(value);
+  };
   return (
     <>
       <WhiteBox />
       <StyledNavbarContainer>
-        {text && (
-          <StyledNavbarTextContainer>
+        <StyledNavbarTextContainer>
+          {text && (
             <Text
               primary
               body2
@@ -25,8 +43,32 @@ export const Navbar: React.FC<NavbarProps> = ({ leftItems, rightItems, text, fon
               style={{ position: 'absolute', marginTop: '18px', ...fontStyle }}>
               {text}
             </Text>
-          </StyledNavbarTextContainer>
-        )}
+          )}
+          {isMiddleSelect && (
+            <StyledNavbarSelect
+              style={{ position: 'absolute', marginTop: '18px', width: 'auto' }}
+              defaultValue={{ value: '' }}
+              onChange={handleChange}
+              bordered={false}
+              suffixIcon={<SelectArrowIcon />}>
+              <Option style={{ fontSize: 11 }} value=''>
+                전체
+              </Option>
+              <Option style={{ fontSize: 11 }} value='안암'>
+                안암 주변
+              </Option>
+              <Option style={{ fontSize: 11 }} value='혜화'>
+                혜화 주변
+              </Option>
+              <Option style={{ fontSize: 11 }} value='경희대'>
+                경희대 주변
+              </Option>
+              <Option style={{ fontSize: 11 }} value='성신여대'>
+                성신여대 주변
+              </Option>
+            </StyledNavbarSelect>
+          )}
+        </StyledNavbarTextContainer>
         <StyledNavbarItemsContainer>
           <StyledNavbarItems>
             {leftItems &&

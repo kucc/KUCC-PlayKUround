@@ -3,11 +3,11 @@ import React, { useContext, useEffect } from 'react';
 import { useSpring } from '@react-spring/web';
 import useDarkMode from 'use-dark-mode';
 
+import { filterValueContext } from '@contexts/filterValue';
 import { Colors } from '@styles';
 
 import { ChipWrapper, Label } from './styled';
 import { ChipProps } from './type';
-import { SendCategoryContext } from '@contexts/sendCategory';
 
 export const Chip = ({
   icon,
@@ -22,7 +22,7 @@ export const Chip = ({
   categoryDetail,
 }: ChipProps) => {
   const darkMode = useDarkMode(false);
-  const { sendCategory } = useContext(SendCategoryContext);
+  const { sendCategory } = useContext(filterValueContext);
 
   useEffect(() => {
     sendCategory([category, categoryDetail]);
