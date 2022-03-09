@@ -13,4 +13,5 @@ export default interface Post {
   image?: string;
   images: Array<any>;
   place: PlaceType;
+  isLiked: boolean;
 }

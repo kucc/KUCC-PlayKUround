@@ -9,12 +9,26 @@ interface responseProps {
   result: any;
 }
 
-// parameter : X
-export async function getByLatestAPI() {
+// parameter : userId
+export async function getByLatestAPI({ queryKey }: { queryKey: any[] }) {
+  const [, userId] = queryKey;
   try {
-    const { data }: { data: responseProps } = await axios.get(`/api/post/getByLatest`);
+    const { data }: { data: responseProps } = await axios.get(
+      `/api/post/getByLatest?userId=${userId}`,
+    );
     if (data.success) {
       return data.result;
+    }
+  } catch (error) {
+    return;
+  }
+}
+
+export async function postLikeAPI(userId: number, postId: number | undefined) {
+  try {
+    const { data } = await axios.post('/api/post/like', { userId, postId });
+    if (data.success) {
+      return data.comment;
     }
   } catch (error) {
     return;
