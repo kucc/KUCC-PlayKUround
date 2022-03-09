@@ -6,13 +6,13 @@ import { BaseButton, BaseInput } from '@components';
 import { checkEmailAPI } from 'apis/user';
 
 import { ButtonWrapper } from '../styled';
-import { FirstSignupInputProps } from '../type';
+import { FirstRegisterInputProps } from '../type';
 
 const emailRegExp =
   /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
 const passwordRegExp = /^(?=.*[a-zA-Z])((?=.*\d)(?=.*\W)).{8,16}$/;
 
-export const FirstSignupInput = ({
+export const FirstRegisterInput = ({
   email,
   onChangeEmail,
   password,
@@ -20,7 +20,7 @@ export const FirstSignupInput = ({
   passwordCheck,
   onChangePasswordCheck,
   setFirstPage,
-}: FirstSignupInputProps) => {
+}: FirstRegisterInputProps) => {
   const [isSuccessEmail, setIsSuccessEmail] = useState(false);
   const [notEmailError, setNotEmailError] = useState(false);
   const [emailExistError, setEmailExistError] = useState(false);
