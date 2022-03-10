@@ -24,6 +24,7 @@ export interface PlaceAttributes {
   dateConcept: '동적' | '비동적' | '체험';
   writer: number;
   sourceId?: string;
+  distance?: number;
 }
 
 interface PlaceCreationAttributes
@@ -38,6 +39,7 @@ interface PlaceCreationAttributes
     | 'commentCount'
     | 'ratingNumber'
     | 'sourceId'
+    | 'distance'
   > {}
 
 export interface PlaceInterface
