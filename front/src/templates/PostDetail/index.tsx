@@ -18,7 +18,7 @@ export const PostDetail = ({ id }: { id: number }) => {
   return (
     <>
       <Container>
-        <NavbarWithHamburger navbarTitle={navbarTitle} />
+        <NavbarWithHamburger />
         <SidePadding style={{ marginTop: '12px' }}>
           <Footer />
         </SidePadding>
