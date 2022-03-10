@@ -7,6 +7,20 @@ import { checkUserLiked } from './utils';
 
 const sequelize = require('sequelize');
 
+const getByOne: RequestHandler = async (req, res, next) => {
+  const { postId } = req.query;
+  try {
+    const postResult = await Post.findOne({
+      where: { id: postId },
+      include: [{ model: Comment }, { model: Image }, { model: Place }],
+    });
+    res.status(200).send({ success: true, result: postResult });
+  } catch (error) {
+    res.status(400).json({ success: false, error });
+    next(error);
+  }
+};
+
 const getByPlace: RequestHandler = async (req, res, next) => {
   const { placeId, userId } = req.query;
   try {
@@ -81,7 +95,7 @@ const createPost = async (
   res: Response,
   next: NextFunction,
 ) => {
-  const { placeId, description } = req.body;
+  const { placeId, userId, description } = req.body;
   if (!placeId || !description) {
     return res.status(403).send('필수인 정보가 입력되지 않았습니다.');
   }
@@ -89,6 +103,7 @@ const createPost = async (
     const postResult = await Post.create({
       placeId,
       description,
+      writer: userId,
       sourceId: 'temp',
     });
     await Post.update({ sourceId: `post_${postResult.id}` }, { where: { id: postResult.id } });
@@ -113,6 +128,7 @@ const createPost = async (
 // Todo : delete, update
 
 module.exports = {
+  getByOne,
   getByPlace,
   getByLatest,
   likePost,
