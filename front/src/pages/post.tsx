@@ -13,7 +13,7 @@ import User from 'interfaces/user';
 
 import { Filter, WritePost } from '@assets';
 
-const postPage = () => {
+const PostPage = () => {
   const { data: me } = useQuery<User>('user', loadMyInfoAPI);
 
   const { data, isLoading, isIdle, isError } = useQuery(['post', me ? me.id : ''], getByLatestAPI, {
@@ -35,39 +35,46 @@ const postPage = () => {
     return <span>Error</span>;
   }
 
-  return (
-    <>
-      <NavbarWithHamburger rightItems={rightItems} navbarTitle="실시간 Play's" />
-      {posts.map((post: Post, key: number) => (
-        <InstaCard
-          titleText={post.place.placeName}
-          placeText={post.place.addressExact}
-          description={post.description}
-          CarouselList={post.images}
-          likesCount={post.likeNum}
-          isLiked={post.isLiked}
-          userId={me ? me.id : null}
-          postId={post.id}
-          setModalVisible={setModalVisible}
-          key={key}
+  if (posts) {
+    return (
+      <>
+        <NavbarWithHamburger rightItems={rightItems} navbarTitle="실시간 Play's" />
+        {posts.map((post: Post, key: number) => (
+          <InstaCard
+            titleText={post.place.placeName}
+            placeText={post.place.addressExact}
+            description={post.description}
+            CarouselList={post.images}
+            likesCount={post.likeNum}
+            isLiked={post.isLiked}
+            userId={me ? me.id : null}
+            postId={post.id}
+            setModalVisible={setModalVisible}
+            key={key}
+          />
+        ))}
+        <Modal
+          show={modalVisible}
+          title='로그인 후 이용 가능합니다!'
+          description={[
+            '로그인을 하지 않아 해당 게시물을 좋아요할 수 없어요.',
+            '로그인 하시겠어요?',
+          ]}
+          leftLabel='닫기'
+          rightLabel='로그인'
+          onClickLeftButton={() => {
+            setModalVisible(false);
+          }}
+          onClickRightButton={() => {
+            router.push('/login');
+          }}
+          onClickOverlay={() => setModalVisible(false)}
         />
-      ))}
-      <Modal
-        show={modalVisible}
-        title='로그인 후 이용 가능합니다!'
-        description={['로그인을 하지 않아 해당 게시물을 좋아요할 수 없어요.', '로그인 하시겠어요?']}
-        leftLabel='닫기'
-        rightLabel='로그인'
-        onClickLeftButton={() => {
-          setModalVisible(false);
-        }}
-        onClickRightButton={() => {
-          router.push('/login');
-        }}
-        onClickOverlay={() => setModalVisible(false)}
-      />
-    </>
-  );
+      </>
+    );
+  } else {
+    <div />;
+  }
 };
 
-export default postPage;
+export default PostPage;

@@ -1,4 +1,4 @@
-export interface FirstSignupInputProps {
+export interface FirstRegisterInputProps {
   email: string;
   password: string;
   passwordCheck: string;
@@ -8,7 +8,7 @@ export interface FirstSignupInputProps {
   setFirstPage: (value: boolean) => void;
 }
 
-export interface SecondSignupInputProps {
+export interface SecondRegisterInputProps {
   email: string;
   password: string;
   nickname: string;

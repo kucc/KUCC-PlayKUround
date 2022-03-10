@@ -22,11 +22,8 @@ export const Chip = ({
   categoryDetail,
 }: ChipProps) => {
   const darkMode = useDarkMode(false);
-  const { sendCategory } = useContext(filterValueContext);
 
-  useEffect(() => {
-    sendCategory([category, categoryDetail]);
-  }, [category, categoryDetail]);
+  const { sendCategory } = useContext(filterValueContext);
 
   const darkBackgroundProp = useSpring({
     background: clicked ? Colors.primary : Colors.black,
@@ -37,6 +34,10 @@ export const Chip = ({
     background: clicked ? Colors.primary : Colors.white,
     config: { duration: 200 },
   });
+
+  useEffect(() => {
+    sendCategory([category, categoryDetail]);
+  }, [category, categoryDetail]);
 
   return (
     <ChipWrapper

@@ -9,4 +9,4 @@ export * from './MyInfoCard';
 export * from './Navbar';
 export * from './NavbarWithHamburger';
 export * from './RecommendTable';
-export * from './SignupInput';
+export * from './RegisterInput';

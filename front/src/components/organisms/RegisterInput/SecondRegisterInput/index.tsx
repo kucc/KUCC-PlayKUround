@@ -9,18 +9,18 @@ import { Avatar, BaseButton, BaseInput } from '@components';
 import { checkNameAPI, logInAPI, registerAPI } from 'apis/user';
 
 import useAntdModal from '@hooks/useAntdModal';
-import { ERROR_LOG, SIGNUP_SUCCESS } from '@util/message';
+import { ERROR_LOG, REGISTER_SUCCESS } from '@util/message';
 import { uploadProps } from '@util/uploadImage';
 
 import { AvatarPosition, ButtonWrapper, Label } from '../styled';
-import { SecondSignupInputProps } from '../type';
+import { SecondRegisterInputProps } from '../type';
 
-export const SecondSignupInput = ({
+export const SecondRegisterInput = ({
   email,
   password,
   nickname,
   onChangeNickname,
-}: SecondSignupInputProps) => {
+}: SecondRegisterInputProps) => {
   const { data: isNickNameExist } = useQuery(['user', nickname], checkNameAPI);
   const [isSuccessNickname, setIsSuccessNickname] = useState(false);
   const [isErrorNickname, setIsErrorNickname] = useState(false);
@@ -36,7 +36,7 @@ export const SecondSignupInput = ({
         if (result) {
           logInAPI({ email, password })
             .then(() => {
-              useAntdModal({ success: true, message: SIGNUP_SUCCESS });
+              useAntdModal({ success: true, message: REGISTER_SUCCESS });
               Router.replace('/');
             })
             .catch(() => {

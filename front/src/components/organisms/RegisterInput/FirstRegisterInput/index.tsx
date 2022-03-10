@@ -6,13 +6,13 @@ import { BaseButton, BaseInput } from '@components';
 import { checkEmailAPI } from 'apis/user';
 
 import { ButtonWrapper } from '../styled';
-import { FirstSignupInputProps } from '../type';
+import { FirstRegisterInputProps } from '../type';
 
 const emailRegExp =
   /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
 const passwordRegExp = /^(?=.*[a-zA-Z])((?=.*\d)(?=.*\W)).{8,16}$/;
 
-export const FirstSignupInput = ({
+export const FirstRegisterInput = ({
   email,
   onChangeEmail,
   password,
@@ -20,16 +20,17 @@ export const FirstSignupInput = ({
   passwordCheck,
   onChangePasswordCheck,
   setFirstPage,
-}: FirstSignupInputProps) => {
-  const [isSuccessEmail, setIsSuccessEmail] = useState(false);
-  const [notEmailError, setNotEmailError] = useState(false);
-  const [emailExistError, setEmailExistError] = useState(false);
-  const [isSuccessPassword, setIsSuccessPassword] = useState(false);
-  const [isErrorPassword, setIsErrorPassword] = useState(false);
-  const [isSuccessPasswordCheck, setIsSuccessPasswordCheck] = useState(false);
-  const [isErrorPasswordCheck, setIsErrorPasswordCheck] = useState(false);
+}: FirstRegisterInputProps) => {
+  const [isSuccessEmail, setIsSuccessEmail] = useState<boolean>(false);
+  const [notEmailError, setNotEmailError] = useState<boolean>(false);
+  const [emailExistError, setEmailExistError] = useState<boolean>(false);
+  const [isSuccessPassword, setIsSuccessPassword] = useState<boolean>(false);
+  const [isErrorPassword, setIsErrorPassword] = useState<boolean>(false);
+  const [isSuccessPasswordCheck, setIsSuccessPasswordCheck] = useState<boolean>(false);
+  const [isErrorPasswordCheck, setIsErrorPasswordCheck] = useState<boolean>(false);
 
-  const { data: isEmailExist } = useQuery(['user', email], checkEmailAPI);
+  const { data } = useQuery(['user', email], checkEmailAPI);
+  const isEmailExist = data;
 
   const onClickNextButton = () => {
     setFirstPage(false);

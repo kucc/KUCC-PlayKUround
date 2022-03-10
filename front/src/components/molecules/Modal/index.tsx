@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
-import { useSpring, useTransition } from '@react-spring/web';
+import { useTransition } from '@react-spring/web';
 
 import { BaseButton } from '@components';
 
