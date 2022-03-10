@@ -15,7 +15,7 @@ import {
 } from './styled';
 import { HomeProps } from './type';
 
-export const Home = ({ rightItems, navbarTitle }: HomeProps) => {
+export const Home = ({ rightItems }: HomeProps) => {
   const [join, setJoin] = useState<boolean>(false);
 
   const onClickJoinMainPage = () => {
