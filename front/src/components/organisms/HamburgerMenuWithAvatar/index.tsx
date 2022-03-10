@@ -82,7 +82,7 @@ export const HamburgerMenuWithAvatar = () => {
   }
 
   return (
-    <HamburgerMenuWithAvatarWrapper width={width * 0.75} height={height}>
+    <HamburgerMenuWithAvatarWrapper width={width * 0.75}>
       <ToggleDark />
       <InfoWrapper>
         <Avatar size={59} />
