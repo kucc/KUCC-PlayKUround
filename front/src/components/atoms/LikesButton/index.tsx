@@ -7,7 +7,7 @@ import { Modal } from '@components/molecules';
 
 import { postLikeAPI } from 'apis/post';
 
-import { Likes } from '@assets';
+import { Likes, LikesFill } from '@assets';
 import { Colors } from '@styles';
 
 import { HorizontalArrangementContainer, LikesContainer } from './styled';
@@ -59,9 +59,7 @@ export const LikesButton = ({
       clickable={true}
       isLiked={isLiked}>
       <HorizontalArrangementContainer>
-        <div>
-          <Likes />
-        </div>
+        <div>{isLiked ? <LikesFill /> : <Likes />}</div>
         <span>{likesCount}</span>
       </HorizontalArrangementContainer>
     </LikesContainer>
