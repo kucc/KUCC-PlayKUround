@@ -16,41 +16,51 @@ import { Container, StyledText } from './styled';
 import { InfoProps } from './type';
 
 export const Info = ({ title, navbarTitle }: InfoProps) => {
-  const { data, isLoading, isError, isIdle } = useQuery<User>('user', loadMyInfoAPI);
-
-  const me = data as User;
-  const { data: places } = useQuery(['post', me.historyList], getByArrAPI, {
-    enabled: !!me,
-  });
-
-  // course는 나중에 따로 호출
   const screenHeight = window.innerHeight;
 
-  if (isError) {
+  const me = useQuery<User>('user', loadMyInfoAPI);
+
+  if (me.isError) {
     return <span>Error</span>;
   }
 
-  if (isLoading || isIdle) {
+  if (me.isLoading || me.isIdle) {
     return <Skeleton active />;
   }
 
-  return (
-    <>
-      <Container screenHeight={screenHeight}>
-        <NavbarWithHamburger navbarTitle={navbarTitle} />
-        <MyInfoCard
-          imageSource={getImageLink(me.image?.data)}
-          name={me.name}
-          style={{ marginBottom: '31px' }}
-        />
-        <StyledText subtitle2 bold primary>
-          {title}
-        </StyledText>
-        <SidePadding style={{ marginTop: '12px' }}>
-          <CardArray places={places} />
-          <Footer />
-        </SidePadding>
-      </Container>
-    </>
-  );
+  const places = useQuery(['post', me.data.historyList], getByArrAPI, {
+    enabled: !!me.data,
+  });
+
+  if (places.isError) {
+    return <span>Error</span>;
+  }
+
+  if (places.isLoading || places.isIdle) {
+    return <Skeleton active />;
+  }
+
+  if (me.data) {
+    return (
+      <>
+        <Container screenHeight={screenHeight}>
+          <NavbarWithHamburger navbarTitle={navbarTitle} />
+          <MyInfoCard
+            imageSource={me.data.image ? getImageLink(me.data.image.data) : '/pictures/profile.png'}
+            name={me.data.name}
+            style={{ marginBottom: '31px' }}
+          />
+          <StyledText subtitle2 bold primary>
+            {title}
+          </StyledText>
+          <SidePadding style={{ marginTop: '12px' }}>
+            <CardArray places={places.data} />
+            <Footer />
+          </SidePadding>
+        </Container>
+      </>
+    );
+  } else {
+    return <div />;
+  }
 };

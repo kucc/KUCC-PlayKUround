@@ -10,7 +10,7 @@ export const ButtonStyled = styled.button<ButtonProps>`
   justify-content: center;
   align-items: center;
   width: ${({ width, block }) => (block ? '100%' : width ? `${width}px` : 'auto')};
-  height: 44px;
+  height: ${({ height }) => height || '44px'};
   ${({ gradient, disabled }) => !disabled && gradient && `background-image: ${Colors.gradient};`}
   ${({ backgroundColor, disabled }) =>
     `background-color: ${

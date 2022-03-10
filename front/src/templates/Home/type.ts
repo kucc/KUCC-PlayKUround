@@ -3,5 +3,4 @@ export type HomeProps = {
     icon: JSX.Element;
     onClickRightItems: () => void;
   }>;
-  navbarTitle: string;
 };

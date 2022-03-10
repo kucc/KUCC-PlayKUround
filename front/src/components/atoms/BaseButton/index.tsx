@@ -13,6 +13,7 @@ export const BaseButton = ({
   loading,
   backgroundColor,
   width,
+  height,
   spinnerSize,
   gradient,
   color,
@@ -25,6 +26,7 @@ export const BaseButton = ({
         gradient={gradient || false}
         disabled={disabled ? true : false}
         width={width}
+        height={height}
         style={style}
         block={block}
         onClick={onClick}

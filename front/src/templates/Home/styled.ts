@@ -1,5 +1,8 @@
 import styled from 'styled-components';
 
+import { BaseButton } from '@components';
+
+import { ArrowRight } from '@assets';
 import { Colors } from '@styles';
 
 export const FirstPageLayout = styled.div`
@@ -39,27 +42,32 @@ export const Description = styled.div`
 
 export const ButtonWrapper = styled.div`
   width: 100%;
-  padding: 0 62px;
+  padding: 34px 62px 0 62px;
 `;
 
-export const StyledButton = styled.button`
-  width: 100%;
+export const StyledButton = styled(BaseButton)`
   height: 54px;
-  margin-top: 24px;
-  box-shadow: 0px 0px 4px ${Colors.primary};
-  border: none;
-  border-radius: 27px;
-  background-color: ${Colors.primary};
-  font-size: 20px;
-  font-weight: 500;
-  line-height: 32px;
-  color: ${Colors.white};
   &:hover {
     background-color: ${Colors.primary_4};
   }
   &:active {
     background-color: ${Colors.primary_6};
   }
-  cursor: pointer;
-  transition: 0.5s;
+`;
+
+export const NoLoginText = styled.div`
+  padding-top: 14px;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 10px;
+  color: ${Colors.lightGrey_6};
+`;
+
+export const StyledArrowRight = styled(ArrowRight)`
+  margin-left: 6px;
+  width: 4px;
+  height: 7px;
+  path {
+    fill: ${Colors.lightGrey_6};
+  }
 `;

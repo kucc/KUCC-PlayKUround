@@ -35,8 +35,6 @@ const postPage = () => {
     return <span>Error</span>;
   }
 
-  console.log(posts);
-
   return (
     <>
       <NavbarWithHamburger rightItems={rightItems} navbarTitle="실시간 Play's" />
@@ -50,6 +48,10 @@ const postPage = () => {
           isLiked={post.isLiked}
           userId={me ? me.id : null}
           postId={post.id}
+          comments={post.comments}
+          createdAt={post.createdAt}
+          place={post.place}
+          writer={post.writer}
           setModalVisible={setModalVisible}
           key={key}
         />

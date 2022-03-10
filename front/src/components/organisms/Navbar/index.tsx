@@ -27,6 +27,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   fontStyle,
 }) => {
   const { sendArea } = useContext(filterValueContext);
+
   const handleChange = (value: any) => {
     sendArea(value);
   };
