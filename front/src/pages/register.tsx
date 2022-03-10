@@ -59,7 +59,6 @@ const RegisterPage = () => {
     } else {
       return (
         <>
-          <BackIconWithNavbar text='회원가입' onClickBackIcon={onClickBackIcon} />
           <SecondRegisterInput
             email={email}
             password={password}

@@ -12,6 +12,7 @@ export interface ButtonProps extends Omit<React.HTMLProps<HTMLButtonElement>, 's
   htmlType?: string;
   backgroundColor?: string;
   width?: string;
+  height?: string;
   spinnerSize?: 'small' | 'large';
   gradient?: boolean;
   color?: string;
