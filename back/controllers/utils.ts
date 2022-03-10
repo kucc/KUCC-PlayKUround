@@ -11,7 +11,10 @@ export const getDistance = (
   targetLongitude: number,
 ) => Math.sqrt((currentLatitude - targetLatitude) ** 2 + (currentLongitude - targetLongitude) ** 2);
 
-export const checkUserLiked = async (userId: number | undefined, postResult: PostInterface[]) => {
+export const checkUserLikedList = async (
+  userId: number | undefined,
+  postResult: PostInterface[],
+) => {
   const result: PostInterface[] = [];
   let userResult: any;
   if (userId) {
@@ -30,6 +33,24 @@ export const checkUserLiked = async (userId: number | undefined, postResult: Pos
   return result;
 };
 
+export const checkUserLiked = async (
+  userId: number | undefined,
+  postResult: PostInterface | null,
+) => {
+  const result = postResult?.get({ plain: true });
+  let userResult: any;
+  if (userId) {
+    userResult = await User.findOne({ where: { id: userId } });
+  }
+  let newPost: any;
+  if (userResult?.likeList?.includes(result?.id as any)) {
+    newPost = { ...result, isLiked: true };
+  } else {
+    newPost = { ...result, isLiked: false };
+  }
+  return newPost;
+};
+
 // 메인 페이지 렌더링 시 필요한 attributes
 export const mainAttributes = [
   'id',
@@ -43,3 +64,5 @@ export const mainAttributes = [
   'commentCount',
   'ratingNumber',
 ];
+
+export const userPostAttributes = ['name'];

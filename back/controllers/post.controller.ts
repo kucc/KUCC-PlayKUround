@@ -3,18 +3,43 @@ import fs from 'fs';
 
 import { Comment, Hashtag, Image, Place, Post, User } from '../models';
 import { MulterFile } from '../models/image/imageType';
-import { checkUserLiked } from './utils';
+import { checkUserLiked, checkUserLikedList, userPostAttributes } from './utils';
 
 const sequelize = require('sequelize');
+
+const getByOne: RequestHandler = async (req, res, next) => {
+  const { postId, userId } = req.query;
+  try {
+    const postResult = await Post.findOne({
+      where: { id: postId },
+      include: [
+        { model: Comment },
+        { model: Image },
+        { model: Place },
+        { model: User, include: [{ model: Image }], attributes: userPostAttributes },
+      ],
+    });
+    const result = await checkUserLiked(userId as any, postResult);
+    res.status(200).send({ success: true, result });
+  } catch (error) {
+    res.status(400).json({ success: false, error });
+    next(error);
+  }
+};
 
 const getByPlace: RequestHandler = async (req, res, next) => {
   const { placeId, userId } = req.query;
   try {
     const postResult = await Post.findAll({
       where: { placeId },
-      include: [{ model: Comment }, { model: Image }, { model: Place }],
+      include: [
+        { model: Comment },
+        { model: Image },
+        { model: Place },
+        { model: User, include: [{ model: Image }], attributes: userPostAttributes },
+      ],
     });
-    const result = await checkUserLiked(userId as any, postResult);
+    const result = await checkUserLikedList(userId as any, postResult);
     res.status(200).send({ success: true, result });
   } catch (error) {
     res.status(400).json({ success: false, error });
@@ -27,9 +52,14 @@ const getByLatest: RequestHandler = async (req, res, next) => {
   try {
     const postResult = await Post.findAll({
       order: [['createdAt', 'DESC']],
-      include: [{ model: Comment }, { model: Image }, { model: Place }],
+      include: [
+        { model: Comment },
+        { model: Image },
+        { model: Place },
+        { model: User, include: [{ model: Image }], attributes: userPostAttributes },
+      ],
     });
-    const result = await checkUserLiked(userId as any, postResult);
+    const result = await checkUserLikedList(userId as any, postResult);
     res.status(200).send({ success: true, result });
   } catch (error) {
     res.status(400).json({ success: false, error });
@@ -81,7 +111,7 @@ const createPost = async (
   res: Response,
   next: NextFunction,
 ) => {
-  const { placeId, description } = req.body;
+  const { placeId, userId, description } = req.body;
   if (!placeId || !description) {
     return res.status(403).send('필수인 정보가 입력되지 않았습니다.');
   }
@@ -89,6 +119,7 @@ const createPost = async (
     const postResult = await Post.create({
       placeId,
       description,
+      writer: userId,
       sourceId: 'temp',
     });
     await Post.update({ sourceId: `post_${postResult.id}` }, { where: { id: postResult.id } });
@@ -113,6 +144,7 @@ const createPost = async (
 // Todo : delete, update
 
 module.exports = {
+  getByOne,
   getByPlace,
   getByLatest,
   likePost,

@@ -31,6 +31,11 @@ const PostModel = (sequelize: Sequelize) => {
         primaryKey: true,
         allowNull: false,
       },
+      writer: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        allowNull: false,
+      },
     },
     {
       timestamps: true,

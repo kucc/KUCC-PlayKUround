@@ -23,12 +23,15 @@ export const LikesContainer = styled(animated.div)<{
     font-weight: 700;
     color: ${({ isLiked }) => (isLiked ? Colors.white : Colors.black)};
   }
-  svg > path {
+  /* svg > path {
     fill: ${({ isLiked }) => (isLiked ? Colors.white : Colors.primary)};
-  }
+  } */
   background: ${({ isLiked }) => (isLiked ? Colors.primary : Colors.white)};
 `;
 
 export const HorizontalArrangementContainer = styled(HorizontalArrangement)`
   margin-top: 2px;
+  div {
+    margin-top: 1px;
+  }
 `;

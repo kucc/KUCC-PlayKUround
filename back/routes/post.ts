@@ -5,6 +5,8 @@ const upload = require('../middlewares/Upload');
 
 const router = express.Router();
 
+router.get('/getByOne', controller.getByOne);
+
 router.get('/getByPlace', controller.getByPlace);
 
 router.get('/getByLatest', controller.getByLatest);

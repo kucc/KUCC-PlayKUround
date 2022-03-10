@@ -73,7 +73,7 @@ const userGet: RequestHandler = async (req, res, next) => {
         likeList,
         rateList,
         historyList,
-        image: imageResult?.path,
+        images: imageResult ? imageResult.path : null,
       });
     } else {
       res.status(200).json(null);

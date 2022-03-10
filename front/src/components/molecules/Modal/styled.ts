@@ -14,7 +14,7 @@ export const ModalOverlay = styled.div`
 `;
 
 export const ModalWrapper = styled(animated.div)`
-  position: absolute;
+  position: fixed;
   z-index: 1000;
   width: 100%;
   height: 215px;

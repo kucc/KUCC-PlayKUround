@@ -3,9 +3,10 @@ import styled from 'styled-components';
 import { ArrowRight } from '@assets';
 import { Colors, HorizontalArrangement } from '@styles';
 
-export const HamburgerMenuWithAvatarWrapper = styled.div<{ width: number; height: number }>`
+export const HamburgerMenuWithAvatarWrapper = styled.div<{ width: number }>`
+  position: fixed;
   width: ${({ width }) => width}px;
-  height: ${({ height }) => height}px;
+  height: 100vh;
   border-top-right-radius: 12px;
   border-bottom-right-radius: 12px;
   background-color: ${({ theme }) => theme.bg.primary};

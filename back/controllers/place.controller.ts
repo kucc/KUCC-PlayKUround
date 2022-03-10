@@ -1,5 +1,6 @@
 import { NextFunction, Request, RequestHandler, Response } from 'express';
 import fs from 'fs';
+import haversineDistance from 'haversine-distance';
 
 import { Comment, Hashtag, Image, Menu, OperatingHour, Place, User } from '../models';
 import { MulterFile } from '../models/image/imageType';
@@ -46,37 +47,33 @@ const getByFilter: RequestHandler = async (req, res, next) => {
       include: Image,
     });
 
+    const newResult: PlaceAttributes[] = [];
+    result.map((place: any) => {
+      const newPlace = place.get({ plain: true });
+      const distance = haversineDistance(
+        { longitude: place.addressLocation[1], latitude: place.addressLocation[0] },
+        { longitude, latitude },
+      );
+      if (distance < 1000) {
+        newPlace['distance'] = `${distance}m`;
+      } else {
+        newPlace['distance'] = `${(distance / 1000).toFixed(1)}km`;
+      }
+      newResult.push(newPlace);
+    });
+
     // distance는 sequelize에서 찾은 다음 처리
     if (order === 'close') {
       if (!latitude || !longitude) {
         return res.status(403).send('필수인 정보가 입력되지 않았습니다.');
       }
-      result.sort(function (a: PlaceAttributes, b: PlaceAttributes) {
-        const a_distance = getDistance(
-          a.addressLocation[0],
-          a.addressLocation[1],
-          latitude,
-          longitude,
-        );
-        const b_distance = getDistance(
-          b.addressLocation[0],
-          b.addressLocation[1],
-          latitude,
-          longitude,
-        );
-        if (a_distance > b_distance) {
-          return 1;
-        }
-        if (a_distance < b_distance) {
-          return -1;
-        }
-        // a must be equal to b
-        return 0;
+      newResult.sort(function (a: PlaceAttributes, b: PlaceAttributes) {
+        return (a.distance as number) - (b.distance as number);
       });
     }
     res.status(200).json({
       success: true,
-      result,
+      newResult,
     });
   } catch (error) {
     res.status(400).json({ success: false, error });
