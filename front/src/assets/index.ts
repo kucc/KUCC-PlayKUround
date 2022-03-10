@@ -15,6 +15,7 @@ import Good from './icons/good.svg';
 import Heart from './icons/heart.svg';
 import Home from './icons/home.svg';
 import Info from './icons/info.svg';
+import LikesFill from './icons/likes-fill.svg';
 import Likes from './icons/likes.svg';
 import Location from './icons/location.svg';
 import Map from './icons/map.svg';
@@ -74,4 +75,5 @@ export {
   Table,
   WritePost,
   Likes,
+  LikesFill,
 };
