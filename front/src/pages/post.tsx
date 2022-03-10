@@ -14,14 +14,19 @@ import User from 'interfaces/user';
 import { Filter, WritePost } from '@assets';
 
 const PostPage = () => {
+  const [modalVisible, setModalVisible] = useState<boolean>(false);
+
   const { data: me } = useQuery<User>('user', loadMyInfoAPI);
 
-  const { data, isLoading, isIdle, isError } = useQuery(['post', me ? me.id : ''], getByLatestAPI, {
+  const {
+    data: posts,
+    isLoading,
+    isIdle,
+    isError,
+  } = useQuery(['post', me ? me.id : ''], getByLatestAPI, {
     enabled: me === null || !!me,
   });
 
-  const [modalVisible, setModalVisible] = useState<boolean>(false);
-  const posts = data as Post[];
   const rightItems = [
     { icon: <WritePost />, onClickRightItems: () => {} },
     { icon: <Filter />, onClickRightItems: () => {} },
@@ -73,7 +78,7 @@ const PostPage = () => {
       </>
     );
   } else {
-    <div />;
+    return <div />;
   }
 };
 
