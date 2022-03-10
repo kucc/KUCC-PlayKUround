@@ -1,33 +1,31 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 
-import { Modal, Upload } from 'antd';
+import { Upload } from 'antd';
 import Router from 'next/router';
 
 import { Avatar, BaseButton, BaseInput } from '@components';
 
-import { checkNameAPI, loadMyInfoAPI, logInAPI, registerAPI } from 'apis/user';
+import { checkNameAPI, logInAPI, registerAPI } from 'apis/user';
 
-import useWindowDimensions from '@hooks/useWindowDimensions';
-import { ERROR_LOG, SIGNUP_SUCCESS } from '@util/message';
+import useAntdModal from '@hooks/useAntdModal';
+import { ERROR_LOG, REGISTER_SUCCESS } from '@util/message';
 import { uploadProps } from '@util/uploadImage';
 
-import { AvatarPosition, ButtonWrapper, Label } from './styled';
-import { SecondSignupInputProps } from './type';
+import { AvatarPosition, ButtonWrapper, Label } from '../styled';
+import { SecondRegisterInputProps } from '../type';
 
-export const SecondSignupInput = ({
+export const SecondRegisterInput = ({
   email,
   password,
   nickname,
   onChangeNickname,
-}: SecondSignupInputProps) => {
+}: SecondRegisterInputProps) => {
   const { data: isNickNameExist } = useQuery(['user', nickname], checkNameAPI);
   const [isSuccessNickname, setIsSuccessNickname] = useState(false);
   const [isErrorNickname, setIsErrorNickname] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [imageLink, setImageLink] = useState<any>(null);
-
-  const { width } = useWindowDimensions();
 
   // Todo : imageLink 포함해서 formData 형식으로 회원가입 데이터 넘겨줘야 함!
 
@@ -38,37 +36,16 @@ export const SecondSignupInput = ({
         if (result) {
           logInAPI({ email, password })
             .then(() => {
-              Modal.success({
-                content: SIGNUP_SUCCESS,
-                width: `${width * 0.7}px`,
-                style: {
-                  top: '50%',
-                  transform: 'translateY(-50%)',
-                },
-              });
+              useAntdModal({ success: true, message: REGISTER_SUCCESS });
               Router.replace('/');
             })
             .catch(() => {
-              Modal.error({
-                content: ERROR_LOG,
-                width: `${width * 0.7}px`,
-                style: {
-                  top: '50%',
-                  transform: 'translateY(-50%)',
-                },
-              });
+              useAntdModal({ message: ERROR_LOG });
             });
         }
       })
       .catch(() => {
-        Modal.error({
-          content: ERROR_LOG,
-          width: `${width * 0.7}px`,
-          style: {
-            top: '50%',
-            transform: 'translateY(-50%)',
-          },
-        });
+        useAntdModal({ message: ERROR_LOG });
       });
   }, [email, nickname, password]);
 
@@ -81,6 +58,9 @@ export const SecondSignupInput = ({
         setIsErrorNickname(true);
         setIsSuccessNickname(false);
       }
+    } else {
+      setIsErrorNickname(false);
+      setIsSuccessNickname(false);
     }
   }, [nickname]);
 
@@ -98,6 +78,9 @@ export const SecondSignupInput = ({
           baseText={nickname}
           onChangeText={onChangeNickname}
           label='닉네임'
+          message={
+            !isErrorNickname && !isSuccessNickname ? '닉네임은 최대 30자까지 입력 가능합니다' : ''
+          }
           isError={isErrorNickname}
           isSuccess={isSuccessNickname}
           errorMessage='중복된 닉네임입니다.'

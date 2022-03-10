@@ -3,17 +3,18 @@ import fs from 'fs';
 
 import { Comment, Hashtag, Image, Place, Post, User } from '../models';
 import { MulterFile } from '../models/image/imageType';
-import { mainAttributes } from './utils';
+import { checkUserLiked } from './utils';
 
 const sequelize = require('sequelize');
 
 const getByPlace: RequestHandler = async (req, res, next) => {
-  const { placeId } = req.query;
+  const { placeId, userId } = req.query;
   try {
-    const result = await Post.findAll({
+    const postResult = await Post.findAll({
       where: { placeId },
-      include: Image,
+      include: [{ model: Comment }, { model: Image }, { model: Place }],
     });
+    const result = await checkUserLiked(userId as any, postResult);
     res.status(200).send({ success: true, result });
   } catch (error) {
     res.status(400).json({ success: false, error });
@@ -22,11 +23,13 @@ const getByPlace: RequestHandler = async (req, res, next) => {
 };
 
 const getByLatest: RequestHandler = async (req, res, next) => {
+  const { userId } = req.query;
   try {
-    const result = await Post.findAll({
+    const postResult = await Post.findAll({
       order: [['createdAt', 'DESC']],
-      include: Image,
+      include: [{ model: Comment }, { model: Image }, { model: Place }],
     });
+    const result = await checkUserLiked(userId as any, postResult);
     res.status(200).send({ success: true, result });
   } catch (error) {
     res.status(400).json({ success: false, error });
@@ -88,7 +91,7 @@ const createPost = async (
       description,
       sourceId: 'temp',
     });
-    await Post.update({ sourceId: `post_${placeId}` }, { where: { id: postResult.id } });
+    await Post.update({ sourceId: `post_${postResult.id}` }, { where: { id: postResult.id } });
     // 사진이 있으면
     if (req.files) {
       await Promise.all(

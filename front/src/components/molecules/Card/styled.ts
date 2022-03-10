@@ -9,15 +9,9 @@ export const CardContainer = styled.div`
   display: flex;
   position: relative;
   align-items: center;
-  padding-left: 13px;
+  padding: 0 30px;
   height: 124px;
-  border-radius: 12px;
-  background-color: ${({ theme }) => theme.bg.primary};
-  box-shadow: 0px 0px 10px ${({ theme }) => theme.shadow.none};
-`;
-
-export const SvgWrapper = styled.div`
-  padding-right: 13px;
+  border-bottom: 1px solid ${Colors.lightGrey_5};
 `;
 
 export const StyledScrapSvg = styled(Scrap)`
@@ -70,9 +64,4 @@ export const ChipWrapper = styled.div`
   display: inline-flex;
   flex-direction: row;
   padding-left: 16px;
-`;
-
-export const StyledChip = styled(Chip)<{ index: number }>`
-  height: 28px;
-  ${({ index }) => (!index ? 'margin-left: 12px; margin-right: 6px;' : 'margin-right: 6px;')}
 `;

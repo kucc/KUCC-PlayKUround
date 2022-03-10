@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { MainTable, NavbarWIthHamburger, SearchChipBar, Text } from '@components';
+import { MainTable, NavbarWithHamburger, SearchChipBar, Text } from '@components';
 
 import {
   ButtonWrapper,
@@ -28,7 +28,7 @@ export const Home = ({ rightItems, navbarTitle }: HomeProps) => {
     <>
       {isLocalStorgeSave === 'pass' || join ? (
         <>
-          <NavbarWIthHamburger navbarTitle={navbarTitle} rightItems={rightItems} />
+          <NavbarWithHamburger isMiddleSelect={true} rightItems={rightItems} />
           <SearchChipBar />
           <MainTable />
         </>

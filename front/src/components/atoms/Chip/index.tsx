@@ -1,12 +1,9 @@
 import React, { useContext, useEffect } from 'react';
-import { useQuery } from 'react-query';
 
 import { useSpring } from '@react-spring/web';
 import useDarkMode from 'use-dark-mode';
 
-import { getByCategoryAPI } from 'apis/place';
-
-import { MakeTableListContext } from '@contexts/tableList';
+import { filterValueContext } from '@contexts/filterValue';
 import { Colors } from '@styles';
 
 import { ChipWrapper, Label } from './styled';
@@ -25,12 +22,8 @@ export const Chip = ({
   categoryDetail,
 }: ChipProps) => {
   const darkMode = useDarkMode(false);
-  const { data: places } = useQuery(['place', category, categoryDetail], getByCategoryAPI);
-  const { makeTableList } = useContext(MakeTableListContext);
 
-  useEffect(() => {
-    makeTableList(places);
-  }, [places]);
+  const { sendCategory } = useContext(filterValueContext);
 
   const darkBackgroundProp = useSpring({
     background: clicked ? Colors.primary : Colors.black,
@@ -41,6 +34,10 @@ export const Chip = ({
     background: clicked ? Colors.primary : Colors.white,
     config: { duration: 200 },
   });
+
+  useEffect(() => {
+    sendCategory([category, categoryDetail]);
+  }, [category, categoryDetail]);
 
   return (
     <ChipWrapper

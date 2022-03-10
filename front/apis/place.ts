@@ -2,6 +2,8 @@ import { backUrl } from '@config/config';
 import axios from 'axios';
 import Router from 'next/router';
 
+import { PlaceType } from 'interfaces/place';
+
 import { FAILED_DATA_FETCHING } from '@util/message';
 
 axios.defaults.baseURL = backUrl;
@@ -81,6 +83,31 @@ export async function getByHashtagAPI({ queryKey }: { queryKey: any[] }) {
   try {
     const { data }: { data: responseProps } = await axios.get(
       `/api/hashtag/get?hashtag=${hashtag}&type=place`,
+    );
+    if (data.success) {
+      return data.result;
+    }
+  } catch (error) {
+    //
+    return;
+  }
+}
+
+// parameter : hashtag
+export async function getByArrAPI({ queryKey }: { queryKey: any[] }) {
+  const [, historyList] = queryKey;
+  let historyString = '';
+  historyList.map((sourceId: string) => {
+    const [type, number] = sourceId.split('_');
+    if (type === 'place') {
+      historyString += `${number},`;
+    }
+  });
+  const result = historyString.slice(0, historyString.length - 1);
+
+  try {
+    const { data }: { data: responseProps } = await axios.get(
+      `api/place/getByArr?placeList=${result}`,
     );
     if (data.success) {
       return data.result;

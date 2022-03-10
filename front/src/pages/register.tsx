@@ -1,48 +1,39 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 
-import { Modal } from 'antd';
+import { Skeleton } from 'antd';
 import axios from 'axios';
 import { GetServerSidePropsContext } from 'next';
 import Router from 'next/router';
 import { useRouter } from 'next/router';
 
-import { BackIconWithNavbar, FirstSignupInput, SecondSignupInput, Text } from '@components';
+import { BackIconWithNavbar, FirstRegisterInput, SecondRegisterInput, Text } from '@components';
 
 import { loadMyInfoAPI } from 'apis/user';
 import User from 'interfaces/user';
 
 import { MakeEmailContext } from '@contexts/globalEmail';
+import useAntdModal from '@hooks/useAntdModal';
 import useInput from '@hooks/useInput';
-import useWindowDimensions from '@hooks/useWindowDimensions';
-import { ALREADY_LOGINED } from '@util/message';
+import { ALREADY_LOGINED, NICKNAME_OVERLENGTH } from '@util/message';
 
 const RegisterPage = () => {
-  const { email: globalEmail } = useContext(MakeEmailContext);
-  const { data: me, isSuccess } = useQuery<User>('user', loadMyInfoAPI);
-  const [email, onChangeEmail] = useInput(globalEmail || '');
-  const [password, onChangePassword] = useInput('');
-  const [passwordCheck, onChangePasswordCheck] = useInput('');
-  const [nickname, onChangeNickname] = useInput('');
-
-  const [firstPage, setFirstPage] = useState<boolean>(true);
-  const { width } = useWindowDimensions();
-
   const router = useRouter();
 
-  useEffect(() => {
-    if (isSuccess && me && me.id) {
-      Modal.error({
-        content: ALREADY_LOGINED,
-        width: `${width * 0.7}px`,
-        style: {
-          top: '50%',
-          transform: 'translateY(-50%)',
-        },
-      });
-      Router.replace('/');
-    }
-  }, [me]);
+  const [password, onChangePassword] = useInput('');
+  const [passwordCheck, onChangePasswordCheck] = useInput('');
+  const [nickname, setNickname] = useState('');
+  const [firstPage, setFirstPage] = useState<boolean>(true);
+
+  const { email: globalEmail } = useContext(MakeEmailContext);
+  const { data, isSuccess, isIdle, isLoading, isError } = useQuery<User>('user', loadMyInfoAPI);
+
+  const me = data as User;
+  const [email, onChangeEmail] = useInput(globalEmail || '');
+
+  const onChangeNickname = useCallback(e => {
+    setNickname(e.target.value);
+  }, []);
 
   const onClickBackIcon = () => {
     if (firstPage) {
@@ -52,36 +43,69 @@ const RegisterPage = () => {
     }
   };
 
+  const renderLoginInput = () => {
+    if (firstPage) {
+      return (
+        <FirstRegisterInput
+          setFirstPage={setFirstPage}
+          email={email}
+          password={password}
+          passwordCheck={passwordCheck}
+          onChangeEmail={onChangeEmail}
+          onChangePassword={onChangePassword}
+          onChangePasswordCheck={onChangePasswordCheck}
+        />
+      );
+    } else {
+      return (
+        <>
+          <BackIconWithNavbar text='회원가입' onClickBackIcon={onClickBackIcon} />
+          <SecondRegisterInput
+            email={email}
+            password={password}
+            nickname={nickname}
+            onChangeNickname={onChangeNickname}
+          />
+        </>
+      );
+    }
+  };
+
+  useEffect(() => {
+    if (isSuccess && me && me.id) {
+      useAntdModal({ message: ALREADY_LOGINED });
+      Router.replace('/');
+    }
+  }, [me]);
+
+  useEffect(() => {
+    if (nickname.length > 30) {
+      useAntdModal({ message: NICKNAME_OVERLENGTH });
+      setNickname(nickname.slice(0, 30));
+    }
+  }, [nickname]);
+
+  if (isLoading || isIdle) {
+    return <Skeleton active />;
+  }
+
+  if (isError) {
+    return <span>Error</span>;
+  }
+
   return (
-    <>
-      <BackIconWithNavbar text='회원가입' onClickBackIcon={onClickBackIcon} />
-      {me?.id ? (
+    <React.Fragment>
+      {me && me.id ? (
         <Text h4 center>
           메인 페이지로 이동 중입니다. 잠시만 기다려주세요
         </Text>
       ) : (
         <>
-          {firstPage ? (
-            <FirstSignupInput
-              setFirstPage={setFirstPage}
-              email={email}
-              password={password}
-              passwordCheck={passwordCheck}
-              onChangeEmail={onChangeEmail}
-              onChangePassword={onChangePassword}
-              onChangePasswordCheck={onChangePasswordCheck}
-            />
-          ) : (
-            <SecondSignupInput
-              email={email}
-              password={password}
-              nickname={nickname}
-              onChangeNickname={onChangeNickname}
-            />
-          )}
+          <BackIconWithNavbar text='회원가입' onClickBackIcon={onClickBackIcon} />
+          {renderLoginInput()}
         </>
       )}
-    </>
+    </React.Fragment>
   );
 };
 

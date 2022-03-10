@@ -3,23 +3,24 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { Review, Scrap, Star } from '@assets';
-import { Colors, SidePadding } from '@styles';
+import { Colors } from '@styles';
 
 export const StyledBackground = styled.div`
   background-color: ${({ theme }) => theme.bg.primary};
 `;
 
-export const StyledMainTable = styled(SidePadding)`
+export const StyledMainTable = styled.div`
   width: 100%;
-  box-shadow: 0px 0px 10px ${({ theme }) => theme.shadow.primary};
-  border-radius: 8px;
-  padding: 33px 16px;
-  background-color: ${({ theme }) => theme.bg.grey};
+  box-shadow: 0px 0px 8px ${({ theme }) => theme.shadow.primary};
+  border-radius: 12px;
+  margin-top: 10px;
+  background-color: ${({ theme }) => theme.bg.white};
 `;
 
 export const StlyedMainTableTop = styled.div`
   display: flex;
   justify-content: space-between;
+  padding: 27px 22px 12px 16px;
 `;
 
 export const StyledCardContainer = styled.div`

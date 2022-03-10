@@ -9,20 +9,24 @@ import useWindowDimensions from '@hooks/useWindowDimensions';
 import { MenuIcon } from '@styles';
 
 import { HamburgerOverlay, HamburgerWrapper } from './styled';
-import { NavbarWIthHamburgerProps } from './type';
+import { NavbarWithHamburgerProps } from './type';
 
-export const NavbarWIthHamburger = ({ navbarTitle, rightItems }: NavbarWIthHamburgerProps) => {
+export const NavbarWithHamburger = ({
+  navbarTitle,
+  isMiddleSelect,
+  rightItems,
+}: NavbarWithHamburgerProps) => {
   const [visible, setVisible] = useState<boolean>(false);
   const { width } = useWindowDimensions();
 
   const darkMode = useDarkMode();
 
   const onClickMenuIcon = () => {
-    setVisible(!visible);
+    setVisible(prev => !prev);
   };
 
   const onClickSetVisible = () => {
-    setVisible(!visible);
+    setVisible(prev => !prev);
   };
 
   const leftItems = [{ icon: <MenuIcon />, onClickLeftItems: onClickMenuIcon }];
@@ -47,7 +51,6 @@ export const NavbarWIthHamburger = ({ navbarTitle, rightItems }: NavbarWIthHambu
   return (
     <>
       <HamburgerOverlay
-        visible={visible}
         onClick={onClickSetVisible}
         style={
           darkMode.value
@@ -61,10 +64,15 @@ export const NavbarWIthHamburger = ({ navbarTitle, rightItems }: NavbarWIthHambu
               }
         }
       />
-      <HamburgerWrapper visible={visible} style={fadeAnimation}>
+      <HamburgerWrapper style={fadeAnimation}>
         <HamburgerMenuWithAvatar />
       </HamburgerWrapper>
-      <Navbar text={navbarTitle} leftItems={leftItems} rightItems={rightItems} />
+      <Navbar
+        isMiddleSelect={isMiddleSelect}
+        text={navbarTitle}
+        leftItems={leftItems}
+        rightItems={rightItems}
+      />
     </>
   );
 };

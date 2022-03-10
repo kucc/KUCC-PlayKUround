@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
-import { useSpring, useTransition } from '@react-spring/web';
+import { useTransition } from '@react-spring/web';
 
 import { BaseButton } from '@components';
 
@@ -17,6 +17,7 @@ export const Modal = ({
   show,
   onClickLeftButton,
   onClickRightButton,
+  onClickOverlay,
 }: ModalProps) => {
   const transitions = useTransition(show, {
     from: { bottom: '-215px' },
@@ -26,7 +27,7 @@ export const Modal = ({
 
   return (
     <>
-      {show && <ModalOverlay />}
+      {show && <ModalOverlay onClick={onClickOverlay} />}
       {transitions(
         (styles, item) =>
           item && (

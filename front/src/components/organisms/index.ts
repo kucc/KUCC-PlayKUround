@@ -1,12 +1,12 @@
 // @index('./*', f => `export * from '${f.path}'`)
 export * from './BackIconWithNavbar';
 export * from './CardArray';
-export * from './FirstSignupInput';
 export * from './HamburgerMenuWithAvatar';
+export * from './LoginInput';
 export * from './MainTable';
 export * from './Map';
 export * from './MyInfoCard';
 export * from './Navbar';
-export * from './NavbarWIthHamburger';
+export * from './NavbarWithHamburger';
 export * from './RecommendTable';
-export * from './SecondSignupInput';
+export * from './RegisterInput';

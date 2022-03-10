@@ -5,12 +5,14 @@ import { BaseButton, BaseInput } from '@components';
 
 import { checkEmailAPI } from 'apis/user';
 
-import { ButtonWrapper } from './styled';
-import { FirstSignupInputProps } from './type';
+import { ButtonWrapper } from '../styled';
+import { FirstRegisterInputProps } from '../type';
 
-const regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+const emailRegExp =
+  /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+const passwordRegExp = /^(?=.*[a-zA-Z])((?=.*\d)(?=.*\W)).{8,16}$/;
 
-export const FirstSignupInput = ({
+export const FirstRegisterInput = ({
   email,
   onChangeEmail,
   password,
@@ -18,28 +20,31 @@ export const FirstSignupInput = ({
   passwordCheck,
   onChangePasswordCheck,
   setFirstPage,
-}: FirstSignupInputProps) => {
-  const [isSuccessEmail, setIsSuccessEmail] = useState(false);
-  const [notEmailError, setNotEmailError] = useState(false);
-  const [emailExistError, setEmailExistError] = useState(false);
-  const [isSuccessPassword, setIsSuccessPassword] = useState(false);
-  const [isErrorPassword, setIsErrorPassword] = useState(false);
-  const [isSuccessPasswordCheck, setIsSuccessPasswordCheck] = useState(false);
-  const [isErrorPasswordCheck, setIsErrorPasswordCheck] = useState(false);
+}: FirstRegisterInputProps) => {
+  const [isSuccessEmail, setIsSuccessEmail] = useState<boolean>(false);
+  const [notEmailError, setNotEmailError] = useState<boolean>(false);
+  const [emailExistError, setEmailExistError] = useState<boolean>(false);
+  const [isSuccessPassword, setIsSuccessPassword] = useState<boolean>(false);
+  const [isErrorPassword, setIsErrorPassword] = useState<boolean>(false);
+  const [isSuccessPasswordCheck, setIsSuccessPasswordCheck] = useState<boolean>(false);
+  const [isErrorPasswordCheck, setIsErrorPasswordCheck] = useState<boolean>(false);
 
-  const { data: isEmailExist } = useQuery(['user', email], checkEmailAPI);
+  const { data } = useQuery(['user', email], checkEmailAPI);
+  const isEmailExist = data;
 
   const onClickNextButton = () => {
     setFirstPage(false);
   };
 
   useEffect(() => {
-    if (password.length > 0 && password.length < 6) {
-      setIsErrorPassword(true);
-      setIsSuccessPassword(false);
-    } else if (password.length >= 6) {
-      setIsErrorPassword(false);
-      setIsSuccessPassword(true);
+    if (password.length > 0) {
+      if (!passwordRegExp.test(password)) {
+        setIsErrorPassword(true);
+        setIsSuccessPassword(false);
+      } else {
+        setIsErrorPassword(false);
+        setIsSuccessPassword(true);
+      }
     } else {
       setIsErrorPassword(false);
       setIsSuccessPassword(false);
@@ -47,7 +52,7 @@ export const FirstSignupInput = ({
   }, [password]);
 
   useEffect(() => {
-    if (passwordCheck.length > 0) {
+    if (password.length > 0 && passwordCheck.length > 0) {
       if (passwordCheck !== password) {
         setIsErrorPasswordCheck(true);
         setIsSuccessPasswordCheck(false);
@@ -59,11 +64,11 @@ export const FirstSignupInput = ({
       setIsErrorPasswordCheck(false);
       setIsSuccessPasswordCheck(false);
     }
-  }, [passwordCheck]);
+  }, [password, passwordCheck]);
 
   useEffect(() => {
     if (email.length > 0) {
-      if (email.match(regExp) === null) {
+      if (email.match(emailRegExp) === null) {
         setNotEmailError(true);
         setIsSuccessEmail(false);
       } else if (isEmailExist) {
@@ -96,14 +101,19 @@ export const FirstSignupInput = ({
         style={{ paddingTop: '68px' }}
       />
       <BaseInput
-        placeholder='6자리 이상 입력해주세요'
+        placeholder='비밀번호를 입력해주세요.'
         baseText={password}
         onChangeText={onChangePassword}
         label='비밀번호'
         type='password'
+        message={
+          !isErrorPassword && !isSuccessPassword
+            ? '영문/숫자/특수문자(!@#$%^&*)를 포함해 8~16자로 입력해주세요.'
+            : ''
+        }
         isError={isErrorPassword}
         isSuccess={isSuccessPassword}
-        errorMessage='6자리 이상이 아닙니다'
+        errorMessage='사용 가능한 비밀번호가 아닙니다'
         successMessage='사용 가능한 비밀번호입니다 !'
         style={{ paddingTop: '68px' }}
       />

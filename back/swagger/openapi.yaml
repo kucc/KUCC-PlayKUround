@@ -33,6 +33,8 @@ paths:
     $ref: "./paths/place/placeGetByFilter.yaml"
   /api/place/getByName:
     $ref: "./paths/place/placeGetByName.yaml"
+  /api/place/getByArr:
+    $ref: "./paths/place/placeGetByArr.yaml"
   /api/place/getByOne:
     $ref: "./paths/place/placeGetByOne.yaml"
   /api/place/getByMap:

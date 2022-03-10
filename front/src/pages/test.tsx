@@ -1,21 +1,27 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useState } from 'react';
 
-import { Modal } from '@components';
+import { InstaCard } from '@components';
+import { Navbar } from '@components';
+
+import { Filter } from '@assets';
+import { WritePost } from '@assets';
+import { MenuIcon } from '@styles';
 
 const TestPage = () => {
-  const [show, setShow] = useState<boolean>(true);
+  const [visible, setVisible] = useState<boolean>(false);
+  const onClickMenuIcon = () => {
+    return setVisible(!visible);
+  };
+  const leftItems = [{ icon: <MenuIcon />, onClickLeftItems: onClickMenuIcon }];
+  const rightItems = [
+    { icon: <WritePost />, onClickRightItems: onClickMenuIcon },
+    { icon: <Filter />, onClickRightItems: onClickMenuIcon },
+  ];
   return (
-    <Modal
-      title='로그인 후 이용 가능합니다!'
-      description={['로그인을 하지 않아 해당 장소를 저장할 수 없어요.', '로그인 하시겠어요?']}
-      leftLabel='닫기'
-      rightLabel='로그인'
-      show={show}
-      onClickLeftButton={() => {
-        setShow(false);
-      }}
-      onClickRightButton={() => {}}
-    />
+    <>
+      <Navbar leftItems={leftItems} rightItems={rightItems} text="실시간 Play's" />
+    </>
   );
 };
 

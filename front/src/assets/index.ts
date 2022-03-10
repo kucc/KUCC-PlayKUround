@@ -15,6 +15,7 @@ import Good from './icons/good.svg';
 import Heart from './icons/heart.svg';
 import Home from './icons/home.svg';
 import Info from './icons/info.svg';
+import Likes from './icons/likes.svg';
 import Location from './icons/location.svg';
 import Map from './icons/map.svg';
 import Menu from './icons/menu.svg';
@@ -26,12 +27,14 @@ import Recommend from './icons/recommend.svg';
 import Review from './icons/review.svg';
 import Scrap from './icons/scrap.svg';
 import Search from './icons/search.svg';
+import SelectArrow from './icons/select-arrow.svg';
 import Setting from './icons/setting.svg';
 import Share from './icons/share.svg';
 import Smile from './icons/smile.svg';
 import Star from './icons/star.svg';
 import Sun from './icons/sun.svg';
 import Table from './icons/table.svg';
+import WritePost from './icons/write-post.svg';
 
 export {
   ArrowRight,
@@ -63,9 +66,12 @@ export {
   Scrap,
   Search,
   Setting,
+  SelectArrow,
   Share,
   Smile,
   Star,
   Sun,
   Table,
+  WritePost,
+  Likes,
 };
