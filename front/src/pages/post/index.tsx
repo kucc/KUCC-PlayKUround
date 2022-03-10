@@ -35,6 +35,8 @@ const postPage = () => {
     return <span>Error</span>;
   }
 
+  console.log(posts);
+
   return (
     <>
       <NavbarWithHamburger rightItems={rightItems} navbarTitle="실시간 Play's" />
