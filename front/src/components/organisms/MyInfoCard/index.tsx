@@ -88,6 +88,19 @@ export const MyInfoCard = ({ iconLabel, imageSource, name, style }: MyInfoCardPr
   const { data: user } = useQuery<User>('user', loadMyInfoAPI);
   const [imageLink, setImageLink] = useState<any>(imageSource);
 
+  const renderName = () => {
+    if (name) {
+      return (
+        <>
+          <Label>{name}</Label>
+          <span>님</span>
+        </>
+      );
+    } else {
+      return <Label>로그인이 필요합니다.</Label>;
+    }
+  };
+
   return (
     <MyInfoCardWrapper style={style}>
       <AvatarLabelWrapper>
@@ -95,16 +108,7 @@ export const MyInfoCard = ({ iconLabel, imageSource, name, style }: MyInfoCardPr
           <Avatar size={100} imageSource={imageLink || '/pictures/profile.png'} />
         </Upload>
       </AvatarLabelWrapper>
-      <NameWrapper>
-        {name ? (
-          <>
-            <Label>{name}</Label>
-            <span>님</span>
-          </>
-        ) : (
-          <Label>로그인이 필요합니다.</Label>
-        )}
-      </NameWrapper>
+      <NameWrapper>{renderName()}</NameWrapper>
       <MenuBar iconLabel={iconLabel || DefaultIconLabel} style={{ paddingBottom: '10px' }} />
     </MyInfoCardWrapper>
   );
