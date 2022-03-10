@@ -1,5 +1,7 @@
 import React, { useContext } from 'react';
 
+import router from 'next/router';
+
 import { Carousel } from '@components';
 import { LikesButton } from '@components/atoms/LikesButton';
 
@@ -24,6 +26,8 @@ export const InstaCard = ({
   CarouselList,
   description,
   isLiked,
+  userName,
+  userImage,
   userId,
   postId,
   comments,
@@ -34,7 +38,17 @@ export const InstaCard = ({
   const { sendPostValue } = useContext(postValueContext);
 
   const ClickHandler = (e: any) => {
-    sendPostValue({ comments, createdAt, place });
+    sendPostValue({
+      comments,
+      createdAt,
+      placeName: place.placeName,
+      userName,
+      userImage,
+      likesCount,
+      CarouselList,
+      isLiked,
+    });
+    router.push(`/post/${postId}`);
   };
   return (
     <Container>
