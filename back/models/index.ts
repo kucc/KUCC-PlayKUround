@@ -29,7 +29,6 @@ const Comment = CommentModel(sequelize);
 // model relation(관계)
 //
 // Place의 writer라는 항목이 User의 id를 참조하고 있슴.
-
 Place.belongsTo(User, { foreignKey: 'writer', targetKey: 'id' });
 Place.hasMany(Post, { foreignKey: 'placeId', sourceKey: 'id' });
 Place.hasMany(Menu, { foreignKey: 'placeId', sourceKey: 'id' });

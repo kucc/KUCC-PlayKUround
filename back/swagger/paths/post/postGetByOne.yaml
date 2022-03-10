@@ -5,6 +5,12 @@ get:
   description: Get 방식으로 해당 게시물을 가져옵니다.
   parameters:
     - in: query
+      name: userId
+      schema:
+        type: number
+      description: 유저의 id 값입니다. 존재하지 않는다면 null 값을 보내주세요.
+      example: 1
+    - in: query
       name: postId
       schema:
         type: number
