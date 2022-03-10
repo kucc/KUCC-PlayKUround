@@ -6,7 +6,7 @@ import router from 'next/router';
 
 import { InstaCard, Modal, NavbarWithHamburger } from '@components';
 
-import { getByLatestAPI } from 'apis/post';
+import { postGetByLatestAPI } from 'apis/post';
 import { loadMyInfoAPI } from 'apis/user';
 import Post from 'interfaces/post';
 import User from 'interfaces/user';
@@ -16,9 +16,13 @@ import { Filter, WritePost } from '@assets';
 const postPage = () => {
   const { data: me } = useQuery<User>('user', loadMyInfoAPI);
 
-  const { data, isLoading, isIdle, isError } = useQuery(['post', me ? me.id : ''], getByLatestAPI, {
-    enabled: me === null || !!me,
-  });
+  const { data, isLoading, isIdle, isError } = useQuery(
+    ['post', me ? me.id : ''],
+    postGetByLatestAPI,
+    {
+      enabled: me === null || !!me,
+    },
+  );
 
   const [modalVisible, setModalVisible] = useState<boolean>(false);
   const posts = data as Post[];
@@ -51,7 +55,8 @@ const postPage = () => {
           comments={post.comments}
           createdAt={post.createdAt}
           place={post.place}
-          writer={post.writer}
+          userName={post.user.name}
+          userImage={post.user.images}
           setModalVisible={setModalVisible}
           key={key}
         />
