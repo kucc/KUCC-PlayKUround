@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { useSpring } from '@react-spring/core';
+import { useRouter } from 'next/router';
 import useDarkMode from 'use-dark-mode';
 
 import { Colors } from '@styles';
@@ -13,8 +14,20 @@ import {
 import { HamburgerMenuProps } from './type';
 
 export const HamburgerMenu = ({ style, menuArray }: HamburgerMenuProps) => {
+  const router = useRouter();
   const darkMode = useDarkMode(false);
   const [selectedIndex, setSelectedIndex] = useState<number>(0);
+
+  useEffect(() => {
+    if (router) {
+      const routerName = router.pathname.split('/')[1];
+      if (routerName === 'post') setSelectedIndex(1);
+      else if (routerName === 'recommend') setSelectedIndex(2);
+      else if (routerName === 'info') setSelectedIndex(3);
+      else if (routerName === 'setting') setSelectedIndex(4);
+      else setSelectedIndex(0);
+    }
+  }, [router]);
 
   const onClickHandler = (index: number) => {
     setSelectedIndex(index);
