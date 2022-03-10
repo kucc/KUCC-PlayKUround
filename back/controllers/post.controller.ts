@@ -3,18 +3,24 @@ import fs from 'fs';
 
 import { Comment, Hashtag, Image, Place, Post, User } from '../models';
 import { MulterFile } from '../models/image/imageType';
-import { checkUserLiked } from './utils';
+import { checkUserLiked, checkUserLikedList, userPostAttributes } from './utils';
 
 const sequelize = require('sequelize');
 
 const getByOne: RequestHandler = async (req, res, next) => {
-  const { postId } = req.query;
+  const { postId, userId } = req.query;
   try {
     const postResult = await Post.findOne({
       where: { id: postId },
-      include: [{ model: Comment }, { model: Image }, { model: Place }],
+      include: [
+        { model: Comment },
+        { model: Image },
+        { model: Place },
+        { model: User, include: [{ model: Image }], attributes: userPostAttributes },
+      ],
     });
-    res.status(200).send({ success: true, result: postResult });
+    const result = await checkUserLiked(userId as any, postResult);
+    res.status(200).send({ success: true, result });
   } catch (error) {
     res.status(400).json({ success: false, error });
     next(error);
@@ -26,9 +32,14 @@ const getByPlace: RequestHandler = async (req, res, next) => {
   try {
     const postResult = await Post.findAll({
       where: { placeId },
-      include: [{ model: Comment }, { model: Image }, { model: Place }],
+      include: [
+        { model: Comment },
+        { model: Image },
+        { model: Place },
+        { model: User, include: [{ model: Image }], attributes: userPostAttributes },
+      ],
     });
-    const result = await checkUserLiked(userId as any, postResult);
+    const result = await checkUserLikedList(userId as any, postResult);
     res.status(200).send({ success: true, result });
   } catch (error) {
     res.status(400).json({ success: false, error });
@@ -41,9 +52,14 @@ const getByLatest: RequestHandler = async (req, res, next) => {
   try {
     const postResult = await Post.findAll({
       order: [['createdAt', 'DESC']],
-      include: [{ model: Comment }, { model: Image }, { model: Place }],
+      include: [
+        { model: Comment },
+        { model: Image },
+        { model: Place },
+        { model: User, include: [{ model: Image }], attributes: userPostAttributes },
+      ],
     });
-    const result = await checkUserLiked(userId as any, postResult);
+    const result = await checkUserLikedList(userId as any, postResult);
     res.status(200).send({ success: true, result });
   } catch (error) {
     res.status(400).json({ success: false, error });
