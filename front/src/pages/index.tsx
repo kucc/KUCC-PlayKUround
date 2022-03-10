@@ -10,7 +10,7 @@ const HomePage = () => {
     { icon: <BellIcon />, onClickRightItems: () => {} },
   ];
 
-  return <Home rightItems={rightItems} navbarTitle='내 위치 주변' />;
+  return <Home rightItems={rightItems} />;
 };
 
 export default HomePage;
