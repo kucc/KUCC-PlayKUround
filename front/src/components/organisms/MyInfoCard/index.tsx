@@ -105,7 +105,7 @@ export const MyInfoCard = ({ iconLabel, imageSource, name, style }: MyInfoCardPr
     <MyInfoCardWrapper style={style}>
       <AvatarLabelWrapper>
         <Upload {...uploadProps(setImageLink, user)} showUploadList={false}>
-          <Avatar size={100} imageSource={imageLink || '/pictures/profile.png'} />
+          <Avatar size={100} imageSource={imageLink} />
         </Upload>
       </AvatarLabelWrapper>
       <NameWrapper>{renderName()}</NameWrapper>
