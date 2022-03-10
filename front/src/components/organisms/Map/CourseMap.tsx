@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { useQuery } from 'react-query';
 
 import {
   courseRedBtnIcon,
@@ -16,32 +15,32 @@ import { PlaceType } from 'interfaces/place';
 import { updateMarkers } from './commonElement';
 
 const CourseMap = ({
+  latitude,
+  longitude,
   setCourseMode,
   places,
 }: {
+  latitude: number;
+  longitude: number;
   setCourseMode: () => void;
   places: PlaceType[];
 }) => {
-  const [latitude, setLatitude] = useState<number>(37.5908);
-  const [longitude, setLongitude] = useState<number>(127.0278);
+  const [mapLatitude, setMapLatitude] = useState<number>(latitude);
+  const [mapLongitude, setMapLongitude] = useState<number>(longitude);
 
   const getLocation = () => {
     navigator.geolocation.getCurrentPosition(pos => {
-      setLatitude(pos.coords.latitude);
-      setLongitude(pos.coords.longitude);
+      setMapLatitude(pos.coords.latitude);
+      setMapLongitude(pos.coords.longitude);
     });
   };
-
-  useEffect(() => {
-    getLocation();
-  }, []);
 
   useEffect(() => {
     if (places) {
       const initMap = () => {
         // 지도 생성
         const map = new naver.maps.Map('map', {
-          center: new naver.maps.LatLng(latitude, longitude),
+          center: new naver.maps.LatLng(mapLatitude, mapLongitude),
           zoom: 13,
         });
 
@@ -49,7 +48,7 @@ const CourseMap = ({
         new naver.maps.Marker({
           map: map,
           title: 'current_Location',
-          position: new naver.maps.LatLng(latitude, longitude),
+          position: new naver.maps.LatLng(mapLatitude, mapLongitude),
           icon: {
             //text left의 계산법 : - text의 width / 2 + img의 width / 2
             content: myLocationIcon,
@@ -80,7 +79,7 @@ const CourseMap = ({
 
           naver.maps.Event.addDOMListener(locationButton.getElement(), 'click', function () {
             getLocation();
-            map.setCenter(new naver.maps.LatLng(latitude, longitude));
+            map.setCenter(new naver.maps.LatLng(mapLatitude, mapLongitude));
           });
         });
 
@@ -158,7 +157,7 @@ const CourseMap = ({
       };
       initMap();
     }
-  }, [places, latitude, longitude]);
+  }, [places, mapLatitude, mapLongitude]);
 
   //지도 사이즈 관련 스타일
   const mapStyle = {
@@ -166,11 +165,7 @@ const CourseMap = ({
     height: '600px',
   };
 
-  return (
-    <React.Fragment>
-      <div id='map' style={mapStyle}></div>
-    </React.Fragment>
-  );
+  return <div id='map' style={mapStyle} />;
 };
 
 export default CourseMap;

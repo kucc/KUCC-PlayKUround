@@ -36,15 +36,8 @@ export const MainTable = () => {
       longitude,
     ],
     getByFilterAPI,
+    { enabled: latitude && longitude ? true : false },
   );
-
-  if (map.isLoading || map.isIdle || places.isLoading || places.isIdle) {
-    return <Skeleton active />;
-  }
-
-  if (map.isError || places.isError) {
-    return <span>Error</span>;
-  }
 
   // 공통 함수에 집어넣기
   const getLocation = async () => {
@@ -56,14 +49,22 @@ export const MainTable = () => {
   };
 
   const renderMainItem = () => {
+    if (map.isLoading || map.isIdle || places.isLoading || places.isIdle) {
+      return <Skeleton active />;
+    } else if (map.isError || places.isError) {
+      return <span>Error</span>;
+    }
     if (currentMode === 'table') {
-      return places.isLoading || !latitude || !longitude ? (
-        <Skeleton active />
-      ) : (
-        <CardArray places={places.data} />
-      );
+      return <CardArray places={places.data} />;
     } else {
-      return <Map places={map.data} />;
+      return (
+        <Map
+          latitude={latitude as number}
+          longitude={longitude as number}
+          places={map.data}
+          getLocation={getLocation}
+        />
+      );
     }
   };
 

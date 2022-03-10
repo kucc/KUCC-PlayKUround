@@ -5,7 +5,17 @@ import { PlaceType } from 'interfaces/place';
 import CourseMap from './CourseMap';
 import NormalMap from './NormalMap';
 
-export const Map = ({ places }: { places: PlaceType[] }) => {
+export const Map = ({
+  places,
+  longitude,
+  latitude,
+  getLocation,
+}: {
+  places: PlaceType[];
+  longitude: number;
+  latitude: number;
+  getLocation: () => Promise<void>;
+}) => {
   const [isCourseMode, setIsCourseMode] = useState(false);
 
   // Todo
@@ -15,9 +25,19 @@ export const Map = ({ places }: { places: PlaceType[] }) => {
   return (
     <>
       {isCourseMode ? (
-        <CourseMap places={places} setCourseMode={() => setIsCourseMode(prev => !prev)} />
+        <CourseMap
+          longitude={longitude}
+          latitude={latitude}
+          places={places}
+          setCourseMode={() => setIsCourseMode(prev => !prev)}
+        />
       ) : (
-        <NormalMap places={places} setCourseMode={() => setIsCourseMode(prev => !prev)} />
+        <NormalMap
+          longitude={longitude}
+          latitude={latitude}
+          places={places}
+          setCourseMode={() => setIsCourseMode(prev => !prev)}
+        />
       )}
     </>
   );
