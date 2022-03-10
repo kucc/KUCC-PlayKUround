@@ -6,6 +6,7 @@ export type ModalProps = {
   description: Array<string>;
   onClickRightButton: () => void;
   onClickLeftButton: () => void;
+  onClickOverlay: () => void;
 };
 
 export interface ModalOverlayProps {

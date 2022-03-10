@@ -9,7 +9,7 @@ import { CardArray, Footer, MainSelect, MainToggleBar } from '@components';
 import { getByFilterAPI, getByMapAPI } from 'apis/place';
 import { PlaceType } from 'interfaces/place';
 
-import { SendCategoryContext } from '@contexts/sendCategory';
+import { filterValueContext } from '@contexts/filterValue';
 
 import { Map } from '../Map';
 import { StlyedMainTableTop, StyledMainTable } from './styled';
@@ -20,21 +20,11 @@ export const MainTable = () => {
   const [longitude, setLongitude] = useState<number | null>(null);
   const [currentMode, setCurrentMode] = useState<string>('table');
 
-  const { categoryList } = useContext(SendCategoryContext);
+  const { categoryList, area } = useContext(filterValueContext);
+
   const map = useQuery<PlaceType[]>('place', getByMapAPI);
   const places = useQuery(
-    [
-      'place',
-      // category
-      categoryList[0] ?? '',
-      // categoryDetail
-      categoryList[1] ?? '',
-      value,
-      // area
-      '',
-      latitude,
-      longitude,
-    ],
+    ['place', categoryList[0] ?? '', categoryList[1] ?? '', value, area, latitude, longitude],
     getByFilterAPI,
     { enabled: latitude && longitude ? true : false },
   );

@@ -21,6 +21,10 @@ export const InstaCard = ({
   likesCount,
   CarouselList,
   description,
+  isLiked,
+  userId,
+  postId,
+  setModalVisible,
 }: InstaCardProps) => {
   const ClickHandler = (e: any) => {
     console.log(e);
@@ -32,7 +36,13 @@ export const InstaCard = ({
           <Title>{titleText}</Title>
           <Place>{placeText}</Place>
         </TextContainer>
-        <LikesButton likesCount={likesCount} />
+        <LikesButton
+          userId={userId}
+          postId={postId}
+          likesCountProps={likesCount}
+          isLikedProps={isLiked}
+          setModalVisible={setModalVisible}
+        />
       </CardHeadContainer>
       <Carousel CarouselList={CarouselList} />
       <DescriptionContainer>{description}</DescriptionContainer>
