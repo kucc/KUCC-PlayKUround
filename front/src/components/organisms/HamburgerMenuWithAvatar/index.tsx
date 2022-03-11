@@ -5,6 +5,7 @@ import { Skeleton } from 'antd';
 import Router from 'next/router';
 
 import { Avatar, HamburgerMenu, ToggleDark } from '@components';
+import { Error } from '@templates';
 
 import { loadMyInfoAPI } from 'apis/user';
 import User from 'interfaces/user';
@@ -84,7 +85,7 @@ export const HamburgerMenuWithAvatar = () => {
   }
 
   if (me.isError) {
-    return <span>Error</span>;
+    return <Error isNavbar={false} />;
   }
 
   return (

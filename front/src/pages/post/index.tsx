@@ -5,6 +5,7 @@ import { Skeleton } from 'antd';
 import router from 'next/router';
 
 import { ErrorLayout, InstaCard, Modal, NavbarWithHamburger } from '@components';
+import { Error } from '@templates';
 
 import { postGetByLatestAPI } from 'apis/post';
 import { loadMyInfoAPI } from 'apis/user';
@@ -37,7 +38,7 @@ const PostPage = () => {
   }
 
   if (isError) {
-    return <span>Error</span>;
+    return <Error isNavbar={false} />;
   }
 
   if (posts) {

@@ -4,6 +4,7 @@ import { useQuery } from 'react-query';
 import { Skeleton } from 'antd';
 
 import { CardArray, ErrorLayout, Footer, MyInfoCard, NavbarWithHamburger, Text } from '@components';
+import { Error } from '@templates';
 
 import { getByArrAPI } from 'apis/place';
 import { loadMyInfoAPI } from 'apis/user';
@@ -21,7 +22,7 @@ export const Info = ({ title, navbarTitle }: InfoProps) => {
   const me = useQuery<User>('user', loadMyInfoAPI);
 
   if (me.isError) {
-    return <span>Error</span>;
+    return <Error isNavbar={false} />;
   }
 
   if (me.isLoading || me.isIdle) {
@@ -33,7 +34,7 @@ export const Info = ({ title, navbarTitle }: InfoProps) => {
   });
 
   if (places.isError) {
-    return <span>Error</span>;
+    return <Error isNavbar={false} />;
   }
 
   if (places.isLoading || places.isIdle) {

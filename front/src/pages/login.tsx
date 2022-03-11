@@ -6,6 +6,7 @@ import router from 'next/router';
 import Router from 'next/router';
 
 import { BackIconWithNavbar, FirstLoginInput, Modal, SecondLoginInput, Text } from '@components';
+import { Error } from '@templates';
 
 import { getNameAPI, loadMyInfoAPI, logInAPI } from 'apis/user';
 import User from 'interfaces/user';
@@ -117,7 +118,7 @@ const LoginPage = () => {
   }
 
   if (isError) {
-    return <span>Error</span>;
+    return <Error isNavbar={false} />;
   }
 
   return (
