@@ -4,7 +4,7 @@ import { useQuery } from 'react-query';
 
 import { Skeleton } from 'antd';
 
-import { CardArray, Footer, MainSelect, MainToggleBar } from '@components';
+import { CardArray, ErrorLayout, Footer, MainSelect, MainToggleBar } from '@components';
 
 import { getByFilterAPI, getByMapAPI } from 'apis/place';
 import { PlaceType } from 'interfaces/place';
@@ -12,7 +12,7 @@ import { PlaceType } from 'interfaces/place';
 import { filterValueContext } from '@contexts/filterValue';
 
 import { Map } from '../Map';
-import { StlyedMainTableTop, StyledMainTable } from './styled';
+import { StlyedMainTableTop, StyledContentContainer, StyledMainTable } from './styled';
 
 export const MainTable = () => {
   const [value, setValue] = useState<'close' | 'rate' | 'review'>('close');
@@ -45,7 +45,15 @@ export const MainTable = () => {
       return <span>Error</span>;
     }
     if (currentMode === 'table') {
-      return <CardArray places={places.data} />;
+      return (
+        <>
+          {places.data.length ? (
+            <CardArray places={places.data} />
+          ) : (
+            <ErrorLayout isNavbar={false} mainTextArray={['등록된 장소가 없습니다.']} />
+          )}
+        </>
+      );
     } else {
       return (
         <Map
@@ -68,7 +76,9 @@ export const MainTable = () => {
         <MainToggleBar currentMode={currentMode} setCurrentMode={setCurrentMode} />
         {currentMode === 'table' && <MainSelect value={value} setValue={setValue} />}
       </StlyedMainTableTop>
-      <div style={{ marginTop: '8px' }}>{renderMainItem()}</div>
+      <StyledContentContainer noData={!(places.data && places.data.length) ? true : false}>
+        {renderMainItem()}
+      </StyledContentContainer>
       <Footer />
     </StyledMainTable>
   );

@@ -17,6 +17,21 @@ export const StyledMainTable = styled.div`
   background-color: ${({ theme }) => theme.bg.white};
 `;
 
+export const StyledContentContainer = styled.div<{ noData: boolean }>`
+  ${({ noData }) => {
+    if (noData) {
+      return `
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 100px 0px;
+      `;
+    } else {
+      ('margin-top: 8px;');
+    }
+  }}
+`;
+
 export const StlyedMainTableTop = styled.div`
   display: flex;
   justify-content: space-between;
