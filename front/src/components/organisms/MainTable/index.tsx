@@ -5,6 +5,7 @@ import { useQuery } from 'react-query';
 import { Skeleton } from 'antd';
 
 import { CardArray, ErrorLayout, Footer, MainSelect, MainToggleBar } from '@components';
+import { Error } from '@templates';
 
 import { getByFilterAPI, getByMapAPI } from 'apis/place';
 import { PlaceType } from 'interfaces/place';
@@ -42,18 +43,14 @@ export const MainTable = () => {
     if (map.isLoading || map.isIdle || places.isLoading || places.isIdle) {
       return <Skeleton active />;
     } else if (map.isError || places.isError) {
-      return <span>Error</span>;
+      return <Error isNavbar={false} />;
     }
     if (currentMode === 'table') {
-      return (
-        <>
-          {places.data.length ? (
-            <CardArray places={places.data} />
-          ) : (
-            <ErrorLayout isNavbar={false} mainTextArray={['등록된 장소가 없습니다.']} />
-          )}
-        </>
-      );
+      if (places) {
+        return <CardArray places={places.data} />;
+      } else {
+        return <ErrorLayout isNavbar={false} mainTextArray={['등록된 장소가 없습니다.']} />;
+      }
     } else {
       return (
         <Map
@@ -76,7 +73,7 @@ export const MainTable = () => {
         <MainToggleBar currentMode={currentMode} setCurrentMode={setCurrentMode} />
         {currentMode === 'table' && <MainSelect value={value} setValue={setValue} />}
       </StlyedMainTableTop>
-      <StyledContentContainer noData={!(places.data && places.data.length) ? true : false}>
+      <StyledContentContainer noData={!(places && places.data) ? true : false}>
         {renderMainItem()}
       </StyledContentContainer>
       <Footer />
