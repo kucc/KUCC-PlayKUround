@@ -16,7 +16,7 @@ export default interface User {
   liktList: Array<SimplePlaceType>;
   rateList: Array<SimplePlaceType>;
   historyList: Array<SimplePlaceType>;
-  image: ImageProps;
+  images: ImageProps;
   sourceId: string;
   likeList: string[];
 }

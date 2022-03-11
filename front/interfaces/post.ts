@@ -10,7 +10,6 @@ export default interface Post {
   updatedAt?: string;
   deletedAt?: string | null;
   comments?: Array<any>;
-  image?: string;
   images: Array<any>;
   place: PlaceType;
   isLiked: boolean;
