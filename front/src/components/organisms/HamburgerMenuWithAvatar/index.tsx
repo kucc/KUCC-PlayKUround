@@ -33,21 +33,27 @@ export const HamburgerMenuWithAvatar = () => {
       height: 22,
       icon: <Home />,
       label: '홈',
-      onClick: () => {},
+      onClick: () => {
+        Router.push('/');
+      },
     },
     {
       width: 22,
       height: 22,
       icon: <Clock />,
       label: `실시간 Play's`,
-      onClick: () => {},
+      onClick: () => {
+        Router.push('/post');
+      },
     },
     {
       width: 20,
       height: 20,
       icon: <Recommend />,
       label: '코스 추천',
-      onClick: () => {},
+      onClick: () => {
+        Router.push('/recommend');
+      },
     },
     {
       width: 20,
@@ -82,7 +88,7 @@ export const HamburgerMenuWithAvatar = () => {
   }
 
   return (
-    <HamburgerMenuWithAvatarWrapper width={width * 0.75} height={height}>
+    <HamburgerMenuWithAvatarWrapper width={width * 0.75}>
       <ToggleDark />
       <InfoWrapper>
         <Avatar size={59} />

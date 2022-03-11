@@ -6,7 +6,7 @@ import router from 'next/router';
 
 import { ErrorLayout, InstaCard, Modal, NavbarWithHamburger } from '@components';
 
-import { getByLatestAPI } from 'apis/post';
+import { postGetByLatestAPI } from 'apis/post';
 import { loadMyInfoAPI } from 'apis/user';
 import Post from 'interfaces/post';
 import User from 'interfaces/user';
@@ -23,7 +23,7 @@ const PostPage = () => {
     isLoading,
     isIdle,
     isError,
-  } = useQuery(['post', me ? me.id : ''], getByLatestAPI, {
+  } = useQuery(['post', me ? me.id : ''], postGetByLatestAPI, {
     enabled: me === null || !!me,
   });
 
@@ -40,12 +40,13 @@ const PostPage = () => {
     return <span>Error</span>;
   }
 
-  if (posts.length) {
+  if (posts) {
     return (
       <>
         <NavbarWithHamburger rightItems={rightItems} navbarTitle="실시간 Play's" />
         {posts.map((post: Post, key: number) => (
           <InstaCard
+            place={post.place}
             titleText={post.place.placeName}
             placeText={post.place.addressExact}
             description={post.description}

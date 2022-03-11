@@ -66,7 +66,7 @@ export const MoreDescriptionContainer = styled.div`
   align-items: center;
   justify-content: flex-end;
   font-size: 10px;
-  padding: 0px 18px 20px 0px;
+  padding: 10px 18px 15px 0px;
   color: ${Colors.lightGrey_6};
   cursor: pointer;
 `;

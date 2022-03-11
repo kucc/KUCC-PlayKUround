@@ -34,7 +34,7 @@ export const NavbarWithHamburger = ({
   const fadeAnimation = useSpring({
     left: visible ? 0 : -width * 0.75,
     config: {
-      duration: 400,
+      friction: 30,
     },
   });
 

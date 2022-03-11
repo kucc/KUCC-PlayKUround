@@ -7,6 +7,7 @@ export interface PostAttributes {
   likeNum?: number;
   sourceId?: string;
   isLiked?: boolean;
+  writer?: number;
 }
 
 interface PostCreationAttributes extends Optional<PostAttributes, 'id' | 'likeNum' | 'isLiked'> {}

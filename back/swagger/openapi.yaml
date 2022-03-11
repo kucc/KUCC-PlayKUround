@@ -45,6 +45,8 @@ paths:
     $ref: "./paths/place/placeRate.yaml"
 
   ########### post path ###########
+  /api/post/getByOne:
+    $ref: "./paths/post/postGetByOne.yaml"
   /api/post/getByLatest:
     $ref: "./paths/post/postGetByLatest.yaml"
   /api/post/getByPlace:

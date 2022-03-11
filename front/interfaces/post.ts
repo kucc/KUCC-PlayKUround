@@ -1,4 +1,5 @@
 import { PlaceType } from './place';
+import User from './user';
 
 export default interface Post {
   id?: number;
@@ -13,4 +14,6 @@ export default interface Post {
   images: Array<any>;
   place: PlaceType;
   isLiked: boolean;
+  writer: number;
+  user: User;
 }

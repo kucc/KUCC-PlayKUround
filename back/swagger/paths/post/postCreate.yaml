@@ -18,6 +18,10 @@ post:
               type: number
               description: place id 값. 어느 place에서 작성됐는지 정보입니다.
               example: 1
+            userId:
+              type: number
+              description: user id 값. 어느 유저가 작성헀는지 정보입니다.
+              example: 1
             description:
               type: string
               description: post 설명입니다.
