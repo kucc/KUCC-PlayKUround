@@ -4,7 +4,7 @@ import { useQuery } from 'react-query';
 import { Skeleton } from 'antd';
 import router from 'next/router';
 
-import { InstaCard, Modal, NavbarWithHamburger } from '@components';
+import { ErrorLayout, InstaCard, Modal, NavbarWithHamburger } from '@components';
 
 import { getByLatestAPI } from 'apis/post';
 import { loadMyInfoAPI } from 'apis/user';
@@ -40,7 +40,7 @@ const PostPage = () => {
     return <span>Error</span>;
   }
 
-  if (posts) {
+  if (posts.length) {
     return (
       <>
         <NavbarWithHamburger rightItems={rightItems} navbarTitle="실시간 Play's" />
@@ -78,7 +78,12 @@ const PostPage = () => {
       </>
     );
   } else {
-    return <div />;
+    return (
+      <>
+        <NavbarWithHamburger rightItems={rightItems} navbarTitle="실시간 Play's" />
+        <ErrorLayout isNavbar={false} mainTextArray={['등록된 장소가 없습니다.']} />
+      </>
+    );
   }
 };
 

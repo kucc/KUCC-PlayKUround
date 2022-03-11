@@ -3,7 +3,7 @@ import { useQuery } from 'react-query';
 
 import { Skeleton } from 'antd';
 
-import { CardArray, Footer, MyInfoCard, NavbarWithHamburger } from '@components';
+import { CardArray, ErrorLayout, Footer, MyInfoCard, NavbarWithHamburger, Text } from '@components';
 
 import { getByArrAPI } from 'apis/place';
 import { loadMyInfoAPI } from 'apis/user';
@@ -12,7 +12,7 @@ import User from 'interfaces/user';
 import { SidePadding } from '@styles';
 import { getImageLink } from '@util/imageLinkDecoder';
 
-import { Container, StyledText } from './styled';
+import { Container } from './styled';
 import { InfoProps } from './type';
 
 export const Info = ({ title, navbarTitle }: InfoProps) => {
@@ -46,13 +46,15 @@ export const Info = ({ title, navbarTitle }: InfoProps) => {
         <Container screenHeight={screenHeight}>
           <NavbarWithHamburger navbarTitle={navbarTitle} />
           <MyInfoCard
-            imageSource={me.data.image ? getImageLink(me.data.image.data) : '/pictures/profile.png'}
+            imageSource={
+              me.data.images ? getImageLink(me.data.images.data) : '/pictures/profile.png'
+            }
             name={me.data.name}
             style={{ marginBottom: '31px' }}
           />
-          <StyledText subtitle2 bold primary>
+          <Text subtitle2 bold primary style={{ paddingLeft: '31px' }}>
             {title}
-          </StyledText>
+          </Text>
           <SidePadding style={{ marginTop: '12px' }}>
             <CardArray places={places.data} />
             <Footer />
@@ -61,6 +63,6 @@ export const Info = ({ title, navbarTitle }: InfoProps) => {
       </>
     );
   } else {
-    return <div />;
+    return <ErrorLayout isNavbar={false} mainTextArray={['내 정보가 없습니다.']} />;
   }
 };
