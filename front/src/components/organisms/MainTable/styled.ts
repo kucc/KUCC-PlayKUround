@@ -24,7 +24,7 @@ export const StyledContentContainer = styled.div<{ noData: boolean }>`
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding: 100px 0px;
+        padding-bottom: 100px;
       `;
     } else {
       ('margin-top: 8px;');

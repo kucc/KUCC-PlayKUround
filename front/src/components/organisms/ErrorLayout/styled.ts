@@ -4,7 +4,7 @@ export const ContentLayout = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 127px;
+  padding-top: 100px;
 `;
 
 export const TextLayout = styled.div<{ paddingTop?: string }>`
