@@ -17,7 +17,7 @@ export const ErrorLayout = ({ isNavbar = true, mainTextArray, subTextArray }: Er
       return (
         <>
           {mainTextArray.map((mainText: string) => (
-            <Text h6 bold>
+            <Text h6 bold primary>
               {mainText}
             </Text>
           ))}
@@ -31,7 +31,7 @@ export const ErrorLayout = ({ isNavbar = true, mainTextArray, subTextArray }: Er
       return (
         <>
           {subTextArray.map((subText: string) => (
-            <Text subtitle2 medium>
+            <Text subtitle2 medium primary>
               {subText}
             </Text>
           ))}
