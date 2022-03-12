@@ -55,7 +55,7 @@ const getByFilter: RequestHandler = async (req, res, next) => {
         { longitude, latitude },
       );
       if (distance < 1000) {
-        newPlace['distance'] = `${distance}m`;
+        newPlace['distance'] = `${distance.toFixed()}m`;
       } else {
         newPlace['distance'] = `${(distance / 1000).toFixed(1)}km`;
       }
