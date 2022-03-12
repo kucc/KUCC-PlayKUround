@@ -8,6 +8,7 @@ import Router from 'next/router';
 import { useRouter } from 'next/router';
 
 import { BackIconWithNavbar, FirstRegisterInput, SecondRegisterInput, Text } from '@components';
+import { Error } from '@templates';
 
 import { loadMyInfoAPI } from 'apis/user';
 import User from 'interfaces/user';
@@ -89,7 +90,7 @@ const RegisterPage = () => {
   }
 
   if (isError) {
-    return <span>Error</span>;
+    return <Error isNavbar={false} />;
   }
 
   return (

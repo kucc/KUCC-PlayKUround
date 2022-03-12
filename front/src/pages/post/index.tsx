@@ -4,7 +4,8 @@ import { useQuery } from 'react-query';
 import { Skeleton } from 'antd';
 import router from 'next/router';
 
-import { InstaCard, Modal, NavbarWithHamburger } from '@components';
+import { ErrorLayout, InstaCard, Modal, NavbarWithHamburger } from '@components';
+import { Error } from '@templates';
 
 import { postGetByLatestAPI } from 'apis/post';
 import { loadMyInfoAPI } from 'apis/user';
@@ -13,19 +14,20 @@ import User from 'interfaces/user';
 
 import { Filter, WritePost } from '@assets';
 
-const postPage = () => {
+const PostPage = () => {
+  const [modalVisible, setModalVisible] = useState<boolean>(false);
+
   const { data: me } = useQuery<User>('user', loadMyInfoAPI);
 
-  const { data, isLoading, isIdle, isError } = useQuery(
-    ['post', me ? me.id : ''],
-    postGetByLatestAPI,
-    {
-      enabled: me === null || !!me,
-    },
-  );
+  const {
+    data: posts,
+    isLoading,
+    isIdle,
+    isError,
+  } = useQuery(['post', me ? me.id : ''], postGetByLatestAPI, {
+    enabled: me === null || !!me,
+  });
 
-  const [modalVisible, setModalVisible] = useState<boolean>(false);
-  const posts = data as Post[];
   const rightItems = [
     { icon: <WritePost />, onClickRightItems: () => {} },
     { icon: <Filter />, onClickRightItems: () => {} },
@@ -36,9 +38,11 @@ const postPage = () => {
   }
 
   if (isError) {
-    return <span>Error</span>;
+    return <Error isNavbar={false} />;
   }
 
+
+if (posts) {
   return (
     <>
       <NavbarWithHamburger rightItems={rightItems} navbarTitle="실시간 Play's" />
@@ -54,6 +58,7 @@ const postPage = () => {
             isLiked={post.isLiked}
             userId={me ? me.id : null}
             postId={post.id}
+
             comments={post.comments}
             createdAt={post.createdAt}
             place={post.place}
@@ -80,6 +85,15 @@ const postPage = () => {
       />
     </>
   );
+ } else {
+  return (
+    <>
+      <NavbarWithHamburger rightItems={rightItems} navbarTitle="실시간 Play's" />
+      <ErrorLayout isNavbar={false} mainTextArray={['등록된 장소가 없습니다.']} />
+    </>
+  );
+}
+
 };
 
-export default postPage;
+export default PostPage;

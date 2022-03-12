@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import router from 'next/router';
 
-import { MainTable, NavbarWithHamburger, SearchChipBar, Text } from '@components';
+import { BaseButton, MainTable, NavbarWithHamburger, SearchChipBar } from '@components';
 
 import {
   ButtonWrapper,
@@ -10,7 +10,6 @@ import {
   FirstPageLayout,
   NoLoginText,
   StyledArrowRight,
-  StyledButton,
   StyledImg,
   StyledLogo,
   Title,
@@ -27,8 +26,8 @@ export const Home = ({ rightItems }: HomeProps) => {
     setIsLoading(true);
     router.push('/register').then(() => {
       setIsLoading(false);
+      window.localStorage.setItem('isUserPass', 'pass');
     });
-    window.localStorage.setItem('isUserPass', 'pass');
   };
 
   const onClickNoLoginText = () => {
@@ -38,7 +37,7 @@ export const Home = ({ rightItems }: HomeProps) => {
 
   return (
     <>
-      {isLocalStorgeSave === 'pass' && join ? (
+      {isLocalStorgeSave === 'pass' || join ? (
         <>
           <NavbarWithHamburger isMiddleSelect={true} rightItems={rightItems} />
           <SearchChipBar />
@@ -53,9 +52,9 @@ export const Home = ({ rightItems }: HomeProps) => {
           <Description style={{ marginTop: '24px' }}>안암, 성신여대, 혜화, 경희대 주변</Description>
           <Description>놀거리 장소 및 데이트 코스 추천 서비스</Description>
           <ButtonWrapper>
-            <StyledButton height='54px' block loading={isLoading} onClick={onClickJoinMainPage}>
+            <BaseButton height='54px' block loading={isLoading} onClick={onClickJoinMainPage}>
               Join !
-            </StyledButton>
+            </BaseButton>
           </ButtonWrapper>
           <NoLoginText onClick={onClickNoLoginText}>
             로그인 없이 이용하기

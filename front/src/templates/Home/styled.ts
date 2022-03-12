@@ -1,7 +1,5 @@
 import styled from 'styled-components';
 
-import { BaseButton } from '@components';
-
 import { ArrowRight } from '@assets';
 import { Colors } from '@styles';
 
@@ -43,16 +41,6 @@ export const Description = styled.div`
 export const ButtonWrapper = styled.div`
   width: 100%;
   padding: 34px 62px 0 62px;
-`;
-
-export const StyledButton = styled(BaseButton)`
-  height: 54px;
-  &:hover {
-    background-color: ${Colors.primary_4};
-  }
-  &:active {
-    background-color: ${Colors.primary_6};
-  }
 `;
 
 export const NoLoginText = styled.div`

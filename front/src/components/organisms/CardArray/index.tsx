@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Card } from '@components';
+import { Card, ErrorLayout } from '@components';
 
 import { SimplePlaceType } from 'interfaces/place';
 
@@ -48,13 +48,13 @@ const ChipArray = ({ places }: { places: any }) => {
               />
             );
           } else {
-            return <div>null</div>;
+            return <ErrorLayout isNavbar={false} mainTextArray={['등록된 장소가 없습니다.']} />;
           }
         })}
       </>
     );
   } else {
-    return <div>하아</div>;
+    return <ErrorLayout isNavbar={false} mainTextArray={['등록된 장소가 없습니다.']} />;
   }
 };
 

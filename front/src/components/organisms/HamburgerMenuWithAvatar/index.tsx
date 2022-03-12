@@ -5,12 +5,14 @@ import { Skeleton } from 'antd';
 import Router from 'next/router';
 
 import { Avatar, HamburgerMenu, ToggleDark } from '@components';
+import { Error } from '@templates';
 
 import { loadMyInfoAPI } from 'apis/user';
 import User from 'interfaces/user';
 
 import { Clock, Configuation, Home, Info, Recommend } from '@assets';
 import useWindowDimensions from '@hooks/useWindowDimensions';
+import { getImageLink } from '@util/imageLinkDecoder';
 
 import {
   CursorHorizontalArrangement,
@@ -84,14 +86,14 @@ export const HamburgerMenuWithAvatar = () => {
   }
 
   if (me.isError) {
-    return <span>Error</span>;
+    return <Error isNavbar={false} />;
   }
 
   return (
     <HamburgerMenuWithAvatarWrapper width={width * 0.75}>
       <ToggleDark />
       <InfoWrapper>
-        <Avatar size={59} />
+        <Avatar imageSource={getImageLink(me.data.images)} size={59} />
         {me.data && me.data.name ? (
           <>
             <Div>

@@ -4,7 +4,7 @@ import { useQuery } from 'react-query';
 import { Skeleton } from 'antd';
 import Router from 'next/router';
 
-import { Info } from '@templates';
+import { Error, Info } from '@templates';
 
 import { loadMyInfoAPI } from 'apis/user';
 import User from 'interfaces/user';
@@ -28,7 +28,7 @@ const InfoPage = () => {
   }
 
   if (isError) {
-    return <span>Error</span>;
+    return <Error isNavbar={false} />;
   }
 
   return <Info title='최근에 본 장소/코스' navbarTitle='내 정보' />;

@@ -3,7 +3,8 @@ import { useQuery } from 'react-query';
 
 import { Skeleton } from 'antd';
 
-import { CardArray, Footer, MyInfoCard, NavbarWithHamburger } from '@components';
+import { CardArray, ErrorLayout, Footer, MyInfoCard, NavbarWithHamburger, Text } from '@components';
+import { Error } from '@templates';
 
 import { getByArrAPI } from 'apis/place';
 import { loadMyInfoAPI } from 'apis/user';
@@ -12,7 +13,7 @@ import User from 'interfaces/user';
 import { SidePadding } from '@styles';
 import { decodeImageLink } from '@util/imageLinkDecoder';
 
-import { Container, StyledText } from './styled';
+import { Container } from './styled';
 import { InfoProps } from './type';
 
 export const Info = ({ title, navbarTitle }: InfoProps) => {
@@ -21,7 +22,7 @@ export const Info = ({ title, navbarTitle }: InfoProps) => {
   const me = useQuery<User>('user', loadMyInfoAPI);
 
   if (me.isError) {
-    return <span>Error</span>;
+    return <Error isNavbar={false} />;
   }
 
   if (me.isLoading || me.isIdle) {
@@ -33,7 +34,7 @@ export const Info = ({ title, navbarTitle }: InfoProps) => {
   });
 
   if (places.isError) {
-    return <span>Error</span>;
+    return <Error isNavbar={false} />;
   }
 
   if (places.isLoading || places.isIdle) {
@@ -47,14 +48,14 @@ export const Info = ({ title, navbarTitle }: InfoProps) => {
           <NavbarWithHamburger navbarTitle={navbarTitle} />
           <MyInfoCard
             imageSource={
-              me.data.image ? decodeImageLink(me.data.image.data) : '/pictures/profile.png'
+              me.data.images ? decodeImageLink(me.data.images.data) : '/pictures/profile.png'
             }
             name={me.data.name}
             style={{ marginBottom: '31px' }}
           />
-          <StyledText subtitle2 bold primary>
+          <Text subtitle2 bold primary style={{ paddingLeft: '31px' }}>
             {title}
-          </StyledText>
+          </Text>
           <SidePadding style={{ marginTop: '12px' }}>
             <CardArray places={places.data} />
             <Footer />
@@ -63,6 +64,6 @@ export const Info = ({ title, navbarTitle }: InfoProps) => {
       </>
     );
   } else {
-    return <div />;
+    return <ErrorLayout isNavbar={false} mainTextArray={['내 정보가 없습니다.']} />;
   }
 };
