@@ -89,14 +89,13 @@ export const HamburgerMenuWithAvatar = () => {
     return <Error isNavbar={false} />;
   }
 
+  console.log('me.data', me.data);
   return (
     <HamburgerMenuWithAvatarWrapper width={width * 0.75}>
       <ToggleDark />
       <InfoWrapper>
         <Avatar
-          imageSource={
-            me.data.image ? decodeImageLink(me.data.image.data) : '/pictures/profile.png'
-          }
+          imageSource={me.data ? decodeImageLink(me.data.image.data) : '/pictures/profile.png'}
           size={59}
         />
         {me.data && me.data.name ? (
