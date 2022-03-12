@@ -4,7 +4,7 @@ import { useQuery } from 'react-query';
 import { Skeleton } from 'antd';
 import Router from 'next/router';
 
-import { Avatar, HamburgerMenu, ToggleDark } from '@components';
+import { Avatar, ErrorLayout, HamburgerMenu, ToggleDark } from '@components';
 import { Error } from '@templates';
 
 import { loadMyInfoAPI } from 'apis/user';
@@ -89,15 +89,26 @@ export const HamburgerMenuWithAvatar = () => {
     return <Error isNavbar={false} />;
   }
 
-  console.log('me.data', me.data);
+  const renderAvatar = () => {
+    if (me.data) {
+      return (
+        <Avatar
+          imageSource={
+            me.data.image ? decodeImageLink(me.data.image.data) : '/pictures/profile.png'
+          }
+          size={59}
+        />
+      );
+    } else {
+      return <ErrorLayout isNavbar={false} mainTextArray={['내 정보가 없습니다.']} />;
+    }
+  };
+
   return (
     <HamburgerMenuWithAvatarWrapper width={width * 0.75}>
       <ToggleDark />
       <InfoWrapper>
-        <Avatar
-          imageSource={me.data ? decodeImageLink(me.data.image.data) : '/pictures/profile.png'}
-          size={59}
-        />
+        {renderAvatar()}
         {me.data && me.data.name ? (
           <>
             <Div>
