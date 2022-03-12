@@ -48,7 +48,7 @@ export const Info = ({ title, navbarTitle }: InfoProps) => {
           <NavbarWithHamburger navbarTitle={navbarTitle} />
           <MyInfoCard
             imageSource={
-              me.data.images ? decodeImageLink(me.data.images.data) : '/pictures/profile.png'
+              me.data.image ? decodeImageLink(me.data.image.data) : '/pictures/profile.png'
             }
             name={me.data.name}
             style={{ marginBottom: '31px' }}

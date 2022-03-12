@@ -45,28 +45,25 @@ const PostPage = () => {
     return (
       <>
         <NavbarWithHamburger rightItems={rightItems} navbarTitle="실시간 Play's" />
-        {posts.map((post: Post, key: number) => {
-          const userImage = post.user.images[0] as any;
-          return (
-            <InstaCard
-              titleText={post.place.placeName}
-              placeText={post.place.addressExact}
-              description={post.description}
-              CarouselList={post.images}
-              likesCount={post.likeNum}
-              isLiked={post.isLiked}
-              userId={me ? me.id : null}
-              postId={post.id}
-              comments={post.comments}
-              createdAt={post.createdAt}
-              place={post.place}
-              userName={post.user.name}
-              userImage={userImage}
-              setModalVisible={setModalVisible}
-              key={key}
-            />
-          );
-        })}
+        {posts.map((post: Post, key: number) => (
+          <InstaCard
+            titleText={post.place.placeName}
+            placeText={post.place.addressExact}
+            description={post.description}
+            CarouselList={post.images}
+            likesCount={post.likeNum}
+            isLiked={post.isLiked}
+            userId={me ? me.id : null}
+            postId={post.id}
+            comments={post.comments}
+            createdAt={post.createdAt}
+            place={post.place}
+            userName={post.user.name}
+            userImage={post.user.image}
+            setModalVisible={setModalVisible}
+            key={key}
+          />
+        ))}
         <Modal
           show={modalVisible}
           title='로그인 후 이용 가능합니다!'

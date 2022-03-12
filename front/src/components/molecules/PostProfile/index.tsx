@@ -11,7 +11,10 @@ export const PostProfile: React.FC<postProfileProps> = ({ createdAt, userName, u
   const [year, month, day] = createdAt.substr(0, 10).split('-');
   return (
     <StyledProfileContainer>
-      <Avatar size={50} imageSource={decodeImageLink(userImage?.path.data)} />
+      <Avatar
+        size={50}
+        imageSource={userImage ? decodeImageLink(userImage.path.data) : `pictures/no-image.svg`}
+      />
       <StyledProfileText>
         <Text bold subtitle1 primary>
           {userName}
