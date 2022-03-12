@@ -6,7 +6,7 @@ import { SimplePlaceType } from 'interfaces/place';
 
 import { decodeImageLink } from '@util/imageLinkDecoder';
 
-import { StyledCardContainer, StyledReview, StyledScrap, StyledStar } from './styled';
+import { StyledCardContainer, StyledDistance, StyledReview, StyledStar } from './styled';
 import { CardArrayProps } from './type';
 
 const ChipArray = ({ places }: { places: any }) => {
@@ -15,14 +15,10 @@ const ChipArray = ({ places }: { places: any }) => {
       <>
         {places.map((place: SimplePlaceType, key: number) => {
           if (place) {
-            const { placeName, images, scrapCount, ratingNumber, commentCount, placeDescription } =
+            const { placeName, images, ratingNumber, commentCount, distance, placeDescription } =
               place;
 
             const ChipGroupList = [
-              {
-                icon: <StyledScrap />,
-                label: scrapCount,
-              },
               {
                 icon: <StyledStar />,
                 label: ratingNumber,
@@ -30,6 +26,10 @@ const ChipArray = ({ places }: { places: any }) => {
               {
                 icon: <StyledReview />,
                 label: commentCount,
+              },
+              {
+                icon: <StyledDistance />,
+                label: distance,
               },
             ];
 

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { Review, Scrap, Star } from '@assets';
+import { Distance, Review, Star } from '@assets';
 import { Colors } from '@styles';
 
 export const StyledCardContainer = styled.div`
@@ -17,7 +17,7 @@ export const StyledStar = styled(Star)`
   margin-right: 5px;
 `;
 
-export const StyledScrap = styled(Scrap)`
+export const StyledReview = styled(Review)`
   width: 10px;
   height: 12px;
   path {
@@ -26,7 +26,7 @@ export const StyledScrap = styled(Scrap)`
   margin-right: 5px;
 `;
 
-export const StyledReview = styled(Review)`
+export const StyledDistance = styled(Distance)`
   width: 11px;
   height: 11px;
   path {
