@@ -4,7 +4,7 @@ import { Card } from '@components';
 
 import { SimplePlaceType } from 'interfaces/place';
 
-import { getImageLink } from '@util/imageLinkDecoder';
+import { decodeImageLink } from '@util/imageLinkDecoder';
 
 import { StyledCardContainer, StyledReview, StyledScrap, StyledStar } from './styled';
 import { CardArrayProps } from './type';
@@ -34,7 +34,9 @@ const ChipArray = ({ places }: { places: any }) => {
             ];
 
             const imageLink =
-              images.length > 0 ? getImageLink(images[0].path.data) : `pictures/default-place.png`;
+              images.length > 0
+                ? decodeImageLink(images[0].path.data)
+                : `pictures/default-place.png`;
 
             return (
               <Card
