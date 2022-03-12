@@ -20,7 +20,7 @@ export default interface User {
   liktList: Array<SimplePlaceType>;
   rateList: Array<SimplePlaceType>;
   historyList: Array<SimplePlaceType>;
-  images: Array<ImageProps>;
+  image: ImagePathProps;
   sourceId: string;
   likeList: string[];
 }

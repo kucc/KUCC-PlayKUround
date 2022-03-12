@@ -25,13 +25,13 @@ const DetailPost = () => {
       comments,
       createdAt,
       place: { placeName },
-      user: { name: userName, images: userImageArray },
+      user: { name: userName, images: userImage },
       likeNum: likesCount,
       images: CarouselList,
       isLiked,
       userId,
     }: any = data;
-    const userImage = userImageArray[0];
+    console.log(data);
     setPostData({
       comments,
       createdAt,
@@ -63,7 +63,8 @@ const DetailPost = () => {
       CarouselList={postData.CarouselList}
       isLiked={postData.isLiked}
       userId={postData.userId}
-      postId={postData.postId}></PostDetail>
+      postId={postData.postId}
+    />
   );
 };
 
