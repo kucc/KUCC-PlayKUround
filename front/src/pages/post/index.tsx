@@ -47,7 +47,6 @@ const PostPage = () => {
         <NavbarWithHamburger rightItems={rightItems} navbarTitle="실시간 Play's" />
         {posts.map((post: Post, key: number) => (
           <InstaCard
-            place={post.place}
             titleText={post.place.placeName}
             placeText={post.place.addressExact}
             description={post.description}
@@ -56,6 +55,11 @@ const PostPage = () => {
             isLiked={post.isLiked}
             userId={me ? me.id : null}
             postId={post.id}
+            comments={post.comments}
+            createdAt={post.createdAt}
+            place={post.place}
+            userName={post.user.name}
+            userImage={post.user.image}
             setModalVisible={setModalVisible}
             key={key}
           />

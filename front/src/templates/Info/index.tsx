@@ -11,7 +11,7 @@ import { loadMyInfoAPI } from 'apis/user';
 import User from 'interfaces/user';
 
 import { SidePadding } from '@styles';
-import { getImageLink } from '@util/imageLinkDecoder';
+import { decodeImageLink } from '@util/imageLinkDecoder';
 
 import { Container } from './styled';
 import { InfoProps } from './type';
@@ -48,7 +48,7 @@ export const Info = ({ title, navbarTitle }: InfoProps) => {
           <NavbarWithHamburger navbarTitle={navbarTitle} />
           <MyInfoCard
             imageSource={
-              me.data.images ? getImageLink(me.data.images.data) : '/pictures/profile.png'
+              me.data.image ? decodeImageLink(me.data.image.data) : '/pictures/profile.png'
             }
             name={me.data.name}
             style={{ marginBottom: '31px' }}

@@ -12,7 +12,7 @@ import User from 'interfaces/user';
 
 import { Clock, Configuation, Home, Info, Recommend } from '@assets';
 import useWindowDimensions from '@hooks/useWindowDimensions';
-import { getImageLink } from '@util/imageLinkDecoder';
+import { decodeImageLink } from '@util/imageLinkDecoder';
 
 import {
   CursorHorizontalArrangement,
@@ -93,7 +93,12 @@ export const HamburgerMenuWithAvatar = () => {
     <HamburgerMenuWithAvatarWrapper width={width * 0.75}>
       <ToggleDark />
       <InfoWrapper>
-        <Avatar imageSource={getImageLink(me.data.images)} size={59} />
+        <Avatar
+          imageSource={
+            me.data.image ? decodeImageLink(me.data.image.data) : '/pictures/profile.png'
+          }
+          size={59}
+        />
         {me.data && me.data.name ? (
           <>
             <Div>

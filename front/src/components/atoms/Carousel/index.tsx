@@ -6,7 +6,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-import { getImageLink } from '@util/imageLinkDecoder';
+import { decodeImageLink } from '@util/imageLinkDecoder';
 
 import { SwiperContainer } from './styled';
 import { CarouselProps } from './type';
@@ -30,7 +30,7 @@ export const Carousel = ({ CarouselList }: CarouselProps) => {
         {CarouselList.map((image, index) => (
           <SwiperSlide key={index}>
             {image.path.data ? (
-              <img src={getImageLink(image.path.data)} style={{ objectFit: 'contain' }} />
+              <img src={decodeImageLink(image.path.data)} style={{ objectFit: 'contain' }} />
             ) : null}
           </SwiperSlide>
         ))}

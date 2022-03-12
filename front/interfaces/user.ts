@@ -1,6 +1,10 @@
 import { SimplePlaceType } from './place';
 
 export interface ImageProps {
+  path: ImagePathProps;
+}
+
+export interface ImagePathProps {
   data: any;
   type: string;
 }
@@ -16,7 +20,7 @@ export default interface User {
   liktList: Array<SimplePlaceType>;
   rateList: Array<SimplePlaceType>;
   historyList: Array<SimplePlaceType>;
-  images: ImageProps;
+  image: ImagePathProps;
   sourceId: string;
   likeList: string[];
 }

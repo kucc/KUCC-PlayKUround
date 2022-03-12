@@ -1,5 +1,5 @@
-export function getImageLink(data: any) {
-  if (data === undefined) {
+export function decodeImageLink(data: any) {
+  if (!data) {
     return `pictures/no-image.svg`;
   } else {
     const buff = Buffer.from(data, 'base64');

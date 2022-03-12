@@ -47,7 +47,7 @@ Post.hasMany(Image, { foreignKey: 'source', sourceKey: 'sourceId' });
 Post.hasMany(Hashtag, { foreignKey: 'source', sourceKey: 'sourceId' });
 
 User.hasMany(Place, { foreignKey: 'writer', sourceKey: 'id' });
-User.hasMany(Image, { foreignKey: 'source', sourceKey: 'sourceId' });
+User.hasOne(Image, { foreignKey: 'source', sourceKey: 'sourceId' });
 User.hasMany(Post, { foreignKey: 'writer', sourceKey: 'id' });
 
 Menu.belongsTo(Place, { foreignKey: 'placeId', targetKey: 'id' });

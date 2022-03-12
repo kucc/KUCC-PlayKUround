@@ -11,3 +11,4 @@ export * from './Navbar';
 export * from './NavbarWithHamburger';
 export * from './RecommendTable';
 export * from './RegisterInput';
+export * from './PostTop';
