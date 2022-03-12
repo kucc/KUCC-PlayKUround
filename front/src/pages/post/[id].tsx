@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useContext } from 'react';
 
+import { Skeleton } from 'antd';
 import { useRouter } from 'next/router';
+
+import { PostDetail } from '@templates/PostDetail';
 
 import { postGetByOneAPI } from 'apis/post';
 import Post from 'interfaces/post';
+import postDetail from 'interfaces/postDetail';
 
 import { postValueContext } from '@contexts/postValue';
 
@@ -13,19 +17,21 @@ const DetailPost = () => {
 
   const { id } = router.query;
 
-  const { postValue } = useContext(postValueContext);
-  const [postData, setPostData] = useState(postValue);
+  const { postValue }: { postValue: postDetail } = useContext(postValueContext);
+  const [postData, setPostData] = useState<postDetail>(postValue);
   async function getData() {
     const data: Post = await postGetByOneAPI(id as string);
     const {
       comments,
       createdAt,
       place: { placeName },
-      user: { name: userName, images: userImage },
+      user: { name: userName, images: userImageArray },
       likeNum: likesCount,
       images: CarouselList,
       isLiked,
-    } = data;
+      userId,
+    }: any = data;
+    const userImage = userImageArray[0];
     setPostData({
       comments,
       createdAt,
@@ -35,18 +41,30 @@ const DetailPost = () => {
       likesCount,
       CarouselList,
       isLiked,
+      userId,
+      postId: parseInt(id as string),
     });
   }
-  console.log(postData);
   useEffect(() => {
     if (!postValue && id) {
       getData();
     }
   }, [postValue, id]);
 
-  console.log(postValue);
-
-  return <div>asasa</div>;
+  if (!postData) return <Skeleton active />;
+  return (
+    <PostDetail
+      comments={postData.comments}
+      createdAt={postData.createdAt}
+      placeName={postData.placeName}
+      userName={postData.userName}
+      userImage={postData.userImage}
+      likesCount={postData.likesCount}
+      CarouselList={postData.CarouselList}
+      isLiked={postData.isLiked}
+      userId={postData.userId}
+      postId={postData.postId}></PostDetail>
+  );
 };
 
 export default DetailPost;
