@@ -8,6 +8,7 @@ import Coffee from './icons/coffee.svg';
 import Configuation from './icons/configuration.svg';
 import Cross from './icons/cross.svg';
 import Dice from './icons/dice.svg';
+import Distance from './icons/distance.svg';
 import Down from './icons/down.svg';
 import Filter from './icons/filter.svg';
 import Global from './icons/global.svg';
@@ -48,6 +49,7 @@ export {
   Configuation,
   Cross,
   Dice,
+  Distance,
   Down,
   Filter,
   Global,
