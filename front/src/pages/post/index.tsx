@@ -87,7 +87,7 @@ const PostPage = () => {
     return (
       <>
         <NavbarWithHamburger rightItems={rightItems} navbarTitle="실시간 Play's" />
-        <ErrorLayout isNavbar={false} mainTextArray={['등록된 장소가 없습니다.']} />
+        <ErrorLayout isNavbar={false} mainTextArray={['아직 등록된 장소가 없어요 ㅠㅠ']} />
       </>
     );
   }

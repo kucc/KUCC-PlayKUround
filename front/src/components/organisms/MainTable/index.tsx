@@ -49,7 +49,7 @@ export const MainTable = () => {
       if (places) {
         return <CardArray places={places.data} />;
       } else {
-        return <ErrorLayout isNavbar={false} mainTextArray={['등록된 장소가 없습니다.']} />;
+        return <ErrorLayout isNavbar={false} mainTextArray={['아직 등록된 장소가 없어요 ㅠㅠ']} />;
       }
     } else {
       return (
@@ -76,7 +76,6 @@ export const MainTable = () => {
       <StyledContentContainer noData={!(places && places.data) ? true : false}>
         {renderMainItem()}
       </StyledContentContainer>
-      <Footer />
     </StyledMainTable>
   );
 };
