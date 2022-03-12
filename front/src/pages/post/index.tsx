@@ -41,13 +41,15 @@ const PostPage = () => {
     return <Error isNavbar={false} />;
   }
 
-  if (posts) {
-    return (
-      <>
-        <NavbarWithHamburger rightItems={rightItems} navbarTitle="실시간 Play's" />
-        {posts.map((post: Post, key: number) => (
+
+if (posts) {
+  return (
+    <>
+      <NavbarWithHamburger rightItems={rightItems} navbarTitle="실시간 Play's" />
+      {posts.map((post: Post, key: number) => {
+        const userImage = post.user.images[0] as any;
+        return (
           <InstaCard
-            place={post.place}
             titleText={post.place.placeName}
             placeText={post.place.addressExact}
             description={post.description}
@@ -56,37 +58,42 @@ const PostPage = () => {
             isLiked={post.isLiked}
             userId={me ? me.id : null}
             postId={post.id}
+
+            comments={post.comments}
+            createdAt={post.createdAt}
+            place={post.place}
+            userName={post.user.name}
+            userImage={userImage}
             setModalVisible={setModalVisible}
             key={key}
           />
-        ))}
-        <Modal
-          show={modalVisible}
-          title='로그인 후 이용 가능합니다!'
-          description={[
-            '로그인을 하지 않아 해당 게시물을 좋아요할 수 없어요.',
-            '로그인 하시겠어요?',
-          ]}
-          leftLabel='닫기'
-          rightLabel='로그인'
-          onClickLeftButton={() => {
-            setModalVisible(false);
-          }}
-          onClickRightButton={() => {
-            router.push('/login');
-          }}
-          onClickOverlay={() => setModalVisible(false)}
-        />
-      </>
-    );
-  } else {
-    return (
-      <>
-        <NavbarWithHamburger rightItems={rightItems} navbarTitle="실시간 Play's" />
-        <ErrorLayout isNavbar={false} mainTextArray={['등록된 장소가 없습니다.']} />
-      </>
-    );
-  }
+        );
+      })}
+      <Modal
+        show={modalVisible}
+        title='로그인 후 이용 가능합니다!'
+        description={['로그인을 하지 않아 해당 게시물을 좋아요할 수 없어요.', '로그인 하시겠어요?']}
+        leftLabel='닫기'
+        rightLabel='로그인'
+        onClickLeftButton={() => {
+          setModalVisible(false);
+        }}
+        onClickRightButton={() => {
+          router.push('/login');
+        }}
+        onClickOverlay={() => setModalVisible(false)}
+      />
+    </>
+  );
+ } else {
+  return (
+    <>
+      <NavbarWithHamburger rightItems={rightItems} navbarTitle="실시간 Play's" />
+      <ErrorLayout isNavbar={false} mainTextArray={['등록된 장소가 없습니다.']} />
+    </>
+  );
+}
+
 };
 
 export default PostPage;

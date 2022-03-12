@@ -18,7 +18,7 @@ export async function postGetByOneAPI(postId: string) {
       `/api/post/getByOne?postId=${postId}&userId=${userId ?? ''}`,
     );
     if (data.success) {
-      return data.result;
+      return { ...data.result, userId };
     }
   } catch (error) {
     return;
