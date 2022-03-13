@@ -1,3 +1,4 @@
+import AddCourse from './icons/add-course.svg';
 import ArrowRight from './icons/arrow-right.svg';
 import ArrowUp from './icons/arrow-up.svg';
 import Back from './icons/back.svg';
@@ -40,6 +41,7 @@ import Table from './icons/table.svg';
 import WritePost from './icons/write-post.svg';
 
 export {
+  AddCourse,
   ArrowRight,
   ArrowUp,
   Back,

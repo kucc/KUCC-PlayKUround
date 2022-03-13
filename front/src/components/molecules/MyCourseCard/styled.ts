@@ -7,7 +7,7 @@ export const MyCourseCardWrapper = styled.div<{ IconColor: string; width: number
     fill: ${({ IconColor }) => (IconColor ? IconColor : Colors.primary)};
   }
   width: ${({ width }) => width}px;
-  padding-bottom: 16px;
+  padding-bottom: 15px;
   border: 1px solid ${Colors.lightGrey_6};
   border-radius: 12px;
   margin: 7px auto;
