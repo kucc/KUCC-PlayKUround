@@ -3,6 +3,7 @@ import { useState } from 'react';
 
 import { InstaCard } from '@components';
 import { Navbar } from '@components';
+import { MyCourseChip } from '@components';
 
 import { Filter } from '@assets';
 import { WritePost } from '@assets';
@@ -20,7 +21,8 @@ const TestPage = () => {
   ];
   return (
     <>
-      <Navbar leftItems={leftItems} rightItems={rightItems} text="실시간 Play's" />
+      <Navbar leftItems={leftItems} rightItems={rightItems} text='내 코스 만들기' />
+      <MyCourseChip place='안암 아줌마 아저씨 치킨' />
     </>
   );
 };
