@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import router from 'next/router';
 
-import { BackIconWithNavbar, Footer, Modal, PostTop } from '@components';
+import { BackIconWithNavbar, Carousel, Footer, Modal, PostTop, Text } from '@components';
 
 import postDetail from 'interfaces/postDetail';
 
@@ -14,19 +14,21 @@ export const PostDetail: React.FC<postDetail> = ({
   comments,
   createdAt,
   placeName,
-  userName,
-  userImage,
+  writerName,
+  writerImage,
   likesCount,
   CarouselList,
   isLiked,
   userId,
   postId,
+  description,
 }) => {
   const [modalVisible, setModalVisible] = useState<boolean>(false);
+
   return (
     <>
       <Container>
-        <BackIconWithNavbar text={placeName} onClickBackIcon={() => {}} />
+        <BackIconWithNavbar text={placeName} />
         <SidePadding style={{ marginTop: '12px' }}>
           <PostTop
             userId={userId}
@@ -35,9 +37,15 @@ export const PostDetail: React.FC<postDetail> = ({
             isLiked={isLiked}
             setModalVisible={setModalVisible}
             createdAt={createdAt}
-            userName={userName}
-            userImage={userImage}
+            writerName={writerName}
+            writerImage={writerImage}
           />
+          {CarouselList && <Carousel style={{ marginTop: '10px' }} CarouselList={CarouselList} />}
+          <SidePadding style={{ marginTop: '30px' }}>
+            <Text caption primary>
+              {description}
+            </Text>
+          </SidePadding>
           <Footer />
         </SidePadding>
       </Container>
