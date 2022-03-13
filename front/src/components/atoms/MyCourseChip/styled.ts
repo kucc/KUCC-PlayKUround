@@ -8,6 +8,7 @@ export const MyCourseChipWrapper = styled.div`
   width: 74px;
   height: 74px;
   cursor: pointer;
+  margin-right: 16px;
 `;
 export const MyCourseChipImg = styled.img<{ background?: string }>`
   position: absolute;

@@ -13,9 +13,15 @@ export const MyCourseCardWrapper = styled.div<{ IconColor: string; width: number
   margin: 7px auto;
 `;
 export const MyCourseChipListWrapper = styled.div`
-  display: flex;
-  flex-direction: flex-start;
+  display: -webkit-inline-box;
   padding-left: 25px;
+  width: 100%;
+  overflow-x: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 export const TopTextContainer = styled.div`
   display: flex;
@@ -28,5 +34,6 @@ export const TopTextContainer = styled.div`
   }
   span:last-child {
     color: ${Colors.lightGrey_7};
+    cursor: pointer;
   }
 `;
