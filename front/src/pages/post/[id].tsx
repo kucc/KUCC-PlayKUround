@@ -25,24 +25,25 @@ const DetailPost = () => {
       comments,
       createdAt,
       place: { placeName },
-      user: { name: userName, images: userImage },
+      user: { name: writerName, images: writerImage },
       likeNum: likesCount,
       images: CarouselList,
       isLiked,
       userId,
+      description,
     }: any = data;
-    console.log(data);
     setPostData({
       comments,
       createdAt,
       placeName,
-      userName,
-      userImage,
+      writerName,
+      writerImage,
       likesCount,
       CarouselList,
       isLiked,
       userId,
       postId: parseInt(id as string),
+      description,
     });
   }
   useEffect(() => {
@@ -57,13 +58,14 @@ const DetailPost = () => {
       comments={postData.comments}
       createdAt={postData.createdAt}
       placeName={postData.placeName}
-      userName={postData.userName}
-      userImage={postData.userImage}
+      writerName={postData.writerName}
+      writerImage={postData.writerImage}
       likesCount={postData.likesCount}
       CarouselList={postData.CarouselList}
       isLiked={postData.isLiked}
       userId={postData.userId}
       postId={postData.postId}
+      description={postData.description}
     />
   );
 };
