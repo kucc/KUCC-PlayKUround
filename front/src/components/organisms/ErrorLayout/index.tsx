@@ -8,10 +8,6 @@ import { ContentLayout, TextLayout } from './styled';
 import { ErrorProps } from './type';
 
 export const ErrorLayout = ({ isNavbar = true, mainTextArray, subTextArray }: ErrorProps) => {
-  const onClickBackIcon = () => {
-    router.back();
-  };
-
   const renderMainText = () => {
     if (mainTextArray) {
       return (
@@ -42,7 +38,7 @@ export const ErrorLayout = ({ isNavbar = true, mainTextArray, subTextArray }: Er
 
   return (
     <>
-      {isNavbar && <BackIconWithNavbar text='오류에요 ㅠㅠ' onClickBackIcon={onClickBackIcon} />}
+      {isNavbar && <BackIconWithNavbar text='오류에요 ㅠㅠ' />}
       <ContentLayout>
         <Avatar size={205} imageSource={'/pictures/crying-tiger.png'} />
         {mainTextArray && <TextLayout>{renderMainText()}</TextLayout>}
