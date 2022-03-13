@@ -6,6 +6,7 @@ import Cartoon from './icons/cartoon.svg';
 import Clock from './icons/clock.svg';
 import Coffee from './icons/coffee.svg';
 import Configuation from './icons/configuration.svg';
+import CourseOrderIndicator from './icons/course-order-indicator.svg';
 import Cross from './icons/cross.svg';
 import Dice from './icons/dice.svg';
 import Distance from './icons/distance.svg';
@@ -78,4 +79,5 @@ export {
   WritePost,
   Likes,
   LikesFill,
+  CourseOrderIndicator,
 };
