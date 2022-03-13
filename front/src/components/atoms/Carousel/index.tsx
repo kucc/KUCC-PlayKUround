@@ -12,9 +12,9 @@ import { SwiperContainer } from './styled';
 import { CarouselProps } from './type';
 
 SwiperCore.use([Keyboard, Pagination]);
-export const Carousel = ({ CarouselList }: CarouselProps) => {
+export const Carousel = ({ CarouselList, style }: CarouselProps) => {
   return (
-    <SwiperContainer>
+    <SwiperContainer style={style}>
       <Swiper
         modules={[Keyboard, Pagination]}
         slidesPerView={1}

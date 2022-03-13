@@ -34,6 +34,7 @@ export default class MyDocument extends Document {
       <Html>
         <Head>
           <style />
+          <script defer src='https://developers.kakao.com/sdk/js/kakao.js'></script>
         </Head>
         <body>
           <Main />
