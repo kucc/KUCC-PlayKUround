@@ -28,7 +28,7 @@ export const MyCourseCard = ({ MyCourseChipList, index }: MyCourseCardProps) => 
         <span>편집</span>
       </TopTextContainer>
       <MyCourseChipListWrapper>
-        {MyCourseChipList.map(({ imageSource, place }, index) => {
+        {MyCourseChipList?.map(({ imageSource, place }, index) => {
           return <MyCourseChip imageSource={imageSource} place={place} index={index + 1} />;
         })}
       </MyCourseChipListWrapper>

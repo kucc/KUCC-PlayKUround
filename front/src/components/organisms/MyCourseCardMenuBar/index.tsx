@@ -2,22 +2,29 @@ import React from 'react';
 
 import { MyCourseCard } from '@components';
 
+import { AddCourse } from '@assets';
+import { ArrowUp } from '@assets';
+import useWindowDimensions from '@hooks/useWindowDimensions';
+
+import { FullContainer, TopMenuBar } from './styled';
 import { MyCourseCardMenuBarProps } from './type';
 
-export const MyCourseCardMenuBar = ({ MyCourseCardMenuBarList }: MyCourseCardMenuBarProps) => {
-  const MyCourseChipList = [
-    { imageSource: 'pictures/insta-card.png', place: '안암 아줌마 아저씨 치킨' },
-    { imageSource: 'pictures/profile.png', place: '인아최고 만화카페' },
-    { imageSource: 'pictures/crying-tiger.png', place: '호랑이 술상' },
-    { imageSource: 'pictures/heart.png', place: '청년다방' },
-    { imageSource: 'pictures/crying-tiger.png', place: '어흥 스테이크' },
-    { imageSource: 'pictures/heart.png', place: '칠기 마라탕' },
-  ];
-  const MyCourseChipList2 = [
-    { imageSource: 'pictures/insta-card.png', place: '안암 아줌마 아저씨 치킨' },
-    { imageSource: 'pictures/profile.png', place: '인아최고 만화카페' },
-  ];
-  const MyCourseCardMenuBarGroupList = [MyCourseChipList, MyCourseChipList2];
-
-  return <MenuBarContainer></MenuBarContainer>;
+export const MyCourseCardMenuBar = ({
+  FirstCourseList,
+  SecondCourseList,
+  ThirdCourseList,
+}: MyCourseCardMenuBarProps) => {
+  const { width } = useWindowDimensions();
+  return (
+    <FullContainer>
+      <ArrowUp />
+      <TopMenuBar width={width * 0.9}>
+        <AddCourse />
+        <span>코스 추가하기</span>
+      </TopMenuBar>
+      <MyCourseCard MyCourseChipList={FirstCourseList} index={1} />
+      <MyCourseCard MyCourseChipList={SecondCourseList} index={2} />
+      {/* if ({ThirdCourseList}) {<MyCourseCard MyCourseChipList={ThirdCourseList} index={3} />} */}
+    </FullContainer>
+  );
 };

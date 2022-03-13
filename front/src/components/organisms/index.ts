@@ -12,3 +12,4 @@ export * from './NavbarWithHamburger';
 export * from './RecommendTable';
 export * from './RegisterInput';
 export * from './PostTop';
+export * from './MyCourseCardMenuBar';

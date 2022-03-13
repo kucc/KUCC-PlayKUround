@@ -1,6 +1,5 @@
-import { MyCourseCard } from './MyCourseCard';
-
 export type MyCourseCardMenuBarProps = {
-  index: number;
-  MyCourseCardMenuBarList: Array<{ MyCourseCard }>;
+  FirstCourseList?: Array<{ imageSource?: string; place: string }>;
+  SecondCourseList?: Array<{ imageSource?: string; place: string }>;
+  ThirdCourseList?: Array<{ imageSource?: string; place: string }>;
 };
