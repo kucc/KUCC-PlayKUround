@@ -26,7 +26,7 @@ import {
 } from './styled';
 
 export const HamburgerMenuWithAvatar = () => {
-  const { width, height } = useWindowDimensions();
+  const { width } = useWindowDimensions();
   const me = useQuery<User>('user', loadMyInfoAPI);
 
   const menuArray = [
@@ -91,16 +91,13 @@ export const HamburgerMenuWithAvatar = () => {
 
   const renderAvatar = () => {
     if (me.data) {
-      return (
-        <Avatar
-          imageSource={
-            me.data.image ? decodeImageLink(me.data.image.data) : '/pictures/profile.png'
-          }
-          size={59}
-        />
-      );
+      if (me.data.image) {
+        return <Avatar imageSource={decodeImageLink(me.data.image.data)} size={59} />;
+      } else {
+        return <Avatar imageSource={'/pictures/profile.png'} size={59} />;
+      }
     } else {
-      return <ErrorLayout isNavbar={false} mainTextArray={['내 정보가 없습니다.']} />;
+      return <Avatar imageSource={'/pictures/profile.png'} size={59} />;
     }
   };
 
