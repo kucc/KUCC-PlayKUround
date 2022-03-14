@@ -8,6 +8,8 @@ export interface UserAttributes {
   email: string;
   password: string;
   role: number;
+  snsId: any;
+  provider: string;
   token: string;
   tokenExp: number;
   createdAt?: Date;
@@ -26,7 +28,11 @@ interface UserCreationAttributes
   extends Optional<
     UserAttributes,
     | 'id'
+    | 'email'
+    | 'password'
     | 'role'
+    | 'snsId'
+    | 'provider'
     | 'token'
     | 'tokenExp'
     | 'sourceId'
@@ -47,7 +53,7 @@ declare global {
   namespace Express {
     interface Request {
       // express-passport의 user 정보 update
-      user: UserAttributes;
+      user?: UserAttributes;
       // express-passport의 login, logout을 직접 추가
       login(user: UserAttributes, done: (err: any) => void): void;
       logout(): void;

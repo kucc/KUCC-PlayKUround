@@ -18,7 +18,7 @@ const UserModel = (sequelize: Sequelize) => {
       },
       email: {
         type: DataTypes.STRING(30),
-        allowNull: false,
+        allowNull: true,
         // trim: true,
         unique: true,
       },
@@ -31,11 +31,18 @@ const UserModel = (sequelize: Sequelize) => {
             msg: 'Minimum 5 password Length required',
           },
         },
-        allowNull: false,
       },
       role: {
         type: DataTypes.INTEGER,
         defaultValue: 0,
+      },
+      snsId: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
+      provider: {
+        type: DataTypes.STRING,
+        allowNull: true,
       },
       token: {
         type: DataTypes.STRING,
