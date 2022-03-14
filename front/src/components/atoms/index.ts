@@ -12,3 +12,4 @@ export * from './LikesButton';
 export * from './MapIcons';
 export * from './RecommendCard';
 export * from './Text';
+export * from './SocialLoginIcon';
