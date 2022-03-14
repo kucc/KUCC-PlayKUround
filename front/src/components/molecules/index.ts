@@ -9,3 +9,4 @@ export * from './Modal';
 export * from './RecommendCardList';
 export * from './SearchChipBar';
 export * from './ToggleDark';
+export * from './SocialLogin';
