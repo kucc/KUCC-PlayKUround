@@ -1,5 +1,4 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react';
-import KakaoLogin from 'react-kakao-login';
 import { useQuery } from 'react-query';
 
 import { Skeleton } from 'antd';
@@ -11,7 +10,7 @@ import { useRouter } from 'next/router';
 import { BackIconWithNavbar, FirstRegisterInput, SecondRegisterInput, Text } from '@components';
 import { Error } from '@templates';
 
-import { loadMyInfoAPI } from 'apis/user';
+import { loadMyInfoAPI, logInKakao } from 'apis/user';
 import User from 'interfaces/user';
 
 import { MakeEmailContext } from '@contexts/globalEmail';
@@ -32,12 +31,6 @@ const RegisterPage = () => {
 
   const me = data as User;
   const [email, onChangeEmail] = useInput(globalEmail || '');
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      window.Kakao.init('05f9d9be8ba7e083714938b73d23a1ef');
-    }
-  }, []);
 
   const onChangeNickname = useCallback(e => {
     setNickname(e.target.value);
@@ -64,27 +57,6 @@ const RegisterPage = () => {
             onChangePassword={onChangePassword}
             onChangePasswordCheck={onChangePasswordCheck}
           />
-          <KakaoLogin
-            token={'05f9d9be8ba7e083714938b73d23a1ef'}
-            onSuccess={res => {
-              console.log(res);
-              console.log('로그인성공');
-            }} // 성공 시 실행할 함수
-            onFail={err => {
-              console.log('로그인실패');
-            }}
-            onLogout={() => {
-              console.log('로그아웃');
-            }}
-            render={({ onClick }) => (
-              <div
-                onClick={e => {
-                  e.preventDefault();
-                  onClick();
-                }}>
-                카카오로 로그인하기
-              </div>
-            )}></KakaoLogin>
         </>
       );
     } else {

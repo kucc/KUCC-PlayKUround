@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 
 import { BaseButton, BaseInput } from '@components';
+import { SocialLogin } from '@components';
 
 import { checkEmailAPI } from 'apis/user';
 
@@ -129,6 +130,7 @@ export const FirstRegisterInput = ({
         successMessage='비밀번호가 일치합니다 !'
         style={{ paddingTop: '68px' }}
       />
+      <SocialLogin />
       <ButtonWrapper>
         <BaseButton
           width='174'
@@ -138,6 +140,7 @@ export const FirstRegisterInput = ({
           onClick={onClickNextButton}
         />
       </ButtonWrapper>
+      {/* 새창으로 띄우는게 나은지? */}
     </div>
   );
 };
