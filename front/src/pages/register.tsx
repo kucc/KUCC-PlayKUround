@@ -10,7 +10,7 @@ import { useRouter } from 'next/router';
 import { BackIconWithNavbar, FirstRegisterInput, SecondRegisterInput, Text } from '@components';
 import { Error } from '@templates';
 
-import { loadMyInfoAPI, logInKakao } from 'apis/user';
+import { loadMyInfoAPI } from 'apis/user';
 import User from 'interfaces/user';
 
 import { MakeEmailContext } from '@contexts/globalEmail';

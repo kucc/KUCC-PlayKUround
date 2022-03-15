@@ -140,7 +140,6 @@ export const FirstRegisterInput = ({
           onClick={onClickNextButton}
         />
       </ButtonWrapper>
-      {/* 새창으로 띄우는게 나은지? */}
     </div>
   );
 };
