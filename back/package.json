@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "cross-env NODE_ENV=production node ./dist/index.js",
+    "prestart": "yarn run api-docs",
     "prewinddev": "yarn run window-api-docs",
     "windev": "cross-env NODE_ENV=development tsc-watch --onSuccess \"ts-node ./dist/index.js\"",
     "window-api-docs": "rmdir /s /q dist && mkdir dist\\swagger && swagger-cli bundle swagger\\openapi.yaml --outfile dist\\swagger\\swagger.yaml --type yaml",
