@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import { BaseButton, BaseInput } from '@components';
+import { SocialLogin } from '@components';
 
 import { BoldTitle, ButtonWrapper, Container, InputWrapper, LoginLayout, Title } from '../styled';
 import { FirstLoginInputProps } from '../type';
@@ -36,6 +37,7 @@ export const FirstLoginInput = ({
           onChangeText={onChangeEmail}
         />
       </InputWrapper>
+      <SocialLogin />
       <ButtonWrapper>
         <BaseButton
           width='174'
