@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "cross-env NODE_ENV=production node ./dist/index.js",
+    "start": "cross-env NODE_ENV=production tsc --build && yarn run api-docs && pm2 start ./dist/index.js",
     "prestart": "yarn run api-docs",
     "prewinddev": "yarn run window-api-docs",
     "windev": "cross-env NODE_ENV=development tsc-watch --onSuccess \"ts-node ./dist/index.js\"",
