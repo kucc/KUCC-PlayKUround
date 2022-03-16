@@ -19,6 +19,6 @@ export const Label = styled.label`
 export const ButtonWrapper = styled.div`
   position: absolute;
   left: 50%;
-  bottom: 14.45%;
+  bottom: 5%;
   transform: translateX(-50%);
 `;
