@@ -47,30 +47,26 @@ const getByFilter: RequestHandler = async (req, res, next) => {
       include: Image,
     });
 
-    const newResult: PlaceAttributes[] = [];
+    let newResult: PlaceAttributes[] = [];
     result.map((place: any) => {
       const newPlace = place.get({ plain: true });
       const distance = haversineDistance(
         { longitude: place.addressLocation[1], latitude: place.addressLocation[0] },
         { longitude, latitude },
       );
-      if (distance < 1000) {
-        newPlace['distance'] = `${distance.toFixed()}m`;
-      } else {
-        newPlace['distance'] = `${(distance / 1000).toFixed(1)}km`;
-      }
+      newPlace['distance'] = distance;
       newResult.push(newPlace);
     });
 
-    // distance는 sequelize에서 찾은 다음 처리
     if (order === 'close') {
       if (!latitude || !longitude) {
         return res.status(403).send('필수인 정보가 입력되지 않았습니다.');
       }
-      newResult.sort(function (a: PlaceAttributes, b: PlaceAttributes) {
+      newResult = newResult.sort(function (a: PlaceAttributes, b: PlaceAttributes) {
         return (a.distance as number) - (b.distance as number);
       });
     }
+
     res.status(200).json({
       success: true,
       result: newResult,

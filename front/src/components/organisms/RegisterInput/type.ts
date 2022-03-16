@@ -1,3 +1,5 @@
+import User from 'interfaces/user';
+
 export interface FirstRegisterInputProps {
   email: string;
   password: string;
@@ -13,4 +15,6 @@ export interface SecondRegisterInputProps {
   password: string;
   nickname: string;
   onChangeNickname: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  isJoinMode: boolean;
+  userInfo?: User;
 }

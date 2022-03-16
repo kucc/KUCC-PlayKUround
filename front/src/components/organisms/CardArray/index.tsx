@@ -18,6 +18,13 @@ const ChipArray = ({ places }: { places: any }) => {
             const { placeName, images, ratingNumber, commentCount, distance, placeDescription } =
               place;
 
+            let distanceString = '';
+            if (distance < 1000) {
+              distanceString = `${distance.toFixed()}m`;
+            } else {
+              distanceString = `${(distance / 1000).toFixed(1)}km`;
+            }
+
             const ChipGroupList = [
               {
                 icon: <StyledStar />,
@@ -29,7 +36,7 @@ const ChipArray = ({ places }: { places: any }) => {
               },
               {
                 icon: <StyledDistance />,
-                label: distance,
+                label: distanceString,
               },
             ];
 

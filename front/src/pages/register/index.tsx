@@ -67,6 +67,7 @@ const RegisterPage = () => {
             password={password}
             nickname={nickname}
             onChangeNickname={onChangeNickname}
+            isJoinMode
           />
         </>
       );
