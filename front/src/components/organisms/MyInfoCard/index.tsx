@@ -5,7 +5,7 @@ import { Upload, message } from 'antd';
 
 import { Avatar, MenuBar } from '@components';
 
-import { loadMyInfoAPI, updateImageAPI } from 'apis/user';
+import { loadMyInfoAPI, updateUserAPI } from 'apis/user';
 import User from 'interfaces/user';
 
 import { uploadProps } from '@util/uploadImage';
