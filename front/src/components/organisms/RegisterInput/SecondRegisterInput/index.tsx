@@ -6,11 +6,11 @@ import Router from 'next/router';
 
 import { Avatar, BaseButton, BaseInput } from '@components';
 
-import { checkNameAPI, logInAPI, registerAPI } from 'apis/user';
+import { checkNameAPI, logInAPI, registerAPI, updateUserAPI } from 'apis/user';
 
 import useAntdModal from '@hooks/useAntdModal';
 import { ERROR_LOG, REGISTER_SUCCESS } from '@util/message';
-import { uploadProps } from '@util/uploadImage';
+import { makeBlob, uploadProps } from '@util/uploadImage';
 
 import { AvatarPosition, ButtonWrapper, Label } from '../styled';
 import { SecondRegisterInputProps } from '../type';
@@ -20,6 +20,8 @@ export const SecondRegisterInput = ({
   password,
   nickname,
   onChangeNickname,
+  isJoinMode,
+  userInfo,
 }: SecondRegisterInputProps) => {
   const { data: isNickNameExist } = useQuery(['user', nickname], checkNameAPI);
   const [isSuccessNickname, setIsSuccessNickname] = useState(false);
@@ -31,22 +33,42 @@ export const SecondRegisterInput = ({
 
   const onClickJoin = useCallback(() => {
     setIsLoading(true);
-    registerAPI({ email, name: nickname, password })
-      .then(result => {
+    // isJoinMode 일 때는 Join을 시킴
+    if (isJoinMode) {
+      registerAPI({ email, name: nickname, password })
+        .then(result => {
+          if (result) {
+            logInAPI({ email, password })
+              .then(() => {
+                useAntdModal({ success: true, message: REGISTER_SUCCESS });
+                Router.replace('/');
+              })
+              .catch(() => {
+                useAntdModal({ message: ERROR_LOG });
+              });
+          }
+        })
+        .catch(() => {
+          useAntdModal({ message: ERROR_LOG });
+        });
+    }
+    // isJoinMode가 아닐 때는 이미 만들어진 유저 정보를 업데이트함 (social Login의 경우에 해당.)
+    else {
+      const formData = new FormData();
+      formData.append('userId', userInfo?.id as unknown as string);
+      formData.append('name', nickname);
+      if (imageLink) formData.append('userImage', makeBlob(imageLink));
+
+      updateUserAPI(formData).then(result => {
         if (result) {
-          logInAPI({ email, password })
-            .then(() => {
-              useAntdModal({ success: true, message: REGISTER_SUCCESS });
-              Router.replace('/');
-            })
-            .catch(() => {
-              useAntdModal({ message: ERROR_LOG });
-            });
+          useAntdModal({ success: true, message: REGISTER_SUCCESS });
+          Router.replace('/');
+        } else {
+          useAntdModal({ message: ERROR_LOG });
         }
-      })
-      .catch(() => {
-        useAntdModal({ message: ERROR_LOG });
       });
+    }
+    setIsLoading(false);
   }, [email, nickname, password]);
 
   useEffect(() => {
