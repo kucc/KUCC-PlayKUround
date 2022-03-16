@@ -2,6 +2,7 @@ import { NextFunction, Request, Response } from 'express';
 import swaggerUi from 'swagger-ui-express';
 import YAML from 'yamljs';
 
+import { DEV_FRONT_URL } from './constant/url';
 import { sequelize } from './models';
 import mainRouter from './routes';
 
@@ -56,7 +57,7 @@ if (process.env.NODE_ENV === 'production') {
   app.use(hpp());
   app.use(
     cors({
-      origin: ['http://localhost:3000/', 'https://kucc-playkuround.vercel.app/'], // 배포시 프론트 주소 적어주기
+      origin: [DEV_FRONT_URL, 'https://kucc-playkuround.vercel.app/'], // 배포시 프론트 주소 적어주기
       credentials: true,
     }),
   );
@@ -82,7 +83,7 @@ const sessionOption = {
     httpOnly: true,
     secure: false,
     // secure: true,
-    domain: process.env.NODE_ENV === 'production' && 'http://localhost:3000', // 배포 시에 프론트 주소 적어주기
+    domain: process.env.NODE_ENV === 'production' && DEV_FRONT_URL, // 배포 시에 프론트 주소 적어주기
   },
   store: new RedisStore({ client: redisClient }),
 };

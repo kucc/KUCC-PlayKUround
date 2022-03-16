@@ -1,6 +1,7 @@
 import { NextFunction, Request, RequestHandler, Response } from 'express';
 import fs from 'fs';
 
+import { DEV_FRONT_URL } from '../constant/url';
 import { Image, User } from '../models';
 import { MulterFile } from '../models/image/imageType';
 import { UserAttributes } from '../models/user/userType';
@@ -200,7 +201,7 @@ const userUpdate = async (
 };
 
 const socialLogin: RequestHandler = (req, res, next) => {
-  res.redirect('http://localhost:3000/');
+  res.redirect(DEV_FRONT_URL + 'register/moreInfo');
 };
 
 module.exports = {
