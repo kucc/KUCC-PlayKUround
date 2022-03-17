@@ -1,4 +1,5 @@
 import AddCourse from './icons/add-course.svg';
+import ArrowDown from './icons/arrow-down.svg';
 import ArrowRight from './icons/arrow-right.svg';
 import ArrowUp from './icons/arrow-up.svg';
 import Back from './icons/back.svg';
@@ -12,6 +13,7 @@ import Cross from './icons/cross.svg';
 import Dice from './icons/dice.svg';
 import Distance from './icons/distance.svg';
 import Down from './icons/down.svg';
+import Edit from './icons/edit.svg';
 import Filter from './icons/filter.svg';
 import Global from './icons/global.svg';
 import Good from './icons/good.svg';
@@ -82,4 +84,6 @@ export {
   Likes,
   LikesFill,
   CourseOrderIndicator,
+  ArrowDown,
+  Edit,
 };
