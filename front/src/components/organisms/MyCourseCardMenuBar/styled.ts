@@ -22,6 +22,12 @@ export const FullContainer = styled(animated.div)<{ height: number; width: numbe
   border-top-right-radius: 12px;
   border: 1px solid ${Colors.black};
   transition: 1s ease;
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-height: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 export const IconContainer = styled.div`
   display: flex;
