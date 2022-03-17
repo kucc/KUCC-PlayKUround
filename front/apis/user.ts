@@ -21,8 +21,12 @@ export function logOutAPI() {
   return axios.post('/api/user/logout').then(response => response.data);
 }
 
-export function registerAPI(data: { email: string; name: string; password: string }) {
-  return axios.post('/api/user/register', data).then(response => response.data);
+export function registerAPI(data: any) {
+  const headers = {
+    'Content-Type': 'multipart/form-data',
+  };
+
+  return axios.post('/api/user/register', data, { headers }).then(response => response.data);
 }
 
 export function updateUserAPI(data: any) {

@@ -130,7 +130,7 @@ export const FirstRegisterInput = ({
         successMessage='비밀번호가 일치합니다 !'
         style={{ paddingTop: '68px' }}
       />
-      <SocialLogin />
+      <SocialLogin mode={'register'} />
       <ButtonWrapper>
         <BaseButton
           width='174'
