@@ -16,9 +16,9 @@ import {
 } from './styled';
 import { CardProps } from './type';
 
-export const Card = ({ title, description, imageSource, ChipGroupList }: CardProps) => {
+export const Card = ({ title, description, imageSource, ChipGroupList, onClick }: CardProps) => {
   return (
-    <CardContainer>
+    <CardContainer onClick={onClick}>
       <StyledImgContainer>
         <StyledImg src={imageSource} width={88} height={88} />
       </StyledImgContainer>
