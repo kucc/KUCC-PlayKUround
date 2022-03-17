@@ -58,8 +58,8 @@ const PostPage = () => {
             comments={post.comments}
             createdAt={post.createdAt}
             place={post.place}
-            userName={post.user.name}
-            userImage={post.user.image}
+            writerName={post.user.name}
+            writerImage={post.user.image}
             setModalVisible={setModalVisible}
             key={key}
           />

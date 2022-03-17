@@ -1,3 +1,5 @@
+import passport from 'passport';
+
 const express = require('express');
 const controller = require('../controllers/user.controller');
 const upload = require('../middlewares/Upload');
@@ -28,6 +30,36 @@ router.post('/login', controller.userLogin);
 router.post('/logout', isLoggedIn, controller.userLogout);
 
 router.patch('/update', isLoggedIn, upload.single('userImage'), controller.userUpdate);
+
+router.get('/kakao', passport.authenticate('kakao'));
+
+router.get(
+  '/kakao/callback',
+  passport.authenticate('kakao', {
+    failureRedirect: '/',
+  }),
+  controller.socialLogin,
+);
+
+router.get('/naver', passport.authenticate('naver'));
+
+router.get(
+  '/naver/callback',
+  passport.authenticate('naver', {
+    failureRedirect: '/',
+  }),
+  controller.socialLogin,
+);
+
+router.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
+
+router.get(
+  '/google/callback',
+  passport.authenticate('google', {
+    failureRedirect: '/',
+  }),
+  controller.socialLogin,
+);
 
 export {};
 module.exports = router;

@@ -6,7 +6,7 @@ export interface SimplePlaceType {
   placeCategory: string;
   placeCategoryDetail: number;
   scrapCount: number;
-  distance: string;
+  distance: number;
   ratingCount: number;
   commentCount: number;
   ratingNumber: number;

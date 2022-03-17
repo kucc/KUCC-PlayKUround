@@ -10,3 +10,4 @@ export * from './RecommendCardList';
 export * from './SearchChipBar';
 export * from './ToggleDark';
 export * from './MyCourseCard';
+export * from './SocialLogin';

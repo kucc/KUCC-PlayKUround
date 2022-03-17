@@ -35,7 +35,7 @@ const App = ({ Component, pageProps }: AppProps) => {
             <title>PlayKUround</title>
             <script
               type='text/javascript'
-              src={`http://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=rses05b7bh`}></script>
+              src={`http://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${process.env.NAVER_MAP_KEY}`}></script>
           </Head>
           <Providers>
             <GlobalStyle />

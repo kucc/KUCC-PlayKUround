@@ -13,3 +13,4 @@ export * from './MapIcons';
 export * from './RecommendCard';
 export * from './Text';
 export * from './MyCourseChip';
+export * from './SocialLoginIcon';

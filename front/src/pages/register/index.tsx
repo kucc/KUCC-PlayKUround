@@ -47,15 +47,17 @@ const RegisterPage = () => {
   const renderLoginInput = () => {
     if (firstPage) {
       return (
-        <FirstRegisterInput
-          setFirstPage={setFirstPage}
-          email={email}
-          password={password}
-          passwordCheck={passwordCheck}
-          onChangeEmail={onChangeEmail}
-          onChangePassword={onChangePassword}
-          onChangePasswordCheck={onChangePasswordCheck}
-        />
+        <>
+          <FirstRegisterInput
+            setFirstPage={setFirstPage}
+            email={email}
+            password={password}
+            passwordCheck={passwordCheck}
+            onChangeEmail={onChangeEmail}
+            onChangePassword={onChangePassword}
+            onChangePasswordCheck={onChangePasswordCheck}
+          />
+        </>
       );
     } else {
       return (
@@ -65,6 +67,7 @@ const RegisterPage = () => {
             password={password}
             nickname={nickname}
             onChangeNickname={onChangeNickname}
+            isJoinMode
           />
         </>
       );

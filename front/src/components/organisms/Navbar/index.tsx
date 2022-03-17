@@ -53,7 +53,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               bordered={false}
               suffixIcon={<SelectArrowIcon />}>
               <Option style={{ fontSize: 11 }} value=''>
-                전체
+                전체 지역
               </Option>
               <Option style={{ fontSize: 11 }} value='안암'>
                 안암 주변

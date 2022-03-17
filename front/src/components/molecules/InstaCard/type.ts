@@ -10,8 +10,8 @@ export type InstaCardProps = {
   description?: string;
   comments?: commentType[];
   isLiked?: boolean;
-  userName?: string | null;
-  userImage?: ImagePathProps | null;
+  writerName?: string | null;
+  writerImage?: ImagePathProps | null;
   userId?: number | null;
   postId?: number;
   createdAt?: string;

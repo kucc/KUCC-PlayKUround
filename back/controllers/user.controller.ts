@@ -1,6 +1,7 @@
 import { NextFunction, Request, RequestHandler, Response } from 'express';
 import fs from 'fs';
 
+import { DEV_FRONT_URL, TEMP_USER_NAME } from '../constant';
 import { Image, User } from '../models';
 import { MulterFile } from '../models/image/imageType';
 import { UserAttributes } from '../models/user/userType';
@@ -95,6 +96,7 @@ const userRegister: RequestHandler = async (req, res, next) => {
     if (exUserName) return res.status(403).send('이미 사용중인 닉네임입니다.');
 
     const hashedPassword = await bcrypt.hash(req.body.password, 12);
+    if (!hashedPassword) return res.status(403).send('비밀번호 정보가 없습니다.');
     const userResult = await User.create({
       email,
       name,
@@ -138,7 +140,7 @@ const userLogin: RequestHandler = (req, res, next) => {
       }
       const fullUserWithoutPassword = await User.findOne({
         // id : req.body.user.id => id : req.user.id
-        where: { id: req.user.id },
+        where: { id: req.user?.id },
         attributes: {
           exclude: ['password'],
         },
@@ -191,10 +193,21 @@ const userUpdate = async (
         await Image.create({ path: imgData, source: `user_${userId}` });
       }
     }
-    res.json({ success: true });
+    res.status(200).json({ success: true });
   } catch (error) {
     res.status(400).json({ success: false, error });
     next(error);
+  }
+};
+
+const socialLogin: RequestHandler = (req, res, next) => {
+  // 유저 이름이 temp일 경우 => 추가 정보를 받아야 함.
+  if (req.user?.name === TEMP_USER_NAME) {
+    res.redirect(DEV_FRONT_URL + 'register/moreInfo');
+  }
+  // 그 외의 경우 => 메인 페이지로 리다이렉트
+  else {
+    res.redirect(DEV_FRONT_URL);
   }
 };
 
@@ -207,4 +220,5 @@ module.exports = {
   userLogout,
   userGet,
   userUpdate,
+  socialLogin,
 };

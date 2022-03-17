@@ -7,6 +7,6 @@ export interface postTopProps {
   isLiked: boolean;
   setModalVisible: (value: boolean) => void;
   createdAt: string;
-  userName: string;
-  userImage: ImageProps | null;
+  writerName: string;
+  writerImage: ImageProps | null;
 }

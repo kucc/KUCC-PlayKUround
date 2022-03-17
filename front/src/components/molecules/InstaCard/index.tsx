@@ -26,8 +26,8 @@ export const InstaCard = ({
   CarouselList,
   description,
   isLiked,
-  userName,
-  userImage,
+  writerName,
+  writerImage,
   userId,
   postId,
   comments,
@@ -42,11 +42,13 @@ export const InstaCard = ({
       comments,
       createdAt,
       placeName: place.placeName,
-      userName,
-      userImage,
+      writerName,
+      writerImage,
       likesCount,
       CarouselList,
       isLiked,
+      description,
+      userId,
     });
     router.push(`/post/${postId}`);
   };

@@ -13,12 +13,12 @@ export const PostTop: React.FC<postTopProps> = ({
   isLiked,
   setModalVisible,
   createdAt,
-  userName,
-  userImage,
+  writerName,
+  writerImage,
 }) => {
   return (
     <StyledPostTopContainer>
-      <PostProfile createdAt={createdAt} userName={userName} userImage={userImage} />
+      <PostProfile createdAt={createdAt} writerName={writerName} writerImage={writerImage} />
       <LikesButton
         userId={userId}
         postId={postId}

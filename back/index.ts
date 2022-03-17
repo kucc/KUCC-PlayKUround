@@ -1,9 +1,10 @@
-import { NextFunction, Request, RequestHandler, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import swaggerUi from 'swagger-ui-express';
 import YAML from 'yamljs';
 
+import { DEV_FRONT_URL } from './constant';
 import { sequelize } from './models';
-import mainRouter from './routes'
+import mainRouter from './routes';
 
 const express = require('express');
 
@@ -56,7 +57,7 @@ if (process.env.NODE_ENV === 'production') {
   app.use(hpp());
   app.use(
     cors({
-      origin: 'http://localhost:3000/', // 배포시 프론트 주소 적어주기
+      origin: [DEV_FRONT_URL, 'https://kucc-playkuround.vercel.app/'], // 배포시 프론트 주소 적어주기
       credentials: true,
     }),
   );
@@ -82,7 +83,7 @@ const sessionOption = {
     httpOnly: true,
     secure: false,
     // secure: true,
-    domain: process.env.NODE_ENV === 'production' && 'http://localhost:3000', // 배포 시에 프론트 주소 적어주기
+    domain: process.env.NODE_ENV === 'production' && DEV_FRONT_URL, // 배포 시에 프론트 주소 적어주기
   },
   store: new RedisStore({ client: redisClient }),
 };
@@ -97,7 +98,7 @@ app.get('/', (req: Request, res: Response) => {
 // 라우터
 // swagger의 route
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
-app.use('/api', mainRouter)
+app.use('/api', mainRouter);
 
 // 404처리 미들웨어
 app.use((req: Request, res: Response, next: NextFunction) => {
