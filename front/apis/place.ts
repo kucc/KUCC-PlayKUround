@@ -52,10 +52,11 @@ export async function createPlaceAPI({ queryKey }: { queryKey: any[] }) {
 }
 
 // parameter : id
-export async function getByOneAPI({ queryKey }: { queryKey: any[] }) {
+export async function getByOneAPI({ queryKey }: { queryKey: any }) {
   const [, id] = queryKey;
+
   try {
-    const { data }: { data: responseProps } = await axios.get(`/api/place/getByName?id=${id}`);
+    const { data }: { data: responseProps } = await axios.get(`/api/place/getByOne?id=${id}`);
     if (data.success) {
       return data.result;
     }
