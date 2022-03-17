@@ -33,9 +33,14 @@ export const SecondRegisterInput = ({
 
   const onClickJoin = useCallback(() => {
     setIsLoading(true);
+    const formData = new FormData();
+    formData.append('name', nickname);
+    if (imageLink) formData.append('userImage', makeBlob(imageLink));
     // isJoinMode 일 때는 Join을 시킴
     if (isJoinMode) {
-      registerAPI({ email, name: nickname, password })
+      formData.append('email', email);
+      formData.append('password', password);
+      registerAPI(formData)
         .then(result => {
           if (result) {
             logInAPI({ email, password })
@@ -54,11 +59,7 @@ export const SecondRegisterInput = ({
     }
     // isJoinMode가 아닐 때는 이미 만들어진 유저 정보를 업데이트함 (social Login의 경우에 해당.)
     else {
-      const formData = new FormData();
       formData.append('userId', userInfo?.id as unknown as string);
-      formData.append('name', nickname);
-      if (imageLink) formData.append('userImage', makeBlob(imageLink));
-
       updateUserAPI(formData).then(result => {
         if (result) {
           useAntdModal({ success: true, message: REGISTER_SUCCESS });
