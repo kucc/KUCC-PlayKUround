@@ -1,3 +1,5 @@
+import { ImageProps } from './image';
+
 export interface SimplePlaceType {
   id?: number;
   addressLocation: number[];
@@ -20,7 +22,7 @@ export interface PlaceType {
   // 정확한 좌표
   addressExact: string;
   addressCategory: '혜화' | '안암' | '성신여대';
-  pictureLink: string[];
+  images: ImageProps[];
   placeName: string;
   placeDescription: string;
   placeTime: string[];

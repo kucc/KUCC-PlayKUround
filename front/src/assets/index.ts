@@ -7,6 +7,7 @@ import Bell from './icons/bell.svg';
 import Cartoon from './icons/cartoon.svg';
 import Clock from './icons/clock.svg';
 import Coffee from './icons/coffee.svg';
+import Comment from './icons/comment.svg';
 import Configuation from './icons/configuration.svg';
 import CourseOrderIndicator from './icons/course-order-indicator.svg';
 import Cross from './icons/cross.svg';
@@ -52,6 +53,7 @@ export {
   Coffee,
   Clock,
   Configuation,
+  Comment,
   Cross,
   Dice,
   Distance,

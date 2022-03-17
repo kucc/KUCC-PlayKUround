@@ -1,4 +1,4 @@
-import { ImageProps } from 'interfaces/user';
+import { ImageProps } from 'interfaces/image';
 
 export interface postProfileProps {
   createdAt: string;

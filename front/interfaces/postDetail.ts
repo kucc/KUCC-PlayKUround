@@ -1,4 +1,4 @@
-import { ImageProps } from './user';
+import { ImageProps } from './image';
 
 export default interface postDetail {
   comments: Comment[];

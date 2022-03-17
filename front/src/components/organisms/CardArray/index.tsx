@@ -1,5 +1,7 @@
 import React from 'react';
 
+import router from 'next/router';
+
 import { Card, ErrorLayout } from '@components';
 
 import { SimplePlaceType } from 'interfaces/place';
@@ -15,8 +17,15 @@ const ChipArray = ({ places }: { places: any }) => {
       <>
         {places.map((place: SimplePlaceType, key: number) => {
           if (place) {
-            const { placeName, images, ratingNumber, commentCount, distance, placeDescription } =
-              place;
+            const {
+              id,
+              placeName,
+              images,
+              ratingNumber,
+              commentCount,
+              distance,
+              placeDescription,
+            } = place;
 
             let distanceString = '';
             if (distance < 1000) {
@@ -52,6 +61,7 @@ const ChipArray = ({ places }: { places: any }) => {
                 title={placeName}
                 description={placeDescription}
                 ChipGroupList={ChipGroupList}
+                onClick={() => router.push(`/place/${id}`)}
               />
             );
           } else {
