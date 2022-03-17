@@ -1,5 +1,6 @@
 import passport from 'passport';
 
+import { TEMP_USER_NAME } from '../constant';
 import { User } from '../models';
 
 const { Strategy: NaverStrategy, Profile: NaverProfile } = require('passport-naver-v2');
@@ -27,7 +28,7 @@ module.exports = () => {
             const newUser = await User.create({
               snsId: profile.id,
               provider: 'naver',
-              name: 'temp',
+              name: TEMP_USER_NAME,
               sourceId: 'temp',
             });
             // sourceId Update하기

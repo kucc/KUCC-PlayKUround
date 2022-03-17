@@ -1,5 +1,6 @@
 import passport from 'passport';
 
+import { TEMP_USER_NAME } from '../constant';
 import { User } from '../models';
 
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
@@ -26,7 +27,7 @@ module.exports = () => {
             const newUser = await User.create({
               snsId: profile.id,
               provider: 'google',
-              name: 'temp',
+              name: TEMP_USER_NAME,
               sourceId: 'temp',
             });
             // sourceId Update하기
