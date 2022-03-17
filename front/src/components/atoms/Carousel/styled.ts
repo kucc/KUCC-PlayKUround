@@ -2,7 +2,9 @@ import styled from 'styled-components';
 
 import { Colors } from '@styles';
 
-export const SwiperContainer = styled.div`
+import { CarouselStyleProps } from './type';
+
+export const SwiperContainer = styled.div<CarouselStyleProps>`
   position: relative;
   .swiper-pagination-bullet {
     width: 8px;
@@ -24,7 +26,8 @@ export const SwiperContainer = styled.div`
   }
 
   img {
+    height: ${props => `${props.height}px`};
     width: 100%;
-    height: 270px;
+    object-fit: cover;
   }
 `;
