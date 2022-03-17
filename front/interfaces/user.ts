@@ -1,13 +1,5 @@
+import { ImagePathProps } from './image';
 import { SimplePlaceType } from './place';
-
-export interface ImageProps {
-  path: ImagePathProps;
-}
-
-export interface ImagePathProps {
-  data: any;
-  type: string;
-}
 
 export default interface User {
   id: number;

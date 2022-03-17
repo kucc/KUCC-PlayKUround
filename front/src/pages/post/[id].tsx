@@ -4,7 +4,7 @@ import { useContext } from 'react';
 import { Skeleton } from 'antd';
 import { useRouter } from 'next/router';
 
-import { PostDetail } from '@templates/PostDetail';
+import { PostDetail } from '@templates';
 
 import { postGetByOneAPI } from 'apis/post';
 import Post from 'interfaces/post';

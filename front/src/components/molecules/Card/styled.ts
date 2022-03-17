@@ -9,6 +9,7 @@ export const CardContainer = styled.div`
   display: flex;
   position: relative;
   align-items: center;
+  width: 100%;
   padding: 0 30px;
   height: 124px;
   border-bottom: 1px solid ${Colors.lightGrey_5};
@@ -24,14 +25,21 @@ export const StyledScrapSvg = styled(Scrap)`
   cursor: pointer;
 `;
 
+export const StyledImgContainer = styled.div`
+  width: 88px;
+  height: 88px;
+`;
+
 export const StyledImg = styled.img`
   border-radius: 12px;
   background-color: ${Colors.yellow};
+  object-fit: fill;
 `;
 
 export const ContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  width: 100%;
 `;
 
 export const TextWrapper = styled.div`
