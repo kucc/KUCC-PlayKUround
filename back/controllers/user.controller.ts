@@ -1,7 +1,7 @@
 import { NextFunction, Request, RequestHandler, Response } from 'express';
 import fs from 'fs';
 
-import { DEV_FRONT_URL } from '../constant/url';
+import { DEV_FRONT_URL, TEMP_USER_NAME } from '../constant';
 import { Image, User } from '../models';
 import { MulterFile } from '../models/image/imageType';
 import { UserAttributes } from '../models/user/userType';
@@ -201,7 +201,14 @@ const userUpdate = async (
 };
 
 const socialLogin: RequestHandler = (req, res, next) => {
-  res.redirect(DEV_FRONT_URL + 'register/moreInfo');
+  // 유저 이름이 temp일 경우 => 추가 정보를 받아야 함.
+  if (req.user?.name === TEMP_USER_NAME) {
+    res.redirect(DEV_FRONT_URL + 'register/moreInfo');
+  }
+  // 그 외의 경우 => 메인 페이지로 리다이렉트
+  else {
+    res.redirect(DEV_FRONT_URL);
+  }
 };
 
 module.exports = {

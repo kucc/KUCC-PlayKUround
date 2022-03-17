@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from 'express';
 import swaggerUi from 'swagger-ui-express';
 import YAML from 'yamljs';
 
-import { DEV_FRONT_URL } from './constant/url';
+import { DEV_FRONT_URL } from './constant';
 import { sequelize } from './models';
 import mainRouter from './routes';
 
