@@ -8,6 +8,7 @@ import {
   ContentWrapper,
   Description,
   StyledImg,
+  StyledImgContainer,
   StyledScrapSvg,
   TextTopWrapper,
   TextWrapper,
@@ -18,7 +19,9 @@ import { CardProps } from './type';
 export const Card = ({ title, description, imageSource, ChipGroupList }: CardProps) => {
   return (
     <CardContainer>
-      <StyledImg src={imageSource} width={88} height={88} />
+      <StyledImgContainer>
+        <StyledImg src={imageSource} width={88} height={88} />
+      </StyledImgContainer>
       <ContentWrapper>
         <TextWrapper>
           <TextTopWrapper>
