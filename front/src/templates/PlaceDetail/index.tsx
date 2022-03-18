@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 
 import { Skeleton } from 'antd';
 
-import { BackIconWithNavbar, Carousel, PlaceInfo } from '@components';
+import { BackIconWithNavbar, Carousel, PlaceInfo, PlaceSelectBar } from '@components';
 
 import { getByOneAPI } from 'apis/place';
 import { PlaceType } from 'interfaces/place';
@@ -15,6 +15,7 @@ export const PlaceDetail: React.FC<placeDetailProps> = ({ placeId }) => {
   const { data, isLoading, isSuccess } = useQuery<PlaceType>(['place', placeId], getByOneAPI, {
     enabled: !!placeId,
   });
+  const [selectedIndex, setSelectedIndex] = useState<number>(0);
 
   const place = data as PlaceType;
 
@@ -32,6 +33,7 @@ export const PlaceDetail: React.FC<placeDetailProps> = ({ placeId }) => {
         commentCount={commentCount}
         scrapCount={scrapCount}
       />
+      <PlaceSelectBar setSelectedIndex={setSelectedIndex} selectedIndex={selectedIndex} />
       <Carousel CarouselList={place.images} height={190} />
     </div>
   );
