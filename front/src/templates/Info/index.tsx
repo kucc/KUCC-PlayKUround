@@ -12,7 +12,7 @@ import User from 'interfaces/user';
 
 import reactQueryOption from '@constants/reactQueryOption';
 import { SidePadding } from '@styles';
-import { decodeImageLink } from '@util/imageLinkDecoder';
+import decodeImageLink from '@util/imageLinkDecoder';
 
 import { Container } from './styled';
 import { InfoProps } from './type';
