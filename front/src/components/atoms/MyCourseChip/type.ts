@@ -3,4 +3,5 @@ export type MyCourseChipProps = {
   imageSource?: string;
   place?: string;
   index: number;
+  isEdited?: boolean;
 };

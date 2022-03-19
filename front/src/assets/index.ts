@@ -1,3 +1,5 @@
+import AddCoursePlacePlus from './icons/add-course-place-plus.svg';
+import AddCoursePlace from './icons/add-course-place.svg';
 import AddCourse from './icons/add-course.svg';
 import ArrowDown from './icons/arrow-down.svg';
 import ArrowRight from './icons/arrow-right.svg';
@@ -11,6 +13,8 @@ import Comment from './icons/comment.svg';
 import Configuation from './icons/configuration.svg';
 import CourseOrderIndicator from './icons/course-order-indicator.svg';
 import Cross from './icons/cross.svg';
+import DeleteCoursePlaceMinus from './icons/delete-course-place-minus.svg';
+import DeleteCoursePlace from './icons/delete-course-place.svg';
 import Dice from './icons/dice.svg';
 import Distance from './icons/distance.svg';
 import Down from './icons/down.svg';
@@ -88,4 +92,8 @@ export {
   CourseOrderIndicator,
   ArrowDown,
   Edit,
+  AddCoursePlace,
+  DeleteCoursePlace,
+  DeleteCoursePlaceMinus,
+  AddCoursePlacePlus,
 };

@@ -14,3 +14,5 @@ export * from './RecommendCard';
 export * from './Text';
 export * from './MyCourseChip';
 export * from './SocialLoginIcon';
+export * from './DeleteCoursePlaceIcon';
+export * from './AddCourseIcon';

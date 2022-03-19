@@ -23,17 +23,27 @@ export const MyCourseChipListWrapper = styled.div`
     display: none;
   }
 `;
-export const TopTextContainer = styled.div`
+export const TopTextContainer = styled.div<{ editclicked: boolean }>`
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 20px 31px;
-  span:first-child {
+  span {
     font-size: 16px;
     font-weight: bold;
   }
-  span:last-child {
-    color: ${Colors.lightGrey_7};
-    cursor: pointer;
-  }
+`;
+export const EditContainer = styled.div<{ editclicked: boolean }>`
+  ${({ editclicked }) => {
+    if (editclicked) {
+      return `
+        color: ${Colors.primary};
+        cursor: pointer;
+        `;
+    } else {
+      return `
+        color: ${Colors.lightGrey_7};
+        cursor: pointer;`;
+    }
+  }}
 `;

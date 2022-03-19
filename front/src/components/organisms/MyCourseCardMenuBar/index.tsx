@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { useSpring } from '@react-spring/core';
 
@@ -18,7 +18,8 @@ export const MyCourseCardMenuBar = ({
   ThirdCourseList,
 }: MyCourseCardMenuBarProps) => {
   const { width, height } = useWindowDimensions();
-  const [clicked, setClicked] = React.useState<boolean>(false);
+  const [clicked, setClicked] = useState<boolean>(false);
+
   const fadeAnimation = useSpring({
     bottom: clicked ? 0 : -height * 0.7,
     config: {
@@ -38,9 +39,9 @@ export const MyCourseCardMenuBar = ({
           <span>코스 추가하기</span>
         </TopMenuBar>
         <FullBar />
-        <MyCourseCard MyCourseChipList={FirstCourseList} index={1} />
-        <MyCourseCard MyCourseChipList={SecondCourseList} index={2} />
-        <MyCourseCard MyCourseChipList={ThirdCourseList} index={3} />
+        {FirstCourseList ? <MyCourseCard MyCourseChipList={FirstCourseList} index={1} /> : null}
+        {SecondCourseList ? <MyCourseCard MyCourseChipList={SecondCourseList} index={2} /> : null}
+        {ThirdCourseList ? <MyCourseCard MyCourseChipList={ThirdCourseList} index={3} /> : null}
       </FullContainer>
     </>
   );

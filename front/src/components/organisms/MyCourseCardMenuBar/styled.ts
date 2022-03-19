@@ -14,6 +14,9 @@ export const TopMenuBar = styled.div<{ width: number }>`
     font-weight: bold;
     margin-left: 9px;
   }
+  svg {
+    cursor: pointer;
+  }
 `;
 export const FullContainer = styled(animated.div)<{ height: number; width: number }>`
   position: absolute;
