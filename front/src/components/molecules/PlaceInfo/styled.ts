@@ -6,9 +6,8 @@ export const StyledPlaceInfoContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-content: center;
-  height: 208px;
-  padding: 45px 47px 0px 47px;
-  border-bottom: 6px solid ${({ theme }) => theme.bg.grey}; ;
+  padding: 30px 47px 16px 47px;
+  border-bottom: 6px solid ${({ theme }) => theme.bg.grey};
 `;
 
 export const StyledChipContainer = styled.div`

@@ -9,6 +9,7 @@ import { Error } from '@templates';
 import { getByFilterAPI, getByMapAPI } from 'apis';
 import { PlaceType } from 'interfaces';
 
+import reactQueryOption from '@constants/reactQueryOption';
 import { filterValueContext } from '@contexts/filterValue';
 
 import { Map } from '../Map';
@@ -22,11 +23,14 @@ export const MainTable = () => {
 
   const { categoryList, area } = useContext(filterValueContext);
 
-  const map = useQuery<PlaceType[]>('place', getByMapAPI);
+  const map = useQuery<PlaceType[]>('place', getByMapAPI, reactQueryOption);
   const places = useQuery(
     ['place', categoryList[0] ?? '', categoryList[1] ?? '', value, area, latitude, longitude],
     getByFilterAPI,
-    { enabled: latitude && longitude ? true : false },
+    {
+      ...reactQueryOption,
+      enabled: latitude && longitude ? true : false,
+    },
   );
 
   // 공통 함수에 집어넣기

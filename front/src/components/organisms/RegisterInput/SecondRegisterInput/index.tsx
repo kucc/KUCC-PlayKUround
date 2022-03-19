@@ -1,16 +1,16 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 
-import { Upload } from 'antd';
 import Router from 'next/router';
 
 import { Avatar, BaseButton, BaseInput } from '@components';
+import { UploadImage } from '@components/atoms';
 
 import { checkNameAPI, logInAPI, registerAPI, updateUserAPI } from 'apis';
 
 import useAntdModal from '@hooks/useAntdModal';
+import makeBlob from '@util/makeBlob';
 import { ERROR_LOG, REGISTER_SUCCESS } from '@util/message';
-import { makeBlob, uploadProps } from '@util/uploadImage';
 
 import { AvatarPosition, ButtonWrapper, Label } from '../styled';
 import { SecondRegisterInputProps } from '../type';
@@ -93,9 +93,9 @@ export const SecondRegisterInput = ({
     <>
       <AvatarPosition>
         <Avatar imageSource={imageLink} size={125} />
-        <Upload {...uploadProps(setImageLink, null)} showUploadList={false}>
+        <UploadImage mode='single' setImageLink={setImageLink}>
           <Label>사진 변경</Label>
-        </Upload>
+        </UploadImage>
       </AvatarPosition>
       <div style={{ padding: '0 16px' }}>
         <BaseInput

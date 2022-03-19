@@ -9,8 +9,9 @@ import { Error } from '@templates';
 import { getByArrAPI, loadMyInfoAPI } from 'apis';
 import { UserType } from 'interfaces';
 
+import reactQueryOption from '@constants/reactQueryOption';
 import { SidePadding } from '@styles';
-import { decodeImageLink } from '@util/imageLinkDecoder';
+import decodeImageLink from '@util/imageLinkDecoder';
 
 import { Container } from './styled';
 import { InfoProps } from './type';
@@ -18,7 +19,7 @@ import { InfoProps } from './type';
 export const Info = ({ title, navbarTitle }: InfoProps) => {
   const screenHeight = window.innerHeight;
 
-  const me = useQuery<UserType>('user', loadMyInfoAPI);
+  const me = useQuery<UserType>('user', loadMyInfoAPI, reactQueryOption);
 
   if (me.isError) {
     return <Error isNavbar={false} />;

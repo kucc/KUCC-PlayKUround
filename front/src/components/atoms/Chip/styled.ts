@@ -12,6 +12,7 @@ export const ChipWrapper = styled(animated.div)<{
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 5px;
   border-radius: 24px;
   cursor: pointer;
   ${({ shadow, theme }) => {
@@ -36,7 +37,6 @@ export const ChipWrapper = styled(animated.div)<{
 export const Label = styled.div<{ clicked?: boolean }>`
   align-items: center;
   margin-top: 3px;
-  margin-left: 5px;
   font-size: 14px;
   font-weight: bold;
   line-height: 14px;

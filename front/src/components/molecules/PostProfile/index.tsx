@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import { Avatar, Text } from '@components/atoms';
 
-import { decodeImageLink } from '@util/imageLinkDecoder';
+import decodeImageLink from '@util/imageLinkDecoder';
 
 import { StyledProfileContainer, StyledProfileText } from './styled';
 import { postProfileProps } from './type';

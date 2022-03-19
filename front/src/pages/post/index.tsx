@@ -11,11 +11,12 @@ import { loadMyInfoAPI, postGetByLatestAPI } from 'apis';
 import { PostType, UserType } from 'interfaces';
 
 import { Filter, WritePost } from '@assets';
+import reactQueryOption from '@constants/reactQueryOption';
 
 const PostPage = () => {
   const [modalVisible, setModalVisible] = useState<boolean>(false);
 
-  const { data: me } = useQuery<UserType>('user', loadMyInfoAPI);
+  const { data: me } = useQuery<UserType>('user', loadMyInfoAPI, reactQueryOption);
 
   const {
     data: posts,

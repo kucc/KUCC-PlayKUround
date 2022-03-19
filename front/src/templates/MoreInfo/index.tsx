@@ -6,14 +6,16 @@ import router from 'next/router';
 import { SecondRegisterInput, Text } from '@components';
 
 import { loadMyInfoAPI } from 'apis';
+import { UserType } from 'interfaces';
 
+import reactQueryOption from '@constants/reactQueryOption';
 import useAntdModal from '@hooks/useAntdModal';
 import { ONLY_FOR_SOCIAL_LOGIN } from '@util/message';
 
 import { StyledMoreInfoContainer } from './styled';
 
 export const MoreInfo = () => {
-  const { data: me, isSuccess } = useQuery('user', loadMyInfoAPI);
+  const { data: me, isSuccess } = useQuery<UserType>('user', loadMyInfoAPI, reactQueryOption);
   const [email, onChangeEmail] = useState<string>('');
   const [password, onChangePassword] = useState<string>('');
   const [nickname, setNickname] = useState<string>('');
