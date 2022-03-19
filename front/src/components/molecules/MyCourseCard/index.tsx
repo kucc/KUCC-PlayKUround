@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 import { MyCourseChip } from '@components';
 import { AddCourseIcon } from '@components';
+import { DeleteCoursePlaceIcon } from '@components';
 
 import useWindowDimensions from '@hooks/useWindowDimensions';
 
 import {
+  CourseChipWithDeleteIcon,
+  DeleteIconWrapper,
   EditContainer,
   MyCourseCardWrapper,
   MyCourseChipListWrapper,
@@ -13,7 +16,7 @@ import {
 } from './styled';
 import { MyCourseCardProps } from './type';
 
-export const MyCourseCard = ({ MyCourseChipList, index, onClick }: MyCourseCardProps) => {
+export const MyCourseCard = ({ MyCourseChipList, index }: MyCourseCardProps) => {
   const { width } = useWindowDimensions();
   const IconColors = [
     'mediumpurple',
@@ -31,6 +34,15 @@ export const MyCourseCard = ({ MyCourseChipList, index, onClick }: MyCourseCardP
   const onClickEdit = () => {
     setEditClicked(!editclicked);
   };
+  const [courses, setCourse] =
+    useState<Array<{ id: number; imageSource?: string; place: string }>>(MyCourseChipList);
+  useEffect(() => {}, [courses]);
+  const addToCourse = useCallback((id: number, place: string, imageSource?: string) => {
+    setCourse([...courses, { id: id, imageSource: imageSource, place: place }]);
+  }, []);
+  const removeFromCourse = useCallback((id: number) => {
+    setCourse(courses.filter(course => course.id !== id));
+  }, []);
   return (
     <MyCourseCardWrapper IconColor={RandomIconColor} width={width * 0.9}>
       <TopTextContainer editclicked={editclicked}>
@@ -46,14 +58,22 @@ export const MyCourseCard = ({ MyCourseChipList, index, onClick }: MyCourseCardP
         )}
       </TopTextContainer>
       <MyCourseChipListWrapper>
-        {MyCourseChipList?.map(({ imageSource, place }, index) => {
+        {courses?.map(({ id, imageSource, place }, index) => {
           return (
-            <MyCourseChip
-              imageSource={imageSource}
-              place={place}
-              index={index + 1}
-              isEdited={editclicked}
-            />
+            <CourseChipWithDeleteIcon>
+              <MyCourseChip
+                key={id}
+                imageSource={imageSource}
+                place={place}
+                index={index + 1}
+                isEdited={editclicked}
+              />
+              {editclicked ? (
+                <DeleteIconWrapper onClick={() => removeFromCourse(id)}>
+                  <DeleteCoursePlaceIcon />
+                </DeleteIconWrapper>
+              ) : null}
+            </CourseChipWithDeleteIcon>
           );
         })}
         {editclicked ? <AddCourseIcon /> : null}

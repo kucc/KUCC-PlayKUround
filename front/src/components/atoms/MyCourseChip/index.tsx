@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 
 import { CourseOrderIndicator } from '@assets';
 
@@ -20,7 +20,7 @@ export const MyCourseChip = ({ imageSource, place, index, isEdited }: MyCourseCh
         <CourseOrderIndicator />
         <span>{index}</span>
       </CourseOrderIndicatorWithIndex>
-      {isEdited ? <DeleteCoursePlaceIcon /> : null}
+      {/* {isEdited ? <DeleteCoursePlaceIcon /> : null} */}
     </MyCourseChipWrapper>
   );
 };

@@ -26,6 +26,7 @@ const TestPage = () => {
     { imageSource: 'pictures/heart.png', place: '청년다방' },
     { imageSource: 'pictures/crying-tiger.png', place: '어흥 스테이크' },
     { imageSource: 'pictures/heart.png', place: '칠기 마라탕' },
+    { id: 5, imageSource: 'pictures/crying-tiger.png', place: '어흥 스테이크' },
   ];
   const SecondCourseList = [
     { imageSource: 'pictures/insta-card.png', place: '안암 아줌마 아저씨 치킨' },
