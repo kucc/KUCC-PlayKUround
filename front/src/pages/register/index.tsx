@@ -13,6 +13,7 @@ import { Error } from '@templates';
 import { loadMyInfoAPI } from 'apis/user';
 import User from 'interfaces/user';
 
+import reactQueryOption from '@constants/reactQueryOption';
 import { MakeEmailContext } from '@contexts/globalEmail';
 import useAntdModal from '@hooks/useAntdModal';
 import useInput from '@hooks/useInput';
@@ -27,7 +28,11 @@ const RegisterPage = () => {
   const [firstPage, setFirstPage] = useState<boolean>(true);
 
   const { email: globalEmail } = useContext(MakeEmailContext);
-  const { data, isSuccess, isIdle, isLoading, isError } = useQuery<User>('user', loadMyInfoAPI);
+  const { data, isSuccess, isIdle, isLoading, isError } = useQuery<User>(
+    'user',
+    loadMyInfoAPI,
+    reactQueryOption,
+  );
 
   const me = data as User;
   const [email, onChangeEmail] = useInput(globalEmail || '');

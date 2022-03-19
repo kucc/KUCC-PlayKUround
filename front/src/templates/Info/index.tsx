@@ -10,6 +10,7 @@ import { getByArrAPI } from 'apis/place';
 import { loadMyInfoAPI } from 'apis/user';
 import User from 'interfaces/user';
 
+import reactQueryOption from '@constants/reactQueryOption';
 import { SidePadding } from '@styles';
 import { decodeImageLink } from '@util/imageLinkDecoder';
 
@@ -19,7 +20,7 @@ import { InfoProps } from './type';
 export const Info = ({ title, navbarTitle }: InfoProps) => {
   const screenHeight = window.innerHeight;
 
-  const me = useQuery<User>('user', loadMyInfoAPI);
+  const me = useQuery<User>('user', loadMyInfoAPI, reactQueryOption);
 
   if (me.isError) {
     return <Error isNavbar={false} />;

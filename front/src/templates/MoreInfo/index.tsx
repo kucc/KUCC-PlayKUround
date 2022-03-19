@@ -7,13 +7,14 @@ import { SecondRegisterInput, Text } from '@components';
 
 import { loadMyInfoAPI } from 'apis/user';
 
+import reactQueryOption from '@constants/reactQueryOption';
 import useAntdModal from '@hooks/useAntdModal';
 import { ONLY_FOR_SOCIAL_LOGIN } from '@util/message';
 
 import { StyledMoreInfoContainer } from './styled';
 
 export const MoreInfo = () => {
-  const { data: me, isSuccess } = useQuery('user', loadMyInfoAPI);
+  const { data: me, isSuccess } = useQuery('user', loadMyInfoAPI, reactQueryOption);
   const [email, onChangeEmail] = useState('');
   const [password, onChangePassword] = useState('');
   const [nickname, setNickname] = useState('');

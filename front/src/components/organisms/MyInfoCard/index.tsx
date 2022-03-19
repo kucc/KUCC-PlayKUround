@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 
-import { Upload, message } from 'antd';
+import { Upload } from 'antd';
 
 import { Avatar, MenuBar } from '@components';
 
-import { loadMyInfoAPI, updateUserAPI } from 'apis/user';
+import { loadMyInfoAPI } from 'apis/user';
 import User from 'interfaces/user';
 
+import reactQueryOption from '@constants/reactQueryOption';
 import { uploadProps } from '@util/uploadImage';
 
 import {
@@ -85,7 +86,7 @@ const DefaultIconLabel = [
 ];
 
 export const MyInfoCard = ({ iconLabel, imageSource, name, style }: MyInfoCardProps) => {
-  const { data: user } = useQuery<User>('user', loadMyInfoAPI);
+  const { data: user } = useQuery<User>('user', loadMyInfoAPI, reactQueryOption);
   const [imageLink, setImageLink] = useState<any>(imageSource);
 
   const renderName = () => {

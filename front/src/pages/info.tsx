@@ -9,11 +9,16 @@ import { Error, Info } from '@templates';
 import { loadMyInfoAPI } from 'apis/user';
 import User from 'interfaces/user';
 
+import reactQueryOption from '@constants/reactQueryOption';
 import useAntdModal from '@hooks/useAntdModal';
 import { WRONG_LOGIN_ACCESS } from '@util/message';
 
 const InfoPage = () => {
-  const { data, isSuccess, isLoading, isIdle, isError } = useQuery<User>('user', loadMyInfoAPI);
+  const { data, isSuccess, isLoading, isIdle, isError } = useQuery<User>(
+    'user',
+    loadMyInfoAPI,
+    reactQueryOption,
+  );
   const me = data as User;
 
   useEffect(() => {
