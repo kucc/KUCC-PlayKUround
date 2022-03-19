@@ -13,7 +13,7 @@ import User from 'interfaces/user';
 import { Clock, Configuation, Home, Info, Recommend } from '@assets';
 import reactQueryOption from '@constants/reactQueryOption';
 import useWindowDimensions from '@hooks/useWindowDimensions';
-import { decodeImageLink } from '@util/imageLinkDecoder';
+import decodeImageLink from '@util/imageLinkDecoder';
 
 import {
   CursorHorizontalArrangement,

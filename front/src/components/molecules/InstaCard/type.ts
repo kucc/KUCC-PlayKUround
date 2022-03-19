@@ -1,6 +1,6 @@
 import { commentType } from 'interfaces/comment';
+import { ImagePathProps } from 'interfaces/image';
 import { PlaceType } from 'interfaces/place';
-import User, { ImagePathProps } from 'interfaces/user';
 
 export type InstaCardProps = {
   titleText: string;

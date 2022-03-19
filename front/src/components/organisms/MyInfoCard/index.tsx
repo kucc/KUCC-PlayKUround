@@ -1,15 +1,12 @@
 import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 
-import { Upload } from 'antd';
-
-import { Avatar, MenuBar } from '@components';
+import { Avatar, MenuBar, UploadImage } from '@components';
 
 import { loadMyInfoAPI } from 'apis/user';
 import User from 'interfaces/user';
 
 import reactQueryOption from '@constants/reactQueryOption';
-import { uploadProps } from '@util/uploadImage';
 
 import {
   AvatarLabelWrapper,
@@ -89,6 +86,8 @@ export const MyInfoCard = ({ iconLabel, imageSource, name, style }: MyInfoCardPr
   const { data: user } = useQuery<User>('user', loadMyInfoAPI, reactQueryOption);
   const [imageLink, setImageLink] = useState<any>(imageSource);
 
+  console.log(imageLink);
+
   const renderName = () => {
     if (name) {
       return (
@@ -105,9 +104,9 @@ export const MyInfoCard = ({ iconLabel, imageSource, name, style }: MyInfoCardPr
   return (
     <MyInfoCardWrapper style={style}>
       <AvatarLabelWrapper>
-        <Upload {...uploadProps(setImageLink, user)} showUploadList={false}>
+        <UploadImage mode={'single'} setImageLink={setImageLink}>
           <Avatar size={100} imageSource={imageLink} />
-        </Upload>
+        </UploadImage>
       </AvatarLabelWrapper>
       <NameWrapper>{renderName()}</NameWrapper>
       <MenuBar iconLabel={iconLabel || DefaultIconLabel} style={{ paddingBottom: '10px' }} />
