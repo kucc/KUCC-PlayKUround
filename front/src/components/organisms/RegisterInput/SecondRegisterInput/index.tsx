@@ -3,8 +3,7 @@ import { useQuery } from 'react-query';
 
 import Router from 'next/router';
 
-import { Avatar, BaseButton, BaseInput } from '@components';
-import { UploadImage } from '@components/atoms';
+import { Avatar, BaseButton, BaseInput, UploadImage } from '@components';
 
 import { checkNameAPI, logInAPI, registerAPI, updateUserAPI } from 'apis';
 

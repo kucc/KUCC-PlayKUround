@@ -2,8 +2,7 @@ import React, { useContext } from 'react';
 
 import router from 'next/router';
 
-import { Carousel } from '@components';
-import { LikesButton } from '@components/atoms/LikesButton';
+import { Carousel, LikesButton } from '@components';
 
 import { postValueContext } from '@contexts/postValue';
 

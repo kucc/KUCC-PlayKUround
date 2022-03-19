@@ -1,7 +1,6 @@
 import React from 'react';
 
-import { LikesButton } from '@components/atoms';
-import { PostProfile } from '@components/molecules/PostProfile';
+import { LikesButton, PostProfile } from '@components';
 
 import { StyledPostTopContainer } from './styled';
 import { postTopProps } from './type';
