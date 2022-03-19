@@ -8,11 +8,14 @@ import { BackIconWithNavbar, Carousel, PlaceInfo, PlaceSelectBar } from '@compon
 import { getByOneAPI } from 'apis/place';
 import { PlaceType } from 'interfaces/place';
 
+import reactQueryOption from '@constants/reactQueryOption';
+
 import { placeDetailProps } from './type';
 
 export const PlaceDetail: React.FC<placeDetailProps> = ({ placeId }) => {
   // fetch PlaceInfo
   const { data, isLoading, isSuccess } = useQuery<PlaceType>(['place', placeId], getByOneAPI, {
+    ...reactQueryOption,
     enabled: !!placeId,
   });
   const [selectedIndex, setSelectedIndex] = useState<number>(0);
