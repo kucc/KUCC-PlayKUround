@@ -9,8 +9,8 @@ import { Error } from '@templates';
 import { getByFilterAPI, getByMapAPI } from 'apis';
 import { PlaceType } from 'interfaces';
 
-import reactQueryOption from '@constants/reactQueryOption';
-import { filterValueContext } from '@contexts/filterValue';
+import { reactQueryOption } from '@constants';
+import { filterValueContext } from '@contexts';
 
 import { Map } from '../Map';
 import { StlyedMainTableTop, StyledContentContainer, StyledMainTable } from './styled';

@@ -8,7 +8,7 @@ import { BackIconWithNavbar, Carousel, PlaceInfo, PlaceSelectBar } from '@compon
 import { getByOneAPI } from 'apis';
 import { PlaceType } from 'interfaces';
 
-import reactQueryOption from '@constants/reactQueryOption';
+import { reactQueryOption } from '@constants';
 
 import { placeDetailProps } from './type';
 

@@ -12,11 +12,10 @@ import { Error } from '@templates';
 import { loadMyInfoAPI } from 'apis';
 import { UserType } from 'interfaces';
 
-import reactQueryOption from '@constants/reactQueryOption';
-import { MakeEmailContext } from '@contexts/globalEmail';
-import useAntdModal from '@hooks/useAntdModal';
-import useInput from '@hooks/useInput';
-import { ALREADY_LOGINED, NICKNAME_OVERLENGTH } from '@util/message';
+import { reactQueryOption } from '@constants';
+import { MakeEmailContext } from '@contexts';
+import { useAntdModal, useInput } from '@hooks';
+import { ALREADY_LOGINED, NICKNAME_OVERLENGTH } from '@util';
 
 const RegisterPage = () => {
   const router = useRouter();

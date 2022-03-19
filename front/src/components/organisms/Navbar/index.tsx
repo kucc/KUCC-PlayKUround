@@ -4,7 +4,7 @@ import { Select } from 'antd';
 
 import { Text } from '@components';
 
-import { filterValueContext } from '@contexts/filterValue';
+import { filterValueContext } from '@contexts';
 import { SelectArrowIcon } from '@styles';
 
 import {
@@ -32,7 +32,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     sendArea(value);
   };
   return (
-    <>
+    <React.Fragment>
       <WhiteBox />
       <StyledNavbarContainer>
         <StyledNavbarTextContainer>
@@ -95,6 +95,6 @@ export const Navbar: React.FC<NavbarProps> = ({
           </StyledNavbarItems>
         </StyledNavbarItemsContainer>
       </StyledNavbarContainer>
-    </>
+    </React.Fragment>
   );
 };

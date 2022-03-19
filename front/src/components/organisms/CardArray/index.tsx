@@ -1,5 +1,4 @@
-import React from 'react';
-import { useContext } from 'react';
+import React, { useContext } from 'react';
 
 import router from 'next/router';
 
@@ -7,8 +6,8 @@ import { Card, ErrorLayout } from '@components';
 
 import { SimplePlaceType } from 'interfaces';
 
-import { DistanceValueContext, DistanceValueProvider } from '@contexts/distanceValue';
-import decodeImageLink from '@util/imageLinkDecoder';
+import { DistanceValueContext } from '@contexts';
+import { decodeImageLink } from '@util';
 
 import { StyledCardContainer, StyledDistance, StyledReview, StyledStar } from './styled';
 import { CardArrayProps } from './type';
@@ -17,7 +16,7 @@ const ChipArray = ({ places }: { places: any }) => {
   const { sendDistance } = useContext(DistanceValueContext);
   if (places) {
     return (
-      <>
+      <React.Fragment>
         {places.map((place: SimplePlaceType, key: number) => {
           if (place) {
             const {
@@ -76,7 +75,7 @@ const ChipArray = ({ places }: { places: any }) => {
             );
           }
         })}
-      </>
+      </React.Fragment>
     );
   } else {
     return <ErrorLayout isNavbar={false} mainTextArray={['아직 등록된 장소가 없어요 ㅠㅠ']} />;

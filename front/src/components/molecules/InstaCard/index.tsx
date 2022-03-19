@@ -4,7 +4,7 @@ import router from 'next/router';
 
 import { Carousel, LikesButton } from '@components';
 
-import { postValueContext } from '@contexts/postValue';
+import { postValueContext } from '@contexts';
 
 import {
   CardHeadContainer,
@@ -40,7 +40,6 @@ export const InstaCard = ({
     sendPostValue({
       comments,
       createdAt,
-      placeName: place.placeName,
       writerName,
       writerImage,
       likesCount,
@@ -48,6 +47,7 @@ export const InstaCard = ({
       isLiked,
       description,
       userId,
+      placeName: place.placeName,
     });
     router.push(`/post/${postId}`);
   };

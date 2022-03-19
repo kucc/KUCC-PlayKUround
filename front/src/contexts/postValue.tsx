@@ -7,7 +7,7 @@ interface postValueProps {
   sendPostValue: any;
 }
 
-const postValueContext = createContext<postValueProps>({
+export const postValueContext = createContext<postValueProps>({
   postValue: {
     id: -1,
     comments: [],
@@ -25,7 +25,7 @@ const postValueContext = createContext<postValueProps>({
   sendPostValue: (category: any) => {},
 });
 
-const postValueProvider = ({ children }: any) => {
+export const postValueProvider = ({ children }: any) => {
   const [postValue, setPostValue] = useState<PostDetailType>();
 
   const sendPostValue = (post: any): void => {
@@ -42,5 +42,3 @@ const postValueProvider = ({ children }: any) => {
     </postValueContext.Provider>
   );
 };
-
-export { postValueContext, postValueProvider };

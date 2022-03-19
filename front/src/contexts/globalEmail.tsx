@@ -1,11 +1,11 @@
 import React, { createContext, useState } from 'react';
 
-const MakeEmailContext = createContext({
+export const MakeEmailContext = createContext({
   email: '',
   makeEmail: (email: string) => {},
 });
 
-const MakeEmailProvider: React.FC = ({ children }): JSX.Element => {
+export const MakeEmailProvider: React.FC = ({ children }): JSX.Element => {
   const [email, setEmail] = useState<string>('');
 
   const makeEmail = (email: string): void => {
@@ -22,5 +22,3 @@ const MakeEmailProvider: React.FC = ({ children }): JSX.Element => {
     </MakeEmailContext.Provider>
   );
 };
-
-export { MakeEmailContext, MakeEmailProvider };

@@ -6,7 +6,7 @@ import { Avatar, MenuBar, UploadImage } from '@components';
 import { loadMyInfoAPI } from 'apis';
 import { UserType } from 'interfaces';
 
-import reactQueryOption from '@constants/reactQueryOption';
+import { reactQueryOption } from '@constants';
 
 import {
   AvatarLabelWrapper,

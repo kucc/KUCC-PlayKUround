@@ -10,11 +10,10 @@ import { Error } from '@templates';
 import { getNameAPI, loadMyInfoAPI, logInAPI } from 'apis';
 import { UserType } from 'interfaces';
 
-import reactQueryOption from '@constants/reactQueryOption';
-import { MakeEmailContext } from '@contexts/globalEmail';
-import useAntdModal from '@hooks/useAntdModal';
-import useInput from '@hooks/useInput';
-import { ALREADY_LOGINED } from '@util/message';
+import { reactQueryOption } from '@constants';
+import { MakeEmailContext } from '@contexts';
+import { useAntdModal, useInput } from '@hooks';
+import { ALREADY_LOGINED } from '@util';
 
 const LoginPage = () => {
   const [email, onChangeEmail] = useInput<string>('');

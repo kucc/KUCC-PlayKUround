@@ -1,6 +1,6 @@
 import { Modal } from 'antd';
 
-export default function useAntdModal({
+export const useAntdModal = ({
   success,
   info,
   message,
@@ -8,7 +8,7 @@ export default function useAntdModal({
   success?: boolean;
   info?: boolean;
   message: string;
-}) {
+}) => {
   if (success) {
     return Modal.success({
       content: message,
@@ -37,4 +37,4 @@ export default function useAntdModal({
       },
     });
   }
-}
+};

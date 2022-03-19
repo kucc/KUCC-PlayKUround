@@ -1,11 +1,11 @@
 import React, { createContext, useState } from 'react';
 
-const DistanceValueContext = createContext({
+export const DistanceValueContext = createContext({
   distance: '',
   sendDistance: (value: string) => {},
 });
 
-const DistanceValueProvider: React.FC = ({ children }): JSX.Element => {
+export const DistanceValueProvider: React.FC = ({ children }): JSX.Element => {
   const [distance, setDistance] = useState<string>('');
 
   const sendDistance = (value: string): void => {
@@ -22,5 +22,3 @@ const DistanceValueProvider: React.FC = ({ children }): JSX.Element => {
     </DistanceValueContext.Provider>
   );
 };
-
-export { DistanceValueContext, DistanceValueProvider };

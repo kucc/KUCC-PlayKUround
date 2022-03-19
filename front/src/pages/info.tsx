@@ -9,9 +9,9 @@ import { Error, Info } from '@templates';
 import { loadMyInfoAPI } from 'apis';
 import { UserType } from 'interfaces';
 
-import reactQueryOption from '@constants/reactQueryOption';
-import useAntdModal from '@hooks/useAntdModal';
-import { WRONG_LOGIN_ACCESS } from '@util/message';
+import { reactQueryOption } from '@constants';
+import { useAntdModal } from '@hooks';
+import { WRONG_LOGIN_ACCESS } from '@util';
 
 const InfoPage = () => {
   const { data, isSuccess, isLoading, isIdle, isError } = useQuery<UserType>(

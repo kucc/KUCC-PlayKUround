@@ -1,7 +1,5 @@
 import React from 'react';
 
-import router from 'next/router';
-
 import { Avatar, BackIconWithNavbar, Text } from '@components';
 
 import { ContentLayout, TextLayout } from './styled';
@@ -11,13 +9,13 @@ export const ErrorLayout = ({ isNavbar = true, mainTextArray, subTextArray }: Er
   const renderMainText = () => {
     if (mainTextArray) {
       return (
-        <>
+        <React.Fragment>
           {mainTextArray.map((mainText: string) => (
             <Text h6 bold primary>
               {mainText}
             </Text>
           ))}
-        </>
+        </React.Fragment>
       );
     }
   };
@@ -25,13 +23,13 @@ export const ErrorLayout = ({ isNavbar = true, mainTextArray, subTextArray }: Er
   const renderSubText = () => {
     if (subTextArray) {
       return (
-        <>
+        <React.Fragment>
           {subTextArray.map((subText: string) => (
             <Text subtitle2 medium primary>
               {subText}
             </Text>
           ))}
-        </>
+        </React.Fragment>
       );
     }
   };

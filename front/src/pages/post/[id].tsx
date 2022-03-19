@@ -8,7 +8,7 @@ import { PostDetail } from '@templates';
 import { postGetByOneAPI } from 'apis';
 import { PostDetailType, PostType } from 'interfaces';
 
-import { postValueContext } from '@contexts/postValue';
+import { postValueContext } from '@contexts';
 
 const DetailPost = () => {
   const router = useRouter();
