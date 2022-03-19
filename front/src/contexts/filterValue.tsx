@@ -9,7 +9,7 @@ const filterValueContext = createContext({
 
 const filterValueProvider: React.FC = ({ children }): JSX.Element => {
   const [categoryList, setCategoryList] = useState([]);
-  const [area, setArea] = useState('');
+  const [area, setArea] = useState<string>('');
 
   const sendCategory = (category: any): void => {
     setCategoryList(category);

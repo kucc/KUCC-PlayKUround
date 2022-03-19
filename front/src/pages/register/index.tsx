@@ -4,14 +4,13 @@ import { useQuery } from 'react-query';
 import { Skeleton } from 'antd';
 import axios from 'axios';
 import { GetServerSidePropsContext } from 'next';
-import Router from 'next/router';
-import { useRouter } from 'next/router';
+import Router, { useRouter } from 'next/router';
 
 import { BackIconWithNavbar, FirstRegisterInput, SecondRegisterInput, Text } from '@components';
 import { Error } from '@templates';
 
-import { loadMyInfoAPI } from 'apis/user';
-import User from 'interfaces/user';
+import { loadMyInfoAPI } from 'apis';
+import { UserType } from 'interfaces';
 
 import { MakeEmailContext } from '@contexts/globalEmail';
 import useAntdModal from '@hooks/useAntdModal';
@@ -21,15 +20,15 @@ import { ALREADY_LOGINED, NICKNAME_OVERLENGTH } from '@util/message';
 const RegisterPage = () => {
   const router = useRouter();
 
-  const [password, onChangePassword] = useInput('');
-  const [passwordCheck, onChangePasswordCheck] = useInput('');
-  const [nickname, setNickname] = useState('');
+  const [password, onChangePassword] = useInput<string>('');
+  const [passwordCheck, onChangePasswordCheck] = useInput<string>('');
+  const [nickname, setNickname] = useState<string>('');
   const [firstPage, setFirstPage] = useState<boolean>(true);
 
   const { email: globalEmail } = useContext(MakeEmailContext);
-  const { data, isSuccess, isIdle, isLoading, isError } = useQuery<User>('user', loadMyInfoAPI);
+  const { data, isSuccess, isIdle, isLoading, isError } = useQuery<UserType>('user', loadMyInfoAPI);
 
-  const me = data as User;
+  const me = data as UserType;
   const [email, onChangeEmail] = useInput(globalEmail || '');
 
   const onChangeNickname = useCallback(e => {
@@ -119,7 +118,7 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
     axios.defaults.headers.Cookie = cookie;
   }
   const response = await loadMyInfoAPI();
-  if (response?.data) {
+  if (response.data) {
     return {
       redirect: {
         destination: '/',

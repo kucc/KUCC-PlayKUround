@@ -1,10 +1,5 @@
 import { backUrl } from '@config/config';
 import axios from 'axios';
-import Router from 'next/router';
-
-import { PlaceType } from 'interfaces/place';
-
-import { FAILED_DATA_FETCHING } from '@util/message';
 
 axios.defaults.baseURL = backUrl;
 axios.defaults.withCredentials = true;

@@ -5,8 +5,8 @@ import { Skeleton } from 'antd';
 
 import { BackIconWithNavbar, Carousel, PlaceInfo } from '@components';
 
-import { getByOneAPI } from 'apis/place';
-import { PlaceType } from 'interfaces/place';
+import { getByOneAPI } from 'apis';
+import { PlaceType } from 'interfaces';
 
 import { placeDetailProps } from './type';
 

@@ -1,9 +1,6 @@
 import React from 'react';
-import { useQuery } from 'react-query';
 
 import { Select } from 'antd';
-
-import { PlaceType } from 'interfaces/place';
 
 import { SettingIcon, StyledSelect } from './styled';
 import { MainSelectProps } from './type';

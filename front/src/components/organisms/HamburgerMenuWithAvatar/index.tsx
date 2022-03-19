@@ -4,11 +4,11 @@ import { useQuery } from 'react-query';
 import { Skeleton } from 'antd';
 import Router from 'next/router';
 
-import { Avatar, ErrorLayout, HamburgerMenu, ToggleDark } from '@components';
+import { Avatar, HamburgerMenu, ToggleDark } from '@components';
 import { Error } from '@templates';
 
-import { loadMyInfoAPI } from 'apis/user';
-import User from 'interfaces/user';
+import { loadMyInfoAPI } from 'apis';
+import { UserType } from 'interfaces';
 
 import { Clock, Configuation, Home, Info, Recommend } from '@assets';
 import useWindowDimensions from '@hooks/useWindowDimensions';
@@ -27,7 +27,7 @@ import {
 
 export const HamburgerMenuWithAvatar = () => {
   const { width } = useWindowDimensions();
-  const me = useQuery<User>('user', loadMyInfoAPI);
+  const me = useQuery<UserType>('user', loadMyInfoAPI);
 
   const menuArray = [
     {
@@ -92,7 +92,7 @@ export const HamburgerMenuWithAvatar = () => {
   const renderAvatar = () => {
     if (me.data) {
       if (me.data.image) {
-        return <Avatar imageSource={decodeImageLink(me.data.image.data)} size={59} />;
+        return <Avatar imageSource={decodeImageLink(me.data.image.path.data)} size={59} />;
       } else {
         return <Avatar imageSource={'/pictures/profile.png'} size={59} />;
       }

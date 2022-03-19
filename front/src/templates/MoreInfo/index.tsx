@@ -5,7 +5,7 @@ import router from 'next/router';
 
 import { SecondRegisterInput, Text } from '@components';
 
-import { loadMyInfoAPI } from 'apis/user';
+import { loadMyInfoAPI } from 'apis';
 
 import useAntdModal from '@hooks/useAntdModal';
 import { ONLY_FOR_SOCIAL_LOGIN } from '@util/message';
@@ -14,9 +14,9 @@ import { StyledMoreInfoContainer } from './styled';
 
 export const MoreInfo = () => {
   const { data: me, isSuccess } = useQuery('user', loadMyInfoAPI);
-  const [email, onChangeEmail] = useState('');
-  const [password, onChangePassword] = useState('');
-  const [nickname, setNickname] = useState('');
+  const [email, onChangeEmail] = useState<string>('');
+  const [password, onChangePassword] = useState<string>('');
+  const [nickname, setNickname] = useState<string>('');
 
   const onChangeNickname = useCallback(e => {
     setNickname(e.target.value);

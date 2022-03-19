@@ -4,7 +4,7 @@ import router from 'next/router';
 
 import { Card, ErrorLayout } from '@components';
 
-import { SimplePlaceType } from 'interfaces/place';
+import { SimplePlaceType } from 'interfaces';
 
 import { decodeImageLink } from '@util/imageLinkDecoder';
 

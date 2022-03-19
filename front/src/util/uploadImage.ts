@@ -1,8 +1,8 @@
 import { message } from 'antd';
 import imageCompression from 'browser-image-compression';
 
-import { updateUserAPI } from 'apis/user';
-import User from 'interfaces/user';
+import { updateUserAPI } from 'apis';
+import { UserType } from 'interfaces';
 
 export const makeBlob = (dataURI: string) => {
   // dataURL 값이 data:image/jpeg:base64,~~~~~~~ 이므로 ','를 기점으로 잘라서 ~~~~~인 부분만 다시 인코딩
@@ -20,12 +20,13 @@ export const makeBlob = (dataURI: string) => {
 };
 
 // 유저가 있을 경우(userUpdate) API 전송까지 하기
-const handlingDataForm = async (dataURI: any, user: User | undefined | null) => {
+const handlingDataForm = async (dataURI: any, user: UserType | undefined | null) => {
+  console.log('dataURI', dataURI);
   // 위 과정을 통해 만든 image폼을 FormData에 넣어줍니다.
   const formData = new FormData();
   formData.append('userImage', makeBlob(dataURI));
   if (user) {
-    formData.append('userId', user?.id as unknown as string);
+    formData.append('userId', user.id.toString());
     await updateUserAPI(formData);
     message.success(`사진 업로드에 성공했습니다!`);
   }
@@ -33,7 +34,7 @@ const handlingDataForm = async (dataURI: any, user: User | undefined | null) => 
 
 const compressImage = async (
   fileSrc: any,
-  user: User | undefined | null,
+  user: UserType | undefined | null,
   imageLink?: (arg0: any) => void,
 ) => {
   const options = {
@@ -60,7 +61,10 @@ const compressImage = async (
 };
 
 // 단일 사진 업로드
-export const uploadProps = (setImageLink: (arg0: any) => void, user: User | undefined | null) => {
+export const uploadProps = (
+  setImageLink: (arg0: any) => void,
+  user: UserType | undefined | null,
+) => {
   return {
     name: 'file',
     onChange(info: any) {

@@ -6,15 +6,15 @@ import Router from 'next/router';
 
 import { Error, Info } from '@templates';
 
-import { loadMyInfoAPI } from 'apis/user';
-import User from 'interfaces/user';
+import { loadMyInfoAPI } from 'apis';
+import { UserType } from 'interfaces';
 
 import useAntdModal from '@hooks/useAntdModal';
 import { WRONG_LOGIN_ACCESS } from '@util/message';
 
 const InfoPage = () => {
-  const { data, isSuccess, isLoading, isIdle, isError } = useQuery<User>('user', loadMyInfoAPI);
-  const me = data as User;
+  const { data, isSuccess, isLoading, isIdle, isError } = useQuery<UserType>('user', loadMyInfoAPI);
+  const me = data as UserType;
 
   useEffect(() => {
     if (isSuccess && !(me && me.id)) {
