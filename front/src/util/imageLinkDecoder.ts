@@ -1,4 +1,4 @@
-export function decodeImageLink(data: any) {
+export default function decodeImageLink(data: any) {
   if (!data) {
     return `pictures/no-image.svg`;
   } else {

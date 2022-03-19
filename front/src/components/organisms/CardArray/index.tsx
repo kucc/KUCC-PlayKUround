@@ -8,7 +8,7 @@ import { Card, ErrorLayout } from '@components';
 import { SimplePlaceType } from 'interfaces/place';
 
 import { DistanceValueContext, DistanceValueProvider } from '@contexts/distanceValue';
-import { decodeImageLink } from '@util/imageLinkDecoder';
+import decodeImageLink from '@util/imageLinkDecoder';
 
 import { StyledCardContainer, StyledDistance, StyledReview, StyledStar } from './styled';
 import { CardArrayProps } from './type';
