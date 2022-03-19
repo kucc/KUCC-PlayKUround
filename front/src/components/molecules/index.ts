@@ -11,3 +11,4 @@ export * from './SearchChipBar';
 export * from './ToggleDark';
 export * from './SocialLogin';
 export * from './PlaceInfo';
+export * from './PlaceSelectBar';

@@ -11,6 +11,7 @@ import { Error } from '@templates';
 import { getNameAPI, loadMyInfoAPI, logInAPI } from 'apis/user';
 import User from 'interfaces/user';
 
+import reactQueryOption from '@constants/reactQueryOption';
 import { MakeEmailContext } from '@contexts/globalEmail';
 import useAntdModal from '@hooks/useAntdModal';
 import useInput from '@hooks/useInput';
@@ -24,7 +25,11 @@ const LoginPage = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [name, setName] = useState<string>('');
 
-  const { data, isSuccess, isIdle, isError } = useQuery<User>('user', loadMyInfoAPI);
+  const { data, isSuccess, isIdle, isError } = useQuery<User>(
+    'user',
+    loadMyInfoAPI,
+    reactQueryOption,
+  );
 
   const me = data as User;
   const { makeEmail } = useContext(MakeEmailContext);

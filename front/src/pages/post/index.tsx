@@ -13,11 +13,12 @@ import Post from 'interfaces/post';
 import User from 'interfaces/user';
 
 import { Filter, WritePost } from '@assets';
+import reactQueryOption from '@constants/reactQueryOption';
 
 const PostPage = () => {
   const [modalVisible, setModalVisible] = useState<boolean>(false);
 
-  const { data: me } = useQuery<User>('user', loadMyInfoAPI);
+  const { data: me } = useQuery<User>('user', loadMyInfoAPI, reactQueryOption);
 
   const {
     data: posts,

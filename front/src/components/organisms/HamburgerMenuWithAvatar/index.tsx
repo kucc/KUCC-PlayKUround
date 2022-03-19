@@ -11,6 +11,7 @@ import { loadMyInfoAPI } from 'apis/user';
 import User from 'interfaces/user';
 
 import { Clock, Configuation, Home, Info, Recommend } from '@assets';
+import reactQueryOption from '@constants/reactQueryOption';
 import useWindowDimensions from '@hooks/useWindowDimensions';
 import { decodeImageLink } from '@util/imageLinkDecoder';
 
@@ -27,7 +28,7 @@ import {
 
 export const HamburgerMenuWithAvatar = () => {
   const { width } = useWindowDimensions();
-  const me = useQuery<User>('user', loadMyInfoAPI);
+  const me = useQuery<User>('user', loadMyInfoAPI, reactQueryOption);
 
   const menuArray = [
     {
