@@ -8,7 +8,7 @@ import {
   placeIcon,
   placeNoPicture,
   placePicture,
-} from '@components/atoms/MapIcons';
+} from '@components';
 
 import { PlaceType } from 'interfaces';
 
