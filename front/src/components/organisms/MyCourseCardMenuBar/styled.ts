@@ -8,6 +8,7 @@ export const TopMenuBar = styled.div<{ width: number }>`
   margin: 0 auto;
   display: flex;
   align-items: center;
+  padding: 15.5px;
   span {
     font-size: 16px;
     font-weight: bold;
@@ -31,7 +32,7 @@ export const FullContainer = styled(animated.div)<{ height: number; width: numbe
 `;
 export const IconContainer = styled.div`
   display: flex;
-  margin-top: 15px;
-  margin-bottom: 29px;
+  padding-top: 13px;
+  padding-bottom: 8px;
   justify-content: center;
 `;

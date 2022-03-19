@@ -20,7 +20,7 @@ export const MyCourseCardMenuBar = ({
   const { width, height } = useWindowDimensions();
   const [clicked, setClicked] = React.useState<boolean>(false);
   const fadeAnimation = useSpring({
-    bottom: clicked ? 0 : -height * 0.75,
+    bottom: clicked ? 0 : -height * 0.7,
     config: {
       friction: 30,
     },
@@ -40,7 +40,7 @@ export const MyCourseCardMenuBar = ({
         <FullBar />
         <MyCourseCard MyCourseChipList={FirstCourseList} index={1} />
         <MyCourseCard MyCourseChipList={SecondCourseList} index={2} />
-        {/* if ({ThirdCourseList}) {<MyCourseCard MyCourseChipList={ThirdCourseList} index={3} />} */}
+        <MyCourseCard MyCourseChipList={ThirdCourseList} index={3} />
       </FullContainer>
     </>
   );
