@@ -1,7 +1,7 @@
-import { ImageProps } from 'interfaces/image';
+import { ImageType } from 'interfaces';
 
 export interface postProfileProps {
   createdAt: string;
   writerName: string;
-  writerImage: ImageProps | null;
+  writerImage: ImageType | null;
 }

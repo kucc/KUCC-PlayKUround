@@ -1,17 +1,15 @@
-import { commentType } from 'interfaces/comment';
-import { ImagePathProps } from 'interfaces/image';
-import { PlaceType } from 'interfaces/place';
+import { CommentType, ImageType, PlaceType } from 'interfaces';
 
 export type InstaCardProps = {
   titleText: string;
   placeText?: string;
-  likesCount?: number;
+  likesCount: number;
   CarouselList: Array<any>;
   description?: string;
-  comments?: commentType[];
+  comments?: CommentType[];
   isLiked?: boolean;
   writerName?: string | null;
-  writerImage?: ImagePathProps | null;
+  writerImage?: ImageType | null;
   userId?: number | null;
   postId?: number;
   createdAt?: string;

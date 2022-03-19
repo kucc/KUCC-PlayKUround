@@ -7,10 +7,8 @@ import router from 'next/router';
 import { ErrorLayout, InstaCard, Modal, NavbarWithHamburger } from '@components';
 import { Error } from '@templates';
 
-import { postGetByLatestAPI } from 'apis/post';
-import { loadMyInfoAPI } from 'apis/user';
-import Post from 'interfaces/post';
-import User from 'interfaces/user';
+import { loadMyInfoAPI, postGetByLatestAPI } from 'apis';
+import { PostType, UserType } from 'interfaces';
 
 import { Filter, WritePost } from '@assets';
 import reactQueryOption from '@constants/reactQueryOption';
@@ -18,7 +16,7 @@ import reactQueryOption from '@constants/reactQueryOption';
 const PostPage = () => {
   const [modalVisible, setModalVisible] = useState<boolean>(false);
 
-  const { data: me } = useQuery<User>('user', loadMyInfoAPI, reactQueryOption);
+  const { data: me } = useQuery<UserType>('user', loadMyInfoAPI, reactQueryOption);
 
   const {
     data: posts,
@@ -46,7 +44,7 @@ const PostPage = () => {
     return (
       <>
         <NavbarWithHamburger rightItems={rightItems} navbarTitle="실시간 Play's" />
-        {posts.map((post: Post, key: number) => (
+        {posts.map((post: PostType, key: number) => (
           <InstaCard
             titleText={post.place.placeName}
             placeText={post.place.addressExact}

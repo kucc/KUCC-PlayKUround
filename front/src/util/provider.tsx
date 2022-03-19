@@ -1,5 +1,5 @@
 // Provider.js
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { ThemeProvider } from 'styled-components';
 import useDarkMode from 'use-dark-mode';
@@ -7,7 +7,7 @@ import useDarkMode from 'use-dark-mode';
 import { darkTheme, lightTheme } from './theme';
 
 const Providers = ({ children }: { children: any }) => {
-  const [mounted, setMounted] = React.useState(false);
+  const [mounted, setMounted] = useState<boolean>(false);
   const darkMode = useDarkMode(false);
   const theme = darkMode.value ? darkTheme : lightTheme;
 

@@ -1,4 +1,4 @@
-import { ImageProps } from 'interfaces/image';
+import { ImageType } from 'interfaces';
 
 export interface postTopProps {
   userId: number;
@@ -8,5 +8,5 @@ export interface postTopProps {
   setModalVisible: (value: boolean) => void;
   createdAt: string;
   writerName: string;
-  writerImage: ImageProps | null;
+  writerImage: ImageType | null;
 }
