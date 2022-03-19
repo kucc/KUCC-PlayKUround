@@ -12,7 +12,7 @@ export const SecondLoginInput = ({
   onClickJoinButton,
   isLoading,
 }: SecondLoginInputProps) => {
-  const [isSuccessPassword, setIsSuccessPassword] = useState(false);
+  const [isSuccessPassword, setIsSuccessPassword] = useState<boolean>(false);
 
   useEffect(() => {
     if (password.length > 0) {

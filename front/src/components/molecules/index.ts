@@ -12,3 +12,4 @@ export * from './ToggleDark';
 export * from './MyCourseCard';
 export * from './SocialLogin';
 export * from './PlaceInfo';
+export * from './PlaceSelectBar';

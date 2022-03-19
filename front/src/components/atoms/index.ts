@@ -16,3 +16,6 @@ export * from './MyCourseChip';
 export * from './SocialLoginIcon';
 export * from './DeleteCoursePlaceIcon';
 export * from './AddCourseIcon';
+export * from './SocialLoginIcon';
+export * from './Text';
+export * from './UploadImage';

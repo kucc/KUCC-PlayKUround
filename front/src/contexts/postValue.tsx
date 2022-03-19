@@ -1,16 +1,16 @@
 import React, { createContext, useState } from 'react';
 
-import postDetail from 'interfaces/postDetail';
+import { PostDetailType } from 'interfaces';
 
 interface postValueProps {
-  postValue: postDetail;
+  postValue: PostDetailType;
   sendPostValue: any;
 }
 
 const postValueContext = createContext<postValueProps>({
   postValue: {
+    id: -1,
     comments: [],
-    createdAt: '',
     placeName: '',
     writerName: '',
     description: '',
@@ -19,13 +19,14 @@ const postValueContext = createContext<postValueProps>({
     CarouselList: null,
     isLiked: false,
     userId: -1,
-    postId: -1,
+    createdAt: '',
+    updatedAt: '',
   },
   sendPostValue: (category: any) => {},
 });
 
-const postValueProvider: React.FC = ({ children }): JSX.Element => {
-  const [postValue, setPostValue] = useState<postDetail>();
+const postValueProvider = ({ children }: any) => {
+  const [postValue, setPostValue] = useState<PostDetailType>();
 
   const sendPostValue = (post: any): void => {
     setPostValue(post);
@@ -34,7 +35,7 @@ const postValueProvider: React.FC = ({ children }): JSX.Element => {
   return (
     <postValueContext.Provider
       value={{
-        postValue: postValue as postDetail,
+        postValue: postValue as PostDetailType,
         sendPostValue,
       }}>
       {children}

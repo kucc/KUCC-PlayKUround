@@ -6,7 +6,7 @@ const MakeEmailContext = createContext({
 });
 
 const MakeEmailProvider: React.FC = ({ children }): JSX.Element => {
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState<string>('');
 
   const makeEmail = (email: string): void => {
     setEmail(email);

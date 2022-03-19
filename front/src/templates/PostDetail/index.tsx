@@ -4,13 +4,13 @@ import router from 'next/router';
 
 import { BackIconWithNavbar, Carousel, Footer, Modal, PostTop, Text } from '@components';
 
-import postDetail from 'interfaces/postDetail';
+import { PostDetailType } from 'interfaces';
 
 import { SidePadding } from '@styles';
 
 import { Container } from './styled';
 
-export const PostDetail: React.FC<postDetail> = ({
+export const PostDetail: React.FC<PostDetailType> = ({
   comments,
   createdAt,
   placeName,
@@ -19,8 +19,8 @@ export const PostDetail: React.FC<postDetail> = ({
   likesCount,
   CarouselList,
   isLiked,
+  id,
   userId,
-  postId,
   description,
 }) => {
   const [modalVisible, setModalVisible] = useState<boolean>(false);
@@ -32,7 +32,7 @@ export const PostDetail: React.FC<postDetail> = ({
         <SidePadding style={{ marginTop: '12px' }}>
           <PostTop
             userId={userId}
-            postId={postId}
+            postId={id}
             likesCount={likesCount}
             isLiked={isLiked}
             setModalVisible={setModalVisible}

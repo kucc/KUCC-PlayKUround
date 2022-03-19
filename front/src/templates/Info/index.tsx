@@ -6,12 +6,12 @@ import { Skeleton } from 'antd';
 import { CardArray, ErrorLayout, Footer, MyInfoCard, NavbarWithHamburger, Text } from '@components';
 import { Error } from '@templates';
 
-import { getByArrAPI } from 'apis/place';
-import { loadMyInfoAPI } from 'apis/user';
-import User from 'interfaces/user';
+import { getByArrAPI, loadMyInfoAPI } from 'apis';
+import { UserType } from 'interfaces';
 
+import reactQueryOption from '@constants/reactQueryOption';
 import { SidePadding } from '@styles';
-import { decodeImageLink } from '@util/imageLinkDecoder';
+import decodeImageLink from '@util/imageLinkDecoder';
 
 import { Container } from './styled';
 import { InfoProps } from './type';
@@ -19,7 +19,7 @@ import { InfoProps } from './type';
 export const Info = ({ title, navbarTitle }: InfoProps) => {
   const screenHeight = window.innerHeight;
 
-  const me = useQuery<User>('user', loadMyInfoAPI);
+  const me = useQuery<UserType>('user', loadMyInfoAPI, reactQueryOption);
 
   if (me.isError) {
     return <Error isNavbar={false} />;
@@ -48,7 +48,7 @@ export const Info = ({ title, navbarTitle }: InfoProps) => {
           <NavbarWithHamburger navbarTitle={navbarTitle} />
           <MyInfoCard
             imageSource={
-              me.data.image ? decodeImageLink(me.data.image.data) : '/pictures/profile.png'
+              me.data.image ? decodeImageLink(me.data.image.path.data) : '/pictures/profile.png'
             }
             name={me.data.name}
             style={{ marginBottom: '31px' }}

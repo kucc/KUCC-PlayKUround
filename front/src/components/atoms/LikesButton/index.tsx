@@ -1,11 +1,8 @@
 import React, { useState } from 'react';
 
 import { useSpring } from '@react-spring/web';
-import router from 'next/router';
 
-import { Modal } from '@components/molecules';
-
-import { postLikeAPI } from 'apis/post';
+import { postLikeAPI } from 'apis';
 
 import { Likes, LikesFill } from '@assets';
 import { Colors } from '@styles';
@@ -21,7 +18,7 @@ export const LikesButton = ({
   setModalVisible,
 }: LikesButtonProps) => {
   const [isLiked, setIsLiked] = useState<boolean>(isLikedProps as boolean);
-  const [likesCount, setLikesCount] = useState<number>(likesCountProps as number);
+  const [likesCount, setLikesCount] = useState<number>(likesCountProps);
   const onClickLike = () => {
     if (!userId) {
       setModalVisible(true);

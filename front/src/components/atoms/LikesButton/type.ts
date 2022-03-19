@@ -1,5 +1,5 @@
 export type LikesButtonProps = {
-  likesCountProps?: number;
+  likesCountProps: number;
   isLikedProps?: boolean;
   userId?: number | null;
   postId?: number;

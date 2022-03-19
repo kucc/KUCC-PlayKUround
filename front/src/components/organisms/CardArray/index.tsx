@@ -1,17 +1,20 @@
 import React from 'react';
+import { useContext } from 'react';
 
 import router from 'next/router';
 
 import { Card, ErrorLayout } from '@components';
 
-import { SimplePlaceType } from 'interfaces/place';
+import { SimplePlaceType } from 'interfaces';
 
-import { decodeImageLink } from '@util/imageLinkDecoder';
+import { DistanceValueContext, DistanceValueProvider } from '@contexts/distanceValue';
+import decodeImageLink from '@util/imageLinkDecoder';
 
 import { StyledCardContainer, StyledDistance, StyledReview, StyledStar } from './styled';
 import { CardArrayProps } from './type';
 
 const ChipArray = ({ places }: { places: any }) => {
+  const { sendDistance } = useContext(DistanceValueContext);
   if (places) {
     return (
       <>
@@ -61,7 +64,10 @@ const ChipArray = ({ places }: { places: any }) => {
                 title={placeName}
                 description={placeDescription}
                 ChipGroupList={ChipGroupList}
-                onClick={() => router.push(`/place/${id}`)}
+                onClick={() => {
+                  sendDistance(distanceString);
+                  router.push(`/place/${id}`);
+                }}
               />
             );
           } else {

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { useSpring } from '@react-spring/web';
 import useDarkMode from 'use-dark-mode';
