@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { Colors } from '@styles';
+
 export const AddIconWrapper = styled.div`
   position: relative;
   svg:first-child {
