@@ -8,9 +8,9 @@ import { SecondRegisterInput, Text } from '@components';
 import { loadMyInfoAPI } from 'apis';
 import { UserType } from 'interfaces';
 
-import reactQueryOption from '@constants/reactQueryOption';
-import useAntdModal from '@hooks/useAntdModal';
-import { ONLY_FOR_SOCIAL_LOGIN } from '@util/message';
+import { reactQueryOption } from '@constants';
+import { useAntdModal } from '@hooks';
+import { ONLY_FOR_SOCIAL_LOGIN } from '@util';
 
 import { StyledMoreInfoContainer } from './styled';
 

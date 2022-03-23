@@ -1,4 +1,4 @@
-export default function makeBlob(dataURI: string) {
+export const makeBlob = (dataURI: string) => {
   // dataURL 값이 data:image/jpeg:base64,~~~~~~~ 이므로 ','를 기점으로 잘라서 ~~~~~인 부분만 다시 인코딩
   const byteString = window.atob(dataURI.split(',')[1]);
   // Blob를 구성하기 위한 준비
@@ -11,4 +11,4 @@ export default function makeBlob(dataURI: string) {
     type: 'image/jpeg',
   });
   return new File([blob], 'image.jpg');
-}
+};

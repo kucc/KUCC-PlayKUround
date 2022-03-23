@@ -11,7 +11,7 @@ import { loadMyInfoAPI, postGetByLatestAPI } from 'apis';
 import { PostType, UserType } from 'interfaces';
 
 import { Filter, WritePost } from '@assets';
-import reactQueryOption from '@constants/reactQueryOption';
+import { reactQueryOption } from '@constants';
 
 const PostPage = () => {
   const [modalVisible, setModalVisible] = useState<boolean>(false);

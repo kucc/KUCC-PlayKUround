@@ -1,10 +1,9 @@
-import React from 'react';
-import { useContext } from 'react';
+import React, { useContext } from 'react';
 
 import { Chip, Text } from '@components';
 
 import { Comment, Distance, Scrap, Star } from '@assets';
-import { DistanceValueContext } from '@contexts/distanceValue';
+import { DistanceValueContext } from '@contexts';
 
 import { ChipStyle, StyledChipContainer, StyledPlaceInfoContainer } from './styled';
 import { PlaceInfoProps } from './type';

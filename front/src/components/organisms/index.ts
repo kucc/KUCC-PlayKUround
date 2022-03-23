@@ -9,6 +9,7 @@ export * from './Map';
 export * from './MyInfoCard';
 export * from './Navbar';
 export * from './NavbarWithHamburger';
+export * from './PostTop';
 export * from './RecommendTable';
 export * from './RegisterInput';
 export * from './PostTop';

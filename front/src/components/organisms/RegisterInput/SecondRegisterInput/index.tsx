@@ -3,14 +3,12 @@ import { useQuery } from 'react-query';
 
 import Router from 'next/router';
 
-import { Avatar, BaseButton, BaseInput } from '@components';
-import { UploadImage } from '@components/atoms';
+import { Avatar, BaseButton, BaseInput, UploadImage } from '@components';
 
 import { checkNameAPI, logInAPI, registerAPI, updateUserAPI } from 'apis';
 
-import useAntdModal from '@hooks/useAntdModal';
-import makeBlob from '@util/makeBlob';
-import { ERROR_LOG, REGISTER_SUCCESS } from '@util/message';
+import { useAntdModal } from '@hooks';
+import { ERROR_LOG, REGISTER_SUCCESS, makeBlob } from '@util';
 
 import { AvatarPosition, ButtonWrapper, Label } from '../styled';
 import { SecondRegisterInputProps } from '../type';

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import useWindowDimensions from '@hooks/useWindowDimensions';
+import { useWindowDimensions } from '@hooks';
 
 import { CardDescription, CardImg, CardWrapper } from './styled';
 import { RecommendCardProps } from './type';

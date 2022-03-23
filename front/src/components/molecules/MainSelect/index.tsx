@@ -7,7 +7,7 @@ import { MainSelectProps } from './type';
 
 const { Option } = Select;
 
-export const MainSelect = ({ value, setValue }: MainSelectProps) => {
+export const MainSelect = ({ setValue }: MainSelectProps) => {
   const handleChange = (value: any) => {
     if (value === 'close') {
       setValue('close');
