@@ -6,3 +6,4 @@ export * from './place.types';
 export * from './post.types';
 export * from './postDetail.types';
 export * from './user.types';
+export * from './mycourse.types';

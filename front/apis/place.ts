@@ -113,3 +113,5 @@ export async function getByArrAPI({ queryKey }: { queryKey: any[] }) {
     return;
   }
 }
+
+export async function getCoursesAPI() {}

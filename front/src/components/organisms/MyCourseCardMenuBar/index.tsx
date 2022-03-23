@@ -1,13 +1,17 @@
 import React, { useCallback, useEffect, useState } from 'react';
+import { useQuery } from 'react-query';
 
 import { useSpring } from '@react-spring/core';
-import internal from 'stream';
 
 import { MyCourseCard } from '@components';
 import { FullBar } from '@components';
 
+import { getCoursesAPI } from 'apis';
+import { MyCourseType } from 'interfaces';
+
 import { AddCourse } from '@assets';
 import { ArrowDown, ArrowUp, Edit } from '@assets';
+import { reactQueryOption } from '@constants';
 import { useWindowDimensions } from '@hooks/useWindowDimensions';
 
 import { FullContainer, IconContainer, TopMenuBar } from './styled';
@@ -18,20 +22,7 @@ export const MyCourseCardMenuBar = ({
   SecondCourseList,
   ThirdCourseList,
 }: MyCourseCardMenuBarProps) => {
-  const [courses, setFirstCourse] = useState<
-    Array<{ id: number; imageSource?: string; place: string }>
-  >([]);
-  useEffect(() => {
-    {
-      FirstCourseList ? setFirstCourse(FirstCourseList) : setFirstCourse([]);
-    }
-  }, []);
-  const addToFirstCourse = useCallback((id: number, place: string, imageSource?: string) => {
-    setFirstCourse([...courses, { id: id, imageSource: imageSource, place: place }]);
-  }, []);
-  const removeFromFirstCourse = useCallback((id: number) => {
-    setFirstCourse(courses.filter(course => course.id !== id));
-  }, []);
+  // const { data: me } = useQuery<MyCourseType>('user', getCoursesAPI, reactQueryOption);
   const { width, height } = useWindowDimensions();
   const [clicked, setClicked] = useState<boolean>(false);
 
