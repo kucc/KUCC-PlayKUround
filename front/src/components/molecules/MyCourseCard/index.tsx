@@ -40,9 +40,13 @@ export const MyCourseCard = ({ MyCourseChipList, index }: MyCourseCardProps) => 
   const addToCourse = useCallback((id: number, place: string, imageSource?: string) => {
     setCourse([...courses, { id: id, imageSource: imageSource, place: place }]);
   }, []);
-  const removeFromCourse = useCallback((id: number) => {
-    setCourse(courses.filter(course => course.id !== id));
-  }, []);
+  const removeFromCourse = useCallback(
+    (id: number) => {
+      setCourse(courses.filter(course => course.id !== id));
+    },
+    [courses],
+  );
+
   return (
     <MyCourseCardWrapper IconColor={RandomIconColor} width={width * 0.9}>
       <TopTextContainer editclicked={editclicked}>
