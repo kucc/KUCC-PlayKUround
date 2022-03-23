@@ -36,17 +36,20 @@ export const MyCourseCard = ({ MyCourseChipList, index }: MyCourseCardProps) => 
   };
   const [courses, setCourse] =
     useState<Array<{ id: number; imageSource?: string; place: string }>>(MyCourseChipList);
-  useEffect(() => {}, [courses]);
-  const addToCourse = useCallback((id: number, place: string, imageSource?: string) => {
-    setCourse([...courses, { id: id, imageSource: imageSource, place: place }]);
-  }, []);
+
+  const addToCourse = useCallback(
+    (id: number, place: string, imageSource?: string) => {
+      setCourse([...courses, { id: id, imageSource: imageSource, place: place }]);
+    },
+    [courses],
+  );
   const removeFromCourse = useCallback(
     (id: number) => {
       setCourse(courses.filter(course => course.id !== id));
     },
     [courses],
   );
-
+  useEffect(() => {}, [removeFromCourse, addToCourse]);
   return (
     <MyCourseCardWrapper IconColor={RandomIconColor} width={width * 0.9}>
       <TopTextContainer editclicked={editclicked}>
