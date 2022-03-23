@@ -4,7 +4,7 @@ import { MyCourseChip } from '@components';
 import { AddCourseIcon } from '@components';
 import { DeleteCoursePlaceIcon } from '@components';
 
-import useWindowDimensions from '@hooks/useWindowDimensions';
+import { useWindowDimensions } from '@hooks/useWindowDimensions';
 
 import {
   CourseChipWithDeleteIcon,

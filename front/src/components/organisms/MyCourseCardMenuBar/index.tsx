@@ -8,7 +8,7 @@ import { FullBar } from '@components';
 
 import { AddCourse } from '@assets';
 import { ArrowDown, ArrowUp, Edit } from '@assets';
-import useWindowDimensions from '@hooks/useWindowDimensions';
+import { useWindowDimensions } from '@hooks/useWindowDimensions';
 
 import { FullContainer, IconContainer, TopMenuBar } from './styled';
 import { MyCourseCardMenuBarProps } from './type';
