@@ -2,9 +2,9 @@ import styled from 'styled-components';
 
 import { Colors } from '@styles';
 
-export const MyCourseCardWrapper = styled.div<{ IconColor: string; width: number }>`
+export const MyCourseCardWrapper = styled.div<{ IconColor: () => string; width: number }>`
   svg > path {
-    fill: ${({ IconColor }) => (IconColor ? IconColor : Colors.primary)};
+    fill: ${({ IconColor }) => IconColor};
   }
   height: 152px;
   width: ${({ width }) => width}px;

@@ -4,6 +4,7 @@ import { MyCourseChip } from '@components';
 import { AddCourseIcon } from '@components';
 import { DeleteCoursePlaceIcon } from '@components';
 
+import { reactQueryOption } from '@constants';
 import { useWindowDimensions } from '@hooks/useWindowDimensions';
 
 import {
@@ -20,6 +21,7 @@ export const MyCourseCard = ({ MyCourseChipList, index }: MyCourseCardProps) => 
   const { width } = useWindowDimensions();
   const IconColors = [
     'mediumpurple',
+    'pink',
     'cadetblue',
     'chocolate',
     'coral',
@@ -27,9 +29,11 @@ export const MyCourseCard = ({ MyCourseChipList, index }: MyCourseCardProps) => 
     'crimson',
     'darkcyan',
     'darkseagreen',
-    'pink',
   ];
-  const RandomIconColor = IconColors[Math.floor(Math.random() * IconColors.length)];
+  const pickColor = useCallback(() => {
+    return IconColors[index];
+  }, []);
+  // const RandomIconColor = IconColors[Math.floor(Math.random() * IconColors.length)];
   const [editclicked, setEditClicked] = useState<boolean>(false);
   const onClickEdit = () => {
     setEditClicked(!editclicked);
@@ -49,9 +53,24 @@ export const MyCourseCard = ({ MyCourseChipList, index }: MyCourseCardProps) => 
     },
     [courses],
   );
-  useEffect(() => {}, [removeFromCourse, addToCourse]);
+  const randomArrayShuffle = (array: Array<string>) => {
+    var currentIndex = array.length,
+      temporaryValue,
+      randomIndex;
+    while (0 !== currentIndex) {
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
+    }
+    return array;
+  };
+  useEffect(() => {
+    randomArrayShuffle(IconColors);
+  }, [IconColors]);
   return (
-    <MyCourseCardWrapper IconColor={RandomIconColor} width={width * 0.9}>
+    <MyCourseCardWrapper IconColor={pickColor} width={width * 0.9}>
       <TopTextContainer editclicked={editclicked}>
         <span>코스 {index}</span>
         {editclicked ? (
