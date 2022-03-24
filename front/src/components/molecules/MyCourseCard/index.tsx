@@ -20,6 +20,9 @@ import { MyCourseCardProps } from './type';
 export const MyCourseCard = ({ MyCourseChipList, index }: MyCourseCardProps) => {
   const { width } = useWindowDimensions();
   const IconColors = [
+    '#26C1AA',
+    '#F8E08B',
+    '#ED6355',
     'mediumpurple',
     'pink',
     'cadetblue',
