@@ -1,40 +1,40 @@
-import React, { useEffect, useState } from 'react';
-import { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 import { Skeleton } from 'antd';
 import { useRouter } from 'next/router';
 
 import { PostDetail } from '@templates';
 
-import { postGetByOneAPI } from 'apis/post';
-import Post from 'interfaces/post';
-import postDetail from 'interfaces/postDetail';
+import { postGetByOneAPI } from 'apis';
+import { PostDetailType, PostType } from 'interfaces';
 
-import { postValueContext } from '@contexts/postValue';
+import { postValueContext } from '@contexts';
 
 const DetailPost = () => {
   const router = useRouter();
 
-  const { id } = router.query;
+  const { id: postId } = router.query;
 
-  const { postValue }: { postValue: postDetail } = useContext(postValueContext);
-  const [postData, setPostData] = useState<postDetail>(postValue);
+  const { postValue }: { postValue: PostDetailType } = useContext(postValueContext);
+  const [postData, setPostData] = useState<PostDetailType>(postValue);
   async function getData() {
-    const data: Post = await postGetByOneAPI(id as string);
+    const data: PostType & { userId: number } = await postGetByOneAPI(postId as string);
     const {
       comments,
-      createdAt,
       place: { placeName },
-      user: { name: writerName, images: writerImage },
+      user: { name: writerName, image: writerImage },
       likeNum: likesCount,
       images: CarouselList,
       isLiked,
       userId,
+      id,
       description,
-    }: any = data;
+      createdAt,
+      updatedAt,
+    } = data;
+
     setPostData({
       comments,
-      createdAt,
       placeName,
       writerName,
       writerImage,
@@ -42,20 +42,24 @@ const DetailPost = () => {
       CarouselList,
       isLiked,
       userId,
-      postId: parseInt(id as string),
+      id,
       description,
+      createdAt,
+      updatedAt,
     });
   }
   useEffect(() => {
-    if (!postValue && id) {
+    if (!postValue && postId) {
       getData();
     }
-  }, [postValue, id]);
+  }, [postValue, postId]);
 
   if (!postData) return <Skeleton active />;
   return (
     <PostDetail
+      id={postData.id}
       comments={postData.comments}
+      updatedAt={postData.updatedAt}
       createdAt={postData.createdAt}
       placeName={postData.placeName}
       writerName={postData.writerName}
@@ -64,7 +68,6 @@ const DetailPost = () => {
       CarouselList={postData.CarouselList}
       isLiked={postData.isLiked}
       userId={postData.userId}
-      postId={postData.postId}
       description={postData.description}
     />
   );

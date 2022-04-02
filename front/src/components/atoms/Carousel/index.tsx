@@ -6,7 +6,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-import decodeImageLink from '@util/imageLinkDecoder';
+import { decodeImageLink } from '@util';
 
 import { SwiperContainer } from './styled';
 import { CarouselProps } from './type';

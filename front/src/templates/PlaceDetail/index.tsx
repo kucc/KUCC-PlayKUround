@@ -5,10 +5,10 @@ import { Skeleton } from 'antd';
 
 import { BackIconWithNavbar, Carousel, PlaceInfo, PlaceSelectBar } from '@components';
 
-import { getByOneAPI } from 'apis/place';
-import { PlaceType } from 'interfaces/place';
+import { getByOneAPI } from 'apis';
+import { PlaceType } from 'interfaces';
 
-import reactQueryOption from '@constants/reactQueryOption';
+import { reactQueryOption } from '@constants';
 
 import { placeDetailProps } from './type';
 

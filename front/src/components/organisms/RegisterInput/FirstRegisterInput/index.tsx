@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 
-import { BaseButton, BaseInput } from '@components';
-import { SocialLogin } from '@components';
+import { BaseButton, BaseInput, SocialLogin } from '@components';
 
-import { checkEmailAPI } from 'apis/user';
+import { checkEmailAPI } from 'apis';
 
 import { ButtonWrapper } from '../styled';
 import { FirstRegisterInputProps } from '../type';

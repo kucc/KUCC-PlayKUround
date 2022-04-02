@@ -22,7 +22,7 @@ export const SearchChipBar = () => {
 
   return (
     <Container>
-      {menuList?.map(({ icon, label, category, categoryDetail }, index) => {
+      {menuList.map(({ icon, label, category, categoryDetail }, index) => {
         return (
           <Chip
             key={index}

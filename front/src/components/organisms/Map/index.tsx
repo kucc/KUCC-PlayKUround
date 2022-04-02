@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { PlaceType } from 'interfaces/place';
+import { PlaceType } from 'interfaces';
 
 import CourseMap from './CourseMap';
 import NormalMap from './NormalMap';
@@ -16,7 +16,7 @@ export const Map = ({
   latitude: number;
   getLocation: () => Promise<void>;
 }) => {
-  const [isCourseMode, setIsCourseMode] = useState(false);
+  const [isCourseMode, setIsCourseMode] = useState<boolean>(false);
 
   // Todo
   // 위치 정보 동의 안했을 때 대응

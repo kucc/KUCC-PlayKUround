@@ -7,10 +7,10 @@ import { AppProps, NextWebVitalsMetric } from 'next/app';
 import Head from 'next/head';
 import PropTypes from 'prop-types';
 
-import { AppContextProvider } from '@contexts/AppContextProvider';
+import { AppContextProvider } from '@contexts';
 // 패키지 불러오기
 import { GlobalStyle } from '@styles';
-import Providers from '@util/provider';
+import { Providers } from '@util';
 
 // TODO : import로 less파일 추적하능하게 바꾸기
 require('../styles/variables.less');

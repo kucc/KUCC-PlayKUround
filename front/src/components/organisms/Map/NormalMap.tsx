@@ -8,11 +8,9 @@ import {
   placeIcon,
   placeNoPicture,
   placePicture,
-} from '@components/atoms/MapIcons';
+} from '@components';
 
-import { PlaceType } from 'interfaces/place';
-
-import decodeImageLink from '@util/imageLinkDecoder';
+import { PlaceType } from 'interfaces';
 
 import { updateMarkers } from './commonElement';
 
@@ -109,7 +107,7 @@ const CourseMap = ({
             new naver.maps.InfoWindow({
               content:
                 place.images && place.images.length > 0
-                  ? placePicture(decodeImageLink(place.images[0].path.data))
+                  ? placePicture(place.images[0].source)
                   : placeNoPicture,
               // img 태그에 a 태그를 넣어 이동하게 하자.
               borderWidth: 1,

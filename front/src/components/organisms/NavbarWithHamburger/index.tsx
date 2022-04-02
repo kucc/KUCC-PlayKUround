@@ -5,7 +5,7 @@ import useDarkMode from 'use-dark-mode';
 
 import { HamburgerMenuWithAvatar, Navbar } from '@components';
 
-import useWindowDimensions from '@hooks/useWindowDimensions';
+import { useWindowDimensions } from '@hooks';
 import { MenuIcon } from '@styles';
 
 import { HamburgerOverlay, HamburgerWrapper } from './styled';

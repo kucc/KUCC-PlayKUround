@@ -1,4 +1,4 @@
-export default function decodeImageLink(data: any) {
+export const decodeImageLink = (data: any) => {
   if (!data) {
     return `pictures/no-image.svg`;
   } else {
@@ -6,4 +6,4 @@ export default function decodeImageLink(data: any) {
     const text = buff.toString('ascii');
     return `data:image/png;base64,${text}`;
   }
-}
+};

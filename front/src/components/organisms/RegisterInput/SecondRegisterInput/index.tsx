@@ -3,14 +3,12 @@ import { useQuery } from 'react-query';
 
 import Router from 'next/router';
 
-import { Avatar, BaseButton, BaseInput } from '@components';
-import { UploadImage } from '@components/atoms';
+import { Avatar, BaseButton, BaseInput, UploadImage } from '@components';
 
-import { checkNameAPI, logInAPI, registerAPI, updateUserAPI } from 'apis/user';
+import { checkNameAPI, logInAPI, registerAPI, updateUserAPI } from 'apis';
 
-import useAntdModal from '@hooks/useAntdModal';
-import makeBlob from '@util/makeBlob';
-import { ERROR_LOG, REGISTER_SUCCESS } from '@util/message';
+import { useAntdModal } from '@hooks';
+import { ERROR_LOG, REGISTER_SUCCESS, makeBlob } from '@util';
 
 import { AvatarPosition, ButtonWrapper, Label } from '../styled';
 import { SecondRegisterInputProps } from '../type';
@@ -24,10 +22,10 @@ export const SecondRegisterInput = ({
   userInfo,
 }: SecondRegisterInputProps) => {
   const { data: isNickNameExist } = useQuery(['user', nickname], checkNameAPI);
-  const [isSuccessNickname, setIsSuccessNickname] = useState(false);
-  const [isErrorNickname, setIsErrorNickname] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [imageLink, setImageLink] = useState<any>(null);
+  const [isSuccessNickname, setIsSuccessNickname] = useState<boolean>(false);
+  const [isErrorNickname, setIsErrorNickname] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [imageLink, setImageLink] = useState<string | undefined>(undefined);
 
   // Todo : imageLink 포함해서 formData 형식으로 회원가입 데이터 넘겨줘야 함!
 
@@ -59,15 +57,17 @@ export const SecondRegisterInput = ({
     }
     // isJoinMode가 아닐 때는 이미 만들어진 유저 정보를 업데이트함 (social Login의 경우에 해당.)
     else {
-      formData.append('userId', userInfo?.id as unknown as string);
-      updateUserAPI(formData).then(result => {
-        if (result) {
-          useAntdModal({ success: true, message: REGISTER_SUCCESS });
-          Router.replace('/');
-        } else {
-          useAntdModal({ message: ERROR_LOG });
-        }
-      });
+      if (userInfo) {
+        formData.append('userId', userInfo.id.toString());
+        updateUserAPI(formData).then(result => {
+          if (result) {
+            useAntdModal({ success: true, message: REGISTER_SUCCESS });
+            Router.replace('/');
+          } else {
+            useAntdModal({ message: ERROR_LOG });
+          }
+        });
+      }
     }
     setIsLoading(false);
   }, [email, nickname, password]);

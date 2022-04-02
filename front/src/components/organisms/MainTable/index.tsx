@@ -1,17 +1,16 @@
-import React, { useEffect, useState } from 'react';
-import { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 
 import { Skeleton } from 'antd';
 
-import { CardArray, ErrorLayout, Footer, MainSelect, MainToggleBar } from '@components';
+import { CardArray, ErrorLayout, MainSelect, MainToggleBar } from '@components';
 import { Error } from '@templates';
 
-import { getByFilterAPI, getByMapAPI } from 'apis/place';
-import { PlaceType } from 'interfaces/place';
+import { getByFilterAPI, getByMapAPI } from 'apis';
+import { PlaceType } from 'interfaces';
 
-import reactQueryOption from '@constants/reactQueryOption';
-import { filterValueContext } from '@contexts/filterValue';
+import { reactQueryOption } from '@constants';
+import { filterValueContext } from '@contexts';
 
 import { Map } from '../Map';
 import { StlyedMainTableTop, StyledContentContainer, StyledMainTable } from './styled';

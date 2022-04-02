@@ -30,7 +30,7 @@ export const BaseInput = ({
   baseText,
   onChangeText,
 }: BaseInputProps) => {
-  const [text, setText] = React.useState('');
+  const [text, setText] = React.useState<string>('');
 
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setText(event.target.value);

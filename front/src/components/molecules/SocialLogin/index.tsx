@@ -9,7 +9,7 @@ import { StyledSocialLoginContainer } from './styled';
 export const SocialLogin = ({ mode }: { mode: 'login' | 'register' }) => {
   const renderWord = (mode: 'login' | 'register') => {
     if (mode === 'login') return '로그인';
-    else if (mode === 'register') return '회원가입';
+    else return '회원가입';
   };
   return (
     <div style={{ marginTop: '25px' }}>

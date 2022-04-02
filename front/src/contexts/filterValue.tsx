@@ -1,15 +1,15 @@
 import React, { createContext, useState } from 'react';
 
-const filterValueContext = createContext({
+export const filterValueContext = createContext({
   categoryList: [],
   sendCategory: (category: any) => {},
   area: '',
   sendArea: (area: any) => {},
 });
 
-const filterValueProvider: React.FC = ({ children }): JSX.Element => {
+export const filterValueProvider: React.FC = ({ children }): JSX.Element => {
   const [categoryList, setCategoryList] = useState([]);
-  const [area, setArea] = useState('');
+  const [area, setArea] = useState<string>('');
 
   const sendCategory = (category: any): void => {
     setCategoryList(category);
@@ -31,5 +31,3 @@ const filterValueProvider: React.FC = ({ children }): JSX.Element => {
     </filterValueContext.Provider>
   );
 };
-
-export { filterValueContext, filterValueProvider };

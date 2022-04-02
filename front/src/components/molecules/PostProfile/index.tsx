@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
-import { Avatar, Text } from '@components/atoms';
+import { Avatar, Text } from '@components';
 
-import decodeImageLink from '@util/imageLinkDecoder';
+import { decodeImageLink } from '@util';
 
 import { StyledProfileContainer, StyledProfileText } from './styled';
 import { postProfileProps } from './type';

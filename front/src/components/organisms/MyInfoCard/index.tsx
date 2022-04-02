@@ -3,10 +3,10 @@ import { useQuery } from 'react-query';
 
 import { Avatar, MenuBar, UploadImage } from '@components';
 
-import { loadMyInfoAPI } from 'apis/user';
-import User from 'interfaces/user';
+import { loadMyInfoAPI } from 'apis';
+import { UserType } from 'interfaces';
 
-import reactQueryOption from '@constants/reactQueryOption';
+import { reactQueryOption } from '@constants';
 
 import {
   AvatarLabelWrapper,
@@ -83,8 +83,8 @@ const DefaultIconLabel = [
 ];
 
 export const MyInfoCard = ({ iconLabel, imageSource, name, style }: MyInfoCardProps) => {
-  const { data: user } = useQuery<User>('user', loadMyInfoAPI, reactQueryOption);
-  const [imageLink, setImageLink] = useState<any>(imageSource);
+  const { data: user } = useQuery<UserType>('user', loadMyInfoAPI, reactQueryOption);
+  const [imageLink, setImageLink] = useState<string | undefined>(imageSource);
 
   console.log(imageLink);
 

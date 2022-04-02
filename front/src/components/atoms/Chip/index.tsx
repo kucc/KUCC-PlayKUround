@@ -3,7 +3,7 @@ import React, { useContext, useEffect } from 'react';
 import { useSpring } from '@react-spring/web';
 import useDarkMode from 'use-dark-mode';
 
-import { filterValueContext } from '@contexts/filterValue';
+import { filterValueContext } from '@contexts';
 import { Colors } from '@styles';
 
 import { ChipWrapper, Label } from './styled';

@@ -2,36 +2,34 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 
 import { Skeleton, message } from 'antd';
-import router from 'next/router';
-import Router from 'next/router';
+import { default as Router, default as router } from 'next/router';
 
 import { BackIconWithNavbar, FirstLoginInput, Modal, SecondLoginInput, Text } from '@components';
 import { Error } from '@templates';
 
-import { getNameAPI, loadMyInfoAPI, logInAPI } from 'apis/user';
-import User from 'interfaces/user';
+import { getNameAPI, loadMyInfoAPI, logInAPI } from 'apis';
+import { UserType } from 'interfaces';
 
-import reactQueryOption from '@constants/reactQueryOption';
-import { MakeEmailContext } from '@contexts/globalEmail';
-import useAntdModal from '@hooks/useAntdModal';
-import useInput from '@hooks/useInput';
-import { ALREADY_LOGINED } from '@util/message';
+import { reactQueryOption } from '@constants';
+import { MakeEmailContext } from '@contexts';
+import { useAntdModal, useInput } from '@hooks';
+import { ALREADY_LOGINED } from '@util';
 
 const LoginPage = () => {
-  const [email, onChangeEmail] = useInput('');
-  const [password, onChangePassword] = useInput('');
+  const [email, onChangeEmail] = useInput<string>('');
+  const [password, onChangePassword] = useInput<string>('');
   const [modalVisible, setModalVisible] = useState<boolean>(false);
   const [firstPage, setFirstPage] = useState<boolean>(true);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [name, setName] = useState<string>('');
 
-  const { data, isSuccess, isIdle, isError } = useQuery<User>(
+  const { data, isSuccess, isIdle, isError } = useQuery<UserType>(
     'user',
     loadMyInfoAPI,
     reactQueryOption,
   );
 
-  const me = data as User;
+  const me = data as UserType;
   const { makeEmail } = useContext(MakeEmailContext);
 
   const onClickNextButton = () => {
