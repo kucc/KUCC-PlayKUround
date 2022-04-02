@@ -16,7 +16,7 @@ export const PlaceInfo: React.FC<PlaceInfoProps> = ({
   scrapCount,
 }) => {
   const { distance } = useContext(DistanceValueContext);
-  console.log(distance);
+
   return (
     <StyledPlaceInfoContainer>
       <Text primary h5 bold style={{ padding: '0px 30px' }}>

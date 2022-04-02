@@ -31,7 +31,11 @@ const App = ({ Component, pageProps }: AppProps) => {
       <QueryClientProvider client={queryClientRef.current}>
         <Hydrate state={pageProps.dehydratedState}>
           <Head>
-            <meta charSet='utf-8' />
+            <meta
+              charSet='utf-8'
+              http-equiv='Content-Security-Policy'
+              content='upgrade-insecure-requests'
+            />
             <title>PlayKUround</title>
             <script
               type='text/javascript'

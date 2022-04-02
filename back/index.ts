@@ -81,7 +81,8 @@ const sessionOption = {
   // proxy: true,
   cookie: {
     httpOnly: true,
-    secure: false,
+    sameSite: 'none',
+    secure: true,
     // secure: true,
     domain: process.env.NODE_ENV === 'production' && DEV_FRONT_URL, // 배포 시에 프론트 주소 적어주기
   },
